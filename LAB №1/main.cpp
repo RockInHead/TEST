@@ -22,6 +22,20 @@ struct DynamicArray{
             delete [] currentArray;
             currentArray=expandedArray;
         }
+        else if(Length<Capacity & Capacity!=4){
+            int *reducedArray= new int[Capacity/2];
+
+            for(int i=0;i<Capacity/2;i++)
+            {
+                reducedArray[i]=NULL;
+            }
+            for(int i=0;i<Length;i++){
+                reducedArray[i]=currentArray[i];
+            }
+            Capacity/=2;
+            delete [] currentArray;
+            currentArray=reducedArray;
+        }
     }
     //Функция добавления элемента в конец массива
     void AddElement(int array[]){
@@ -69,7 +83,7 @@ struct DynamicArray{
         cout<<"Enter the index of the item to delete:";
         cin>>indexOfElement;
         array[indexOfElement]=NULL;
-        for(int i=indexOfElement;i<Length;i++){
+        for(int i=indexOfElement;i<Length-1;i++){
             array[i]=array[i+1];
         }
         Length--;
@@ -87,7 +101,7 @@ struct DynamicArray{
                 indexOfElement=i;
             }
         }
-        for(int i=indexOfElement;i<Length;i++){
+        for(int i=indexOfElement;i<Length-1;i++){
             array[i]=array[i+1];
         }
         Length--;
@@ -132,7 +146,6 @@ struct DynamicArray{
         }
     }
     }
-    
  }; 
  //Функция выводящая массив в консоль
     void ShowArray(DynamicArray array){
@@ -162,10 +175,8 @@ void Menu(DynamicArray array){
     cout<<"[4] - Linear Search"<< endl;
     cout<<"[5] - Delete Element by index"<< endl;
     cout<<"[6] - Delete Element by value"<< endl;
-    
     cout<<"[7] - Sort in ascending order"<< endl;
     cout<<"[8] - Sort in descendin order"<< endl;
-
     cout<<"[0] - Exit"<< endl;
 }
 int main(){
@@ -175,66 +186,53 @@ int main(){
     bool ProgramState=true;
 
     while(ProgramState){
-    Menu(array);
-    cin>>CommandNumber;
-    switch (CommandNumber)
-    {
-    case 1:
-        array.ExpandArray();
-        array.AddElement(array.currentArray);
-        system("cls");
-        // array.ShowArray(array.currentArray);
-        break;
-    case 2:
-        array.ExpandArray();
-        array.AddElmentStart(array.currentArray);
-        system("cls");
-        break;
-    case 3:
-        array.ExpandArray();
-        array.Insert(array.currentArray);
-        system("cls");
-        break;
-    case 4:
-        array.LinearSearch(array.currentArray);
-        // system("cls");
-        break;
-    case 5:
-        array.DeleteElementIndex(array.currentArray);
-        system("cls");
-        break;
-    case 6:
-        array.DeleteElementValue(array.currentArray);
-        system("cls");
-        break;
-    case 7:
-        array.SortAscending(array.currentArray);
-        system("cls");
-        break;
-    case 8:
-        array.SortDescending(array.currentArray);
-        system("cls");
-        break;
 
-    case 0:
-        ProgramState=false;
-        break;
+        Menu(array);
+        cin>>CommandNumber;
+        switch (CommandNumber)
+        {
+        case 1:
+            array.ExpandArray();
+            array.AddElement(array.currentArray);
+            system("cls");
+            break;
+        case 2:
+            array.ExpandArray();
+            array.AddElmentStart(array.currentArray);
+            system("cls");
+            break;
+        case 3:
+            array.ExpandArray();
+            array.Insert(array.currentArray);
+            system("cls");
+            break;
+        case 4:
+            array.LinearSearch(array.currentArray);
+            // system("cls");
+            break;
+        case 5:
+            array.ExpandArray();
+            array.DeleteElementIndex(array.currentArray);
+            system("cls");
+            break;
+        case 6:
+            array.ExpandArray();
+            array.DeleteElementValue(array.currentArray);
+            system("cls");
+            break;
+        case 7:
+            array.SortAscending(array.currentArray);
+            system("cls");
+            break;
+        case 8:
+            array.SortDescending(array.currentArray);
+            system("cls");
+            break;
+
+        case 0:
+            ProgramState=false;
+            break;
+        }
     }
-    }
-    // array.AddElement(array.currentArray);
-    // array.ShowArray(array.currentArray);
-    // // cout<<" "<<endl;
-    
-    // array.SortAscending(array.currentArray);
-    // array.ShowArray(array.currentArray);
-    // // cout<<" "<<endl;
-
-    // array.SortDescending(array.currentArray);
-    // array.ShowArray(array.currentArray);
-    // // cout<<" "<<endl;
-    // // int len = array.Length(array.currentArray);
-    // // cout<<len<<endl;
-    // cout<<array.Length;
-
 }
  
