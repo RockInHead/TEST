@@ -35,11 +35,23 @@ struct DynamicArray{
             }
         }
     }
+    void AddElmentStart(int array[])
+    {
+
+        int newElement;
+        cout<<"Enter a new element:";
+        cin>>newElement;
+        for(int i=Length+1;i>0;i--){
+            array[i]=array[i-1];
+        }
+        array[0]=newElement;
+        Length++;
+    }
     //Функция сортировки массива по возрастанию
     void SortAscending(int array[])
     {
-        for(int i=0;i<4;i++){
-        for(int j=0;j<3;j++){
+        for(int i=0;i<Capacity;i++){
+        for(int j=0;j<Capacity-1;j++){
             // for(int j=1;j<)
             if(array[j]>array[j+1]){
                 int element= array[j];
@@ -52,8 +64,8 @@ struct DynamicArray{
     //Функция сортировки массива по убыванию
     void SortDescending(int array[])
     {
-        for(int i=0;i<4;i++){
-        for(int j=0;j<3;j++){
+        for(int i=0;i<Capacity;i++){
+        for(int j=0;j<Capacity-1;j++){
             // for(int j=1;j<)
             if(array[j]<array[j+1]){
                 int element= array[j];
@@ -87,10 +99,10 @@ void Menu(DynamicArray array){
     ShowLength(array);
     cout<<"Capacity:";
     cout<<array.Capacity<<endl;
-    cout<<"[1] - Add new Elemenet"<< endl;
+    cout<<"[1] - Add new Elemenet in the end"<< endl;
     cout<<"[2] - Sort in ascending order"<< endl;
     cout<<"[3] - Sort in descendin order"<< endl;
-    cout<<"[4] - afadsasdasd"<< endl;
+    cout<<"[4] - Add new Elemenet in the start"<< endl;
     cout<<"[0] - Exit"<< endl;
 }
 int main(){
@@ -124,6 +136,10 @@ int main(){
         // ShowArray(array.currentArray);
         break;
     case 4:
+        array.ExpandArray();
+        array.AddElmentStart(array.currentArray);
+        system("cls");
+
         // array.ShowLength();
         // ShowArray(array.currentArray);
         break;
