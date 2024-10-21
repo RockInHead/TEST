@@ -3,27 +3,29 @@
 using namespace std;
 struct DynamicArray{
     //Объявление массива
-    int *currentArray= new int[4]{NULL,NULL,NULL,NULL};
     int Capacity=4;
     int Length;
-    // void ExpandArray(int array[]){
-    //     if(Length>Capacity){
-    //         int previousArray= *currentArray;
-    //         currentArray= new int[Length+4];
+    int *currentArray= new int[Capacity]{NULL,NULL,NULL,NULL};
 
-    //         for(int i=0;i<Length;i++){
-    //         currentArray[i]=previousArray[i];
-    //         }
+    void ExpandArray(){
+        if(Length==Capacity){
+            int *expandedArray= new int[Capacity*2];
 
-    //         for(int j=Length;j<Length+4;j++){
-    //             currentArray[j]=NULL;
-    //         }
-    //         Capacity=Length+4;
-    //     }
-
-    // }
+            for(int i=0;i<Capacity*2;i++)
+            {
+                expandedArray[i]=NULL;
+            }
+            for(int i=0;i<Length;i++){
+                expandedArray[i]=currentArray[i];
+            }
+            Capacity*=2;
+            delete [] currentArray;
+            currentArray=expandedArray;
+        }
+    }
+    //Функция добавления элемента в конец массива
     void AddElement(int array[]){
-        for(int i=0;i<4;i++){
+        for(int i=0;i<Capacity;i++){
             if(array[i]==NULL){
                 cout<<"Enter a new element:";
                 cin>>array[i];
@@ -33,12 +35,6 @@ struct DynamicArray{
             }
         }
     }
-
-    //Функция возвращающая количество элементов в массиве
-    // int Length(int array[]){
-    //     return sizeof(array)/sizeof(array[0]);
-    // }
-
     //Функция сортировки массива по возрастанию
     void SortAscending(int array[])
     {
@@ -69,39 +65,47 @@ struct DynamicArray{
     }
     
  }; 
- //Функция выводящая символы массива в консоль
-    void ShowArray(int array[]){
-        for(int i=0;i<4;i++){
-        if(array[i]!=0){
-            cout<<array[i]<<" ";
+ //Функция выводящая массив в консоль
+    void ShowArray(DynamicArray array){
+        if(array.currentArray)
+        for(int i=0;i<array.Capacity;i++){
+        if(array.currentArray[i]!=0){
+            cout<<array.currentArray[i]<<" ";
         }
     }
     cout<<" "<<endl;
     };
-void Menu(int array[]){
+//Функция возвращающая количество элементов в массиве
+void ShowLength(DynamicArray array){
+    cout<<array.Length<<endl;
+}
+//Функция вывод меню в консоль
+void Menu(DynamicArray array){
     cout<<"Current array:";
     ShowArray(array);
+    cout<<"Array length:";
+    ShowLength(array);
+    cout<<"Capacity:";
+    cout<<array.Capacity<<endl;
     cout<<"[1] - Add new Elemenet"<< endl;
     cout<<"[2] - Sort in ascending order"<< endl;
     cout<<"[3] - Sort in descendin order"<< endl;
-    cout<<"[4] - Show array"<< endl;
+    cout<<"[4] - afadsasdasd"<< endl;
     cout<<"[0] - Exit"<< endl;
 }
 int main(){
-
-
-
     DynamicArray array;
+    
     int CommandNumber;
-
     bool ProgramState=true;
 
     while(ProgramState){
-    Menu(array.currentArray);
+    Menu(array);
     cin>>CommandNumber;
     switch (CommandNumber)
     {
     case 1:
+        array.ExpandArray();
         array.AddElement(array.currentArray);
         system("cls");
         // array.ShowArray(array.currentArray);
@@ -120,7 +124,8 @@ int main(){
         // ShowArray(array.currentArray);
         break;
     case 4:
-        ShowArray(array.currentArray);
+        // array.ShowLength();
+        // ShowArray(array.currentArray);
         break;
     case 0:
         ProgramState=false;
