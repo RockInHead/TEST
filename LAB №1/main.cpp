@@ -62,6 +62,7 @@ struct DynamicArray{
         array[indexOfElement]=newElement;
         Length++;
     }
+    //Функция удаления элемента по индексу
     void DeleteElementIndex(int array[])
     {
         int indexOfElement;
@@ -73,7 +74,24 @@ struct DynamicArray{
         }
         Length--;
     }
-
+    //Функция удаления элемента по значению
+    void DeleteElementValue(int array[])
+    {
+        int DeletedElement;
+        int indexOfElement;
+        cout<<"Enter the item to delete:";
+        cin>>DeletedElement;
+        for(int i=0;i<Capacity;i++){
+            if(array[i]==DeletedElement){
+                array[i]=NULL;
+                indexOfElement=i;
+            }
+        }
+        for(int i=indexOfElement;i<Length;i++){
+            array[i]=array[i+1];
+        }
+        Length--;
+    }
     //Функция линейного поиска элемента в массиве
     void LinearSearch(int array[]){
         int seacrhingElement;
@@ -143,9 +161,10 @@ void Menu(DynamicArray array){
     cout<<"[3] - Add new Elemenet by index "<< endl;
     cout<<"[4] - Linear Search"<< endl;
     cout<<"[5] - Delete Element by index"<< endl;
+    cout<<"[6] - Delete Element by value"<< endl;
     
-    cout<<"[6] - Sort in ascending order"<< endl;
-    cout<<"[7] - Sort in descendin order"<< endl;
+    cout<<"[7] - Sort in ascending order"<< endl;
+    cout<<"[8] - Sort in descendin order"<< endl;
 
     cout<<"[0] - Exit"<< endl;
 }
@@ -185,10 +204,14 @@ int main(){
         system("cls");
         break;
     case 6:
-        array.SortAscending(array.currentArray);
+        array.DeleteElementValue(array.currentArray);
         system("cls");
         break;
     case 7:
+        array.SortAscending(array.currentArray);
+        system("cls");
+        break;
+    case 8:
         array.SortDescending(array.currentArray);
         system("cls");
         break;
