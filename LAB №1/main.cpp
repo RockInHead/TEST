@@ -37,7 +37,6 @@ struct DynamicArray{
     }
     void AddElmentStart(int array[])
     {
-
         int newElement;
         cout<<"Enter a new element:";
         cin>>newElement;
@@ -45,6 +44,20 @@ struct DynamicArray{
             array[i]=array[i-1];
         }
         array[0]=newElement;
+        Length++;
+    }
+    void Insert(int array[])
+    {
+        int newElement;
+        int indexOfElement;
+        cout<<"Enter a index of elemnt:";
+        cin>>indexOfElement;
+        cout<<"Enter a new element:";
+        cin>>newElement;
+        for(int i=Length+1;i>indexOfElement;i--){
+            array[i]=array[i-1];
+        }
+        array[indexOfElement]=newElement;
         Length++;
     }
     //Функция сортировки массива по возрастанию
@@ -81,7 +94,7 @@ struct DynamicArray{
     void ShowArray(DynamicArray array){
         if(array.currentArray)
         for(int i=0;i<array.Capacity;i++){
-        if(array.currentArray[i]!=0){
+        if(array.currentArray[i]!=NULL){
             cout<<array.currentArray[i]<<" ";
         }
     }
@@ -100,9 +113,11 @@ void Menu(DynamicArray array){
     cout<<"Capacity:";
     cout<<array.Capacity<<endl;
     cout<<"[1] - Add new Elemenet in the end"<< endl;
-    cout<<"[2] - Sort in ascending order"<< endl;
-    cout<<"[3] - Sort in descendin order"<< endl;
-    cout<<"[4] - Add new Elemenet in the start"<< endl;
+    cout<<"[2] - Add new Elemenet in the start"<< endl;
+    cout<<"[3] - Add new Elemenet by index "<< endl;
+    cout<<"[4] - Sort in ascending order"<< endl;
+    cout<<"[5] - Sort in descendin order"<< endl;
+
     cout<<"[0] - Exit"<< endl;
 }
 int main(){
@@ -122,33 +137,32 @@ int main(){
         system("cls");
         // array.ShowArray(array.currentArray);
         break;
-    
     case 2:
+        array.ExpandArray();
+        array.AddElmentStart(array.currentArray);
+        system("cls");
+        break;
+    case 3:
+        array.ExpandArray();
+        array.Insert(array.currentArray);
+        system("cls");
+        break;
+    case 4:
         array.SortAscending(array.currentArray);
         system("cls");
 
         // ShowArray(array.currentArray);
         break;
-    case 3:
+    case 5:
         array.SortDescending(array.currentArray);
         system("cls");
 
         // ShowArray(array.currentArray);
         break;
-    case 4:
-        array.ExpandArray();
-        array.AddElmentStart(array.currentArray);
-        system("cls");
 
-        // array.ShowLength();
-        // ShowArray(array.currentArray);
-        break;
     case 0:
         ProgramState=false;
         break;
-    case 5:
-        system("cls");
-
     }
     }
     // array.AddElement(array.currentArray);
