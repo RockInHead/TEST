@@ -1,1 +1,1 @@
-array.AddElmentStart(array.currentArray);
+       // system("cls");

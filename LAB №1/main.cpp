@@ -6,7 +6,7 @@ struct DynamicArray{
     int Capacity=4;
     int Length;
     int *currentArray= new int[Capacity]{NULL,NULL,NULL,NULL};
-
+    //Функция увеличения массива
     void ExpandArray(){
         if(Length==Capacity){
             int *expandedArray= new int[Capacity*2];
@@ -35,6 +35,7 @@ struct DynamicArray{
             }
         }
     }
+    //Функция вставки элемента вначало
     void AddElmentStart(int array[])
     {
         int newElement;
@@ -46,6 +47,7 @@ struct DynamicArray{
         array[0]=newElement;
         Length++;
     }
+    //Функция вставки элемента по индексу
     void Insert(int array[])
     {
         int newElement;
@@ -59,6 +61,17 @@ struct DynamicArray{
         }
         array[indexOfElement]=newElement;
         Length++;
+    }
+    void LinearSearch(int array[]){
+        int seacrhingElement;
+        cout<<"Enter seacrhing elemnt:";
+        cin>>seacrhingElement;
+        for(int i=0;i<Capacity;i++){
+            if(array[i]==seacrhingElement){
+            cout<<"Index of seacrhing element is ";
+            cout<<i<<endl;
+            }
+        }
     }
     //Функция сортировки массива по возрастанию
     void SortAscending(int array[])
@@ -115,8 +128,10 @@ void Menu(DynamicArray array){
     cout<<"[1] - Add new Elemenet in the end"<< endl;
     cout<<"[2] - Add new Elemenet in the start"<< endl;
     cout<<"[3] - Add new Elemenet by index "<< endl;
-    cout<<"[4] - Sort in ascending order"<< endl;
-    cout<<"[5] - Sort in descendin order"<< endl;
+    cout<<"[4] - Linear Search"<< endl;
+    
+    cout<<"[5] - Sort in ascending order"<< endl;
+    cout<<"[6] - Sort in descendin order"<< endl;
 
     cout<<"[0] - Exit"<< endl;
 }
@@ -148,16 +163,16 @@ int main(){
         system("cls");
         break;
     case 4:
-        array.SortAscending(array.currentArray);
-        system("cls");
-
-        // ShowArray(array.currentArray);
+        array.LinearSearch(array.currentArray);
+        // system("cls");
         break;
     case 5:
+        array.SortAscending(array.currentArray);
+        system("cls");
+        break;
+    case 6:
         array.SortDescending(array.currentArray);
         system("cls");
-
-        // ShowArray(array.currentArray);
         break;
 
     case 0:
