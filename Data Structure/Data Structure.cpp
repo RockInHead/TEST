@@ -154,7 +154,38 @@ struct DynamicArray
             }
         }
     }
-    
+    // Функция бинарного поиска
+    int BinarySearch(int array[], int target) {
+        // Создаем копию массива
+        //int* array = new int[Length];
+        //for (int i = 0; i < Length; i++) {
+        //    array[i] = originalArray[i];
+        //}
+
+        // Сортируем массив
+        MergeSort(array);
+
+        // Выполняем бинарный поиск
+        int left = 0;
+        int right = Length - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (array[mid] == target) {
+                // Освобождаем память
+                return mid; // Возвращаем индекс найденного элемента
+            }
+            if (array[mid] < target) {
+                left = mid + 1;
+            }
+            else {
+                right = mid - 1;
+            }
+        }
+
+         // Освобождаем память
+        return -1; // Элемент не найден
+    }
 
     void MergeSort(int array[])
     {
@@ -301,8 +332,8 @@ void Menu(DynamicArray array)
     cout << "[4] - Linear Search" << endl;
     cout << "[5] - Delete Element by index" << endl;
     cout << "[6] - Delete Element by value" << endl;
-    cout << "[7] - Sort in ascending order" << endl;
-    cout << "[8] - Sort in descendin order" << endl;
+    cout << "[7] - Merge Sort" << endl;
+    cout << "[8] - Binary Search" << endl;
     cout << "[0] - Exit" << endl;
 }
 int main()
@@ -359,8 +390,16 @@ int main()
             system("cls");
             break;
         case 8:
-            array.SortDescending(array.currentArray);
+            int target;
+            int res;
+            /*array.SortDescending(array.currentArray)*/
+            cout << "Searching element:";
+            cin >> target;
+            res=array.BinarySearch(array.currentArray,target);
             system("cls");
+            cout << "Index of seaching element is " << res << endl;
+
+
             break;
 
         case 0:
