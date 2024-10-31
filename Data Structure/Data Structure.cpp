@@ -338,7 +338,7 @@ int main()
             break;
         case 4:
             array.LinearSearch(array.currentArray);
-            // system("cls");
+
             break;
         case 5:
             
