@@ -50,14 +50,15 @@ struct DynamicArray
      }
     
     // Функция добавления элемента в конец массива
-    void AddElement(int array[])
+    void AddElement(int array[],int NewElement)
     {
         for (int i = 0; i < Capacity; i++)
         {
             if (array[i] == NULL)
             {
-                cout << "Enter a new element:";
-                cin >> array[i];
+                //cout << "Enter a new element:";
+                //cin >> array[i];
+                array[i] = NewElement;
                 Length++;
                 break;
                 break;
@@ -125,6 +126,7 @@ struct DynamicArray
             {
                 array[i] = NULL;
                 indexOfElement = i;
+                break;
             }
         }
         for (int i = indexOfElement; i <= Length - 1; i++)
@@ -351,8 +353,11 @@ int main()
         switch (CommandNumber)
         {
         case 1:
+            int NewElement;
             array.ExpandArray();
-            array.AddElement(array.currentArray);
+            cout << "Enter a new element:";
+            cin >> NewElement;
+            array.AddElement(array.currentArray,NewElement);
 
 
             system("cls");
