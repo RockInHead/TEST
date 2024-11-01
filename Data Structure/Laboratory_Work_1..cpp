@@ -50,7 +50,7 @@ struct DynamicArray
      }
     
     // Функция добавления элемента в конец массива
-    void AddElement(int array[],int NewElement)
+    void AddElement(int array[],int newElement)
     {
         for (int i = 0; i < Capacity; i++)
         {
@@ -58,7 +58,7 @@ struct DynamicArray
             {
                 //cout << "Enter a new element:";
                 //cin >> array[i];
-                array[i] = NewElement;
+                array[i] = newElement;
                 Length++;
                 break;
                 break;
@@ -66,11 +66,11 @@ struct DynamicArray
         }
     }
     // Функция вставки элемента вначало
-    void AddElmentStart(int array[])
+    void AddElmentStart(int array[],int newElement)
     {
-        int newElement;
+        /*int newElement;
         cout << "Enter a new element:";
-        cin >> newElement;
+        cin >> newElement;*/
         for (int i = Length + 1; i > 0; i--)
         {
             array[i] = array[i - 1];
@@ -79,28 +79,24 @@ struct DynamicArray
         Length++;
     }
     // Функция вставки элемента по индексу
-    void Insert(int array[])
+    void Insert(int array[],int newElement, int indexOfElement)
     {
-        int newElement;
-        int indexOfElement;
-        cout << "Enter a index of elemnt:";
-        cin >> indexOfElement;
-        cout << "Enter a new element:";
-        cin >> newElement;
-        for (int i = Length + 1; i > indexOfElement; i--)
+        
+        Length++;
+        //ExpandArray();
+        for (int i = Length-1; i > indexOfElement; i--)
         {
 
             array[i] = array[i - 1];
         }
         array[indexOfElement] = newElement;
-        Length++;
     }
     // Функция удаления элемента по индексу
-    void DeleteElementIndex(int array[])
+    void DeleteElementIndex(int array[],int indexOfElement)
     {
-        int indexOfElement;
-        cout << "Enter the index of the item to delete:";
-        cin >> indexOfElement;
+        //int indexOfElement;
+        //cout << "Enter the index of the item to delete:";
+        //cin >> indexOfElement;
         array[indexOfElement] = NULL;
         for (int i = indexOfElement; i <= Length - 1; i++)
         {
@@ -114,12 +110,12 @@ struct DynamicArray
         Length--;
     }
     // Функция удаления элемента по значению
-    void DeleteElementValue(int array[])
+    void DeleteElementValue(int array[], int DeletedElement)
     {
-        int DeletedElement;
+        /*int DeletedElement;*/
         int indexOfElement;
-        cout << "Enter the item to delete:";
-        cin >> DeletedElement;
+        /*cout << "Enter the item to delete:";
+        cin >> DeletedElement;*/
         for (int i = 0; i < Capacity; i++)
         {
             if (array[i] == DeletedElement)
@@ -142,17 +138,19 @@ struct DynamicArray
         Length--;
     }
     // Функция линейного поиска элемента в массиве
-    void LinearSearch(int array[])
+    int LinearSearch(int array[],int seacrhingElement)
     {
-        int seacrhingElement;
+        /*int seacrhingElement;
         cout << "Enter seacrhing elemnt:";
-        cin >> seacrhingElement;
-        for (int i = 0; i < Capacity; i++)
+        cin >> seacrhingElement;*/
+        for (int i = 0; i < Length; i++)
         {
             if (array[i] == seacrhingElement)
             {
-                cout << "Index of seacrhing element is ";
-                cout << i << endl;
+                /*cout << "Index of seacrhing element is ";
+                cout << i << endl;*/
+                return i;
+                break;
             }
         }
     }
@@ -344,7 +342,10 @@ int main()
 
     int CommandNumber;
     bool ProgramState = true;
-
+    int newElement;
+    int deletedElement;
+    int seacrhingElement;
+    int index;
     while (ProgramState)
     {
 
@@ -353,39 +354,52 @@ int main()
         switch (CommandNumber)
         {
         case 1:
-            int NewElement;
             array.ExpandArray();
             cout << "Enter a new element:";
-            cin >> NewElement;
-            array.AddElement(array.currentArray,NewElement);
-
+            cin >> newElement;
+            array.AddElement(array.currentArray,newElement);
+            array.ExpandArray();
 
             system("cls");
             break;
         case 2:
             array.ExpandArray();
-            array.AddElmentStart(array.currentArray);
+            cout << "Enter a new element:";
+            cin >> newElement;
+            array.AddElmentStart(array.currentArray,newElement);
             system("cls");
             break;
         case 3:
             array.ExpandArray();
-            array.Insert(array.currentArray);
+            int indexOfElement;
+            cout << "Enter a index of element:";
+            cin >> indexOfElement;
+            cout << "Enter a new element:";
+            cin >> newElement;
+            array.Insert(array.currentArray,newElement,indexOfElement);
+            array.ExpandArray();
+
             system("cls");
             break;
         case 4:
-            array.LinearSearch(array.currentArray);
-
+            cout << "Enter seacrhing element:";
+            cin >> seacrhingElement;
+            index=array.LinearSearch(array.currentArray,seacrhingElement);
+            system("cls");
+            cout << "Index of '"<< seacrhingElement <<"' is " << index << endl <<endl;
             break;
         case 5:
-            
-            array.DeleteElementIndex(array.currentArray);
+            cout << "Enter the index of the item to delete:";
+            cin >> indexOfElement;
+            array.DeleteElementIndex(array.currentArray,indexOfElement);
             array.ReduceArray();
-
             system("cls");
             break;
         case 6:
             //array.ExpandArray();
-            array.DeleteElementValue(array.currentArray);
+            cout << "Enter the element to delete:";
+            cin >> deletedElement;
+            array.DeleteElementValue(array.currentArray, deletedElement);
             array.ReduceArray();
             system("cls");
             break;
