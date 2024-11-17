@@ -391,7 +391,9 @@ int main()
         case 2:
             /*array.ExpandArray();*/
             cout << "Enter a new element:";
-            cin >> newElement;
+            /*cin >> newElement;*/
+            newElement = ValidCin();
+            
             array.AddElmentStart(array.currentArray,newElement);
             system("cls");
             break;
@@ -399,9 +401,10 @@ int main()
             /*array.ExpandArray();*/
             int indexOfElement;
             cout << "Enter a index of element:";
-            cin >> indexOfElement;
+            /*cin >> indexOfElement;*/
+            indexOfElement = ValidCin();
             cout << "Enter a new element:";
-            cin >> newElement;
+            newElement = ValidCin();
             array.Insert(array.currentArray,newElement,indexOfElement);
             /*array.ExpandArray();*/
 
@@ -409,7 +412,8 @@ int main()
             break;
         case 4:
             cout << "Enter seacrhing element:";
-            cin >> seacrhingElement;
+            /*cin >> seacrhingElement;*/
+            seacrhingElement = ValidCin();
             index=array.LinearSearch(array.currentArray,seacrhingElement);
             system("cls");
             if (index != -1) {
@@ -421,7 +425,8 @@ int main()
             break;
         case 5:
             cout << "Enter the index of the item to delete:";
-            cin >> indexOfElement;
+            /*cin >> indexOfElement;*/
+            indexOfElement = ValidCin();
             array.DeleteElementIndex(array.currentArray,indexOfElement);
             /*array.ReduceArray();*/
             system("cls");
@@ -429,7 +434,8 @@ int main()
         case 6:
             //array.ExpandArray();
             cout << "Enter the element to delete:";
-            cin >> deletedElement;
+            /*cin >> deletedElement;*/
+            deletedElement = ValidCin();
             array.DeleteElementValue(array.currentArray, deletedElement);
             /*array.ReduceArray();*/
             system("cls");
@@ -444,7 +450,8 @@ int main()
             int res;
             /*array.SortDescending(array.currentArray)*/
             cout << "Searching element:";
-            cin >> target;
+            /*cin >> target;*/
+            target = ValidCin();
             res=array.BinarySearch(array.currentArray,target);
             system("cls");
             if (res != -1) {
