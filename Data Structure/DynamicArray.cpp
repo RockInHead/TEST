@@ -121,6 +121,7 @@ using namespace std;
             array[i] = array[i + 1];
         }
         Length--;
+        ReduceArray();
     }
     // Функция удаления элемента по значению
     void DynamicArray::DeleteElementValue(int array[], int DeletedElement)

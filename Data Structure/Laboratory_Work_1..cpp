@@ -394,7 +394,7 @@ int main()
             cout << "Enter the index of the item to delete:";
             cin >> indexOfElement;
             array.DeleteElementIndex(array.currentArray,indexOfElement);
-            array.ReduceArray();
+            /*array.ReduceArray();*/
             system("cls");
             break;
         case 6:
