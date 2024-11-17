@@ -3,7 +3,7 @@
 #include <iostream>
 
 struct DynamicArray {
-	int Capacity, Length;
+	int _capacity, _length;
 	int* currentArray;
 	DynamicArray();
 	void ExpandArray();

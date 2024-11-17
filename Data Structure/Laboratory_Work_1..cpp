@@ -304,7 +304,7 @@ using namespace std;
 void ShowArray(DynamicArray array)
 {
     if (array.currentArray)
-        for (int i = 0; i < array.Capacity; i++)
+        for (int i = 0; i < array._capacity; i++)
         {
             if (array.currentArray[i] != NULL)
             {
@@ -316,7 +316,7 @@ void ShowArray(DynamicArray array)
 // Функция возвращающая количество элементов в массиве
 void ShowLength(DynamicArray array)
 {
-    cout << array.Length << endl;
+    cout << array._length << endl;
 }
 // Функция вывод меню в консоль
 void Menu(DynamicArray array)
@@ -326,7 +326,7 @@ void Menu(DynamicArray array)
     cout << "Array length:";
     ShowLength(array);
     cout << "Capacity:";
-    cout << array.Capacity << endl;
+    cout << array._capacity << endl;
     cout << "[1] - Add new Elemenet in the end" << endl;
     cout << "[2] - Add new Elemenet in the start" << endl;
     cout << "[3] - Add new Elemenet by index " << endl;
