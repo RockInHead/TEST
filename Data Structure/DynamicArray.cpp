@@ -150,6 +150,7 @@ using namespace std;
 
         }
         Length--;
+        ReduceArray();
     }
     // Функция линейного поиска элемента в массиве
     int DynamicArray::LinearSearch(int array[], int seacrhingElement)

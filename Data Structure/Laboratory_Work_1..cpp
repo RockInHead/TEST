@@ -402,7 +402,7 @@ int main()
             cout << "Enter the element to delete:";
             cin >> deletedElement;
             array.DeleteElementValue(array.currentArray, deletedElement);
-            array.ReduceArray();
+            /*array.ReduceArray();*/
             system("cls");
             break;
         case 7:
