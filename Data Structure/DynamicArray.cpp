@@ -131,7 +131,7 @@ using namespace std;
     void DynamicArray::DeleteElementValue(int array[], int DeletedElement)
     {
         /*int DeletedElement;*/
-        int indexOfElement;
+        int indexOfElement=NULL;
         /*cout << "Enter the item to delete:";
         cin >> DeletedElement;*/
         for (int i = 0; i < Capacity; i++)
@@ -143,18 +143,20 @@ using namespace std;
                 break;
             }
         }
-        for (int i = indexOfElement; i <= Length - 1; i++)
-        {
-            if (array[i] == array[Length - 1])
+        if (indexOfElement !=NULL) {
+            for (int i = indexOfElement; i <= Length - 1; i++)
             {
-                array[i] = NULL;
-                break;
-            }
-            array[i] = array[i + 1];
+                if (array[i] == array[Length - 1])
+                {
+                    array[i] = NULL;
+                    break;
+                }
+                array[i] = array[i + 1];
 
+            }
+            Length--;
+            ReduceArray();
         }
-        Length--;
-        ReduceArray();
     }
     // Функция линейного поиска элемента в массиве
     int DynamicArray::LinearSearch(int array[], int seacrhingElement)
