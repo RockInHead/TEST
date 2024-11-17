@@ -301,14 +301,15 @@ using namespace std;
 //    }
 //};
 // Функция выводящая массив в консоль
+//Функция вывода массива в строку.
 void ShowArray(DynamicArray array)
 {
-    if (array.currentArray)
-        for (int i = 0; i < array._capacity; i++)
+    if (array.GetArray())
+        for (int i = 0; i < array.GetCapacity(); i++)
         {
-            if (array.currentArray[i] != NULL)
+            if (array.GetArray()[i] != NULL)
             {
-                cout << array.currentArray[i] << " ";
+                cout << array.GetArray()[i] << " ";
             }
         }
     cout << " " << endl;
@@ -316,7 +317,7 @@ void ShowArray(DynamicArray array)
 // Функция возвращающая количество элементов в массиве
 void ShowLength(DynamicArray array)
 {
-    cout << array._length << endl;
+    cout << array.GetLength() << endl;
 }
 // Функция вывод меню в консоль
 void Menu(DynamicArray array)
@@ -326,7 +327,7 @@ void Menu(DynamicArray array)
     cout << "Array length:";
     ShowLength(array);
     cout << "Capacity:";
-    cout << array._capacity << endl;
+    cout << array.GetCapacity() << endl;
     cout << "[1] - Add new Elemenet in the end" << endl;
     cout << "[2] - Add new Elemenet in the start" << endl;
     cout << "[3] - Add new Elemenet by index " << endl;
@@ -385,7 +386,7 @@ int main()
             cout << "Enter a new element:";
             /*cin >> newElement;*/
             newElement=ValidCin();
-            array.AddElement(array.currentArray,newElement);
+            array.AddElement(array.GetArray(), newElement);
             system("cls");
             break;
         case 2:
@@ -394,7 +395,7 @@ int main()
             /*cin >> newElement;*/
             newElement = ValidCin();
             
-            array.AddElmentStart(array.currentArray,newElement);
+            array.AddElmentStart(array.GetArray(),newElement);
             system("cls");
             break;
         case 3:
@@ -405,7 +406,7 @@ int main()
             indexOfElement = ValidCin();
             cout << "Enter a new element:";
             newElement = ValidCin();
-            array.Insert(array.currentArray,newElement,indexOfElement);
+            array.Insert(array.GetArray(),newElement,indexOfElement);
             /*array.ExpandArray();*/
 
             system("cls");
@@ -414,7 +415,7 @@ int main()
             cout << "Enter seacrhing element:";
             /*cin >> seacrhingElement;*/
             seacrhingElement = ValidCin();
-            index=array.LinearSearch(array.currentArray,seacrhingElement);
+            index=array.LinearSearch(array.GetArray(),seacrhingElement);
             system("cls");
             if (index != -1) {
                 cout << "Index of '" << seacrhingElement << "' is " << index << endl << endl;
@@ -427,7 +428,7 @@ int main()
             cout << "Enter the index of the item to delete:";
             /*cin >> indexOfElement;*/
             indexOfElement = ValidCin();
-            array.DeleteElementIndex(array.currentArray,indexOfElement);
+            array.DeleteElementIndex(array.GetArray(),indexOfElement);
             /*array.ReduceArray();*/
             system("cls");
             break;
@@ -436,12 +437,12 @@ int main()
             cout << "Enter the element to delete:";
             /*cin >> deletedElement;*/
             deletedElement = ValidCin();
-            array.DeleteElementValue(array.currentArray, deletedElement);
+            array.DeleteElementValue(array.GetArray(), deletedElement);
             /*array.ReduceArray();*/
             system("cls");
             break;
         case 7:
-            array.MergeSort(array.currentArray);
+            array.MergeSort(array.GetArray());
             // array.SortAscending(array.currentArray);
             system("cls");
             break;
@@ -452,7 +453,7 @@ int main()
             cout << "Searching element:";
             /*cin >> target;*/
             target = ValidCin();
-            res=array.BinarySearch(array.currentArray,target);
+            res=array.BinarySearch(array.GetArray(),target);
             system("cls");
             if (res != -1) {
                 cout << "Index of '" << target << "' is " << res << endl << endl;

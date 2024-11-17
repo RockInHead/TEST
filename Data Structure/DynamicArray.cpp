@@ -12,17 +12,42 @@ using namespace std;
     int _capacity = 4;
     //Кол-во элементов в текущем массиве
     int _length = 0;
-    int* currentArray = new int[_capacity] {NULL, NULL, NULL, NULL};
+    //Фактор роста
+    int _growthFactor;
+    //Текущий массив
+    int* _currentArray = new int[_capacity] {NULL, NULL, NULL, NULL};
 
-    DynamicArray::DynamicArray() : _capacity(4), _length(0) {
-        currentArray = new int[_capacity](); // Инициализация массива нулями
+    //Получить текущую длину массива
+    int DynamicArray::GetLength() const {
+        return _length;
     }
+
+    //Получить текущую вместитеьность массива
+    int DynamicArray::GetCapacity() const {
+        return _capacity;
+    }
+
+    //Получить массив
+    int* DynamicArray::GetArray() const {
+        return _currentArray;
+    }
+
+
+    DynamicArray::DynamicArray() : _capacity(8), _length(0),_growthFactor(2) {
+        _currentArray = new int[_capacity](); // Инициализация массива нулями
+    }
+
+   /* DynamicArray::DynamicArray(int initCapacity, int growthFactor)
+        : _length(0), _capacity(initCapacity), _growthFactor(growthFactor) {
+        _currentArray = new int[_capacity];
+    }*/
+
     // Функция увеличения массива
     void DynamicArray::ExpandArray()
     {
         if (_length == _capacity)
         {
-            int* expandedArray = new int[_capacity * 2];
+            int* expandedArray = new int[_capacity * _growthFactor];
 
             for (int i = 0; i < _capacity * 2; i++)
             {
@@ -30,29 +55,30 @@ using namespace std;
             }
             for (int i = 0; i < _length; i++)
             {
-                expandedArray[i] = currentArray[i];
+                expandedArray[i] = _currentArray[i];
             }
-            _capacity *= 2;
-            delete[] currentArray;
-            currentArray = expandedArray;
+            _capacity *= _growthFactor;
+            delete[] _currentArray;
+            _currentArray = expandedArray;
         }
     }
+    // Функция уменьшения массива
     void DynamicArray::ReduceArray() {
-        if (_length <= _capacity / 2 && _capacity != 4)
+        if (_length <= _capacity / _growthFactor && _capacity != 4)
         {
-            int* reducedArray = new int[_capacity / 2];
+            int* reducedArray = new int[_capacity / _growthFactor];
 
-            for (int i = 0; i < _capacity / 2; i++)
+            for (int i = 0; i < _capacity / _growthFactor; i++)
             {
                 reducedArray[i] = NULL;
             }
             for (int i = 0; i < _length; i++)
             {
-                reducedArray[i] = currentArray[i];
+                reducedArray[i] = _currentArray[i];
             }
-            _capacity /= 2;
-            delete[] currentArray;
-            currentArray = reducedArray;
+            _capacity /= _growthFactor;
+            delete[] _currentArray;
+            _currentArray = reducedArray;
         }
     }
 
@@ -176,6 +202,7 @@ using namespace std;
         }
         return -1;
     }
+    //Функция объединения массивов
     void DynamicArray::Merge(int array[], int left, int mid, int right)
     {
         int n1 = mid - left + 1;
@@ -231,6 +258,7 @@ using namespace std;
         delete[] L;
         delete[] R;
     }
+    //Вспомогательная функция для сортировки массива.
     void DynamicArray::MergeSortHelper(int array[], int left, int right)
     {
         if (left < right)
@@ -246,6 +274,7 @@ using namespace std;
             DynamicArray::Merge(array, left, mid, right);
         }
     }
+    //Сортировка массива с помощью MergeSort
     void DynamicArray::MergeSort(int array[])
     {
         // Вызов вспомогательной функции с нулевыми индексами
@@ -283,41 +312,3 @@ using namespace std;
         // Освобождаем память
         return -1; // Элемент не найден
     }
-
-    
-
-    //// Функция сортировки массива по возрастанию
-    //void SortAscending(int array[])
-    //{
-    //    for (int i = 0; i < Capacity; i++)
-    //    {
-    //        for (int j = 0; j < Capacity - 1; j++)
-    //        {
-    //            // for(int j=1;j<)
-    //            if (array[j] > array[j + 1])
-    //            {
-    //                int element = array[j];
-    //                array[j] = array[j + 1];
-    //                array[j + 1] = element;
-    //            }
-    //        }
-    //    }
-    //}
-    //// Функция сортировки массива по убыванию
-    //void SortDescending(int array[])
-    //{
-    //    for (int i = 0; i < Capacity; i++)
-    //    {
-    //        for (int j = 0; j < Capacity - 1; j++)
-    //        {
-    //            // for(int j=1;j<)
-    //            if (array[j] < array[j + 1])
-    //            {
-    //                int element = array[j];
-    //                array[j] = array[j + 1];
-    //                array[j + 1] = element;
-    //            }
-    //        }
-    //    }
-    //}
-//};
