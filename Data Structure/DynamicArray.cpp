@@ -131,7 +131,7 @@ using namespace std;
     void DynamicArray::DeleteElementValue(int array[], int DeletedElement)
     {
         /*int DeletedElement;*/
-        int indexOfElement=NULL;
+        int indexOfElement=-1;
         /*cout << "Enter the item to delete:";
         cin >> DeletedElement;*/
         for (int i = 0; i < Capacity; i++)
@@ -143,7 +143,7 @@ using namespace std;
                 break;
             }
         }
-        if (indexOfElement !=NULL) {
+        if (indexOfElement !=-1) {
             for (int i = indexOfElement; i <= Length - 1; i++)
             {
                 if (array[i] == array[Length - 1])

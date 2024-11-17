@@ -350,6 +350,16 @@ int ValidInputMenu(DynamicArray array)
     }
     return Input;
 }
+int ValidCin() 
+{
+    int input;
+    while (!(cin >> input)) {
+        cout << "Invalid input. Please enter an integer! " << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+    return input;
+}
 int main()
 {
     /*DynamicArray array = DynamicArray();*/
@@ -371,12 +381,11 @@ int main()
         switch (CommandNumber)
         {
         case 1:
-            /*array.ExpandArray();*/
-            cout << "Enter a new element:";
-            cin >> newElement;
-            array.AddElement(array.currentArray,newElement);
-            /*array.ExpandArray();*/
 
+            cout << "Enter a new element:";
+            /*cin >> newElement;*/
+            newElement=ValidCin();
+            array.AddElement(array.currentArray,newElement);
             system("cls");
             break;
         case 2:
