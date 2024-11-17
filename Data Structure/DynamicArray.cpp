@@ -92,16 +92,18 @@ using namespace std;
     // Функция вставки элемента по индексу
     void DynamicArray::Insert(int array[], int newElement, int indexOfElement)
     {
-        ExpandArray();
-        Length++;
-        //ExpandArray();
-        for (int i = Length - 1; i > indexOfElement; i--)
-        {
+        if (indexOfElement<=Length) {
+            ExpandArray();
+            Length++;
+            //ExpandArray();
+            for (int i = Length - 1; i > indexOfElement; i--)
+            {
 
-            array[i] = array[i - 1];
+                array[i] = array[i - 1];
+            }
+            array[indexOfElement] = newElement;
+            ExpandArray();
         }
-        array[indexOfElement] = newElement;
-        ExpandArray();
 
     }
     // Функция удаления элемента по индексу

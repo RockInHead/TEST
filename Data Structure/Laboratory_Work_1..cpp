@@ -337,6 +337,19 @@ void Menu(DynamicArray array)
     cout << "[8] - Binary Search" << endl;
     cout << "[0] - Exit" << endl;
 }
+//Валидация вводимых значений строки.Только цифры от 0 до 8.
+int ValidInputMenu(DynamicArray array)
+{
+    int Input;
+    while ((!(cin >> Input)) || Input > 8 || Input < 0) {
+        system("cls");
+        Menu(array);
+        cout << "Invalid input. Please enter an integer! " << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+    return Input;
+}
 int main()
 {
     /*DynamicArray array = DynamicArray();*/
@@ -350,9 +363,11 @@ int main()
     int index;
     while (ProgramState)
     {
-
+        int CommandNumber;
         Menu(array);
-        cin >> CommandNumber;
+        CommandNumber=ValidInputMenu(array);
+    
+
         switch (CommandNumber)
         {
         case 1:
