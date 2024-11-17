@@ -438,7 +438,12 @@ int main()
             cin >> target;
             res=array.BinarySearch(array.currentArray,target);
             system("cls");
-            cout << "Index of seaching element is " << res << endl;
+            if (res != -1) {
+                cout << "Index of '" << target << "' is " << res << endl << endl;
+            }
+            else {
+                cout << "Element wasn't found :(. Try another element." << endl << endl;
+            }
             break;
 
         case 0:

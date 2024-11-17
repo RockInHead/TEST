@@ -251,11 +251,6 @@ using namespace std;
         // Вызов вспомогательной функции с нулевыми индексами
         DynamicArray::MergeSortHelper(array, 0, Length - 1);
     }
-
-   
-   
-
-
     // Функция бинарного поиска
     int DynamicArray::BinarySearch(int array[], int target) {
         // Создаем копию массива
