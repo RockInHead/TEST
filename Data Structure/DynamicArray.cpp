@@ -92,7 +92,7 @@ using namespace std;
     // Функция вставки элемента по индексу
     void DynamicArray::Insert(int array[], int newElement, int indexOfElement)
     {
-        if (indexOfElement<=Length) {
+        if (indexOfElement<=Length && indexOfElement >= 0) {
             ExpandArray();
             Length++;
             //ExpandArray();
@@ -112,18 +112,20 @@ using namespace std;
         //int indexOfElement;
         //cout << "Enter the index of the item to delete:";
         //cin >> indexOfElement;
-        array[indexOfElement] = NULL;
-        for (int i = indexOfElement; i <= Length - 1; i++)
-        {
-            if (array[i] == array[Length - 1])
+        if (indexOfElement < Length && indexOfElement>=0) {
+            array[indexOfElement] = NULL;
+            for (int i = indexOfElement; i <= Length - 1; i++)
             {
-                array[i] = NULL;
-                break;
+                if (array[i] == array[Length - 1])
+                {
+                    array[i] = NULL;
+                    break;
+                }
+                array[i] = array[i + 1];
             }
-            array[i] = array[i + 1];
+            Length--;
+            ReduceArray();
         }
-        Length--;
-        ReduceArray();
     }
     // Функция удаления элемента по значению
     void DynamicArray::DeleteElementValue(int array[], int DeletedElement)
