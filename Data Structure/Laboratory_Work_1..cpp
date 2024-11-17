@@ -356,11 +356,11 @@ int main()
         switch (CommandNumber)
         {
         case 1:
-            array.ExpandArray();
+            /*array.ExpandArray();*/
             cout << "Enter a new element:";
             cin >> newElement;
             array.AddElement(array.currentArray,newElement);
-            array.ExpandArray();
+            /*array.ExpandArray();*/
 
             system("cls");
             break;

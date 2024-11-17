@@ -59,6 +59,7 @@ using namespace std;
     // Функция добавления элемента в конец массива
     void DynamicArray::AddElement(int array[], int newElement)
     {
+        ExpandArray();
         for (int i = 0; i < Capacity; i++)
         {
             if (array[i] == NULL)
@@ -71,6 +72,7 @@ using namespace std;
                 break;
             }
         }
+        ExpandArray();
     }
     // Функция вставки элемента вначало
     void DynamicArray::AddElmentStart(int array[], int newElement)
