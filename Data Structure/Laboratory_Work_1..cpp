@@ -372,14 +372,14 @@ int main()
             system("cls");
             break;
         case 3:
-            array.ExpandArray();
+            /*array.ExpandArray();*/
             int indexOfElement;
             cout << "Enter a index of element:";
             cin >> indexOfElement;
             cout << "Enter a new element:";
             cin >> newElement;
             array.Insert(array.currentArray,newElement,indexOfElement);
-            array.ExpandArray();
+            /*array.ExpandArray();*/
 
             system("cls");
             break;
