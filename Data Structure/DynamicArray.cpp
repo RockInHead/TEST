@@ -170,6 +170,7 @@ using namespace std;
                 break;
             }
         }
+        return -1;
     }
     void DynamicArray::Merge(int array[], int left, int mid, int right)
     {

@@ -403,7 +403,12 @@ int main()
             cin >> seacrhingElement;
             index=array.LinearSearch(array.currentArray,seacrhingElement);
             system("cls");
-            cout << "Index of '"<< seacrhingElement <<"' is " << index << endl <<endl;
+            if (index != -1) {
+                cout << "Index of '" << seacrhingElement << "' is " << index << endl << endl;
+            }
+            else {
+                cout << "Element wasn't found :(. Try another element." << endl << endl;
+            }
             break;
         case 5:
             cout << "Enter the index of the item to delete:";
