@@ -80,12 +80,14 @@ using namespace std;
         /*int newElement;
         cout << "Enter a new element:";
         cin >> newElement;*/
-        for (int i = Length + 1; i > 0; i--)
+        ExpandArray();
+        for (int i = Length; i > 0; i--)
         {
             array[i] = array[i - 1];
         }
         array[0] = newElement;
         Length++;
+        ExpandArray();
     }
     // Функция вставки элемента по индексу
     void DynamicArray::Insert(int array[], int newElement, int indexOfElement)

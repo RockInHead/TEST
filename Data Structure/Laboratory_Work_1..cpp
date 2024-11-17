@@ -365,7 +365,7 @@ int main()
             system("cls");
             break;
         case 2:
-            array.ExpandArray();
+            /*array.ExpandArray();*/
             cout << "Enter a new element:";
             cin >> newElement;
             array.AddElmentStart(array.currentArray,newElement);
