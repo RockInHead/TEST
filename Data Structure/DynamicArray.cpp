@@ -15,7 +15,7 @@ using namespace std;
     //Фактор роста
     int _growthFactor;
     //Текущий массив
-    int* _currentArray = new int[_capacity];
+    /*int* _currentArray = new int[_capacity];*/
 
     //Получить текущую длину массива
     int DynamicArray::GetLength() const {
@@ -37,21 +37,6 @@ using namespace std;
         _currentArray = new int[_capacity](); // Инициализация массива нулями
     }
 
-   /* DynamicArray::DynamicArray(int initCapacity, int growthFactor)
-        : _length(0), _capacity(initCapacity), _growthFactor(growthFactor) {
-        _currentArray = new int[_capacity];
-    }*/
-
-    /*void DynamicArray::Resize(int newCapacity) {
-        int* newArray = new int[newCapacity];
-        for (int i = 0; i < _length; i++) {
-            newArray[i] = _currentArray[i];
-        }
-        delete[] _currentArray;
-        _currentArray = newArray;
-        _capacity = newCapacity;
-    }*/
-
     // Функция увеличения массива
     void DynamicArray::ExpandArray()
     {
@@ -59,10 +44,10 @@ using namespace std;
         {
             int* expandedArray = new int[_capacity * _growthFactor];
 
-            for (int i = 0; i < _capacity * 2; i++)
+            /*for (int i = 0; i < _capacity * 2; i++)
             {
                 expandedArray[i] = NULL;
-            }
+            }*/
             for (int i = 0; i < _length; i++)
             {
                 expandedArray[i] = _currentArray[i];
@@ -74,14 +59,14 @@ using namespace std;
     }
     // Функция уменьшения массива
     void DynamicArray::ReduceArray() {
-        if (_length <= _capacity / _growthFactor && _capacity != 4)
+        if (_length <= _capacity / _growthFactor && _capacity != MinCapacity)
         {
             int* reducedArray = new int[_capacity / _growthFactor];
 
-            for (int i = 0; i < _capacity / _growthFactor; i++)
+           /* for (int i = 0; i < _capacity / _growthFactor; i++)
             {
                 reducedArray[i] = NULL;
-            }
+            }*/
             for (int i = 0; i < _length; i++)
             {
                 reducedArray[i] = _currentArray[i];
@@ -91,7 +76,6 @@ using namespace std;
             _currentArray = reducedArray;
         }
     }
-
     // Функция добавления элемента в конец массива
     void DynamicArray::AddElement( int newElement)
     {
@@ -145,10 +129,6 @@ using namespace std;
         }
 
     }
-    /*void DeleteELement(int indexOfElement) 
-    {
-        for
-    }*/
     // Функция удаления элемента по индексу
     void DynamicArray::DeleteElementIndex( int indexOfElement)
     {
@@ -156,13 +136,13 @@ using namespace std;
         //cout << "Enter the index of the item to delete:";
         //cin >> indexOfElement;
         if (indexOfElement < _length && indexOfElement>=0) {
-            _currentArray[indexOfElement] = NULL;
+            /*_currentArray[indexOfElement] = NULL;*/
 
             for (int i = indexOfElement; i <= _length - 1; i++)
             {
                 if (_currentArray[i] == _currentArray[_length - 1])
                 {
-                    _currentArray[i] = NULL;
+                    /*_currentArray[i] = NULL;*/
                     break;
                 }
                 _currentArray[i] = _currentArray[i + 1];
@@ -182,7 +162,7 @@ using namespace std;
         {
             if (_currentArray[i] == DeletedElement)
             {
-                _currentArray[i] = NULL;
+                /*_currentArray[i] = NULL;*/
                 indexOfElement = i;
                 break;
             }
@@ -192,7 +172,7 @@ using namespace std;
             {
                 if (_currentArray[i] == _currentArray[_length - 1])
                 {
-                    _currentArray[i] = NULL;
+                    /*_currentArray[i] = NULL;*/
                     break;
                 }
                 _currentArray[i] = _currentArray[i + 1];

@@ -7,6 +7,7 @@ private:
 	int _capacity;
 	int _length; 
 	int _growthFactor;
+	int const MinCapacity=4;
 	int* _currentArray;
 public:
 	//Возвращает размер массива.
