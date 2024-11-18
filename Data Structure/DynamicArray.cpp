@@ -3,9 +3,6 @@
 #include <windows.h>
 #include <stdexcept>
 using namespace std;
-//using namespace DYNAMIC_ARRAY_H;
-//struct DynamicArray
-//{
     // Объявление массива
 
     //Вместимость текущего массива
@@ -36,45 +33,6 @@ using namespace std;
         _currentArray = new int[_capacity](); // Инициализация массива нулями
     }
 
-    // Функция увеличения массива
-    void DynamicArray::ExpandArray()
-    {
-        if (_length == _capacity)
-        {
-            int* expandedArray = new int[_capacity * _growthFactor];
-
-            /*for (int i = 0; i < _capacity * 2; i++)
-            {
-                expandedArray[i] = NULL;
-            }*/
-            for (int i = 0; i < _length; i++)
-            {
-                expandedArray[i] = _currentArray[i];
-            }
-            _capacity *= _growthFactor;
-            delete[] _currentArray;
-            _currentArray = expandedArray;
-        }
-    }
-    // Функция уменьшения массива
-    void DynamicArray::ReduceArray() {
-        if (_length <= _capacity / _growthFactor && _capacity != MinCapacity)
-        {
-            int* reducedArray = new int[_capacity / _growthFactor];
-
-           /* for (int i = 0; i < _capacity / _growthFactor; i++)
-            {
-                reducedArray[i] = NULL;
-            }*/
-            for (int i = 0; i < _length; i++)
-            {
-                reducedArray[i] = _currentArray[i];
-            }
-            _capacity /= _growthFactor;
-            delete[] _currentArray;
-            _currentArray = reducedArray;
-        }
-    }
     void  DynamicArray::ResizeArray()
     {
         if (_length == _capacity)
@@ -104,27 +62,12 @@ using namespace std;
         ResizeArray();
         _currentArray[_length] = newElement;
         _length++;
-        //for (int i = 0; i < _capacity; i++)
-        //{
-        //    if (_currentArray[i] == NULL)
-        //    {
-        //        //cout << "Enter a new element:";
-        //        //cin >> array[i];
-        //        _currentArray[i] = newElement;
-        //        _length++;
-        //        break;
-        //        break;
-        //    }
-        //}
         ResizeArray();
 
     }
     // Функция вставки элемента вначало
     void DynamicArray::AddElmentStart(int newElement)
     {
-        /*int newElement;
-        cout << "Enter a new element:";
-        cin >> newElement;*/
         ResizeArray();
         for (int i = _length; i > 0; i--)
         {
@@ -140,7 +83,7 @@ using namespace std;
         if (indexOfElement<=_length && indexOfElement >= 0) {
             ResizeArray();
             _length++;
-            //ExpandArray();
+
             for (int i = _length - 1; i > indexOfElement; i--)
             {
 
@@ -154,17 +97,14 @@ using namespace std;
     // Функция удаления элемента по индексу
     void DynamicArray::DeleteElementIndex( int indexOfElement)
     {
-        //int indexOfElement;
-        //cout << "Enter the index of the item to delete:";
-        //cin >> indexOfElement;
+
         if (indexOfElement < _length && indexOfElement>=0) {
-            /*_currentArray[indexOfElement] = NULL;*/
 
             for (int i = indexOfElement; i <= _length - 1; i++)
             {
                 if (_currentArray[i] == _currentArray[_length - 1])
                 {
-                    /*_currentArray[i] = NULL;*/
+
                     break;
                 }
                 _currentArray[i] = _currentArray[i + 1];
@@ -176,15 +116,12 @@ using namespace std;
     // Функция удаления элемента по значению
     void DynamicArray::DeleteElementValue( int DeletedElement)
     {
-        /*int DeletedElement;*/
         int indexOfElement=-1;
-        /*cout << "Enter the item to delete:";
-        cin >> DeletedElement;*/
         for (int i = 0; i < _capacity; i++)
         {
             if (_currentArray[i] == DeletedElement)
             {
-                /*_currentArray[i] = NULL;*/
+
                 indexOfElement = i;
                 break;
             }
@@ -194,7 +131,7 @@ using namespace std;
             {
                 if (_currentArray[i] == _currentArray[_length - 1])
                 {
-                    /*_currentArray[i] = NULL;*/
+
                     break;
                 }
                 _currentArray[i] = _currentArray[i + 1];
@@ -207,15 +144,11 @@ using namespace std;
     // Функция линейного поиска элемента в массиве
     int DynamicArray::LinearSearch( int seacrhingElement)
     {
-        /*int seacrhingElement;
-        cout << "Enter seacrhing elemnt:";
-        cin >> seacrhingElement;*/
+
         for (int i = 0; i < _length; i++)
         {
             if (_currentArray[i] == seacrhingElement)
             {
-                /*cout << "Index of seacrhing element is ";
-                cout << i << endl;*/
                 return i;
                 break;
             }
@@ -302,15 +235,8 @@ using namespace std;
     }
     // Функция бинарного поиска
     int DynamicArray::BinarySearch( int target) {
-        // Создаем копию массива
-        //int* array = new int[_length];
-        //for (int i = 0; i < _length; i++) {
-        //    array[i] = originalArray[i];
-        //}
-
         // Сортируем массив
         DynamicArray::MergeSort();
-
         // Выполняем бинарный поиск
         int left = 0;
         int right = _length - 1;

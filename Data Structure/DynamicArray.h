@@ -18,20 +18,19 @@ public:
 	int* GetArray() const;
 	//Констуктор по умолчанию массива
 	DynamicArray();
-	//Конструктор массива
-	/*DynamicArray(int initCapacity, int growthFactor);*/
 
+	//Создает новый массива с новой вместимостью. Переуказывает указатель на новый созданный массив
 	void CreateNewArray(int capacity);
 
+	//Изменяет размер массива, создавая новый массив
 	void ResizeArray();
-	// Функция увеличения массива
-	void ExpandArray();
-	// Функция уменьшения массива
-	void ReduceArray();
+
 	// Функция добавления элемента в конец массива
 	void AddElement( int newElement);
+
 	// Функция вставки элемента вначало
 	void AddElmentStart( int newElement);
+
 	// Функция вставки элемента по индексу
 	void Insert( int newElement, int indexOfElement);
 

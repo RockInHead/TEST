@@ -9,10 +9,7 @@ void ShowArray(DynamicArray array)
     if (array.GetArray())
         for (int i = 0; i < array.GetLength(); i++)
         {
-            /*if (array.GetArray()[i] != NULL)
-            {*/
                 cout << array.GetArray()[i] << " ";
-          /*  }*/
         }
     cout << " " << endl;
 };
@@ -84,38 +81,28 @@ int main()
         switch (сommandNumber)
         {
         case 1:
-
             cout << "Enter a new element:";
-            /*cin >> newElement;*/
             newElement=ValidCin();
             array.AddElement(newElement);
             system("cls");
             break;
         case 2:
-            /*array.ExpandArray();*/
             cout << "Enter a new element:";
-            /*cin >> newElement;*/
             newElement = ValidCin();
-            
             array.AddElmentStart(newElement);
             system("cls");
             break;
         case 3:
-            /*array.ExpandArray();*/
             int indexOfElement;
             cout << "Enter a index of element:";
-            /*cin >> indexOfElement;*/
             indexOfElement = ValidCin();
             cout << "Enter a new element:";
             newElement = ValidCin();
             array.Insert(newElement,indexOfElement);
-            /*array.ExpandArray();*/
-
             system("cls");
             break;
         case 4:
             cout << "Enter seacrhing element:";
-            /*cin >> seacrhingElement;*/
             seacrhingElement = ValidCin();
             index=array.LinearSearch(seacrhingElement);
             system("cls");
@@ -128,32 +115,24 @@ int main()
             break;
         case 5:
             cout << "Enter the index of the item to delete:";
-            /*cin >> indexOfElement;*/
             indexOfElement = ValidCin();
             array.DeleteElementIndex(indexOfElement);
-            /*array.ReduceArray();*/
             system("cls");
             break;
         case 6:
-            //array.ExpandArray();
             cout << "Enter the element to delete:";
-            /*cin >> deletedElement;*/
             deletedElement = ValidCin();
             array.DeleteElementValue(deletedElement);
-            /*array.ReduceArray();*/
             system("cls");
             break;
         case 7:
             array.MergeSort();
-            // array.SortAscending(array.currentArray);
             system("cls");
             break;
         case 8:
             int target;
             int res;
-            /*array.SortDescending(array.currentArray)*/
             cout << "Searching element:";
-            /*cin >> target;*/
             target = ValidCin();
             res=array.BinarySearch(target);
             system("cls");
