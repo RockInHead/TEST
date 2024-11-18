@@ -301,6 +301,7 @@ using namespace std;
 //    }
 //};
 // Функция выводящая массив в консоль
+
 //Функция вывода массива в строку.
 void ShowArray(DynamicArray array)
 {
@@ -361,6 +362,7 @@ int ValidCin()
     }
     return input;
 }
+//Вход в программу.
 int main()
 {
     /*DynamicArray array = DynamicArray();*/
@@ -378,7 +380,6 @@ int main()
         Menu(array);
         CommandNumber=ValidInputMenu(array);
     
-
         switch (CommandNumber)
         {
         case 1:
