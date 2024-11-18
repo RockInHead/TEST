@@ -14,8 +14,7 @@ using namespace std;
     int _length ;
     //Фактор роста
     int _growthFactor;
-    //Текущий массив
-    /*int* _currentArray = new int[_capacity];*/
+    
 
     //Получить текущую длину массива
     int DynamicArray::GetLength() const {
@@ -32,7 +31,7 @@ using namespace std;
         return _currentArray;
     }
 
-
+    //Констуктор по умолчанию
     DynamicArray::DynamicArray() : _capacity(4), _length(0),_growthFactor(2) {
         _currentArray = new int[_capacity](); // Инициализация массива нулями
     }
@@ -76,11 +75,33 @@ using namespace std;
             _currentArray = reducedArray;
         }
     }
+    void  DynamicArray::ResizeArray()
+    {
+        if (_length == _capacity)
+        {
+            CreateNewArray(_capacity * _growthFactor);
+        }
+        else if ((_length < _capacity / _growthFactor) && (_capacity  != MinCapacity))
+        {
+            CreateNewArray(_capacity / _growthFactor);
+
+        }
+    }
+    void DynamicArray::CreateNewArray(int capacity) 
+    {
+        int* newArray = new int[capacity];
+        for (int i = 0; i < _length; i++) {
+            newArray[i] = _currentArray[i];
+        }
+        _capacity = capacity;
+        delete[] _currentArray;
+        _currentArray = newArray;
+    }
     // Функция добавления элемента в конец массива
     void DynamicArray::AddElement( int newElement)
     {
         
-        ExpandArray();
+        ResizeArray();
         _currentArray[_length] = newElement;
         _length++;
         //for (int i = 0; i < _capacity; i++)
@@ -95,7 +116,8 @@ using namespace std;
         //        break;
         //    }
         //}
-        ExpandArray();
+        ResizeArray();
+
     }
     // Функция вставки элемента вначало
     void DynamicArray::AddElmentStart(int newElement)
@@ -103,20 +125,20 @@ using namespace std;
         /*int newElement;
         cout << "Enter a new element:";
         cin >> newElement;*/
-        ExpandArray();
+        ResizeArray();
         for (int i = _length; i > 0; i--)
         {
             _currentArray[i] = _currentArray[i - 1];
         }
         _currentArray[0] = newElement;
         _length++;
-        ExpandArray();
+        ResizeArray();
     }
     // Функция вставки элемента по индексу
     void DynamicArray::Insert( int newElement, int indexOfElement)
     {
         if (indexOfElement<=_length && indexOfElement >= 0) {
-            ExpandArray();
+            ResizeArray();
             _length++;
             //ExpandArray();
             for (int i = _length - 1; i > indexOfElement; i--)
@@ -125,7 +147,7 @@ using namespace std;
                 _currentArray[i] = _currentArray[i - 1];
             }
             _currentArray[indexOfElement] = newElement;
-            ExpandArray();
+            ResizeArray();
         }
 
     }
@@ -148,7 +170,7 @@ using namespace std;
                 _currentArray[i] = _currentArray[i + 1];
             }
             _length--;
-            ReduceArray();
+            ResizeArray();
         }
     }
     // Функция удаления элемента по значению
@@ -179,7 +201,7 @@ using namespace std;
 
             }
             _length--;
-            ReduceArray();
+            ResizeArray();
         }
     }
     // Функция линейного поиска элемента в массиве

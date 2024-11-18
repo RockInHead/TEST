@@ -21,7 +21,9 @@ public:
 	//Конструктор массива
 	/*DynamicArray(int initCapacity, int growthFactor);*/
 
-	void Resize(int newCapacity);
+	void CreateNewArray(int capacity);
+
+	void ResizeArray();
 	// Функция увеличения массива
 	void ExpandArray();
 	// Функция уменьшения массива
