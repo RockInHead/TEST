@@ -12,10 +12,13 @@ private:
 public:
 	//Возвращает размер массива.
 	int GetLength() const;
+
 	//Возвращает вместимость массива.
 	int GetCapacity() const;
+
 	//Возвращает массив.
 	int* GetArray() const;
+
 	//Констуктор по умолчанию массива
 	DynamicArray();
 

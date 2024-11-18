@@ -3,15 +3,6 @@
 #include <windows.h>
 #include <stdexcept>
 using namespace std;
-    // Объявление массива
-
-    //Вместимость текущего массива
-    int _capacity ;
-    //Кол-во элементов в текущем массиве
-    int _length ;
-    //Фактор роста
-    int _growthFactor;
-    
 
     //Получить текущую длину массива
     int DynamicArray::GetLength() const {
@@ -55,6 +46,7 @@ using namespace std;
         delete[] _currentArray;
         _currentArray = newArray;
     }
+
     // Функция добавления элемента в конец массива
     void DynamicArray::AddElement( int newElement)
     {
@@ -65,6 +57,7 @@ using namespace std;
         ResizeArray();
 
     }
+
     // Функция вставки элемента вначало
     void DynamicArray::AddElmentStart(int newElement)
     {
@@ -77,6 +70,7 @@ using namespace std;
         _length++;
         ResizeArray();
     }
+
     // Функция вставки элемента по индексу
     void DynamicArray::Insert( int newElement, int indexOfElement)
     {
@@ -104,7 +98,6 @@ using namespace std;
             {
                 if (_currentArray[i] == _currentArray[_length - 1])
                 {
-
                     break;
                 }
                 _currentArray[i] = _currentArray[i + 1];
