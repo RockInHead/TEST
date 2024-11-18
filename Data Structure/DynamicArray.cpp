@@ -9,13 +9,13 @@ using namespace std;
     // Объявление массива
 
     //Вместимость текущего массива
-    int _capacity = 4;
+    int _capacity ;
     //Кол-во элементов в текущем массиве
-    int _length = 0;
+    int _length ;
     //Фактор роста
     int _growthFactor;
     //Текущий массив
-    int* _currentArray = new int[_capacity] {NULL, NULL, NULL, NULL};
+    int* _currentArray = new int[_capacity];
 
     //Получить текущую длину массива
     int DynamicArray::GetLength() const {
@@ -33,7 +33,7 @@ using namespace std;
     }
 
 
-    DynamicArray::DynamicArray() : _capacity(8), _length(0),_growthFactor(2) {
+    DynamicArray::DynamicArray() : _capacity(4), _length(0),_growthFactor(2) {
         _currentArray = new int[_capacity](); // Инициализация массива нулями
     }
 
@@ -83,16 +83,16 @@ using namespace std;
     }
 
     // Функция добавления элемента в конец массива
-    void DynamicArray::AddElement(int array[], int newElement)
+    void DynamicArray::AddElement( int newElement)
     {
         ExpandArray();
         for (int i = 0; i < _capacity; i++)
         {
-            if (array[i] == NULL)
+            if (_currentArray[i] == NULL)
             {
                 //cout << "Enter a new element:";
                 //cin >> array[i];
-                array[i] = newElement;
+                _currentArray[i] = newElement;
                 _length++;
                 break;
                 break;
@@ -101,7 +101,7 @@ using namespace std;
         ExpandArray();
     }
     // Функция вставки элемента вначало
-    void DynamicArray::AddElmentStart(int array[], int newElement)
+    void DynamicArray::AddElmentStart(int newElement)
     {
         /*int newElement;
         cout << "Enter a new element:";
@@ -109,14 +109,14 @@ using namespace std;
         ExpandArray();
         for (int i = _length; i > 0; i--)
         {
-            array[i] = array[i - 1];
+            _currentArray[i] = _currentArray[i - 1];
         }
-        array[0] = newElement;
+        _currentArray[0] = newElement;
         _length++;
         ExpandArray();
     }
     // Функция вставки элемента по индексу
-    void DynamicArray::Insert(int array[], int newElement, int indexOfElement)
+    void DynamicArray::Insert( int newElement, int indexOfElement)
     {
         if (indexOfElement<=_length && indexOfElement >= 0) {
             ExpandArray();
@@ -125,36 +125,36 @@ using namespace std;
             for (int i = _length - 1; i > indexOfElement; i--)
             {
 
-                array[i] = array[i - 1];
+                _currentArray[i] = _currentArray[i - 1];
             }
-            array[indexOfElement] = newElement;
+            _currentArray[indexOfElement] = newElement;
             ExpandArray();
         }
 
     }
     // Функция удаления элемента по индексу
-    void DynamicArray::DeleteElementIndex(int array[], int indexOfElement)
+    void DynamicArray::DeleteElementIndex( int indexOfElement)
     {
         //int indexOfElement;
         //cout << "Enter the index of the item to delete:";
         //cin >> indexOfElement;
         if (indexOfElement < _length && indexOfElement>=0) {
-            array[indexOfElement] = NULL;
+            _currentArray[indexOfElement] = NULL;
             for (int i = indexOfElement; i <= _length - 1; i++)
             {
-                if (array[i] == array[_length - 1])
+                if (_currentArray[i] == _currentArray[_length - 1])
                 {
-                    array[i] = NULL;
+                    _currentArray[i] = NULL;
                     break;
                 }
-                array[i] = array[i + 1];
+                _currentArray[i] = _currentArray[i + 1];
             }
             _length--;
             ReduceArray();
         }
     }
     // Функция удаления элемента по значению
-    void DynamicArray::DeleteElementValue(int array[], int DeletedElement)
+    void DynamicArray::DeleteElementValue( int DeletedElement)
     {
         /*int DeletedElement;*/
         int indexOfElement=-1;
@@ -162,9 +162,9 @@ using namespace std;
         cin >> DeletedElement;*/
         for (int i = 0; i < _capacity; i++)
         {
-            if (array[i] == DeletedElement)
+            if (_currentArray[i] == DeletedElement)
             {
-                array[i] = NULL;
+                _currentArray[i] = NULL;
                 indexOfElement = i;
                 break;
             }
@@ -172,12 +172,12 @@ using namespace std;
         if (indexOfElement !=-1) {
             for (int i = indexOfElement; i <= _length - 1; i++)
             {
-                if (array[i] == array[_length - 1])
+                if (_currentArray[i] == _currentArray[_length - 1])
                 {
-                    array[i] = NULL;
+                    _currentArray[i] = NULL;
                     break;
                 }
-                array[i] = array[i + 1];
+                _currentArray[i] = _currentArray[i + 1];
 
             }
             _length--;
@@ -185,14 +185,14 @@ using namespace std;
         }
     }
     // Функция линейного поиска элемента в массиве
-    int DynamicArray::LinearSearch(int array[], int seacrhingElement)
+    int DynamicArray::LinearSearch( int seacrhingElement)
     {
         /*int seacrhingElement;
         cout << "Enter seacrhing elemnt:";
         cin >> seacrhingElement;*/
         for (int i = 0; i < _length; i++)
         {
-            if (array[i] == seacrhingElement)
+            if (_currentArray[i] == seacrhingElement)
             {
                 /*cout << "Index of seacrhing element is ";
                 cout << i << endl;*/
@@ -203,7 +203,7 @@ using namespace std;
         return -1;
     }
     //Функция объединения массивов
-    void DynamicArray::Merge(int array[], int left, int mid, int right)
+    void DynamicArray::Merge( int left, int mid, int right)
     {
         int n1 = mid - left + 1;
         int n2 = right - mid;
@@ -214,9 +214,9 @@ using namespace std;
 
         // Копируем данные во временные массивы L[] и R[]
         for (int i = 0; i < n1; i++)
-            L[i] = array[left + i];
+            L[i] = _currentArray[left + i];
         for (int j = 0; j < n2; j++)
-            R[j] = array[mid + 1 + j];
+            R[j] = _currentArray[mid + 1 + j];
 
         // Сливаем временные массивы обратно в array[left..right]
         int i = 0;    // Индекс первого подмассива
@@ -227,12 +227,12 @@ using namespace std;
         {
             if (L[i] <= R[j])
             {
-                array[k] = L[i];
+                _currentArray[k] = L[i];
                 i++;
             }
             else
             {
-                array[k] = R[j];
+                _currentArray[k] = R[j];
                 j++;
             }
             k++;
@@ -241,7 +241,7 @@ using namespace std;
         // Копируем оставшиеся элементы L[], если есть
         while (i < n1)
         {
-            array[k] = L[i];
+            _currentArray[k] = L[i];
             i++;
             k++;
         }
@@ -249,7 +249,7 @@ using namespace std;
         // Копируем оставшиеся элементы R[], если есть
         while (j < n2)
         {
-            array[k] = R[j];
+            _currentArray[k] = R[j];
             j++;
             k++;
         }
@@ -259,7 +259,7 @@ using namespace std;
         delete[] R;
     }
     //Вспомогательная функция для сортировки массива.
-    void DynamicArray::MergeSortHelper(int array[], int left, int right)
+    void DynamicArray::MergeSortHelper( int left, int right)
     {
         if (left < right)
         {
@@ -267,21 +267,21 @@ using namespace std;
             int mid = left + (right - left) / 2;
 
             // Рекурсивно сортируем две половины
-            DynamicArray::MergeSortHelper(array, left, mid);
-            DynamicArray::MergeSortHelper(array, mid + 1, right);
+            DynamicArray::MergeSortHelper( left, mid);
+            DynamicArray::MergeSortHelper( mid + 1, right);
 
             // Сливаем отсортированные половины
-            DynamicArray::Merge(array, left, mid, right);
+            DynamicArray::Merge( left, mid, right);
         }
     }
     //Сортировка массива с помощью MergeSort
-    void DynamicArray::MergeSort(int array[])
+    void DynamicArray::MergeSort()
     {
         // Вызов вспомогательной функции с нулевыми индексами
-        DynamicArray::MergeSortHelper(array, 0, _length - 1);
+        DynamicArray::MergeSortHelper( 0, _length - 1);
     }
     // Функция бинарного поиска
-    int DynamicArray::BinarySearch(int array[], int target) {
+    int DynamicArray::BinarySearch( int target) {
         // Создаем копию массива
         //int* array = new int[_length];
         //for (int i = 0; i < _length; i++) {
@@ -289,7 +289,7 @@ using namespace std;
         //}
 
         // Сортируем массив
-        DynamicArray::MergeSort(array);
+        DynamicArray::MergeSort();
 
         // Выполняем бинарный поиск
         int left = 0;
@@ -297,11 +297,11 @@ using namespace std;
         while (left <= right) {
             int mid = left + (right - left) / 2;
 
-            if (array[mid] == target) {
+            if (_currentArray[mid] == target) {
                 // Освобождаем память
                 return mid; // Возвращаем индекс найденного элемента
             }
-            if (array[mid] < target) {
+            if (_currentArray[mid] < target) {
                 left = mid + 1;
             }
             else {
