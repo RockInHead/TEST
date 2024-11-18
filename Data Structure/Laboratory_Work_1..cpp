@@ -7,12 +7,12 @@ using namespace std;
 void ShowArray(DynamicArray array)
 {
     if (array.GetArray())
-        for (int i = 0; i < array.GetCapacity(); i++)
+        for (int i = 0; i < array.GetLength(); i++)
         {
-            if (array.GetArray()[i] != NULL)
-            {
+            /*if (array.GetArray()[i] != NULL)
+            {*/
                 cout << array.GetArray()[i] << " ";
-            }
+          /*  }*/
         }
     cout << " " << endl;
 };
@@ -68,20 +68,20 @@ int main()
     /*DynamicArray array = DynamicArray();*/
     DynamicArray array;
 
-    int CommandNumber;
-    bool ProgramState = true;
+    int сommandNumber;
+    bool programState = true;
     int newElement;
     int deletedElement;
     int seacrhingElement;
     int index;
-    while (ProgramState)
+    while (programState)
     {
-        int CommandNumber;
+        int сommandNumber;
         Menu(array);
-        CommandNumber=ValidInputMenu(array);
+        сommandNumber=ValidInputMenu(array);
     
 
-        switch (CommandNumber)
+        switch (сommandNumber)
         {
         case 1:
 
@@ -166,7 +166,7 @@ int main()
             break;
 
         case 0:
-            ProgramState = false;
+            programState = false;
             break;
         }
     }

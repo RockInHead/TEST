@@ -42,6 +42,16 @@ using namespace std;
         _currentArray = new int[_capacity];
     }*/
 
+    /*void DynamicArray::Resize(int newCapacity) {
+        int* newArray = new int[newCapacity];
+        for (int i = 0; i < _length; i++) {
+            newArray[i] = _currentArray[i];
+        }
+        delete[] _currentArray;
+        _currentArray = newArray;
+        _capacity = newCapacity;
+    }*/
+
     // Функция увеличения массива
     void DynamicArray::ExpandArray()
     {
@@ -85,19 +95,22 @@ using namespace std;
     // Функция добавления элемента в конец массива
     void DynamicArray::AddElement( int newElement)
     {
+        
         ExpandArray();
-        for (int i = 0; i < _capacity; i++)
-        {
-            if (_currentArray[i] == NULL)
-            {
-                //cout << "Enter a new element:";
-                //cin >> array[i];
-                _currentArray[i] = newElement;
-                _length++;
-                break;
-                break;
-            }
-        }
+        _currentArray[_length] = newElement;
+        _length++;
+        //for (int i = 0; i < _capacity; i++)
+        //{
+        //    if (_currentArray[i] == NULL)
+        //    {
+        //        //cout << "Enter a new element:";
+        //        //cin >> array[i];
+        //        _currentArray[i] = newElement;
+        //        _length++;
+        //        break;
+        //        break;
+        //    }
+        //}
         ExpandArray();
     }
     // Функция вставки элемента вначало
@@ -132,6 +145,10 @@ using namespace std;
         }
 
     }
+    /*void DeleteELement(int indexOfElement) 
+    {
+        for
+    }*/
     // Функция удаления элемента по индексу
     void DynamicArray::DeleteElementIndex( int indexOfElement)
     {
@@ -140,6 +157,7 @@ using namespace std;
         //cin >> indexOfElement;
         if (indexOfElement < _length && indexOfElement>=0) {
             _currentArray[indexOfElement] = NULL;
+
             for (int i = indexOfElement; i <= _length - 1; i++)
             {
                 if (_currentArray[i] == _currentArray[_length - 1])
