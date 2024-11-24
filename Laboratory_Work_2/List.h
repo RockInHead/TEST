@@ -12,6 +12,7 @@ private:
 	void InitRoot(int data);
 public:
 	List();
-	void GetList();
+	int GetSize();
+	int* GetList();
 	void AddNodeAtEnd(int data);
 };

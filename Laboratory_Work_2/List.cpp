@@ -20,31 +20,64 @@ void List::InitRoot(int data) {
 List::List():_size(0),_head(nullptr),_tail(nullptr) {
 
 }
-void List::GetList() {
-	Node* p = _head;
-	do {
-		cout << p->data << endl; // вывод значения элемента p
-		p = p->next; // переход к следующему узлу
-	} while (p != nullptr); // условие окончания обхода
+int List::GetSize() {
+	int counter=0;
+	Node* someNode = _head;
+	
+	if (_head != nullptr) {
+		counter++;
+
+		while (someNode->next != nullptr)
+		{
+			counter++;
+			someNode = someNode->next;
+		}
+		
+	}
+	return counter;
+
 }
+int* List::GetList() {
+	int sizeOfArray = GetSize();
+	int* array= new int[sizeOfArray];
+	int index = 0;
+	if (_head != nullptr) {
+		Node* p = _head;
+		do {
+			/*cout << p->data << endl; */
+			array[index] = p->data;
+			p = p->next;
+			index++;
+		} while (p != nullptr); // условие окончания обхода
+	}
+	return array;
+	//Node* p = _head;
+	//do {
+	//	cout << p->data << endl; // вывод значения элемента p
+	//	p = p->next; // переход к следующему узлу
+	//} while (p != nullptr); // условие окончания обхода
+}
+//Функция добавление элемента в конец массива.
 void List::AddNodeAtEnd(int data)
 {
+	//Создаем новый элемент, с значением data
 	Node* newNode = new Node(data);
 
+	//Проверяем, создана ли "голова" массива, если нет, создаем
 	if (_head == nullptr) 
 	{
 		InitRoot(data);
 		return;
 	}
 	
-		Node* temp = _head;
-		while (temp->next != nullptr) {
-			temp = temp->next;
-		}
+	Node* temp = _head;
+	while (temp->next != nullptr) {
+		temp = temp->next;
+	}
 
-		temp->next = newNode;
-		newNode->prev = temp;
-
+	temp->next = newNode;
+	newNode->prev = temp;
+	/*_tail = newNode;*/
 	
 }
 

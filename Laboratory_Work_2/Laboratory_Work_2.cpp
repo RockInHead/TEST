@@ -3,11 +3,20 @@
 
 using namespace std;
 //Валидация вводимых значений строки.Только цифры от 0 до 8.
-
-void Menu()
+void ShowArray(List list)
+{
+    int* array = list.GetList();
+    if (array)
+        for (int i = 0; i < list.GetSize(); i++)
+        {
+            cout << array[i] << " ";
+        }
+    cout << " " << endl;
+};
+void Menu(List list)
 {
     cout << "Current array:" << endl;
-    /*ShowArray(array);*/
+    ShowArray(list);
     cout << "Array length:" << endl;
     /*ShowLength(array);*/
     cout << "Capacity:" << endl;
@@ -22,12 +31,22 @@ void Menu()
     cout << "[8] - Sort" << endl;
     cout << "[0] - Exit" << endl;
 }
-int ValidInputMenu()
+int ValidCin()
+{
+    int input;
+    while (!(cin >> input)) {
+        cout << "Invalid input. Please enter an integer! " << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+    return input;
+}
+int ValidInputMenu(List list)
 {
     int Input;
     while ((!(cin >> Input)) || Input > 8 || Input < 0) {
         system("cls");
-        Menu();
+        Menu(list);
         cout << "Invalid input. Please enter an integer! " << endl;
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -38,22 +57,22 @@ int main()
 {
     List list = List();
     bool programState = true;
+    int newElement;
     while (programState)
     {
         int commandNumber;
-        Menu();
-        commandNumber = ValidInputMenu();
+        Menu(list);
+        commandNumber = ValidInputMenu(list);
 
         switch (commandNumber)
         {
         case 1:
-            list.AddNodeAtEnd(36);
-            list.AddNodeAtEnd(5);
-            list.AddNodeAtEnd(2);
-            list.AddNodeAtEnd(124);
-
-
-            list.GetList();
+            cout << "Enter a new element:";
+            newElement = ValidCin();
+            list.AddNodeAtEnd(newElement);
+            
+            system("cls");
+            /*list.GetSize();*/
             break;
         case 2:
             
