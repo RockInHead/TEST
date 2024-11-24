@@ -20,21 +20,9 @@ void List::InitRoot(int data) {
 List::List():_size(0),_head(nullptr),_tail(nullptr) {
 
 }
+//¬озвращает размер текущего списка.
 int List::GetSize() {
-	/*int counter=0;
-	Node* someNode = _head;
-	
-	if (_head != nullptr) {
-		counter++;
 
-		while (someNode->next != nullptr)
-		{
-			counter++;
-			someNode = someNode->next;
-		}
-		
-	}
-	return counter;*/
 	return _size;
 }
 int* List::GetList() {
@@ -80,9 +68,23 @@ void List::AddNodeAtEnd(int data)
 	newNode->prev = temp;
 	_size++;
 	/*_tail = newNode;*/
-	
 }
+void List::AddNodeAtStart(int data) {
+	Node* newNode = new Node(data);
+	//ѕровер€ем, создана ли "голова" массива, если нет, создаем
+	if (_head == nullptr)
+	{
+		InitRoot(data);
+		return;
+	}
 
+	newNode->next = _head;
+	_head->prev = newNode;
+	_head = newNode;
+	_size++;
+}
+void List::DeleteNodeIndex(int deletedIndex) {
 
+}
 
 

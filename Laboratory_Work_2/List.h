@@ -15,4 +15,6 @@ public:
 	int GetSize();
 	int* GetList();
 	void AddNodeAtEnd(int data);
+	void AddNodeAtStart(int data);
+	void DeleteNodeIndex(int data)
 };

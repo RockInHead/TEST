@@ -23,7 +23,7 @@ void Menu(List list)
     cout << "[1] - Add new Elemenet in the end" << endl;
     cout << "[2] - Add new Elemenet in the start" << endl;
     cout << "[3] - Insert a new element before by index" << endl;
-    cout << "[4] - Insert a new element before by index" << endl;
+    cout << "[4] - Insert a new element after by index" << endl;
     cout << "[5] - Linear Search" << endl;
     cout << "[6] - Delete Element by index" << endl;
     cout << "[7] - Delete Element by value" << endl;
@@ -57,6 +57,8 @@ int main()
     List list = List();
     bool programState = true;
     int newElement;
+    int deletedElement;
+    int indexOfElement;
     while (programState)
     {
         int commandNumber;
@@ -68,13 +70,14 @@ int main()
         case 1:
             cout << "Enter a new element:";
             newElement = ValidCin();
-            list.AddNodeAtEnd(newElement);
-            
+            list.AddNodeAtEnd(newElement);      
             system("cls");
-            /*list.GetSize();*/
             break;
         case 2:
-            
+            cout << "Enter a new element:";
+            newElement = ValidCin();
+            list.AddNodeAtStart(newElement);
+            system("cls");
             break;
         case 3:
             
@@ -86,7 +89,10 @@ int main()
            
             break;
         case 6:
-            
+            cout << "Enter the index of the item to delete:";
+            indexOfElement = ValidCin();
+            list.DeleteNodeIndex(indexOfElement);
+            system("cls");
             break;
         case 7:
             
