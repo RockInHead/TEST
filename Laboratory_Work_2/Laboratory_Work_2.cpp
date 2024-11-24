@@ -2,7 +2,7 @@
 #include"List.h"
 
 using namespace std;
-//Валидация вводимых значений строки.Только цифры от 0 до 8.
+
 void ShowArray(List list)
 {
     int* array = list.GetList();
@@ -12,15 +12,14 @@ void ShowArray(List list)
             cout << array[i] << " ";
         }
     cout << " " << endl;
+    delete[] array;
 };
 void Menu(List list)
 {
     cout << "Current array:" << endl;
     ShowArray(list);
-    cout << "Array length:" << endl;
-    /*ShowLength(array);*/
-    cout << "Capacity:" << endl;
-    /*cout << array.GetCapacity() << endl;*/
+    cout << "Size:";
+    cout << list.GetSize() << endl;
     cout << "[1] - Add new Elemenet in the end" << endl;
     cout << "[2] - Add new Elemenet in the start" << endl;
     cout << "[3] - Insert a new element before by index" << endl;

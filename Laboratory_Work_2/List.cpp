@@ -15,13 +15,13 @@ void List::InitRoot(int data) {
 	_head->data = data;
 	_head->next = nullptr; // указатель на следующий узел
 	_head->prev = nullptr; // указатель на предыдущий узел
-
+	_size++;
 }
 List::List():_size(0),_head(nullptr),_tail(nullptr) {
 
 }
 int List::GetSize() {
-	int counter=0;
+	/*int counter=0;
 	Node* someNode = _head;
 	
 	if (_head != nullptr) {
@@ -34,8 +34,8 @@ int List::GetSize() {
 		}
 		
 	}
-	return counter;
-
+	return counter;*/
+	return _size;
 }
 int* List::GetList() {
 	int sizeOfArray = GetSize();
@@ -49,6 +49,7 @@ int* List::GetList() {
 			p = p->next;
 			index++;
 		} while (p != nullptr); // условие окончания обхода
+		
 	}
 	return array;
 	//Node* p = _head;
@@ -77,6 +78,7 @@ void List::AddNodeAtEnd(int data)
 
 	temp->next = newNode;
 	newNode->prev = temp;
+	_size++;
 	/*_tail = newNode;*/
 	
 }
