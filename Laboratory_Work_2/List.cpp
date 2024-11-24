@@ -111,13 +111,53 @@ void List::DeleteNodeIndex(int deletedIndex)
 			_size--;
 			return;
 		}
-		/*if(deletedIndex<_size/2){*/
-		Node* temp = _head;
-		for (int i = 0; temp != nullptr && i < deletedIndex; i++) {
-			temp = temp->next;
+		if (deletedIndex == _size - 1) {
+			_tail = _tail->prev;
+			_tail->next = nullptr;
+			_size--;
+			return;
+		}
+		Node* temp;
+		if (deletedIndex < _size / 2) {
+			temp = _head;
+			for (int i = 0; temp != nullptr && i < deletedIndex; i++) {
+				temp = temp->next;
+			}
+			if (temp != nullptr) {
+				if (temp->next != nullptr) {
+					temp->next->prev = temp->prev;
+				}
+				else if (temp->next == nullptr) {
+					_tail = temp->prev;
+				}
+				if (temp->prev != nullptr) {
+					temp->prev->next = temp->next;
+				}
+				delete temp;
+				_size--;
+			}
+		}
+		else if(deletedIndex >= _size / 2) {
+			temp = _tail;
+			for (int i = _size-1; temp != nullptr && i > deletedIndex; i--) {
+				temp = temp->prev;
+			}
+			if (temp != nullptr) {
+				if (temp->next != nullptr) {
+					temp->next->prev = temp->prev;
+				}
+				else if (temp->next == nullptr) {
+					_tail = temp->prev;
+				}
+				if (temp->prev != nullptr) {
+					temp->prev->next = temp->next;
+				}
+				delete temp;
+				_size--;
+			}
 		}
 
-		if (temp != nullptr) {
+		/*if (temp != nullptr) {
 			if (temp->next != nullptr) {
 				temp->next->prev = temp->prev;
 			}
@@ -129,7 +169,7 @@ void List::DeleteNodeIndex(int deletedIndex)
 			}
 			delete temp;
 			_size--;
-		}
+		}*/
 	}
 }
 
