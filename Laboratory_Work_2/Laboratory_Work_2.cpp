@@ -20,6 +20,8 @@ void Menu(List list)
     ShowArray(list);
     cout << "Size:";
     cout << list.GetSize() << endl;
+    cout << "Tail:";
+    cout << list.GetTail() << endl;
     cout << "[1] - Add new Elemenet in the end" << endl;
     cout << "[2] - Add new Elemenet in the start" << endl;
     cout << "[3] - Insert a new element before by index" << endl;

@@ -20,6 +20,12 @@ void List::InitRoot(int data) {
 List::List():_size(0),_head(nullptr),_tail(nullptr) {
 
 }
+int List::GetTail() {
+	if (_tail != nullptr){
+		return _tail->data;
+}
+}
+
 //Возвращает размер текущего списка.
 int List::GetSize() {
 
@@ -67,6 +73,13 @@ void List::AddNodeAtEnd(int data)
 	temp->next = newNode;
 	newNode->prev = temp;
 	_size++;
+
+	if ( _size > 1)
+	{
+		_tail = newNode;
+	}
+	
+
 	/*_tail = newNode;*/
 }
 void List::AddNodeAtStart(int data) {
@@ -83,8 +96,40 @@ void List::AddNodeAtStart(int data) {
 	_head = newNode;
 	_size++;
 }
-void List::DeleteNodeIndex(int deletedIndex) {
+//Функция удаления элемента по индексу.
+void List::DeleteNodeIndex(int deletedIndex) 
+{
+	//Если "голова" существует.
+	if (_head != nullptr) {
+		//Если удаляем голову.
+		if (deletedIndex == 0) {
+			_head = _head->next;
+			if (_head != nullptr) {
+				_head->prev = nullptr;
+			}
+			_size--;
+			return;
+		}
+		/*if(deletedIndex<_size/2){*/
+		Node* temp = _head;
+		for (int i = 0; temp != nullptr && i < deletedIndex; i++) {
+			temp = temp->next;
+		}
 
+		if (temp != nullptr) {
+			if (temp->next != nullptr) {
+				temp->next->prev = temp->prev;
+			}
+			else if (temp->next == nullptr) {
+				_tail = temp->prev;
+			}
+			if (temp->prev != nullptr) {
+				temp->prev->next = temp->next;
+			}
+			delete temp;
+			_size--;
+		}
+	}
 }
 
 
