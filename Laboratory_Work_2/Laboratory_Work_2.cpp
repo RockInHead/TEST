@@ -6,6 +6,9 @@ const string RESET = "\033[0m";  // Сброс цвета
 const string RED = "\033[31m";   // Красный
 const string GREEN = "\033[32m"; // Зеленый
 const string CYAN = "\033[36m";
+const string LIGHT_YELLOW = "\033[33m";
+const string LIGHT_BLUE = "\033[94m";
+const string LIGHT_RED = "\033[91m";
 void ShowArray(List list)
 {
     int* array = list.GetList();
@@ -31,20 +34,20 @@ void Menu(List list)
     cout << CYAN << "Current array:" << RESET << endl;
     ShowArray(list);
     cout << "Size:";
-    cout << list.GetSize() << endl;
+    cout << LIGHT_YELLOW << list.GetSize()<< RESET << endl;
     cout << "Head:";
-    cout << list.GetHead() <<" ";
+    cout << GREEN << list.GetHead()<< RESET <<" ";
     cout << "Tail:";
-    cout << list.GetTail() << endl;
-    cout << "[1] - Add new Elemenet in the end" << endl;
-    cout << "[2] - Add new Elemenet in the start" << endl;
-    cout << "[3] - Insert a new element before by index" << endl;
-    cout << "[4] - Insert a new element after by index" << endl;
-    cout << "[5] - Linear Search" << endl;
-    cout << "[6] - Delete Element by index" << endl;
-    cout << "[7] - Delete Element by value" << endl;
-    cout << "[8] - Sort" << endl;
-    cout << "[0] - Exit" << endl;
+    cout << RED << list.GetTail()<<RESET << endl << endl;
+    cout << LIGHT_BLUE << "[1]"<< RESET<<" - Add new Elemenet in the end" << endl;
+    cout << LIGHT_BLUE << "[2]" << RESET << " - Add new Elemenet in the start" << endl;
+    cout << LIGHT_BLUE << "[3]" << RESET << " - Insert a new element before by index" << endl;
+    cout << LIGHT_BLUE << "[4]" << RESET << " - Insert a new element after by index" << endl;
+    cout << LIGHT_BLUE << "[5]" << RESET << " - Linear Search" << endl;
+    cout << LIGHT_BLUE << "[6]" << RESET << " - Delete Element by index" << endl;
+    cout << LIGHT_BLUE << "[7]" << RESET << " - Delete Element by value" << endl;
+    cout << LIGHT_BLUE << "[8]" << RESET << " - Sort" << endl;
+    cout << LIGHT_RED << "[0]"<<RESET<< " - Exit" << endl;
 }
 int ValidCin()
 {
@@ -118,7 +121,7 @@ int main()
             break;
 
         case 0:
-          
+            programState = false;
             break;
         }
     }
