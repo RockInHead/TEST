@@ -10,8 +10,13 @@ private:
 	Node* _tail;
 
 	void InitRoot(int data);
+
+	void DeleteHead();
+	void DeleteTail();
+
 public:
 	List();
+	int GetHead();
 	int GetTail();
 	int GetSize();
 	int* GetList();

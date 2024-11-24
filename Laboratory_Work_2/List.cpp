@@ -20,10 +20,19 @@ void List::InitRoot(int data) {
 List::List():_size(0),_head(nullptr),_tail(nullptr) {
 
 }
+//Функция удаления головы.
+int List::GetHead() {
+	if (_head != nullptr) {
+		return _head->data;
+	}
+	return 0;
+}
+//Функция удаления хвоста.
 int List::GetTail() {
 	if (_tail != nullptr){
 		return _tail->data;
 }
+	return 0;
 }
 
 //Возвращает размер текущего списка.
@@ -31,6 +40,7 @@ int List::GetSize() {
 
 	return _size;
 }
+//Возвращает текущий список
 int* List::GetList() {
 	int sizeOfArray = GetSize();
 	int* array= new int[sizeOfArray];
@@ -46,11 +56,8 @@ int* List::GetList() {
 		
 	}
 	return array;
-	//Node* p = _head;
-	//do {
-	//	cout << p->data << endl; // вывод значения элемента p
-	//	p = p->next; // переход к следующему узлу
-	//} while (p != nullptr); // условие окончания обхода
+	delete[] array;
+
 }
 //Функция добавление элемента в конец массива.
 void List::AddNodeAtEnd(int data)
@@ -94,70 +101,59 @@ void List::AddNodeAtStart(int data) {
 	newNode->next = _head;
 	_head->prev = newNode;
 	_head = newNode;
-	_tail = _head->next;
 	_size++;
+	if (_size == 2) {
+		_tail = _head->next;
+	}
 }
+//Переназначаем голову на следующий элемент списка. Текущую голову удаляем.
+void List::DeleteHead() {
+	_head = _head->next;
+	if (_head != nullptr) {
+		_head->prev = nullptr;
+	}
+	_size--;
+}
+//Переназначаем хвост на предыдущий элемент списка. Текущий хвост удаляем.
+void List::DeleteTail() {
+	_tail = _tail->prev;
+	if (_tail != nullptr) {
+		_tail->next = nullptr;
+	}
+	_size--;
+}
+
 //Функция удаления элемента по индексу.
 void List::DeleteNodeIndex(int deletedIndex) 
 {
 	//Если "голова" существует.
-	if (_head != nullptr) {
+	if (_head != nullptr && deletedIndex<_size && deletedIndex>=0) {
 		//Если удаляем голову.
 		if (deletedIndex == 0) {
-			_head = _head->next;
-			if (_head != nullptr) {
-				_head->prev = nullptr;
-			}
-			_size--;
+			DeleteHead();
 			return;
 		}
+		//Удаляем хвост.
 		if (deletedIndex == _size - 1) {
-			_tail = _tail->prev;
-			_tail->next = nullptr;
-			_size--;
+			DeleteTail();
 			return;
 		}
 		Node* temp;
+		//Анализируем к голове или к хвосту ближе элемент.
 		if (deletedIndex < _size / 2) {
 			temp = _head;
 			for (int i = 0; temp != nullptr && i < deletedIndex; i++) {
 				temp = temp->next;
 			}
-			if (temp != nullptr) {
-				if (temp->next != nullptr) {
-					temp->next->prev = temp->prev;
-				}
-				else if (temp->next == nullptr) {
-					_tail = temp->prev;
-				}
-				if (temp->prev != nullptr) {
-					temp->prev->next = temp->next;
-				}
-				delete temp;
-				_size--;
-			}
 		}
-		else if(deletedIndex >= _size / 2) {
+		else  {
 			temp = _tail;
 			for (int i = _size-1; temp != nullptr && i > deletedIndex; i--) {
 				temp = temp->prev;
 			}
-			if (temp != nullptr) {
-				if (temp->next != nullptr) {
-					temp->next->prev = temp->prev;
-				}
-				else if (temp->next == nullptr) {
-					_tail = temp->prev;
-				}
-				if (temp->prev != nullptr) {
-					temp->prev->next = temp->next;
-				}
-				delete temp;
-				_size--;
-			}
 		}
-
-		/*if (temp != nullptr) {
+		//Удаляем элемент.
+		if (temp != nullptr) {
 			if (temp->next != nullptr) {
 				temp->next->prev = temp->prev;
 			}
@@ -169,7 +165,7 @@ void List::DeleteNodeIndex(int deletedIndex)
 			}
 			delete temp;
 			_size--;
-		}*/
+		}
 	}
 }
 

@@ -2,24 +2,38 @@
 #include"List.h"
 
 using namespace std;
-
+const string RESET = "\033[0m";  // Сброс цвета
+const string RED = "\033[31m";   // Красный
+const string GREEN = "\033[32m"; // Зеленый
+const string CYAN = "\033[36m";
 void ShowArray(List list)
 {
     int* array = list.GetList();
     if (array)
         for (int i = 0; i < list.GetSize(); i++)
         {
-            cout << array[i] << " ";
+            if (i==0) {
+                cout<< GREEN << array[i]<< RESET<<" ";
+            }
+            else if (i==list.GetSize()-1) {
+                cout << RED << array[i] << RESET << " ";
+
+            }else{
+                cout << array[i] << " ";
+            }
         }
     cout << " " << endl;
     delete[] array;
 };
 void Menu(List list)
 {
-    cout << "Current array:" << endl;
+    
+    cout << CYAN << "Current array:" << RESET << endl;
     ShowArray(list);
     cout << "Size:";
     cout << list.GetSize() << endl;
+    cout << "Head:";
+    cout << list.GetHead() <<" ";
     cout << "Tail:";
     cout << list.GetTail() << endl;
     cout << "[1] - Add new Elemenet in the end" << endl;
