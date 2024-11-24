@@ -94,6 +94,7 @@ void List::AddNodeAtStart(int data) {
 	newNode->next = _head;
 	_head->prev = newNode;
 	_head = newNode;
+	_tail = _head->next;
 	_size++;
 }
 //Функция удаления элемента по индексу.
