@@ -1,4 +1,6 @@
 ﻿#include <iostream>
+#include"List.h"
+
 using namespace std;
 //Валидация вводимых значений строки.Только цифры от 0 до 8.
 
@@ -34,17 +36,24 @@ int ValidInputMenu()
 }
 int main()
 {
-    bool ProgramState = true;
-    while (ProgramState)
+    List list = List();
+    bool programState = true;
+    while (programState)
     {
-        int CommandNumber;
+        int commandNumber;
         Menu();
-        CommandNumber = ValidInputMenu();
+        commandNumber = ValidInputMenu();
 
-        switch (CommandNumber)
+        switch (commandNumber)
         {
         case 1:
-       
+            list.AddNodeAtEnd(36);
+            list.AddNodeAtEnd(5);
+            list.AddNodeAtEnd(2);
+            list.AddNodeAtEnd(124);
+
+
+            list.GetList();
             break;
         case 2:
             
