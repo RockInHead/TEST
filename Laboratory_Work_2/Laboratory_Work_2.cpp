@@ -77,6 +77,7 @@ int main()
     int newElement;
     int deletedElement;
     int indexOfElement;
+    int seacrhingElement;
     while (programState)
     {
         int commandNumber;
@@ -116,7 +117,17 @@ int main()
             system("cls");
             break;
         case 5:
-           
+            cout << "Enter seacrhing element:";
+            seacrhingElement = ValidCin();
+            indexOfElement = list.LinearSearch(seacrhingElement);
+            system("cls");
+            if (indexOfElement != -1) {
+                cout << "Index of '" << seacrhingElement << "' is " << indexOfElement << endl << endl;
+            }
+            else {
+                cout << "Element wasn't found :(. Try another element." << endl << endl;
+            }
+            break;
             break;
         case 6:
             cout << "Enter the index of the item to delete:";

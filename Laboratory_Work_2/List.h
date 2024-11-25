@@ -25,5 +25,7 @@ public:
 	void DeleteNodeIndex(int data);
 	void InsertBefore(int data, int indexOfElement);
 	void InsertAfter(int data, int indexOfElement);
+	// Функция линейного поиска элемента в списке
+	int LinearSearch(int seacrhingElement);
 
 };

@@ -155,6 +155,17 @@ void List::InsertBefore(int data, int indexOfElement) {
 		
 	}
 }
+int List::LinearSearch(int seacrhingElement) {
+	Node* temp = _head;
+	for (int i = 0; i < _size; i++) {
+		if (temp->data == seacrhingElement) {
+			return i;
+		}
+		temp = temp->next;
+	}
+	return -1;
+}
+//Добавляем элемент в список после определенного элемента
 void List::InsertAfter(int data, int indexOfElement)
 {
 	if (indexOfElement >= 0) {
