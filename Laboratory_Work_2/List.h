@@ -23,4 +23,5 @@ public:
 	void AddNodeAtEnd(int data);
 	void AddNodeAtStart(int data);
 	void DeleteNodeIndex(int data);
+	void InsertBefore(int data, int indexOfElement);
 };

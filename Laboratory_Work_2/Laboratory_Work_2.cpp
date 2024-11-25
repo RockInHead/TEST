@@ -99,6 +99,13 @@ int main()
             break;
         case 3:
             
+            cout << "Enter a index of element:";
+            indexOfElement = ValidCin();
+            cout << "Enter a new element:";
+            newElement = ValidCin();
+            list.InsertBefore(newElement, indexOfElement);
+            system("cls");
+            
             break;
         case 4:
             
