@@ -108,7 +108,12 @@ int main()
             
             break;
         case 4:
-            
+            cout << "Enter a index of element:";
+            indexOfElement = ValidCin();
+            cout << "Enter a new element:";
+            newElement = ValidCin();
+            list.InsertAfter(newElement, indexOfElement);
+            system("cls");
             break;
         case 5:
            

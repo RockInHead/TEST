@@ -111,6 +111,7 @@ void List::AddNodeAtStart(int data) {
 		_tail = _head->next;
 	}
 }
+//Добавляем элемент в список перед определенным элементом
 void List::InsertBefore(int data, int indexOfElement) {
 	Node* newNode = new Node(data);
 	Node* temp;
@@ -123,25 +124,13 @@ void List::InsertBefore(int data, int indexOfElement) {
 		}
 		if (indexOfElement == 0) {
 			AddNodeAtStart(data);
-			/*newNode->next = _head;
-			_head->prev = newNode;
-			_head = newNode;
-			_size++;*/
 			return;
 		}
 		if (indexOfElement == _size) {
 			AddNodeAtEnd(data);
-			/*newNode->prev = _tail;
-			_tail->next = newNode;
-			_tail = newNode;
-			_size++;*/
 			return;
 		}
 
-		/*temp = _head;
-		for (int i = 0; temp != nullptr && i < indexOfElement - 1; i++) {
-			temp = temp->next;
-		}*/
 		//Анализируем к голове или к хвосту ближе элемент.
 		if (indexOfElement < _size / 2) {
 			temp = _head;
@@ -155,18 +144,24 @@ void List::InsertBefore(int data, int indexOfElement) {
 				temp = temp->prev;
 			}
 		}
+
 		newNode->next = temp->next;
 		newNode->prev = temp;
 		if (temp->next != nullptr) {
 			temp->next->prev = newNode;
 		}
 		temp->next = newNode;
-
-		
 		_size++;
 		
 	}
 }
+void List::InsertAfter(int data, int indexOfElement)
+{
+	if (indexOfElement >= 0) {
+		InsertBefore(data, indexOfElement + 1);
+	}
+}
+
 //Переназначаем голову на следующий элемент списка. Текущую голову удаляем.
 void List::DeleteHead() {
 	_head = _head->next;
