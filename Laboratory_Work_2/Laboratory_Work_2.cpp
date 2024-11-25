@@ -136,10 +136,13 @@ int main()
             system("cls");
             break;
         case 7:
-            
+            list.SwapNodes(list._head, list._head->next);
+            system("cls");
             break;
         case 8:
-            
+            list.SortList();
+            system("cls");
+            break;
             break;
 
         case 0:

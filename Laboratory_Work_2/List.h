@@ -5,7 +5,7 @@ private:
 	//Размер текущего списка
 	int _size;
 	//Указатель на начала списка.
-	Node* _head;
+	
 	//Указатель на конец списка.
 	Node* _tail;
 
@@ -13,8 +13,10 @@ private:
 
 	void DeleteHead();
 	void DeleteTail();
-
 public:
+	Node* _head;
+	void SwapNodes(Node* firstNode, Node* secondNode);
+
 	List();
 	int GetHead();
 	int GetTail();
@@ -27,5 +29,6 @@ public:
 	void InsertAfter(int data, int indexOfElement);
 	// Функция линейного поиска элемента в списке
 	int LinearSearch(int seacrhingElement);
+	void SortList();
 
 };

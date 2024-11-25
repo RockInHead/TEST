@@ -244,5 +244,48 @@ void List::DeleteNodeIndex(int deletedIndex)
 		}
 	}
 }
+//Меняет местами два соседних элемента списка.
+void List::SwapNodes(Node* firstNode,Node* secondNode) 
+{
+	Node *prev1, * prev2, * next1, * next2;
+	prev1 = firstNode->prev;  // узел предшествующий lst1
+	prev2 = secondNode->prev;  // узел предшествующий lst2
+	next1 = firstNode->next; // узел следующий за lst1
+	next2 = secondNode->next; // узел следующий за lst2
+	secondNode->next = firstNode;
+	secondNode->prev = prev1;
+	firstNode->next = next2;
+	firstNode->prev = secondNode;
+
+	if (next2 != nullptr) {
+		next2->prev = firstNode;
+	}
+	if (firstNode != _head) {
+		prev1->next = secondNode;
+	}
+	if (prev1 == nullptr) {
+		_head= secondNode;
+	}
+	if (next2 == nullptr) {
+		_tail = firstNode;
+	}
+	
+}
+//Сортирует список по возрастанию.
+void List::SortList()
+{
+	Node* temp = _head;
+	for (int i = 0; i < _size; i++) {
+		temp = _head;
+		for (int j = 0; j < _size; j++) {
+			if (temp != nullptr && temp->next!=nullptr) {
+				if (temp->data > temp->next->data) {
+					SwapNodes(temp, temp->next);
+				}
+				temp = temp->next;
+			}
+		}
+	}
+}
 
 
