@@ -114,69 +114,46 @@ void List::AddNodeAtStart(int data) {
 void List::InsertBefore(int data, int indexOfElement) {
 	Node* newNode = new Node(data);
 	Node* temp;
-	//Анализируем к голове или к хвосту ближе элемент.
-	/*if (indexOfElement < _size / 2) {*/
-	if (indexOfElement==0) {
-		newNode->next = _head;
-		_head->prev = newNode;
-		_head = newNode;
-		_size++;
-		return;
-	}
-	if (indexOfElement == _size) {
-		newNode->prev = _tail;
-		_tail->next = newNode;
-		_tail = newNode;
-		_size++;
-		return;
-	}
+
+	if (indexOfElement <= _size && indexOfElement >= 0) {
+		if (_head == nullptr)
+		{
+			InitRoot(data);
+			return;
+		}
+		if (indexOfElement == 0) {
+			AddNodeAtStart(data);
+			/*newNode->next = _head;
+			_head->prev = newNode;
+			_head = newNode;
+			_size++;*/
+			return;
+		}
+		if (indexOfElement == _size) {
+			AddNodeAtEnd(data);
+			/*newNode->prev = _tail;
+			_tail->next = newNode;
+			_tail = newNode;
+			_size++;*/
+			return;
+		}
 
 		temp = _head;
-		for (int i = 0; temp != nullptr && i < indexOfElement-1; i++) {
+		for (int i = 0; temp != nullptr && i < indexOfElement - 1; i++) {
 			temp = temp->next;
 		}
-	/*}*/
-	/*else {
-		temp = _tail;
-		for (int i = _size - 1; temp != nullptr && i > indexOfElement; i--) {
-			temp = temp->prev;
+		
+		newNode->next = temp->next;
+		newNode->prev = temp;
+		if (temp->next != nullptr) {
+			temp->next->prev = newNode;
 		}
-	}*/
-		/*if (temp == _head) {
-			newNode->prev = nullptr;
-			_head->prev = newNode;
-			newNode->next = _head;
-			_head = newNode;
-		}*/
-		/*if (temp->prev != nullptr) {*/
-			newNode->next = temp->next;
-			newNode->prev = temp;
-			if (temp->next != nullptr) {
-				temp->next->prev = newNode;
-			}
-			temp->next = newNode;
-			
-			/*temp = newNode;*/
-			_size++;
-		/*}*/
-		/*if (_size == 2) {
-			_tail = _head->next;
-		}*/
-	////Удаляем элемент.
-	//	if (temp != nullptr) {
-	//		if (temp->next != nullptr) {
-	//			temp->next->prev = temp->prev;
-	//		}
-	//		else if (temp->next == nullptr) {
-	//			_tail = temp->prev;
-	//		}
-	//		if (temp->prev != nullptr) {
-	//			temp->prev->next = temp->next;
-	//		}
-	//		delete temp;
-	//		_size--;
-	//	}
+		temp->next = newNode;
 
+		
+		_size++;
+		
+	}
 }
 //Переназначаем голову на следующий элемент списка. Текущую голову удаляем.
 void List::DeleteHead() {
@@ -201,7 +178,7 @@ void List::DeleteNodeIndex(int deletedIndex)
 	//Если "голова" существует.
 	if (_head != nullptr && deletedIndex<_size && deletedIndex>=0) {
 		//Если один элемент в списке, который является и головой и хвостом.
-		if (_size == 1) {
+		if (_size == 1 && _tail!=nullptr) {
 			DeleteHead();
 			DeleteTail();
 			_size--;
