@@ -30,7 +30,6 @@ void ShowArray(List list)
 };
 void Menu(List list)
 {
-    
     cout << CYAN << "Current array:" << RESET << endl;
     ShowArray(list);
     cout << "Size:";

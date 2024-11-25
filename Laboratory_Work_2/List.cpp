@@ -25,14 +25,19 @@ int List::GetHead() {
 	if (_head != nullptr) {
 		return _head->data;
 	}
-	return 0;
+	if (_head == nullptr && _size == 0) {
+		return 0;
+	}
 }
 //Функция удаления хвоста.
 int List::GetTail() {
 	if (_tail != nullptr){
 		return _tail->data;
-}
-	return 0;
+     }
+	if (_tail == nullptr && _size < 2) {
+		return 0;
+	}
+	
 }
 
 //Возвращает размер текущего списка.
@@ -112,7 +117,7 @@ void List::DeleteHead() {
 	if (_head != nullptr) {
 		_head->prev = nullptr;
 	}
-	_size--;
+	
 }
 //Переназначаем хвост на предыдущий элемент списка. Текущий хвост удаляем.
 void List::DeleteTail() {
@@ -120,7 +125,7 @@ void List::DeleteTail() {
 	if (_tail != nullptr) {
 		_tail->next = nullptr;
 	}
-	_size--;
+	
 }
 
 //Функция удаления элемента по индексу.
@@ -128,14 +133,23 @@ void List::DeleteNodeIndex(int deletedIndex)
 {
 	//Если "голова" существует.
 	if (_head != nullptr && deletedIndex<_size && deletedIndex>=0) {
-		//Если удаляем голову.
-		if (deletedIndex == 0) {
+		//Если один элемент в списке, который является и головой и хвостом.
+		if (_size == 1) {
 			DeleteHead();
+			DeleteTail();
+			_size--;
+			return;
+		}
+		//Если удаляем голову.
+		if (deletedIndex == 0 ) {
+			DeleteHead();
+			_size--;
 			return;
 		}
 		//Удаляем хвост.
-		if (deletedIndex == _size - 1) {
+		if (deletedIndex == _size - 1 ) {
 			DeleteTail();
+			_size--;
 			return;
 		}
 		Node* temp;
