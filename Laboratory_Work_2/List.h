@@ -5,7 +5,8 @@ private:
 	//Размер текущего списка
 	int _size;
 	//Указатель на начала списка.
-	
+	Node* _head;
+
 	//Указатель на конец списка.
 	Node* _tail;
 
@@ -13,10 +14,9 @@ private:
 
 	void DeleteHead();
 	void DeleteTail();
-public:
-	Node* _head;
 	void SwapNodes(Node* firstNode, Node* secondNode);
 
+public:
 	List();
 	int GetHead();
 	int GetTail();
