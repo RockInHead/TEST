@@ -138,11 +138,23 @@ void List::InsertBefore(int data, int indexOfElement) {
 			return;
 		}
 
-		temp = _head;
+		/*temp = _head;
 		for (int i = 0; temp != nullptr && i < indexOfElement - 1; i++) {
 			temp = temp->next;
+		}*/
+		//Анализируем к голове или к хвосту ближе элемент.
+		if (indexOfElement < _size / 2) {
+			temp = _head;
+			for (int i = 0; temp != nullptr && i < indexOfElement-1; i++) {
+				temp = temp->next;
+			}
 		}
-		
+		else {
+			temp = _tail;
+			for (int i = _size; temp != nullptr && i > indexOfElement; i--) {
+				temp = temp->prev;
+			}
+		}
 		newNode->next = temp->next;
 		newNode->prev = temp;
 		if (temp->next != nullptr) {
