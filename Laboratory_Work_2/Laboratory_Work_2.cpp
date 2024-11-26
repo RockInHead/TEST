@@ -1,5 +1,7 @@
 ﻿#include <iostream>
 #include"List.h"
+#include <chrono>
+#include <ctime>
 
 using namespace std;
 const string RESET = "\033[0m";  // Сброс цвета
@@ -9,6 +11,7 @@ const string CYAN = "\033[36m";
 const string LIGHT_YELLOW = "\033[33m";
 const string LIGHT_BLUE = "\033[94m";
 const string LIGHT_RED = "\033[91m";
+
 void ShowArray(List list)
 {
     int* array = list.GetList();
@@ -44,8 +47,7 @@ void Menu(List list)
     cout << LIGHT_BLUE << "[4]" << RESET << " - Insert a new element after by index" << endl;
     cout << LIGHT_BLUE << "[5]" << RESET << " - Linear Search" << endl;
     cout << LIGHT_BLUE << "[6]" << RESET << " - Delete Element by index" << endl;
-    cout << LIGHT_BLUE << "[7]" << RESET << " - Delete Element by value" << endl;
-    cout << LIGHT_BLUE << "[8]" << RESET << " - Sort" << endl;
+    cout << LIGHT_BLUE << "[7]" << RESET << " - Sort" << endl;
     cout << LIGHT_RED << "[0]"<<RESET<< " - Exit" << endl;
 }
 int ValidCin()
@@ -72,25 +74,31 @@ int ValidInputMenu(List list)
 }
 int main()
 {
+    
     List list = List();
     bool programState = true;
     int newElement;
     int deletedElement;
     int indexOfElement;
     int seacrhingElement;
+   
     while (programState)
     {
         int commandNumber;
         Menu(list);
         commandNumber = ValidInputMenu(list);
 
+        //auto start = std::chrono::high_resolution_clock::now(); // Начало замера
         switch (commandNumber)
         {
         case 1:
             cout << "Enter a new element:";
             newElement = ValidCin();
-            list.AddNodeAtEnd(newElement);      
+
+            list.AddNodeAtEnd(newElement);
+                            
             system("cls");
+            
             break;
         case 2:
             cout << "Enter a new element:";
@@ -136,10 +144,6 @@ int main()
             system("cls");
             break;
         case 7:
-            list.SwapNodes(list._head, list._head->next);
-            system("cls");
-            break;
-        case 8:
             list.SortList();
             system("cls");
             break;
@@ -149,6 +153,11 @@ int main()
             programState = false;
             break;
         }
+        //auto end = std::chrono::high_resolution_clock::now(); // Конец замера
+        //std::chrono::duration<double, std::milli> duration = end - start; // Вычисляем разницу
+        //cout << "runtime = " << duration.count() << "ms" << endl; // время работы программы  
+        //system("pause");
+
     }
 }
 

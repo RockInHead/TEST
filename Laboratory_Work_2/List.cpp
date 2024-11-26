@@ -1,26 +1,31 @@
 #include"List.h"
 #include <iostream>
+#include <chrono>
+
 using namespace std;
 //Размер текущего списка
 int _size;
+
 //Указатель на начала списка.
 Node* _head;
+
 //Указатель на конец списка.
 Node* _tail;
+
+//Инициализиурет корень списка.
 void List::InitRoot(int data) {
 	Node* root = new Node();
 	_head = root;
 	// выделение памяти под корень списка
-
 	_head->data = data;
 	_head->next = nullptr; // указатель на следующий узел
 	_head->prev = nullptr; // указатель на предыдущий узел
 	_size++;
 }
-List::List():_size(0),_head(nullptr),_tail(nullptr) {
+//Конструктор по умолчанию для списка
+List::List():_size(0),_head(nullptr),_tail(nullptr) {}
 
-}
-//Функция удаления головы.
+//Функция возвращающая, текущую голову.
 int List::GetHead() {
 	if (_head != nullptr) {
 		return _head->data;
@@ -29,7 +34,7 @@ int List::GetHead() {
 		return 0;
 	}
 }
-//Функция удаления хвоста.
+//Функция возвращающая, текущий хвост.
 int List::GetTail() {
 	if (_tail != nullptr){
 		return _tail->data;
@@ -39,26 +44,24 @@ int List::GetTail() {
 	}
 	
 }
-
 //Возвращает размер текущего списка.
 int List::GetSize() {
 
 	return _size;
 }
+
 //Возвращает текущий список
 int* List::GetList() {
 	int sizeOfArray = GetSize();
 	int* array= new int[sizeOfArray];
 	int index = 0;
 	if (_head != nullptr) {
-		Node* p = _head;
+		Node* temp = _head;
 		do {
-			/*cout << p->data << endl; */
-			array[index] = p->data;
-			p = p->next;
+			array[index] = temp->data;
+			temp = temp->next;
 			index++;
-		} while (p != nullptr); // условие окончания обхода
-		
+		} while (temp != nullptr); // условие окончания обхода
 	}
 	return array;
 	delete[] array;
@@ -70,7 +73,7 @@ void List::AddNodeAtEnd(int data)
 	//Создаем новый элемент, с значением data
 	Node* newNode = new Node(data);
 
-	//Проверяем, создана ли "голова" массива, если нет, создаем
+	//Проверяем, создана ли "голова" массива, если нет, создаем.
 	if (_head == nullptr) 
 	{
 		InitRoot(data);
@@ -90,11 +93,10 @@ void List::AddNodeAtEnd(int data)
 	{
 		_tail = newNode;
 	}
-	
-
-	/*_tail = newNode;*/
 }
+//Функция доавбление элемента в начало массива.
 void List::AddNodeAtStart(int data) {
+	auto start =chrono::high_resolution_clock::now(); // Начало замера
 	Node* newNode = new Node(data);
 	//Проверяем, создана ли "голова" массива, если нет, создаем
 	if (_head == nullptr)
@@ -110,9 +112,14 @@ void List::AddNodeAtStart(int data) {
 	if (_size == 2) {
 		_tail = _head->next;
 	}
+	auto end = chrono::high_resolution_clock::now(); // Конец замера
+	chrono::duration<double, milli> duration = end - start; // Вычисляем разницу
+	cout << "runtime = " << duration.count() << "ms" << endl; // время работы программы  
+	system("pause");
 }
 //Добавляем элемент в список перед определенным элементом
 void List::InsertBefore(int data, int indexOfElement) {
+	auto start = chrono::high_resolution_clock::now(); // Начало замера
 	Node* newNode = new Node(data);
 	Node* temp;
 
@@ -144,7 +151,6 @@ void List::InsertBefore(int data, int indexOfElement) {
 				temp = temp->prev;
 			}
 		}
-
 		newNode->next = temp->next;
 		newNode->prev = temp;
 		if (temp->next != nullptr) {
@@ -152,9 +158,13 @@ void List::InsertBefore(int data, int indexOfElement) {
 		}
 		temp->next = newNode;
 		_size++;
-		
 	}
+	auto end = chrono::high_resolution_clock::now(); // Конец замера
+	chrono::duration<double, milli> duration = end - start; // Вычисляем разницу
+	cout << "runtime = " << duration.count() << "ms" << endl; // время работы программы  
+	system("pause");
 }
+//Линейный поиск элемента списка.
 int List::LinearSearch(int seacrhingElement) {
 	Node* temp = _head;
 	for (int i = 0; i < _size; i++) {
