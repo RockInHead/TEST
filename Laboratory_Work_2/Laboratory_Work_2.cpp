@@ -72,6 +72,14 @@ int ValidInputMenu(List list)
     }
     return Input;
 }
+
+void CreateListOfSize(List&  list, int size)
+{
+    for (int i = 0; i < size; i++) {
+        list.AddNodeAtEnd(7);
+    }
+
+}
 int main()
 {
     
@@ -81,24 +89,23 @@ int main()
     int deletedElement;
     int indexOfElement;
     int seacrhingElement;
-   
+
     while (programState)
     {
         int commandNumber;
         Menu(list);
+
         commandNumber = ValidInputMenu(list);
 
-        //auto start = std::chrono::high_resolution_clock::now(); // Начало замера
+        
         switch (commandNumber)
         {
         case 1:
             cout << "Enter a new element:";
             newElement = ValidCin();
-
             list.AddNodeAtEnd(newElement);
-                            
             system("cls");
-            
+         
             break;
         case 2:
             cout << "Enter a new element:";
@@ -135,7 +142,7 @@ int main()
             else {
                 cout << "Element wasn't found :(. Try another element." << endl << endl;
             }
-            break;
+            
             break;
         case 6:
             cout << "Enter the index of the item to delete:";
@@ -146,17 +153,18 @@ int main()
         case 7:
             list.SortList();
             system("cls");
+           
             break;
-            break;
+        case 8:
+            CreateListOfSize(list, 1000);
+            system("cls");
 
+            break;
         case 0:
             programState = false;
             break;
         }
-        //auto end = std::chrono::high_resolution_clock::now(); // Конец замера
-        //std::chrono::duration<double, std::milli> duration = end - start; // Вычисляем разницу
-        //cout << "runtime = " << duration.count() << "ms" << endl; // время работы программы  
-        //system("pause");
+        
 
     }
 }

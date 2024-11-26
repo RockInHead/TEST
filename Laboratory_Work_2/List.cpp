@@ -1,6 +1,6 @@
 #include"List.h"
 #include <iostream>
-#include <chrono>
+//#include <chrono>
 
 using namespace std;
 //Размер текущего списка
@@ -96,7 +96,6 @@ void List::AddNodeAtEnd(int data)
 }
 //Функция доавбление элемента в начало массива.
 void List::AddNodeAtStart(int data) {
-	auto start =chrono::high_resolution_clock::now(); // Начало замера
 	Node* newNode = new Node(data);
 	//Проверяем, создана ли "голова" массива, если нет, создаем
 	if (_head == nullptr)
@@ -112,14 +111,9 @@ void List::AddNodeAtStart(int data) {
 	if (_size == 2) {
 		_tail = _head->next;
 	}
-	auto end = chrono::high_resolution_clock::now(); // Конец замера
-	chrono::duration<double, milli> duration = end - start; // Вычисляем разницу
-	cout << "runtime = " << duration.count() << "ms" << endl; // время работы программы  
-	system("pause");
 }
 //Добавляем элемент в список перед определенным элементом
 void List::InsertBefore(int data, int indexOfElement) {
-	auto start = chrono::high_resolution_clock::now(); // Начало замера
 	Node* newNode = new Node(data);
 	Node* temp;
 
@@ -159,10 +153,6 @@ void List::InsertBefore(int data, int indexOfElement) {
 		temp->next = newNode;
 		_size++;
 	}
-	auto end = chrono::high_resolution_clock::now(); // Конец замера
-	chrono::duration<double, milli> duration = end - start; // Вычисляем разницу
-	cout << "runtime = " << duration.count() << "ms" << endl; // время работы программы  
-	system("pause");
 }
 //Линейный поиск элемента списка.
 int List::LinearSearch(int seacrhingElement) {
