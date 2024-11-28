@@ -13,39 +13,45 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Файлы ресурсов\Logic">
+      <UniqueIdentifier>{fe755f9d-96fd-4246-ac01-51f06233b3e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Console">
+      <UniqueIdentifier>{66ac5ec6-e67f-4a40-b58b-53940d72a735}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Laboratory_Work_3.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Node.cpp">
-      <Filter>Файлы ресурсов</Filter>
+      <Filter>Файлы ресурсов\Logic</Filter>
     </ClCompile>
     <ClCompile Include="Stack.cpp">
-      <Filter>Файлы ресурсов</Filter>
+      <Filter>Файлы ресурсов\Logic</Filter>
     </ClCompile>
     <ClCompile Include="StackConsole.cpp">
-      <Filter>Файлы ресурсов</Filter>
+      <Filter>Файлы ресурсов\Console</Filter>
     </ClCompile>
     <ClCompile Include="Validator.cpp">
-      <Filter>Файлы ресурсов</Filter>
+      <Filter>Файлы ресурсов\Console</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Node.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Stack.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="Colors.h">
+      <Filter>Файлы ресурсов\Console</Filter>
     </ClInclude>
     <ClInclude Include="StackConsole.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Файлы ресурсов\Console</Filter>
     </ClInclude>
     <ClInclude Include="Validator.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Файлы ресурсов\Console</Filter>
     </ClInclude>
-    <ClInclude Include="Colors.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="Node.h">
+      <Filter>Файлы ресурсов\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack.h">
+      <Filter>Файлы ресурсов\Logic</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

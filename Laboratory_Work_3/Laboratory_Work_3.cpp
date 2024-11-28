@@ -16,6 +16,7 @@ void Menu()
 
 int main()
 {
+    Stack stack = Stack();
     bool programState = true;
     int arrayType;
     while (programState) {
@@ -25,13 +26,19 @@ int main()
         {
         case 1:
             system("cls");
-            StackConsole();
+            StackConsole(stack);
             break;
         case 2:
+            system("cls");
+
             break;
         case 3:
+            system("cls");
+
             break;
         case 4:
+            system("cls");
+
             break;
         case 0:
             programState = false;

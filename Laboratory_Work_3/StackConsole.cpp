@@ -37,8 +37,8 @@ void MenuStack(Stack stack)
 
 
 //Вызвать консольное меню для стэка.
-void StackConsole() {
-    Stack stack = Stack();
+void StackConsole(Stack& stack) {
+    /*Stack stack = Stack();*/
     bool stackState = true;
     int commandNumber;
     int newElement;

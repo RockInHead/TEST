@@ -13,7 +13,7 @@ void ShowStack(Stack stack);
 void MenuStack(Stack stack);
 
 //Вызвать консольное меню для стэка.
-void StackConsole();
+void StackConsole(Stack& stack);
 
 
 #endif // STACKCONSOLE_H
