@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include"Stack.h"
 using namespace std;
 
 
@@ -22,6 +23,19 @@ using namespace std;
 //    cout << " " << endl;
 //    delete[] array;
 //};
+
+void ShowStack(Stack stack) {
+    int* array = stack.GetStack();
+
+        for (int i = 0; i < stack.GetSize(); i++)
+        {
+            
+                cout << array[i] << " ";
+           
+        }
+    cout << " " << endl;
+    delete[] array;
+}
 void Menu()
 {
     cout << "Choose array:" << endl<< endl;
@@ -31,9 +45,10 @@ void Menu()
     cout << "[4]" << " - A Queue based on 2 stacks" << endl;
 }
 
-void MenuStack()
+void MenuStack(Stack stack)
 {
     cout << "Stack array:" << endl << endl;
+    ShowStack(stack);
     cout << "[1]" << " - Push" << endl;
     cout << "[2]" << " - Pop" << endl;
     cout << "[3]" << " - Clearing the memory" << endl;
@@ -61,19 +76,24 @@ int ValidInputMenu(int numbOfFirstCommand,int numbOfLastCommnad)
     return Input;
 }
 
-void Stack() {
+void StackConsole() {
+    Stack stack = Stack();
     bool stackState = true;
     int commandNumber;
+    int newElement;
     while (stackState)
     {
-        MenuStack();
+        MenuStack(stack);
         int commandNumber;
         commandNumber = ValidInputMenu(0,4);
         switch (commandNumber)
         {
         case 1:
-
-            cout << "Push command" << endl;
+            cout << "Enter a new element:";
+            newElement = ValidCin();
+            stack.Push(newElement);
+            system("cls");
+            
             break;
         case 2:
             cout << "Pop command" << endl;
@@ -103,7 +123,7 @@ int main()
         {
         case 1:
             system("cls");
-            Stack();
+            StackConsole();
             break;
         case 2:
             break;
