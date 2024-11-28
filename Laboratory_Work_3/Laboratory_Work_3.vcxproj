@@ -130,10 +130,15 @@
     <ClCompile Include="Laboratory_Work_3.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Stack.cpp" />
+    <ClCompile Include="StackConsole.cpp" />
+    <ClCompile Include="Validator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Colors.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Stack.h" />
+    <ClInclude Include="StackConsole.h" />
+    <ClInclude Include="Validator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
