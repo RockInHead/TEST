@@ -8,6 +8,7 @@ int _size;
 
 //Указатель на последний элемент стэка.
 Node* _top;
+
 //Конструктор по умолчанию для списка
 Stack::Stack() :_size(0), _top(nullptr) {}
 
@@ -80,5 +81,13 @@ void Stack::Pop()
 		_top = temp;
 		_size--;
 		
+	}
+}
+
+void Stack::ClearStack() {
+	if (_size != 0) {
+		while (_size != 0) {
+			Pop();
+		}
 	}
 }

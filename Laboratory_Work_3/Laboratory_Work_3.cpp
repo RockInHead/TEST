@@ -2,38 +2,29 @@
 #include"Stack.h"
 using namespace std;
 
-
-//void ShowArray(List list)
-//{
-//    int* array = list.GetList();
-//    if (array)
-//        for (int i = 0; i < list.GetSize(); i++)
-//        {
-//            if (i == 0) {
-//                cout << GREEN << array[i] << RESET << " ";
-//            }
-//            else if (i == list.GetSize() - 1) {
-//                cout << RED << array[i] << RESET << " ";
-//
-//            }
-//            else {
-//                cout << array[i] << " ";
-//            }
-//        }
-//    cout << " " << endl;
-//    delete[] array;
-//};
+const string RESET = "\033[0m";  // Сброс цвета
+const string RED = "\033[31m";   // Красный
+const string GREEN = "\033[32m"; // Зеленый
+const string CYAN = "\033[36m";
+const string LIGHT_YELLOW = "\033[33m";
+const string LIGHT_BLUE = "\033[94m";
+const string LIGHT_RED = "\033[91m";
 
 void ShowStack(Stack stack) {
     int* array = stack.GetStack();
 
         for (int i = 0; i < stack.GetSize(); i++)
         {
-            
+            if (i == stack.GetSize() - 1) {
+
+                cout<< RED << array[i] <<RESET << " ";
+            }
+            else {
                 cout << array[i] << " ";
-           
+
+            }
         }
-    cout << " " << endl;
+    cout << " " << endl << endl;
     delete[] array;
 }
 void Menu()
@@ -47,14 +38,14 @@ void Menu()
 
 void MenuStack(Stack stack)
 {
-    cout << "Stack array:" << endl;
+    cout << LIGHT_BLUE <<"Stack array:" << RESET << endl;
     ShowStack(stack);
-    cout << "Size:" << stack.GetSize() << endl;
-    cout << "Top element:" << stack.GetTop()<< endl;
+    cout << "Size:" << LIGHT_YELLOW << stack.GetSize() << RESET<< endl;
+    cout << "Top element:" << RED <<stack.GetTop()<< RESET <<endl << endl;
     cout << "[1]" << " - Push" << endl;
     cout << "[2]" << " - Pop" << endl;
     cout << "[3]" << " - Clearing the memory" << endl;
-
+    cout <<RED <<"[0]"<< RESET << " - Exit the Stack" << endl;
 }
 int ValidCin()
 {
@@ -69,7 +60,6 @@ int ValidCin()
 
 int ValidInputMenu(int numbOfFirstCommand,int numbOfLastCommnad)
 {
-    
     int Input;
     while ((!(cin >> Input)) || Input > numbOfLastCommnad || Input < numbOfFirstCommand) {
 
@@ -88,7 +78,6 @@ void StackConsole() {
     bool stackState = true;
     int commandNumber;
     int newElement;
-    /*int (*Menu)(void) = NULL;*/
     while (stackState)
     {
         MenuStack(stack);
@@ -101,22 +90,20 @@ void StackConsole() {
             newElement = ValidCin();
             stack.Push(newElement);
             system("cls");
-            
             break;
         case 2:
             stack.Pop();
             system("cls");
             break;
         case 3:
-            cout << "Clear the memory" << endl;
+            stack.ClearStack();
+            system("cls");
             break;
         case 0:
             system("cls");
             stackState = false;
             break;
         }
-
-
     }
 }
 
@@ -138,6 +125,9 @@ int main()
         case 3:
             break;
         case 4:
+            break;
+        case 0:
+            programState = false;
             break;
         }
     }
