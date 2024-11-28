@@ -47,8 +47,10 @@ void Menu()
 
 void MenuStack(Stack stack)
 {
-    cout << "Stack array:" << endl << endl;
+    cout << "Stack array:" << endl;
     ShowStack(stack);
+    cout << "Size:" << stack.GetSize() << endl;
+    cout << "Top element:" << stack.GetTop()<< endl;
     cout << "[1]" << " - Push" << endl;
     cout << "[2]" << " - Pop" << endl;
     cout << "[3]" << " - Clearing the memory" << endl;
@@ -64,11 +66,16 @@ int ValidCin()
     }
     return input;
 }
+
 int ValidInputMenu(int numbOfFirstCommand,int numbOfLastCommnad)
 {
+    
     int Input;
     while ((!(cin >> Input)) || Input > numbOfLastCommnad || Input < numbOfFirstCommand) {
-        system("cls");
+
+        cout << "\x1b[2K";
+        cout << "\x1b[1A";
+        cout << "\r";
         cout << "Invalid input. Please enter an integer! " << endl;
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -81,6 +88,7 @@ void StackConsole() {
     bool stackState = true;
     int commandNumber;
     int newElement;
+    /*int (*Menu)(void) = NULL;*/
     while (stackState)
     {
         MenuStack(stack);
@@ -96,8 +104,8 @@ void StackConsole() {
             
             break;
         case 2:
-            cout << "Pop command" << endl;
-
+            stack.Pop();
+            system("cls");
             break;
         case 3:
             cout << "Clear the memory" << endl;
