@@ -5,6 +5,8 @@
 #include"Validator.h"
 #include"CircularBuffer.h"
 #include"CircularBufferConsole.h"
+#include"QueueCircularBufferConsole.h"
+
 using namespace std;
 
 void Menu()
@@ -20,6 +22,7 @@ int main()
 {
     CircularBuffer buffer= CircularBuffer();
     Stack stack = Stack();
+    QueueCircularBuffer queue = QueueCircularBuffer();
     bool programState = true;
     int arrayType;
     while (programState) {
@@ -37,7 +40,7 @@ int main()
             break;
         case 3:
             system("cls");
-
+            QueueConsole(queue);
             break;
         case 4:
             system("cls");

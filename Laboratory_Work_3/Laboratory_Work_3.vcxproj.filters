@@ -42,6 +42,12 @@
     <ClCompile Include="CircularBufferConsole.cpp">
       <Filter>Файлы ресурсов\Console</Filter>
     </ClCompile>
+    <ClCompile Include="QueueCircularBuffer.cpp">
+      <Filter>Файлы ресурсов\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="QueueCircularBufferConsole.cpp">
+      <Filter>Файлы ресурсов\Console</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Colors.h">
@@ -63,6 +69,12 @@
       <Filter>Файлы ресурсов\Logic</Filter>
     </ClInclude>
     <ClInclude Include="CircularBufferConsole.h">
+      <Filter>Файлы ресурсов\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="QueueCircularBuffer.h">
+      <Filter>Файлы ресурсов\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="QueueCircularBufferConsole.h">
       <Filter>Файлы ресурсов\Console</Filter>
     </ClInclude>
   </ItemGroup>

@@ -131,6 +131,8 @@
     <ClCompile Include="Laboratory_Work_3.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="CircularBuffer.cpp" />
+    <ClCompile Include="QueueCircularBuffer.cpp" />
+    <ClCompile Include="QueueCircularBufferConsole.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="StackConsole.cpp" />
     <ClCompile Include="Validator.cpp" />
@@ -140,6 +142,8 @@
     <ClInclude Include="CircularBuffer.h" />
     <ClInclude Include="CircularBufferConsole.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="QueueCircularBuffer.h" />
+    <ClInclude Include="QueueCircularBufferConsole.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="StackConsole.h" />
     <ClInclude Include="Validator.h" />
