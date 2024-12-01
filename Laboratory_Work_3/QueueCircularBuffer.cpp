@@ -1,23 +1,30 @@
 #include"QueueCircularBuffer.h"
+
+//Конструктор по умолчанию.
 QueueCircularBuffer::QueueCircularBuffer() {
 	_circularBuffer= CircularBuffer(); 
 }
 
+//Вернет текую вместимосоть очереди.
 int QueueCircularBuffer::GetCapacity() {
 	return _circularBuffer.GetCapacity();
 }
+
+//Вернет текущий размер очереди.
 int  QueueCircularBuffer::GetSize() {
 	return _circularBuffer.GetSize();
 }
-
+//Получить голову.
 int  QueueCircularBuffer::GetHead() {
 	return _circularBuffer.GetHead();
 }
 
+//Получить хвост.
 int  QueueCircularBuffer::GetTail() {
 	return _circularBuffer.GetTail();
 }
 
+//Получить текущуб очередь.
 int* QueueCircularBuffer::GetQueue() {
 	int* resArray = new int[_size];
 	int* array = _circularBuffer.GetCircularBuffer();
@@ -29,6 +36,7 @@ int* QueueCircularBuffer::GetQueue() {
 	return resArray;
 }
 
+//Добавление элемента в конец очереди.
 void QueueCircularBuffer::Enqueue(int data) {
 	if (_size < _capacity) {
 		_circularBuffer.Push(data);
@@ -36,6 +44,7 @@ void QueueCircularBuffer::Enqueue(int data) {
 	}
 }
 
+//Удаление первого элемнета в очереди.
 int QueueCircularBuffer::Dequeue() {
 	if (_size != 0) {
 		int value =_circularBuffer.Pop();
@@ -45,6 +54,7 @@ int QueueCircularBuffer::Dequeue() {
 	return -1;
 }
 
+//Очищает всю очередь.
 void QueueCircularBuffer::ClearQueue() {
 	if (_size != 0) {
 		while (_size != 0) {

@@ -4,28 +4,25 @@
 
 using namespace std;
 
-//Показать текущий стэк в строку.
+//Показать текущий очередь в строку.
 void ShowQueue(QueueCircularBuffer queue) {
     int* array = queue.GetQueue();
 
     for (int i = 0; i < queue.GetSize(); i++)
     {
-        
-            cout << array[i] << " ";
-
-        
+      cout << array[i] << " "; 
     }
     cout << " " << endl << endl;
-    /*delete[] array;*/
+    delete[] array;
 }
-//Показать меню для стэка.
+//Показать меню для очереди.
 void MenuQueue(QueueCircularBuffer queue)
 {
     cout << LIGHT_BLUE << "Queue array:" << RESET << endl;
     ShowQueue(queue);
-    cout << "Size:" << LIGHT_YELLOW << queue.GetSize() << RESET << endl;
-    cout << "Tail:" << queue.GetTail() << "  ";
-    cout << "Head:" << queue.GetHead() << endl << endl;
+    cout << "Size:" << LIGHT_YELLOW << queue.GetSize() << RESET << endl<< endl;
+    /*cout << "Tail:" << queue.GetTail() << "  ";
+    cout << "Head:" << queue.GetHead() << endl << endl;*/
 
     cout << "[1]" << " - Push" << endl;
     cout << "[2]" << " - Pop" << endl;
@@ -34,7 +31,7 @@ void MenuQueue(QueueCircularBuffer queue)
 }
 
 
-//Вызвать консольное меню для стэка.
+//Вызвать консольное меню для очереди.
 void QueueConsole(QueueCircularBuffer& queue) {
     bool stackState = true;
     int commandNumber;
