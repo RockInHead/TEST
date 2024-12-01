@@ -1,11 +1,15 @@
 #include"CircularBuffer.h"
+//Голова буфера.
 int _head;
+
+//Хвост буфера.
 int _tail;
 
+//Голова буфера.
 int  CircularBuffer::GetHead() {
     return _head;
 }
-
+//Хвост буфера.
 int  CircularBuffer::GetTail() {
     return _tail;
 }
@@ -24,15 +28,15 @@ int* CircularBuffer::GetCircularBuffer() {
     return _buffer;
 }
 
-//Констуктор по умолчанию
+//Констуктор по умолчанию.
 CircularBuffer::CircularBuffer() : _capacity(10), _head(0), _tail(0), _size(0) {
     _buffer = new int[_capacity](); // Инициализация массива нулями
 }
-
+//Свободные элементы буфера.
 int CircularBuffer::GetFreeElements() {
     return _capacity - _size;
 }
-
+//Занятые элементы буфера.
 int CircularBuffer::GetOccupiedElements() {
     return _size;
 }
@@ -47,8 +51,6 @@ void CircularBuffer::Push(int data) {
     _buffer[_head] = data;          // Записываем элемент в буфер
     _head = (_head + 1) % _capacity;
 
-    
-   
     if (_size < _capacity) {
         _size++;
     }
@@ -68,7 +70,7 @@ int CircularBuffer::Pop() {
         return -1;
     }
  }
-
+//Очищает весь буфер.
 void CircularBuffer::ClearBuffer() {
     if (_size != 0) {
         while (_size != 0) {

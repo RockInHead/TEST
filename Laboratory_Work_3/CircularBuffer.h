@@ -5,10 +5,20 @@ using namespace std;
 
 class CircularBuffer {
 private:
+
+	//Вместимость буфера.
 	int _capacity;
+
+	//Текущий размер буфера.
 	int _size;
+
+	//Голова буфера.
 	int _head;
+
+	//Хвост буфера.
 	int _tail;
+
+	//Текущйи буфер.
 	int* _buffer;
 public:
 	
@@ -45,8 +55,5 @@ public:
 	//Очищает весь буфер.
 	void ClearBuffer();
 };
-
-
-
 
 #endif

@@ -8,17 +8,6 @@ using namespace std;
 //Показать текущий стэк в строку.
 void ShowBuffer(CircularBuffer buffer) {
     int* array = buffer.GetCircularBuffer();
-    
-    /*for (int i = 0; i < buffer.GetSize(); i++)
-    {
-       
-       cout << array[i] << " ";
-
-        
-    }
-    cout << " " << endl << endl;*/
-    /*delete[] array;*/
-
     for (int i = 0; i <buffer.GetSize(); ++i) {
         // Индекс, по которому нужно читать элементы из буфера
         int index = (buffer.GetTail() + i) % buffer.GetCapacity();
@@ -33,12 +22,10 @@ void MenuBuffer(CircularBuffer buffer)
 {
     cout << LIGHT_BLUE << "Buffer array:" << RESET << endl;
     ShowBuffer(buffer);
-    /*cout << "Head:" << buffer.GetHead() << endl;
-    cout << "Tail:" << buffer.GetTail() << endl;*/
 
     cout << "Capacity:"<<buffer.GetCapacity() << endl;
-    cout << "Occupied places:" << LIGHT_YELLOW << buffer.GetSize() << RESET << endl;
-    cout << "Free places:" << buffer.GetFreeElements() << endl;
+    cout << "Occupied places:" << RED << buffer.GetSize() << RESET << "   "  ;
+    cout << "Free places:" << GREEN <<buffer.GetFreeElements() << RESET << endl;
 
     cout << "[1]" << " - Push" << endl;
     cout << "[2]" << " - Pop" << endl;
