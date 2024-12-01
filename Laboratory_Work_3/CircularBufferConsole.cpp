@@ -39,7 +39,7 @@ void MenuBuffer(CircularBuffer buffer)
     cout << "Capacity:"<<buffer.GetCapacity() << endl;
     cout << "Occupied places:" << LIGHT_YELLOW << buffer.GetSize() << RESET << endl;
     cout << "Free places:" << buffer.GetFreeElements() << endl;
-    /*cout << "Top element:" << RED << stack.GetTop() << RESET << endl << endl;*/
+
     cout << "[1]" << " - Push" << endl;
     cout << "[2]" << " - Pop" << endl;
     cout << "[3]" << " - Clearing the memory" << endl;
@@ -79,7 +79,7 @@ void CircularBufferConsole(CircularBuffer& buffer) {
             }
             break;
         case 3:
-            
+            buffer.ClearBuffer();
             system("cls");
             break;
         case 0:

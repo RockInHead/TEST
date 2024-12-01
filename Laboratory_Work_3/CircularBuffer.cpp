@@ -54,6 +54,7 @@ void CircularBuffer::Push(int data) {
     }
 
 }
+//Удаляет самый старый элемент массива и возвращает его значение.
 int CircularBuffer::Pop() {
     if (_size != 0) {
        
@@ -67,3 +68,11 @@ int CircularBuffer::Pop() {
         return -1;
     }
  }
+
+void CircularBuffer::ClearBuffer() {
+    if (_size != 0) {
+        while (_size != 0) {
+            Pop();
+        }
+    }
+}

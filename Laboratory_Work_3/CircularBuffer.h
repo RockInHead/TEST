@@ -7,12 +7,11 @@ class CircularBuffer {
 private:
 	int _capacity;
 	int _size;
-	/*int _head;
-	int _tail;*/
-	int* _buffer;
-public:
 	int _head;
 	int _tail;
+	int* _buffer;
+public:
+	
 	//Возвращает голову буфера.
 	int GetHead();
 
@@ -40,8 +39,11 @@ public:
 	//Добавляет элемент в буфер.
 	void Push(int data);
 
-	//Удаляет самый старый элепмент из буфера.
+	//Удаляет самый старый элемент из буфера.
 	int Pop();
+
+	//Очищает весь буфер.
+	void ClearBuffer();
 };
 
 
