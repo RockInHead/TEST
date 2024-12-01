@@ -133,6 +133,8 @@
     <ClCompile Include="CircularBuffer.cpp" />
     <ClCompile Include="QueueCircularBuffer.cpp" />
     <ClCompile Include="QueueCircularBufferConsole.cpp" />
+    <ClCompile Include="QueueStack.cpp" />
+    <ClCompile Include="QueueStackConsole.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="StackConsole.cpp" />
     <ClCompile Include="Validator.cpp" />
@@ -144,6 +146,8 @@
     <ClInclude Include="Node.h" />
     <ClInclude Include="QueueCircularBuffer.h" />
     <ClInclude Include="QueueCircularBufferConsole.h" />
+    <ClInclude Include="QueueStack.h" />
+    <ClInclude Include="QueueStackConsole.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="StackConsole.h" />
     <ClInclude Include="Validator.h" />

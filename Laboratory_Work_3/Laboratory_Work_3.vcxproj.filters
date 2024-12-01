@@ -19,63 +19,102 @@
     <Filter Include="Файлы ресурсов\Console">
       <UniqueIdentifier>{66ac5ec6-e67f-4a40-b58b-53940d72a735}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы ресурсов\Console\CircularBuffer">
+      <UniqueIdentifier>{ac633c01-82b5-4a48-8753-b6564491c876}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Console\QueueCircularBuffer">
+      <UniqueIdentifier>{4355cf29-4932-41f2-9794-5dc8cd2e637d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Console\Stack">
+      <UniqueIdentifier>{0e680844-098c-4bdd-b761-42ee61025459}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Console\Helpers">
+      <UniqueIdentifier>{c9bc5c7d-35f2-4964-8482-fcad6538dfb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Logic\CircularBuffer">
+      <UniqueIdentifier>{113d4a3e-beca-4cac-9584-43b80bba52ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Logic\Stack">
+      <UniqueIdentifier>{2bdb47d0-7a16-4bfa-8171-b182946b269a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Logic\QueueCircularBuffer">
+      <UniqueIdentifier>{ff73a9e4-7d16-4307-ab81-ee1eb17186ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Logic\QueueStack">
+      <UniqueIdentifier>{abe4bc2e-754e-44eb-a9c4-4ca62661621d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Console\QueueStack">
+      <UniqueIdentifier>{c8e497d7-7caf-4c18-ae12-25438ffbf707}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Laboratory_Work_3.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Node.cpp">
-      <Filter>Файлы ресурсов\Logic</Filter>
-    </ClCompile>
-    <ClCompile Include="Stack.cpp">
-      <Filter>Файлы ресурсов\Logic</Filter>
-    </ClCompile>
-    <ClCompile Include="StackConsole.cpp">
-      <Filter>Файлы ресурсов\Console</Filter>
-    </ClCompile>
-    <ClCompile Include="Validator.cpp">
-      <Filter>Файлы ресурсов\Console</Filter>
-    </ClCompile>
-    <ClCompile Include="CircularBuffer.cpp">
-      <Filter>Файлы ресурсов\Logic</Filter>
-    </ClCompile>
     <ClCompile Include="CircularBufferConsole.cpp">
-      <Filter>Файлы ресурсов\Console</Filter>
-    </ClCompile>
-    <ClCompile Include="QueueCircularBuffer.cpp">
-      <Filter>Файлы ресурсов\Logic</Filter>
+      <Filter>Файлы ресурсов\Console\CircularBuffer</Filter>
     </ClCompile>
     <ClCompile Include="QueueCircularBufferConsole.cpp">
-      <Filter>Файлы ресурсов\Console</Filter>
+      <Filter>Файлы ресурсов\Console\QueueCircularBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="StackConsole.cpp">
+      <Filter>Файлы ресурсов\Console\Stack</Filter>
+    </ClCompile>
+    <ClCompile Include="Validator.cpp">
+      <Filter>Файлы ресурсов\Console\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="CircularBuffer.cpp">
+      <Filter>Файлы ресурсов\Logic\CircularBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Stack.cpp">
+      <Filter>Файлы ресурсов\Logic\Stack</Filter>
+    </ClCompile>
+    <ClCompile Include="Node.cpp">
+      <Filter>Файлы ресурсов\Logic\Stack</Filter>
+    </ClCompile>
+    <ClCompile Include="QueueCircularBuffer.cpp">
+      <Filter>Файлы ресурсов\Logic\QueueCircularBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="QueueStack.cpp">
+      <Filter>Файлы ресурсов\Logic\QueueStack</Filter>
+    </ClCompile>
+    <ClCompile Include="QueueStackConsole.cpp">
+      <Filter>Файлы ресурсов\Console\QueueStack</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Colors.h">
-      <Filter>Файлы ресурсов\Console</Filter>
-    </ClInclude>
-    <ClInclude Include="StackConsole.h">
-      <Filter>Файлы ресурсов\Console</Filter>
-    </ClInclude>
-    <ClInclude Include="Validator.h">
-      <Filter>Файлы ресурсов\Console</Filter>
-    </ClInclude>
-    <ClInclude Include="Node.h">
-      <Filter>Файлы ресурсов\Logic</Filter>
-    </ClInclude>
-    <ClInclude Include="Stack.h">
-      <Filter>Файлы ресурсов\Logic</Filter>
-    </ClInclude>
-    <ClInclude Include="CircularBuffer.h">
-      <Filter>Файлы ресурсов\Logic</Filter>
-    </ClInclude>
     <ClInclude Include="CircularBufferConsole.h">
-      <Filter>Файлы ресурсов\Console</Filter>
-    </ClInclude>
-    <ClInclude Include="QueueCircularBuffer.h">
-      <Filter>Файлы ресурсов\Logic</Filter>
+      <Filter>Файлы ресурсов\Console\CircularBuffer</Filter>
     </ClInclude>
     <ClInclude Include="QueueCircularBufferConsole.h">
-      <Filter>Файлы ресурсов\Console</Filter>
+      <Filter>Файлы ресурсов\Console\QueueCircularBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="StackConsole.h">
+      <Filter>Файлы ресурсов\Console\Stack</Filter>
+    </ClInclude>
+    <ClInclude Include="Colors.h">
+      <Filter>Файлы ресурсов\Console\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Validator.h">
+      <Filter>Файлы ресурсов\Console\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="CircularBuffer.h">
+      <Filter>Файлы ресурсов\Logic\CircularBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack.h">
+      <Filter>Файлы ресурсов\Logic\Stack</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Файлы ресурсов\Logic\Stack</Filter>
+    </ClInclude>
+    <ClInclude Include="QueueCircularBuffer.h">
+      <Filter>Файлы ресурсов\Logic\QueueCircularBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="QueueStack.h">
+      <Filter>Файлы ресурсов\Logic\QueueStack</Filter>
+    </ClInclude>
+    <ClInclude Include="QueueStackConsole.h">
+      <Filter>Файлы ресурсов\Console\QueueStack</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
