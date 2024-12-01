@@ -36,6 +36,12 @@
     <ClCompile Include="Validator.cpp">
       <Filter>Файлы ресурсов\Console</Filter>
     </ClCompile>
+    <ClCompile Include="CircularBuffer.cpp">
+      <Filter>Файлы ресурсов\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="CircularBufferConsole.cpp">
+      <Filter>Файлы ресурсов\Console</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Colors.h">
@@ -52,6 +58,12 @@
     </ClInclude>
     <ClInclude Include="Stack.h">
       <Filter>Файлы ресурсов\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="CircularBuffer.h">
+      <Filter>Файлы ресурсов\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="CircularBufferConsole.h">
+      <Filter>Файлы ресурсов\Console</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

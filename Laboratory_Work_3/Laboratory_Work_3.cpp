@@ -3,6 +3,8 @@
 #include"Stack.h"
 #include "StackConsole.h"
 #include"Validator.h"
+#include"CircularBuffer.h"
+#include"CircularBufferConsole.h"
 using namespace std;
 
 void Menu()
@@ -16,6 +18,7 @@ void Menu()
 
 int main()
 {
+    CircularBuffer buffer= CircularBuffer();
     Stack stack = Stack();
     bool programState = true;
     int arrayType;
@@ -30,7 +33,7 @@ int main()
             break;
         case 2:
             system("cls");
-
+            CircularBufferConsole(buffer);
             break;
         case 3:
             system("cls");
