@@ -1,6 +1,4 @@
 #include"QueueCircularBuffer.h"
-
-//Констуктор по умолчанию.
 QueueCircularBuffer::QueueCircularBuffer() {
 	_circularBuffer= CircularBuffer(); 
 }
@@ -30,6 +28,7 @@ int* QueueCircularBuffer::GetQueue() {
 	}
 	return resArray;
 }
+
 void QueueCircularBuffer::Enqueue(int data) {
 	if (_size < _capacity) {
 		_circularBuffer.Push(data);
