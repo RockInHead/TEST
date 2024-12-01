@@ -36,7 +36,6 @@ void MenuQueue(QueueCircularBuffer queue)
 
 //Вызвать консольное меню для стэка.
 void QueueConsole(QueueCircularBuffer& queue) {
-    /*Stack stack = Stack();*/
     bool stackState = true;
     int commandNumber;
     int newElement;
@@ -65,7 +64,7 @@ void QueueConsole(QueueCircularBuffer& queue) {
             }
             break;
         case 3:
-         
+            queue.ClearQueue();
             system("cls");
             break;
         case 0:

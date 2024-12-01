@@ -23,7 +23,7 @@ int* QueueCircularBuffer::GetQueue() {
 	int* array = _circularBuffer.GetCircularBuffer();
 	for (int i = 0; i < _size; i++) {
 
-		int index = (_circularBuffer.GetTail() + i);
+		int index = (_circularBuffer.GetTail() + i)%_capacity;
 		resArray[i] = array[index];
 	}
 	return resArray;
@@ -43,4 +43,12 @@ int QueueCircularBuffer::Dequeue() {
 		return value;
 	}
 	return -1;
+}
+
+void QueueCircularBuffer::ClearQueue() {
+	if (_size != 0) {
+		while (_size != 0) {
+			Dequeue();
+		}
+	}
 }

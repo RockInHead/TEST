@@ -32,6 +32,8 @@ public:
 	//Удаление первого элемнета в очереди.
 	int Dequeue();
 
+	//Очищает всю очередь.
+	void ClearQueue();
 };
 
 #endif
