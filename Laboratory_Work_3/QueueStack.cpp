@@ -40,63 +40,50 @@ int QueueStack::Dequeue() {
 
 //Очищает всю очередь.
 void QueueStack::ClearQueue() {
-
+	while (_size != 0) {
+		Dequeue();
+	}
 }
 
 int* QueueStack::GetQueueStack() {
-	Stack resStack = Stack();
-	/*static Stack reversStack1;
-	Stack tempStack1 = _stack1;
-	Stack tempStack2 = _stack2;
-
-	
-	while (tempStack2.GetSize() != 0) {
-		resStack.Push(tempStack2.Pop());
-	}*/
-
-	
-	
+	Stack resStack;
 	Stack copiedStack1;
 	Stack copiedStack2;
-	Stack tempStack1; // Временный стек для копирования элементов
-	Stack tempStack2; // Временный стек для копирования элементов
+	Stack reverseStack1;
 
-
-	while (_stack1.GetSize()!=0) {
-		int value = _stack1.Pop();
-		tempStack1.Push(value); // Копируем элементы во временный стек
-		copiedStack1.Push(value);
+	copiedStack1 = CopyStack(_stack1);
+	while (copiedStack1.GetSize() != 0) {
+		reverseStack1.Push(copiedStack1.Pop());
 	}
 
-	while (_stack2.GetSize() != 0) {
-		int value = _stack2.Pop();
-		tempStack2.Push(value); // Копируем элементы во временный стек
-	}
-
-	// Восстанавливаем элементы в _stack1 и copiedStack
-	while (tempStack1.GetSize()!= 0) {
-		int value = tempStack1.Pop();
-		_stack1.Push(value); // Восстанавливаем оригинал
-		//copiedStack1.Push(value); // Копируем в копию
-	}
-
-	// Восстанавливаем элементы в _stack1 и copiedStack
-	while (tempStack2.GetSize() != 0) {
-		int value = tempStack2.Pop();
-		_stack2.Push(value); // Восстанавливаем оригинал
-		copiedStack2.Push(value); // Копируем в копию
-	}
-
+	copiedStack2 = CopyStack(_stack2);
 	while (copiedStack2.GetSize() != 0) {
 		resStack.Push(copiedStack2.Pop());
 	}
 
-	int size = copiedStack1.GetSize();
-
-	for (int i = 0; i < size; i++) {
-		resStack.Push(copiedStack1.Pop());
+	while (reverseStack1.GetSize() != 0) {
+		resStack.Push(reverseStack1.Pop());
 	}
+
 
 	return resStack.GetStack();
 
 }
+
+Stack QueueStack::CopyStack(Stack& inputStack) {
+	Stack tempStack;
+	Stack copiedStack;
+
+	while (inputStack.GetSize() != 0) {
+		int value = inputStack.Pop();
+		tempStack.Push(value); // Копируем элементы во временный стек
+	}
+
+	while (tempStack.GetSize() != 0) {
+		int value = tempStack.Pop();
+		inputStack.Push(value); // Восстанавливаем оригинал
+		copiedStack.Push(value); // Копируем в копию
+	}
+	return copiedStack;
+}
+

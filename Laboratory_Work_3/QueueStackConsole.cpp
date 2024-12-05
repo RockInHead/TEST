@@ -61,9 +61,9 @@ void QueueStackConsole(QueueStack& queue) {
             }
             break;
         case 3:
-            /*queue.ClearQueue();
+            queue.ClearQueue();
             system("cls");
-            break;*/
+            break;
         case 0:
             system("cls");
             stackState = false;

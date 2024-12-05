@@ -48,6 +48,6 @@ public:
 	//Очищает всю очередь.
 	void ClearQueue();
 
-	
+	Stack CopyStack(Stack& inputStack);
 };
 #endif

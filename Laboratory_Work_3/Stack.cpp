@@ -137,3 +137,20 @@ void Stack::ClearStack() {
 		}
 	}
 }
+
+//Stack Stack::CopyStack(Stack inputStack) {
+//	Stack tempStack;
+//	Stack copiedStack;
+//
+//	while (inputStack.GetSize() != 0) {
+//		int value = inputStack.Pop();
+//		tempStack.Push(value); // Копируем элементы во временный стек
+//	}
+//
+//	while (tempStack.GetSize() != 0) {
+//		int value = tempStack.Pop();
+//		//inputStack.Push(value); // Восстанавливаем оригинал
+//		copiedStack.Push(value); // Копируем в копию
+//	}
+//	return copiedStack;
+//}

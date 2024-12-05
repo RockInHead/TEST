@@ -39,7 +39,8 @@ public:
 	//Очистить весь стэк.
 	void ClearStack();
 
-	/*Stack CopyStack(Stack inputStack,c)*/
+	////Делает копию текущего стэка и возвращает в качестве значения.
+	//static Stack CopyStack(Stack inputStack);
 
 };
 #endif
