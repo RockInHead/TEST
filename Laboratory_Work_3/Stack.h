@@ -18,6 +18,7 @@ private:
 	//Создает корневой элемент стэка.
 	void InitRoot(int Data);
 public:
+
 	// Возвращает последний элемент стэка.
 	int GetTop();
 
@@ -38,9 +39,6 @@ public:
 
 	//Очистить весь стэк.
 	void ClearStack();
-
-	////Делает копию текущего стэка и возвращает в качестве значения.
-	//static Stack CopyStack(Stack inputStack);
 
 };
 #endif

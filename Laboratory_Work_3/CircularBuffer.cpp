@@ -1,9 +1,4 @@
 #include"CircularBuffer.h"
-//Голова буфера.
-int _head;
-
-//Хвост буфера.
-int _tail;
 
 //Голова буфера.
 int  CircularBuffer::GetHead() {

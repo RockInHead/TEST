@@ -20,12 +20,12 @@ void ShowBuffer(CircularBuffer buffer) {
 //Показать меню для стэка.
 void MenuBuffer(CircularBuffer buffer)
 {
-    cout << LIGHT_BLUE << "Buffer array:" << RESET << endl;
+    cout << MAGENTA << "Circular Buffer array:" << RESET << endl;
     ShowBuffer(buffer);
 
-    cout << "Capacity:"<<buffer.GetCapacity() << endl;
+    cout << "Capacity:"<< LIGHT_YELLOW<<buffer.GetCapacity()<<RESET << endl;
     cout << "Occupied places:" << RED << buffer.GetSize() << RESET << "   "  ;
-    cout << "Free places:" << GREEN <<buffer.GetFreeElements() << RESET << endl;
+    cout << "Free places:" << GREEN <<buffer.GetFreeElements() << RESET << endl<< endl;
 
     cout << "[1]" << " - Push" << endl;
     cout << "[2]" << " - Pop" << endl;
@@ -45,7 +45,7 @@ void CircularBufferConsole(CircularBuffer& buffer) {
     {
         MenuBuffer(buffer);
         int commandNumber;
-        commandNumber = ValidInputMenu(0, 4);
+        commandNumber = ValidInputMenu(0, 3);
         switch (commandNumber)
         {
         case 1:
@@ -62,7 +62,6 @@ void CircularBufferConsole(CircularBuffer& buffer) {
             }
             else {
                 cout << "Buffer empty!"  << endl << endl;
-
             }
             break;
         case 3:

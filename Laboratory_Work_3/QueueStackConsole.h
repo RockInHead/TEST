@@ -13,6 +13,4 @@ void MenuQueue(QueueStack& queue);
 //Вызвать консольное меню для очереди.
 void QueueStackConsole(QueueStack& queue);
 
-
-
 #endif

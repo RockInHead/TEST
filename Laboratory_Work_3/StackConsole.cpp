@@ -35,10 +35,8 @@ void MenuStack(Stack stack)
     cout << RED << "[0]" << RESET << " - Exit the Stack" << endl;
 }
 
-
 //Вызвать консольное меню для стэка.
 void StackConsole(Stack& stack) {
-    /*Stack stack = Stack();*/
     bool stackState = true;
     int commandNumber;
     int newElement;
@@ -47,7 +45,7 @@ void StackConsole(Stack& stack) {
     {
         MenuStack(stack);
         int commandNumber;
-        commandNumber = ValidInputMenu(0, 4);
+        commandNumber = ValidInputMenu(0, 3);
         switch (commandNumber)
         {
         case 1:

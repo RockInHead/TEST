@@ -10,7 +10,15 @@ void ShowQueue(QueueStack& queue) {
 
     for (int i = 0; i < queue.GetSize(); i++)
     {
-        cout << array[i] << " ";
+        if(i==0){
+            cout<<GREEN << array[i]<<RESET << " ";
+        }
+        else if (i==queue.GetSize()-1) {
+            cout << RED << array[i] << RESET << " ";
+        }
+        else {
+            cout << array[i] << " ";
+        }
     }
     cout << " " << endl << endl;
     delete[] array;
@@ -18,18 +26,15 @@ void ShowQueue(QueueStack& queue) {
 //Показать меню для очереди.
 void MenuQueue(QueueStack& queue)
 {
-    cout << LIGHT_BLUE << "Queue array:" << RESET << endl;
+    cout << LIGHT_CYAN << "Queue based on 2 Stacks:" << RESET << endl;
     ShowQueue(queue);
     cout << "Size:" << LIGHT_YELLOW << queue.GetSize() << RESET << endl << endl;
-    /*cout << "Tail:" << queue.GetTail() << "  ";
-    cout << "Head:" << queue.GetHead() << endl << endl;*/
 
     cout << "[1]" << " - Push" << endl;
     cout << "[2]" << " - Pop" << endl;
     cout << "[3]" << " - Clearing the queue" << endl;
     cout << RED << "[0]" << RESET << " - Exit the Queue" << endl;
 }
-
 
 //Вызвать консольное меню для очереди.
 void QueueStackConsole(QueueStack& queue) {
@@ -41,7 +46,7 @@ void QueueStackConsole(QueueStack& queue) {
     {
         MenuQueue(queue);
         int commandNumber;
-        commandNumber = ValidInputMenu(0, 4);
+        commandNumber = ValidInputMenu(0, 3);
         switch (commandNumber)
         {
         case 1:

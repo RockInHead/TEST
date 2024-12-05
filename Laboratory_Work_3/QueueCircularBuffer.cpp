@@ -24,7 +24,7 @@ int  QueueCircularBuffer::GetTail() {
 	return _circularBuffer.GetTail();
 }
 
-//Получить текущуб очередь.
+//Получить текущую очередь.
 int* QueueCircularBuffer::GetQueue() {
 	int* resArray = new int[_size];
 	int* array = _circularBuffer.GetCircularBuffer();

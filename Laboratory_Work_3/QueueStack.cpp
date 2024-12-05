@@ -2,25 +2,23 @@
 #include <iostream>
 
 using namespace std;
-QueueStack::QueueStack():_stack1(), _stack2(), _size(0),_capacity(10) {
 
-	//_stack2= Stack();
- //   _stack1 = Stack();
-}
+//Конструктор по умолчанию.
+QueueStack::QueueStack():_stack1(), _stack2(), _size(0),_capacity(10) {}
 
-
+//Вернет текую вместимосоть очереди.
 int QueueStack::GetCapacity() {
 	return _capacity;
 }
+
+//Вернет текущий размер очереди.
 int QueueStack::GetSize() {
 	return _size;
 }
 
 //Добавление элемента в конец очереди.
 void QueueStack::Enqueue(int Data) {
-
 	_stack1.Push(Data);
-	/*int value = _stack1.Pop();*/
 	_size++;
 }
 
@@ -35,7 +33,6 @@ int QueueStack::Dequeue() {
 		_size--;
 	}
 	return _stack2.Pop();
-
 }
 
 //Очищает всю очередь.
@@ -45,6 +42,7 @@ void QueueStack::ClearQueue() {
 	}
 }
 
+//Получить текущую очередь.
 int* QueueStack::GetQueueStack() {
 	Stack resStack;
 	Stack copiedStack1;
@@ -65,11 +63,11 @@ int* QueueStack::GetQueueStack() {
 		resStack.Push(reverseStack1.Pop());
 	}
 
-
 	return resStack.GetStack();
 
 }
 
+//Делает копию текущего стэка и возвращает в качестве значения.
 Stack QueueStack::CopyStack(Stack& inputStack) {
 	Stack tempStack;
 	Stack copiedStack;

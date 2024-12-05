@@ -9,19 +9,20 @@
 #include"QueueStackConsole.h"
 using namespace std;
 
+//Вывод основного меню в консоль.
 void Menu()
 {
     cout << "Choose array:" << endl<< endl;
-    cout << "[1]" << " - Stack" << endl;
-    cout << "[2]" << " - Ring buffer" << endl;
-    cout << "[3]" << " - A Queue based on a ring buffer" << endl;
-    cout << "[4]" << " - A Queue based on 2 stacks" << endl;
+    cout << "[1]" << CYAN <<" - Stack"<<RESET << endl;
+    cout << "[2]"<< MAGENTA << " - Circular Buffer"<<RESET << endl;
+    cout << "[3]"<< LIGHT_GREEN << " - A Queue based on a Circular Buffer"<<RESET << endl;
+    cout << "[4]"<< LIGHT_CYAN << " - A Queue based on 2 Stacks"<<RESET << endl;
 }
 
 int main()
 {
-    CircularBuffer buffer= CircularBuffer();
     Stack stack = Stack();
+    CircularBuffer buffer= CircularBuffer();
     QueueCircularBuffer queue = QueueCircularBuffer();
     QueueStack queueStack = QueueStack();
 

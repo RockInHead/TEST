@@ -18,20 +18,16 @@ private:
 	//Размер текущей очереди.
 	int _size;
 
-public:
+	//Делает копию текущего стэка и возвращает в качестве значения.
+	Stack CopyStack(Stack& inputStack);
 
+public:
 
 	//Констуктор по умолчанию.
 	QueueStack();
 
-	//Получить текущуб очередь.
+	//Получить текущую очередь.
 	int* GetQueueStack();
-
-	////Получить хвост.
-	//int GetTail();
-
-	////Получить голову.
-	//int GetHead();
 
 	//Вернет текую вместимосоть очереди.
 	int GetCapacity();
@@ -48,6 +44,5 @@ public:
 	//Очищает всю очередь.
 	void ClearQueue();
 
-	Stack CopyStack(Stack& inputStack);
 };
 #endif
