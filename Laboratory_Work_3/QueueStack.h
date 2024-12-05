@@ -7,22 +7,25 @@ class QueueStack {
 private:
 
 	//Стэк номер 1.
-	Stack _stack_1 = Stack();
+	Stack _stack1;
 
 	//Стэк номер 2.
-	Stack _stack_2 = Stack();
+	Stack _stack2;
 
 	//Вместимость текущей очереди.
 	int _capacity;
 
 	//Размер текущей очереди.
 	int _size;
+
 public:
+
+
 	//Констуктор по умолчанию.
 	QueueStack();
 
 	//Получить текущуб очередь.
-	int* GetQueue();
+	int* GetQueueStack();
 
 	////Получить хвост.
 	//int GetTail();
@@ -37,12 +40,14 @@ public:
 	int GetSize();
 
 	//Добавление элемента в конец очереди.
-	void Enqueue(int data);
+	void Enqueue(int Data);
 
 	//Удаление первого элемнета в очереди.
 	int Dequeue();
 
 	//Очищает всю очередь.
 	void ClearQueue();
+
+	
 };
 #endif

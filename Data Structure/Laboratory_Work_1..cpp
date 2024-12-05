@@ -77,8 +77,6 @@ int main()
         int сommandNumber;
         Menu(array);
         сommandNumber=ValidInputMenu(array);
-    
-
         switch (сommandNumber)
         {
         case 1:

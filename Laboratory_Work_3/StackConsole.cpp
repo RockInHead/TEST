@@ -42,6 +42,7 @@ void StackConsole(Stack& stack) {
     bool stackState = true;
     int commandNumber;
     int newElement;
+    int popedElement;
     while (stackState)
     {
         MenuStack(stack);
@@ -56,8 +57,14 @@ void StackConsole(Stack& stack) {
             system("cls");
             break;
         case 2:
-            stack.Pop();
+            popedElement = stack.Pop();
             system("cls");
+            if (popedElement != -1) {
+                cout << "Poped element is " << popedElement << endl << endl;
+            }
+            else {
+                cout << "Stack is empty!" << endl << endl;
+            }
             break;
         case 3:
             stack.ClearStack();

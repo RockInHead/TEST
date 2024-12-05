@@ -16,13 +16,13 @@ private:
 	Node* _top;
 
 	//Создает корневой элемент стэка.
-	void InitRoot(int data);
+	void InitRoot(int Data);
 public:
 	// Возвращает последний элемент стэка.
 	int GetTop();
 
 	// Возвращает текущий размер стэка.
-	int GetSize();
+	int GetSize() const;
 
 	//Возвращает текущий стэк.
 	int* GetStack();
@@ -31,14 +31,15 @@ public:
 	Stack();
 
 	//Добавить элемент в конец стэка.
-	void Push(int data);
+	void Push(int Data);
 
 	//Удалить последний элемент стэка.
-	void Pop();
+	int Pop();
 
 	//Очистить весь стэк.
 	void ClearStack();
 
+	/*Stack CopyStack(Stack inputStack,c)*/
 
 };
 #endif

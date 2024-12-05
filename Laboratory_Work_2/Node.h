@@ -1,14 +1,14 @@
 #include <iostream>
-class Node {
+struct Node {
 public:
 	//Хранимые данные. В нашем случае число.
-	int data;
+	int Data;
 	//Указатель на следуйщий элемент списка.
-	struct Node* next;
+	struct Node* Next;
 	//Указатель на предыдущий элемент списка.
-	struct Node* prev;
+	struct Node* Prev;
 	//Конструктор для инициализации узла с входящим значением.
-	Node(int data);
+	Node(int Data);
 
 	Node();
 

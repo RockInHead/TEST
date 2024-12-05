@@ -48,7 +48,7 @@ public:
 	int GetOccupiedElements();
 
 	//Добавляет элемент в буфер.
-	void Push(int data);
+	void Push(int Data);
 
 	//Удаляет самый старый элемент из буфера.
 	int Pop();

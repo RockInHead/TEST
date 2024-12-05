@@ -38,7 +38,7 @@ void Menu(List list)
     cout << "Size:";
     cout << LIGHT_YELLOW << list.GetSize()<< RESET << endl;
     cout << "Head:";
-    cout << GREEN << list.GetHead()<< RESET <<" ";
+    cout << GREEN << list.GetHead()<< RESET <<" "; 
     cout << "Tail:";
     cout << RED << list.GetTail()<<RESET << endl << endl;
     cout << LIGHT_BLUE << "[1]"<< RESET<<" - Add new Elemenet in the end" << endl;
@@ -82,7 +82,6 @@ void CreateListOfSize(List&  list, int size)
 }
 int main()
 {
-    
     List list = List();
     bool programState = true;
     int newElement;
@@ -94,10 +93,7 @@ int main()
     {
         int commandNumber;
         Menu(list);
-
         commandNumber = ValidInputMenu(list);
-
-        
         switch (commandNumber)
         {
         case 1:
@@ -105,7 +101,6 @@ int main()
             newElement = ValidCin();
             list.AddNodeAtEnd(newElement);
             system("cls");
-         
             break;
         case 2:
             cout << "Enter a new element:";
@@ -114,14 +109,12 @@ int main()
             system("cls");
             break;
         case 3:
-            
             cout << "Enter a index of element:";
             indexOfElement = ValidCin();
             cout << "Enter a new element:";
             newElement = ValidCin();
             list.InsertBefore(newElement, indexOfElement);
             system("cls");
-            
             break;
         case 4:
             cout << "Enter a index of element:";
@@ -142,7 +135,6 @@ int main()
             else {
                 cout << "Element wasn't found :(. Try another element." << endl << endl;
             }
-            
             break;
         case 6:
             cout << "Enter the index of the item to delete:";
@@ -153,12 +145,10 @@ int main()
         case 7:
             list.SortList();
             system("cls");
-           
             break;
         case 8:
             CreateListOfSize(list, 1000);
             system("cls");
-
             break;
         case 0:
             programState = false;

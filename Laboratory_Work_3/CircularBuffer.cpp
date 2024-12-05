@@ -42,13 +42,13 @@ int CircularBuffer::GetOccupiedElements() {
 }
 
 // Добавляет элемент в буфер
-void CircularBuffer::Push(int data) {  
+void CircularBuffer::Push(int Data) {  
     
     if (_head == _tail && _size!=0) {
         _tail = (_tail + 1) % _capacity;
     }
 
-    _buffer[_head] = data;          // Записываем элемент в буфер
+    _buffer[_head] = Data;          // Записываем элемент в буфер
     _head = (_head + 1) % _capacity;
 
     if (_size < _capacity) {

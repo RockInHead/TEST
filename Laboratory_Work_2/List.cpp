@@ -3,23 +3,15 @@
 //#include <chrono>
 
 using namespace std;
-//Размер текущего списка
-int _size;
-
-//Указатель на начала списка.
-Node* _head;
-
-//Указатель на конец списка.
-Node* _tail;
 
 //Инициализиурет корень списка.
-void List::InitRoot(int data) {
+void List::InitRoot(int Data) {
 	Node* root = new Node();
 	_head = root;
 	// выделение памяти под корень списка
-	_head->data = data;
-	_head->next = nullptr; // указатель на следующий узел
-	_head->prev = nullptr; // указатель на предыдущий узел
+	_head->Data = Data;
+	_head->Next = nullptr; // указатель на следующий узел
+	_head->Prev = nullptr; // указатель на предыдущий узел
 	_size++;
 }
 //Конструктор по умолчанию для списка
@@ -28,7 +20,7 @@ List::List():_size(0),_head(nullptr),_tail(nullptr) {}
 //Функция возвращающая, текущую голову.
 int List::GetHead() {
 	if (_head != nullptr) {
-		return _head->data;
+		return _head->Data;
 	}
 	if (_head == nullptr && _size == 0) {
 		return 0;
@@ -37,7 +29,7 @@ int List::GetHead() {
 //Функция возвращающая, текущий хвост.
 int List::GetTail() {
 	if (_tail != nullptr){
-		return _tail->data;
+		return _tail->Data;
      }
 	if (_tail == nullptr && _size < 2) {
 		return 0;
@@ -58,35 +50,34 @@ int* List::GetList() {
 	if (_head != nullptr) {
 		Node* temp = _head;
 		do {
-			array[index] = temp->data;
-			temp = temp->next;
+			array[index] = temp->Data;
+			temp = temp->Next;
 			index++;
 		} while (temp != nullptr); // условие окончания обхода
 	}
 	return array;
-	delete[] array;
-
 }
+
 //Функция добавление элемента в конец массива.
-void List::AddNodeAtEnd(int data)
+void List::AddNodeAtEnd(int Data)
 {
 	//Создаем новый элемент, с значением data
-	Node* newNode = new Node(data);
+	Node* newNode = new Node(Data);
 
 	//Проверяем, создана ли "голова" массива, если нет, создаем.
 	if (_head == nullptr) 
 	{
-		InitRoot(data);
+		InitRoot(Data);
 		return;
 	}
 	
 	Node* temp = _head;
-	while (temp->next != nullptr) {
-		temp = temp->next;
+	while (temp->Next != nullptr) {
+		temp = temp->Next;
 	}
 
-	temp->next = newNode;
-	newNode->prev = temp;
+	temp->Next = newNode;
+	newNode->Prev = temp;
 	_size++;
 
 	if ( _size > 1)
@@ -95,40 +86,40 @@ void List::AddNodeAtEnd(int data)
 	}
 }
 //Функция доавбление элемента в начало массива.
-void List::AddNodeAtStart(int data) {
-	Node* newNode = new Node(data);
+void List::AddNodeAtStart(int Data) {
+	Node* newNode = new Node(Data);
 	//Проверяем, создана ли "голова" массива, если нет, создаем
 	if (_head == nullptr)
 	{
-		InitRoot(data);
+		InitRoot(Data);
 		return;
 	}
 
-	newNode->next = _head;
-	_head->prev = newNode;
+	newNode->Next = _head;
+	_head->Prev = newNode;
 	_head = newNode;
 	_size++;
 	if (_size == 2) {
-		_tail = _head->next;
+		_tail = _head->Next;
 	}
 }
 //Добавляем элемент в список перед определенным элементом
-void List::InsertBefore(int data, int indexOfElement) {
-	Node* newNode = new Node(data);
+void List::InsertBefore(int Data, int indexOfElement) {
+	Node* newNode = new Node(Data);
 	Node* temp;
 
 	if (indexOfElement <= _size && indexOfElement >= 0) {
 		if (_head == nullptr)
 		{
-			InitRoot(data);
+			InitRoot(Data);
 			return;
 		}
 		if (indexOfElement == 0) {
-			AddNodeAtStart(data);
+			AddNodeAtStart(Data);
 			return;
 		}
 		if (indexOfElement == _size) {
-			AddNodeAtEnd(data);
+			AddNodeAtEnd(Data);
 			return;
 		}
 
@@ -136,21 +127,21 @@ void List::InsertBefore(int data, int indexOfElement) {
 		if (indexOfElement < _size / 2) {
 			temp = _head;
 			for (int i = 0; temp != nullptr && i < indexOfElement-1; i++) {
-				temp = temp->next;
+				temp = temp->Next;
 			}
 		}
 		else {
 			temp = _tail;
 			for (int i = _size; temp != nullptr && i > indexOfElement; i--) {
-				temp = temp->prev;
+				temp = temp->Prev;
 			}
 		}
-		newNode->next = temp->next;
-		newNode->prev = temp;
-		if (temp->next != nullptr) {
-			temp->next->prev = newNode;
+		newNode->Next = temp->Next;
+		newNode->Prev = temp;
+		if (temp->Next != nullptr) {
+			temp->Next->Prev = newNode;
 		}
-		temp->next = newNode;
+		temp->Next = newNode;
 		_size++;
 	}
 }
@@ -158,34 +149,34 @@ void List::InsertBefore(int data, int indexOfElement) {
 int List::LinearSearch(int seacrhingElement) {
 	Node* temp = _head;
 	for (int i = 0; i < _size; i++) {
-		if (temp->data == seacrhingElement) {
+		if (temp->Data == seacrhingElement) {
 			return i;
 		}
-		temp = temp->next;
+		temp = temp->Next;
 	}
 	return -1;
 }
 //Добавляем элемент в список после определенного элемента
-void List::InsertAfter(int data, int indexOfElement)
+void List::InsertAfter(int Data, int indexOfElement)
 {
 	if (indexOfElement >= 0) {
-		InsertBefore(data, indexOfElement + 1);
+		InsertBefore(Data, indexOfElement + 1);
 	}
 }
 
 //Переназначаем голову на следующий элемент списка. Текущую голову удаляем.
 void List::DeleteHead() {
-	_head = _head->next;
+	_head = _head->Next;
 	if (_head != nullptr) {
-		_head->prev = nullptr;
+		_head->Prev = nullptr;
 	}
 	
 }
 //Переназначаем хвост на предыдущий элемент списка. Текущий хвост удаляем.
 void List::DeleteTail() {
-	_tail = _tail->prev;
+	_tail = _tail->Prev;
 	if (_tail != nullptr) {
-		_tail->next = nullptr;
+		_tail->Next = nullptr;
 	}
 	
 }
@@ -194,7 +185,8 @@ void List::DeleteTail() {
 void List::DeleteNodeIndex(int deletedIndex) 
 {
 	//Если "голова" существует.
-	if (_head != nullptr && deletedIndex<_size && deletedIndex>=0) {
+	if (_head != nullptr && deletedIndex < _size && deletedIndex >= 0) 
+	{
 		//Если один элемент в списке, который является и головой и хвостом.
 		if (_size == 1 && _tail!=nullptr) {
 			DeleteHead();
@@ -219,25 +211,25 @@ void List::DeleteNodeIndex(int deletedIndex)
 		if (deletedIndex < _size / 2) {
 			temp = _head;
 			for (int i = 0; temp != nullptr && i < deletedIndex; i++) {
-				temp = temp->next;
+				temp = temp->Next;
 			}
 		}
 		else  {
 			temp = _tail;
 			for (int i = _size-1; temp != nullptr && i > deletedIndex; i--) {
-				temp = temp->prev;
+				temp = temp->Prev;
 			}
 		}
 		//Удаляем элемент.
 		if (temp != nullptr) {
-			if (temp->next != nullptr) {
-				temp->next->prev = temp->prev;
+			if (temp->Next != nullptr) {
+				temp->Next->Prev = temp->Prev;
 			}
-			else if (temp->next == nullptr) {
-				_tail = temp->prev;
+			else if (temp->Next == nullptr) {
+				_tail = temp->Prev;
 			}
-			if (temp->prev != nullptr) {
-				temp->prev->next = temp->next;
+			if (temp->Prev != nullptr) {
+				temp->Prev->Next = temp->Next;
 			}
 			delete temp;
 			_size--;
@@ -248,20 +240,20 @@ void List::DeleteNodeIndex(int deletedIndex)
 void List::SwapNodes(Node* firstNode,Node* secondNode) 
 {
 	Node *prev1, * prev2, * next1, * next2;
-	prev1 = firstNode->prev;  // узел предшествующий lst1
-	prev2 = secondNode->prev;  // узел предшествующий lst2
-	next1 = firstNode->next; // узел следующий за lst1
-	next2 = secondNode->next; // узел следующий за lst2
-	secondNode->next = firstNode;
-	secondNode->prev = prev1;
-	firstNode->next = next2;
-	firstNode->prev = secondNode;
+	prev1 = firstNode->Prev;  // узел предшествующий lst1
+	prev2 = secondNode->Prev;  // узел предшествующий lst2
+	next1 = firstNode->Next; // узел следующий за lst1
+	next2 = secondNode->Next; // узел следующий за lst2
+	secondNode->Next = firstNode;
+	secondNode->Prev = prev1;
+	firstNode->Next = next2;
+	firstNode->Prev = secondNode;
 
 	if (next2 != nullptr) {
-		next2->prev = firstNode;
+		next2->Prev = firstNode;
 	}
 	if (firstNode != _head) {
-		prev1->next = secondNode;
+		prev1->Next = secondNode;
 	}
 	if (prev1 == nullptr) {
 		_head= secondNode;
@@ -278,11 +270,11 @@ void List::SortList()
 	for (int i = 0; i < _size; i++) {
 		temp = _head;
 		for (int j = 0; j < _size; j++) {
-			if (temp != nullptr && temp->next!=nullptr) {
-				if (temp->data > temp->next->data) {
-					SwapNodes(temp, temp->next);
+			if (temp != nullptr && temp->Next!=nullptr) {
+				if (temp->Data > temp->Next->Data) {
+					SwapNodes(temp, temp->Next);
 				}
-				temp = temp->next;
+				temp = temp->Next;
 			}
 		}
 	}

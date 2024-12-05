@@ -2,15 +2,17 @@
 #define NODE_H
 
 #include <iostream>
-class Node {
+struct Node {
 public:
 	//Хранимые данные. В нашем случае число.
-	int data;
+	int Data;
+
 	//Указатель на следуйщий элемент списка.
-	Node* next;
+	Node* Next;
 
 	//Конструктор для инициализации узла с входящим значением.
-	Node(int data);
+	Node(int Data);
+
 	//Конструктор по умолчанию
 	Node();
 

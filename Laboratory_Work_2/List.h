@@ -10,7 +10,7 @@ private:
 	Node* _tail;
 
 	//Инициализиурет корень списка.
-	void InitRoot(int data);
+	void InitRoot(int Data);
 
 	//Переназначаем голову на следующий элемент списка. Текущую голову удаляем.
 	void DeleteHead();
@@ -38,19 +38,19 @@ public:
 	int* GetList();
 
 	//Функция добавление элемента в конец массива.
-	void AddNodeAtEnd(int data);
+	void AddNodeAtEnd(int Data);
 
 	//Функция доавбление элемента в начало массива.
-	void AddNodeAtStart(int data);
+	void AddNodeAtStart(int Data);
 
 	//Функция удаления элемента по индексу.
-	void DeleteNodeIndex(int data);
+	void DeleteNodeIndex(int Data);
 
 	//Добавляем элемент в список перед определенным элементом
-	void InsertBefore(int data, int indexOfElement);
+	void InsertBefore(int Data, int indexOfElement);
 
 	//Добавляем элемент в список после определенного элемента
-	void InsertAfter(int data, int indexOfElement);
+	void InsertAfter(int Data, int indexOfElement);
 
 	// Функция линейного поиска элемента в списке
 	int LinearSearch(int seacrhingElement);

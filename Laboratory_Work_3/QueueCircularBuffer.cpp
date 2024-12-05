@@ -37,9 +37,9 @@ int* QueueCircularBuffer::GetQueue() {
 }
 
 //Добавление элемента в конец очереди.
-void QueueCircularBuffer::Enqueue(int data) {
+void QueueCircularBuffer::Enqueue(int Data) {
 	if (_size < _capacity) {
-		_circularBuffer.Push(data);
+		_circularBuffer.Push(Data);
 		_size++;
 	}
 }

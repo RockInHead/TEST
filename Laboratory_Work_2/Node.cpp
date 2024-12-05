@@ -1,13 +1,13 @@
 #include"Node.h"
 Node::Node() {
-    this->data = -1;
-    this->next = nullptr;
-    this->prev = nullptr;
+    this->Data = -1;
+    this->Next = nullptr;
+    this->Prev = nullptr;
 }
 //Конструктор для инициализации узла с входящим значением.
-Node::Node(int data) 
+Node::Node(int Data) 
 {
-    this->data = data;
-    this->next = nullptr;
-    this->prev = nullptr;
+    this->Data = Data;
+    this->Next = nullptr;
+    this->Prev = nullptr;
 }
