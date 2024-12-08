@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Console">
+      <UniqueIdentifier>{8f929f57-b8cc-4064-92a3-a249dcbdb0ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Console\Helpers">
+      <UniqueIdentifier>{43eeae11-8b7e-46a0-b8a0-96b8a55c46c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Logic">
+      <UniqueIdentifier>{46c709d4-f5ea-42d9-b3ea-7b485a672a3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Console\HashTable">
+      <UniqueIdentifier>{9e6dd5a7-bc7d-41d3-8d64-c5b56001eb9d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Laboratiry_Work_4.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Validator.cpp">
+      <Filter>Файлы ресурсов\Console\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="HashTableConsole.cpp">
+      <Filter>Файлы ресурсов\Console\HashTable</Filter>
+    </ClCompile>
+    <ClCompile Include="HashTable.cpp">
+      <Filter>Файлы ресурсов\Logic</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Colors.h">
+      <Filter>Файлы ресурсов\Console\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Validator.h">
+      <Filter>Файлы ресурсов\Console\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="HashTableConsole.h">
+      <Filter>Файлы ресурсов\Console\HashTable</Filter>
+    </ClInclude>
+    <ClInclude Include="HashTable.h">
+      <Filter>Файлы ресурсов\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Файлы ресурсов\Logic</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
