@@ -1,18 +1,32 @@
 #include"HashTable.h"
+#include <iostream>
 
 
+using namespace std;
+Node** HashTable::GetHashTable() {
+    Node** temp = _table;
+    return temp;
+}
+
+int HashTable::GetSize() {
+    return _size;
+}
+
+int  HashTable::GetCapacity() {
+    return _capacity;
+}
 
 
 HashTable::HashTable() :_capacity(5), _size(0) {
-    _table = new Node[_capacity];
-    for (int i = 0; i < 5; i++)
+    _table = new Node*[_capacity]();
+    for (int i = 0; i < _capacity; i++)
     {
         _table[i] = nullptr;
     }
 }
 
 void HashTable::Put(string key, int data) {
-    int index = Hash(key);
+    int index = PearsonHash(key);
     Node* newNode = new Node(key, data);
 
     if (_table[index] == nullptr)
@@ -28,6 +42,7 @@ void HashTable::Put(string key, int data) {
         }
         current->Next = newNode;
     }
+    _size++;
 }
 
 int HashTable::Hash(string key)
@@ -58,18 +73,16 @@ unsigned int HashTable::PearsonHash(string key)
          };
 
      unsigned int hash = 0;
-
      for (char c : key)
      {
-         hash = table[hash ^ static_cast<unsigned char>(c)];
+         hash = table[hash ^ static_cast<unsigned char>(c)] % _capacity;
      }
-
-     return hash%5;
+     return hash;
  }
 
 int HashTable::GetNode(string key)
 {
-    int index = Hash(key);
+    int index = PearsonHash(key);
     Node* current = _table[index];
 
     while (current != nullptr)

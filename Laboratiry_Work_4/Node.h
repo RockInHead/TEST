@@ -13,7 +13,7 @@ struct Node
     //”казатель на следующйи элемент, при возникновении коллизий.
     Node* Next;
 
-    Node() :Key(""), Value(0), Next(nullptr) {}
+    Node():Key(""), Value(0), Next(nullptr) {}
     Node(const std::string& k, int v) : Key(k), Value(v), Next(nullptr) {}
 };
 #endif

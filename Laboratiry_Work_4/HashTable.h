@@ -18,13 +18,20 @@ private:
 
 	//Указатель на последний элемент стэка.
 	/*Node* _top;*/
-	Node* _table;
+	Node** _table;
+	/*Node* _table = new Node[5];*/
 
 public:
 
 	//Конструктор по умолчанию.
 	HashTable();
-	
+
+	Node** GetHashTable();
+
+	int GetSize();
+
+	int GetCapacity();
+
 
 	//Добавить элемент в хэш-таблицу.
 	void Put(string key, int data);
