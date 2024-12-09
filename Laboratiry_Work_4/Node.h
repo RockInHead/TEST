@@ -1,3 +1,6 @@
+#ifndef NODE_H
+#define NODE_H
+
 #include <iostream>
 struct Node
 {
@@ -12,3 +15,4 @@ struct Node
 
     Node(const std::string& k, int v) : Key(k), Value(v), Next(nullptr) {}
 };
+#endif

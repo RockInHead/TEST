@@ -1,6 +1,7 @@
 #include <iostream>
 #include "HashTableConsole.h"
 #include"Validator.h"
+#include"HashTable.h"
 
 using namespace std;
 
@@ -30,13 +31,13 @@ void MenuHashTable()
     /*cout << "Size:" << LIGHT_YELLOW << stack.GetSize() << RESET << endl;
     cout << "Top element:" << RED << stack.GetTop() << RESET << endl << endl;*/
     cout << "[1]" << " - Put" << endl;
-    cout << "[2]" << " - Pop" << endl;
+    cout << "[2]" << " - Get" << endl;
     cout << "[3]" << " - Clearing the memory" << endl;
     cout << RED << "[0]" << RESET << " - Exit the Stack" << endl;
 }
 
 //Вызвать консольное меню для стэка.
-void HashTableConsole() {
+void HashTableConsole(HashTable& hash) {
     bool stackState = true;
     int commandNumber;
     int newElement;
@@ -57,17 +58,16 @@ void HashTableConsole() {
             cout << "Enter a value:";
             newElement = ValidCin();
 
-            system("cls");
+            hash.Put(key, newElement);
+            cout << hash.Hash(key)<< endl;
+            cout<< hash.PearsonHash(key)<<endl<< endl ;
+            /*cout<< hash.GetNode("g");*/
+            /*system("cls");*/
             break;
         case 2:
-          /*  popedElement = stack.Pop();
-            system("cls");
-            if (popedElement != -1) {
-                cout << "Poped element is " << popedElement << endl << endl;
-            }
-            else {
-                cout << "Stack is empty!" << endl << endl;
-            }*/
+            cout << "Enter a key:";
+            cin >> key;
+            cout << "Element with key " << key << " is " << hash.GetNode(key);
             break;
         case 3:
             /*stack.ClearStack();

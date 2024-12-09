@@ -1,8 +1,9 @@
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
 
-//#include"Node.h"
+#include"Node.h"
 #include <iostream>
+
 using namespace std;
 
 class HashTable {
@@ -15,20 +16,25 @@ private:
 
 	//Указатель на последний элемент стэка.
 	/*Node* _top;*/
+	Node* table[5];
 
 public:
 
 	//Конструктор по умолчанию.
-	HashTable();
+	HashTable() {
+		for (int i = 0; i < 5; i++)
+		{
+			table[i] = nullptr;
+		}
+	}
 
 	//Добавить элемент в хэш-таблицу.
 	void Put(string key, int data);
 
-	//Удалить последний элемент стэка.
-	int Pop();
+	int Hash(string key);
 
-	//Очистить весь стэк.
-	void ClearStack();
+	int GetNode(string key);
 
+	unsigned int PearsonHash(string key);
 };
 #endif

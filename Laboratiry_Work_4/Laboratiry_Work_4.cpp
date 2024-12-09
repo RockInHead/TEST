@@ -2,7 +2,7 @@
 #include"Validator.h"
 #include"Colors.h"
 #include "HashTableConsole.h"
-
+#include"HashTable.h"
 using namespace std;
 
 //Вывод основного меню в консоль.
@@ -15,6 +15,7 @@ void Menu()
 
 int main()
 {
+    HashTable hash =  HashTable();
     bool programState = true;
     int arrayType;
     while (programState) {
@@ -24,7 +25,7 @@ int main()
         {
         case 1:
             system("cls");
-            HashTableConsole();
+            HashTableConsole(hash);
             break;
         case 2:
             system("cls");

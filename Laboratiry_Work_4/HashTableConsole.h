@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include"Colors.h"
+#include"HashTable.h"
 using namespace std;
 
 //Показать текущую хэш таблицу в строку.
@@ -12,7 +13,7 @@ void ShowHashTable();
 void MenuHashTable();
 
 //Вызвать консольное меню для хэш таблицы.
-void HashTableConsole();
+void HashTableConsole(HashTable& hash);
 
 
 #endif 
