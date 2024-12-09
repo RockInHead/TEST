@@ -8,6 +8,8 @@ using namespace std;
 
 class HashTable {
 private:
+	int _capacity;
+
 	//Размер текущего стэка.
 	int _size;
 
@@ -16,17 +18,13 @@ private:
 
 	//Указатель на последний элемент стэка.
 	/*Node* _top;*/
-	Node* table[5];
+	Node* _table;
 
 public:
 
 	//Конструктор по умолчанию.
-	HashTable() {
-		for (int i = 0; i < 5; i++)
-		{
-			table[i] = nullptr;
-		}
-	}
+	HashTable();
+	
 
 	//Добавить элемент в хэш-таблицу.
 	void Put(string key, int data);

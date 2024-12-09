@@ -1,16 +1,27 @@
 #include"HashTable.h"
 
+
+
+
+HashTable::HashTable() :_capacity(5), _size(0) {
+    _table = new Node[_capacity];
+    for (int i = 0; i < 5; i++)
+    {
+        _table[i] = nullptr;
+    }
+}
+
 void HashTable::Put(string key, int data) {
     int index = Hash(key);
     Node* newNode = new Node(key, data);
 
-    if (table[index] == nullptr)
+    if (_table[index] == nullptr)
     {
-        table[index] = newNode;
+        _table[index] = newNode;
     }
     else
     {
-        Node* current = table[index];
+        Node* current = _table[index];
         while (current->Next != nullptr)
         {
             current = current->Next;
@@ -53,13 +64,13 @@ unsigned int HashTable::PearsonHash(string key)
          hash = table[hash ^ static_cast<unsigned char>(c)];
      }
 
-     return hash;
+     return hash%5;
  }
 
 int HashTable::GetNode(string key)
 {
     int index = Hash(key);
-    Node* current = table[index];
+    Node* current = _table[index];
 
     while (current != nullptr)
     {

@@ -45,7 +45,7 @@ public:
 	int GetSize();
 
 	//Добавление элемента в конец очереди.
-	void Enqueue(int Data);
+	void Enqueue(int data);
 
 	//Удаление первого элемнета в очереди.
 	int Dequeue();

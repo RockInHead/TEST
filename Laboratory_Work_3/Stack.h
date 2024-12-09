@@ -16,7 +16,7 @@ private:
 	Node* _top;
 
 	//Создает корневой элемент стэка.
-	void InitRoot(int Data);
+	void InitRoot(int data);
 public:
 
 	// Возвращает последний элемент стэка.
@@ -32,7 +32,7 @@ public:
 	Stack();
 
 	//Добавить элемент в конец стэка.
-	void Push(int Data);
+	void Push(int data);
 
 	//Удалить последний элемент стэка.
 	int Pop();
