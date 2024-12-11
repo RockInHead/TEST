@@ -25,6 +25,14 @@ HashTable::HashTable() :_capacity(5), _size(0) {
     }
 }
 
+bool HashTable::CompareKeys(Node* nodeFirst, Node* nodeSecond) {
+    if (nodeFirst->Key == nodeSecond->Key) {
+        nodeFirst->Value = nodeSecond->Value;
+        return true;
+    }
+    return false;
+}
+
 void HashTable::Put(string key, int data) {
     int index = PearsonHash(key);
     Node* newNode = new Node(key, data);
@@ -36,9 +44,17 @@ void HashTable::Put(string key, int data) {
     else
     {
         Node* current = _table[index];
+
+        if (CompareKeys(current, newNode)) {
+            return;
+        }
         while (current->Next != nullptr)
         {
             current = current->Next;
+
+            if (CompareKeys(current->Prev,newNode)||CompareKeys(current, newNode)) {
+                return;
+            }
         }
         current->Next = newNode;
         newNode->Prev = current;

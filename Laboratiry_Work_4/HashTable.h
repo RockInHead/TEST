@@ -21,6 +21,8 @@ private:
 	Node** _table;
 	/*Node* _table = new Node[5];*/
 
+	bool CompareKeys(Node* nodeFirst,Node* nodeSecond);
+
 public:
 
 	//Конструктор по умолчанию.
