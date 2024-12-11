@@ -41,8 +41,53 @@ void HashTable::Put(string key, int data) {
             current = current->Next;
         }
         current->Next = newNode;
+        newNode->Prev = current;
     }
     _size++;
+}
+
+void HashTable::DeleteElement(string key) {
+    if (_size!=0)
+    {
+        int count=1;
+        int index = PearsonHash(key);
+        Node* temp = _table[index];
+        if (temp != nullptr) {
+            Node* head = _table[index];
+            head->Prev = nullptr;
+            Node* prev = new Node();
+            while (temp->Key != key) {
+                prev = temp;
+                temp = temp->Next;
+                count++;
+            }
+            if (temp->Prev == nullptr && temp->Next == nullptr) {
+                head = nullptr;
+                /*temp = nullptr;*/
+            }
+            else if (temp->Next == nullptr) {
+                temp->Prev->Next = nullptr;
+                /*temp = nullptr;*/
+            }
+            else if (temp->Prev == nullptr && temp->Next != nullptr) {
+                temp = head;
+                head = temp->Next;
+                /*temp = nullptr;*/
+            }
+            else if (temp->Next != nullptr) {
+                temp->Next->Prev = temp->Prev;
+                /*head = temp->Prev;*/
+                /*temp = nullptr;*/
+            }
+            if (temp->Prev != nullptr) {
+                temp->Prev->Next = temp->Next;
+            }
+            temp = nullptr;
+
+            _table[index] = head;
+            _size--;
+        }
+    }
 }
 
 int HashTable::Hash(string key)
@@ -80,7 +125,7 @@ unsigned int HashTable::PearsonHash(string key)
      return hash;
  }
 
-int HashTable::GetNode(string key)
+int HashTable::SearchingValue(string key)
 {
     int index = PearsonHash(key);
     Node* current = _table[index];

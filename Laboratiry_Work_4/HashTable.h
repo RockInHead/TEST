@@ -38,7 +38,11 @@ public:
 
 	int Hash(string key);
 
-	int GetNode(string key);
+	//Ищет значение по ключу. Возврщает значение элемента.
+	int SearchingValue(string key);
+
+	//Удаляем элемент по ключу.
+	void DeleteElement(string key);
 
 	unsigned int PearsonHash(string key);
 };
