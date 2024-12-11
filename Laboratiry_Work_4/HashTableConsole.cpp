@@ -28,7 +28,7 @@ void ShowHashTable(HashTable& hash) {
         delete array[i];*/
 
     }
-    cout << " " << endl << endl;
+    cout << " " << endl;
     /*delete array;*/
     array = nullptr;
     delete[] array;
@@ -39,7 +39,7 @@ void MenuHashTable(HashTable& hash)
     cout << LIGHT_BLUE << "Hash Table:" << RESET << endl;
     ShowHashTable(hash);
     cout << "Size:" << LIGHT_YELLOW << hash.GetSize() << RESET << endl;
-    //cout << "Top element:" << RED << stack.GetTop() << RESET << endl << endl;*/
+    cout << "Capacity:" << RED << hash.GetCapacity() << RESET << endl << endl;
     cout << "[1]" << " - Put" << endl;
     cout << "[2]" << " - Delete element by Key" << endl;
     cout << "[3]" << " - Searching Element by Key" << endl;
@@ -67,8 +67,8 @@ void HashTableConsole(HashTable& hash) {
             newElement = ValidCin();
 
             hash.Put(key, newElement);
-            cout<< hash.PearsonHash(key)<<endl<< endl ;
-            system("pause");
+            /*cout<< hash.PearsonHash(key)<<endl<< endl ;
+            system("pause");*/
 
             system("cls");
             break;

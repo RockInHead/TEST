@@ -8,6 +8,8 @@ using namespace std;
 
 class HashTable {
 private:
+	const int MinCapacity = 5;
+	int _growthFactor = 2;
 	int _capacity;
 
 	//Размер текущего стэка.
@@ -22,6 +24,12 @@ private:
 	/*Node* _table = new Node[5];*/
 
 	bool CompareKeys(Node* nodeFirst,Node* nodeSecond);
+
+	//Создает новый массива с новой вместимостью. Переуказывает указатель на новый созданный массив
+	void CreateNewHashTable(int capacity);
+
+	//Изменяет размер массива, создавая новый массив
+	void ResizeHashTable();
 
 public:
 
@@ -46,6 +54,6 @@ public:
 	//Удаляем элемент по ключу.
 	void DeleteElement(string key);
 
-	unsigned int PearsonHash(string key);
+	unsigned int PearsonHash(string key,int capacity);
 };
 #endif
