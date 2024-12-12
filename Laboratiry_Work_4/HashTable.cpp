@@ -1,6 +1,9 @@
 #include"HashTable.h"
 #include <iostream>
 
+using namespace std;
+
+//Изменяет вместимость хеш-таблицы, создавая новую хеш-таблицу.
 void  HashTable::ResizeHashTable()
 {
     if (_size == _capacity)
@@ -12,6 +15,7 @@ void  HashTable::ResizeHashTable()
         CreateNewHashTable(static_cast<int>(_capacity/_growthFactor));
     }
 }
+//Создает новую хеш-таблицу с новой вместимостью. Переуказывает указатель на новую хеш-таблицу.
 void HashTable::CreateNewHashTable(int capacity)
 {
     Node** newTable = new Node * [capacity];
@@ -21,7 +25,7 @@ void HashTable::CreateNewHashTable(int capacity)
 
     // Перемещение элементов из старой таблицы в новую
     for (int i = 0; i < _capacity; ++i) {
-        Node* current = _table[i];
+        Node* current = _hashTable[i];
         while (current != nullptr) {
             int newIndex = PearsonHash(current->Key , capacity) ;
             Node* newNode = new Node(current->Key, current->Value);
@@ -46,7 +50,7 @@ void HashTable::CreateNewHashTable(int capacity)
 
     // Удалить старую таблицу
     for (int i = 0; i < _capacity; ++i) {
-        Node* current = _table[i];
+        Node* current = _hashTable[i];
         while (current != nullptr) {
             Node* temp = current;
             current = current->Next;
@@ -54,34 +58,36 @@ void HashTable::CreateNewHashTable(int capacity)
         }
     }
 
-    delete[] _table; // Освобождаем память старой таблицы
-    _table = newTable; // Переключаем на новую таблицу
+    delete[] _hashTable; // Освобождаем память старой таблицы
+    _hashTable = newTable; // Переключаем на новую таблицу
     _capacity = capacity; // Обновляем вместимость
 }
-
-using namespace std;
+//Получить текущую хеш-таблицу.
 Node** HashTable::GetHashTable() {
-    Node** temp = _table;
+    Node** temp = _hashTable;
     return temp;
 }
 
+//Получить текущий размер хеш-таблицы.
 int HashTable::GetSize() {
     return _size;
 }
 
+//Получить вместимость текущий хеш-таблицы.
 int  HashTable::GetCapacity() {
     return _capacity;
 }
 
-
+//Конструктор по умолчанию.
 HashTable::HashTable() :_capacity(5), _size(0) {
-    _table = new Node*[_capacity]();
+    _hashTable = new Node*[_capacity]();
     for (int i = 0; i < _capacity; i++)
     {
-        _table[i] = nullptr;
+        _hashTable[i] = nullptr;
     }
 }
 
+//Проверяет, если у элементов одинаковые ключи, то приравнивает value перевого элемента value второго элемента.
 bool HashTable::CompareKeys(Node* nodeFirst, Node* nodeSecond) {
     if (nodeFirst->Key == nodeSecond->Key) {
         nodeFirst->Value = nodeSecond->Value;
@@ -90,28 +96,26 @@ bool HashTable::CompareKeys(Node* nodeFirst, Node* nodeSecond) {
     return false;
 }
 
+//Добавить элемент в хэш-таблицу.
 void HashTable::Put(string key, int data) {
     int index = PearsonHash(key,_capacity);
     Node* newNode = new Node(key, data);
 
-    if (_table[index] == nullptr)
+    if (_hashTable[index] == nullptr)
     {
-        _table[index] = newNode;
+        _hashTable[index] = newNode;
     }
     else
     {
-        Node* current = _table[index];
+        Node* current = _hashTable[index];
 
-        if (CompareKeys(current, newNode)) {
-            return;
-        }
+        if (CompareKeys(current, newNode)) return;
+       
         while (current->Next != nullptr)
         {
             current = current->Next;
 
-            if (CompareKeys(current->Prev,newNode)||CompareKeys(current, newNode)) {
-                return;
-            }
+            if (CompareKeys(current->Prev,newNode)||CompareKeys(current, newNode)) return;
         }
         current->Next = newNode;
         newNode->Prev = current;
@@ -121,14 +125,14 @@ void HashTable::Put(string key, int data) {
 
 }
 
+//Удаляем элемент по ключу.
 void HashTable::DeleteElement(string key) {
     if (_size!=0)
     {
-        int count=1;
         int index = PearsonHash(key,_capacity);
-        Node* temp = _table[index];
+        Node* temp = _hashTable[index];
         if (temp != nullptr) {
-            Node* head = _table[index];
+            Node* head = _hashTable[index];
             while (temp->Key != key) {
                 if (temp->Next != nullptr) {
                     temp = temp->Next;
@@ -136,7 +140,7 @@ void HashTable::DeleteElement(string key) {
                 else {
                     return;
                 }
-                count++;
+
             }
             if (temp->Prev == nullptr && temp->Next == nullptr) {
                 head = nullptr;
@@ -156,13 +160,14 @@ void HashTable::DeleteElement(string key) {
             }
             temp = nullptr;
 
-            _table[index] = head;
+            _hashTable[index] = head;
             _size--;
             ResizeHashTable();
         }
     }
 }
 
+//Простая хеш-функция.
 int HashTable::Hash(string key)
 {
     int hashValue = 0;
@@ -172,6 +177,8 @@ int HashTable::Hash(string key)
     }
     return hashValue % 5;
 }
+
+//Хеш-функция Пирсона. Возвращает хеш, учитывая вместимость хеш-таблицы.
 unsigned int HashTable::PearsonHash(string key, int capacity)
 {
      static const unsigned char table[256] =
@@ -201,10 +208,11 @@ unsigned int HashTable::PearsonHash(string key, int capacity)
      return hash;
  }
 
+//Ищет значение по ключу. Возврщает значение элемента.
 int HashTable::SearchingValue(string key)
 {
     int index = PearsonHash(key,_capacity);
-    Node* current = _table[index];
+    Node* current = _hashTable[index];
 
     while (current != nullptr)
     {
