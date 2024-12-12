@@ -9,7 +9,7 @@ using namespace std;
 class HashTable {
 private:
 	const int MinCapacity = 5;
-	int _growthFactor = 2;
+	double _growthFactor = 1.5;
 	int _capacity;
 
 	//Размер текущего стэка.
