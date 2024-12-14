@@ -1,20 +1,41 @@
-﻿// Laboratory_Work_5.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
+﻿#include <iostream>
+#include"Validator.h"
+#include"Colors.h"
+//#include "DictionaryConsole.h"
+//#include"Dictionary.h"
+using namespace std;
 
-#include <iostream>
+//Вывод основного меню в консоль.
+void Menu()
+{
+    cout << "Choose Tree:" << endl << endl;
+    cout << "[1]" << CYAN << " - Binary Tree" << RESET << endl;
+    cout << "[2]" << MAGENTA << " - Cartesian Tree" << RESET << endl;
+}
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    /*Dictionary hash = Dictionary();*/
+    bool programState = true;
+    int arrayType;
+    while (programState) {
+        Menu();
+        arrayType = ValidInputMenu(1, 4);
+        arrayType = 1;
+        switch (arrayType)
+        {
+        case 1:
+            system("cls");
+            
+            break;
+        case 2:
+            system("cls");
+
+            break;
+        case 0:
+            programState = false;
+            break;
+        }
+    }
 }
 
-// Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
-// Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
-
-// Советы по началу работы 
-//   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
-//   2. В окне Team Explorer можно подключиться к системе управления версиями.
-//   3. В окне "Выходные данные" можно просматривать выходные данные сборки и другие сообщения.
-//   4. В окне "Список ошибок" можно просматривать ошибки.
-//   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
-//   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.

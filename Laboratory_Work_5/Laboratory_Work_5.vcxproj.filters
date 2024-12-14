@@ -13,10 +13,27 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Файлы ресурсов\Console">
+      <UniqueIdentifier>{b80d3a28-f506-4d07-bd6e-55fbbfca8cbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Console\Helpers">
+      <UniqueIdentifier>{050d644e-844d-4de8-be44-bd8e89fb5818}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Laboratory_Work_5.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Validator.cpp">
+      <Filter>Файлы ресурсов\Console\Helpers</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Colors.h">
+      <Filter>Файлы ресурсов\Console\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Validator.h">
+      <Filter>Файлы ресурсов\Console\Helpers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
