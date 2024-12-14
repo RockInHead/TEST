@@ -25,6 +25,9 @@
     <Filter Include="Файлы ресурсов\Logic\Binary Tree">
       <UniqueIdentifier>{46b71b55-d942-474a-988b-ef5035e561b1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы ресурсов\Console\Binary Tree">
+      <UniqueIdentifier>{56eec38a-faf2-42a2-827b-97559087d558}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Laboratory_Work_5.cpp">
@@ -35,6 +38,9 @@
     </ClCompile>
     <ClCompile Include="BinaryTree.cpp">
       <Filter>Файлы ресурсов\Logic\Binary Tree</Filter>
+    </ClCompile>
+    <ClCompile Include="BinaryTreeConsole.cpp">
+      <Filter>Файлы ресурсов\Console\Binary Tree</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +55,9 @@
     </ClInclude>
     <ClInclude Include="BinaryTree.h">
       <Filter>Файлы ресурсов\Logic\Binary Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryTreeConsole.h">
+      <Filter>Файлы ресурсов\Console\Binary Tree</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,7 +1,8 @@
 ﻿#include <iostream>
 #include"Validator.h"
 #include"Colors.h"
-//#include "DictionaryConsole.h"
+#include"BinaryTree.h"
+#include "BinaryTreeConsole.h"
 //#include"Dictionary.h"
 using namespace std;
 
@@ -15,6 +16,8 @@ void Menu()
 
 int main()
 {
+
+    BinaryTree binaryTree = BinaryTree();
     /*Dictionary hash = Dictionary();*/
     bool programState = true;
     int arrayType;
@@ -25,7 +28,7 @@ int main()
         {
         case 1:
             system("cls");
-            
+            BinaryTreeConsole(binaryTree);
             break;
         case 2:
             system("cls");

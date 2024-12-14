@@ -14,8 +14,15 @@ private:
 	//Инициализиурет корень дерева.
 	void InitRoot(int data);
 
-	void Insert(Node* node, int data);
+	void Insert(Node*& node, int data);
+
+	int CalculateHeight(Node* node);
 public:
+
+	int GetSize();
+
+	//Возвращает высоту дерева.
+	int GetHeight();
 
 	//Возвращает текущее бинарное дерево.
 	Node* GetBinaryTree();

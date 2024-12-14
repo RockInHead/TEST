@@ -7,6 +7,24 @@ using namespace std;
 //Констурктор по умолчанию.
 BinaryTree::BinaryTree() :_size(0),_root(nullptr){}
 
+int BinaryTree::CalculateHeight(Node* node) {
+	if (node == nullptr) {
+		return 0;
+	}
+	int leftHeight = CalculateHeight(node->Left);
+	int rightHeight = CalculateHeight(node->Right);
+	return std::max(leftHeight, rightHeight) + 1;
+}
+int BinaryTree::GetHeight() {
+	return CalculateHeight(_root);
+	/*int leftHeight = GetHeight(_root->Left);
+	int rightHeight = GetHeight(_root->Right);
+	return std::max(leftHeight, rightHeight) + 1;*/
+}
+int BinaryTree::GetSize() {
+	return _size;
+}
+
 Node* BinaryTree::GetBinaryTree() {
 	return _root;
 	/*Node** tree = new Node*[_size];
@@ -25,7 +43,7 @@ void BinaryTree::InitRoot(int data) {
 	_size++;
 }
 
-void BinaryTree::Insert(Node* node, int data) {
+void BinaryTree::Insert(Node*& node, int data) {
 	if (node == nullptr)
 	{
 		node = new Node(data);
@@ -46,6 +64,10 @@ void BinaryTree::Insert(Node* node, int data) {
 }
 
 void BinaryTree::AddElement(int data) {
+	if (_size == 0) {
+		InitRoot(data);
+		return;
+	}
 	Insert(_root,data);
 	_size++;
 	//if (_size == 0) {
