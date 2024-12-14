@@ -19,6 +19,12 @@
     <Filter Include="Файлы ресурсов\Console\Helpers">
       <UniqueIdentifier>{050d644e-844d-4de8-be44-bd8e89fb5818}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы ресурсов\Logic">
+      <UniqueIdentifier>{8415cb16-5ee2-43cb-a098-e058d063c782}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Logic\Binary Tree">
+      <UniqueIdentifier>{46b71b55-d942-474a-988b-ef5035e561b1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Laboratory_Work_5.cpp">
@@ -27,6 +33,9 @@
     <ClCompile Include="Validator.cpp">
       <Filter>Файлы ресурсов\Console\Helpers</Filter>
     </ClCompile>
+    <ClCompile Include="BinaryTree.cpp">
+      <Filter>Файлы ресурсов\Logic\Binary Tree</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Colors.h">
@@ -34,6 +43,12 @@
     </ClInclude>
     <ClInclude Include="Validator.h">
       <Filter>Файлы ресурсов\Console\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Файлы ресурсов\Logic\Binary Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryTree.h">
+      <Filter>Файлы ресурсов\Logic\Binary Tree</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
