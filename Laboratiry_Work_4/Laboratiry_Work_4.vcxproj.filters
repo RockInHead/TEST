@@ -33,10 +33,10 @@
     <ClCompile Include="Validator.cpp">
       <Filter>Файлы ресурсов\Console\Helpers</Filter>
     </ClCompile>
-    <ClCompile Include="HashTableConsole.cpp">
+    <ClCompile Include="DictionaryConsole.cpp">
       <Filter>Файлы ресурсов\Console\HashTable</Filter>
     </ClCompile>
-    <ClCompile Include="HashTable.cpp">
+    <ClCompile Include="Dictionary.cpp">
       <Filter>Файлы ресурсов\Logic</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,10 +47,10 @@
     <ClInclude Include="Validator.h">
       <Filter>Файлы ресурсов\Console\Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="HashTableConsole.h">
+    <ClInclude Include="DictionaryConsole.h">
       <Filter>Файлы ресурсов\Console\HashTable</Filter>
     </ClInclude>
-    <ClInclude Include="HashTable.h">
+    <ClInclude Include="Dictionary.h">
       <Filter>Файлы ресурсов\Logic</Filter>
     </ClInclude>
     <ClInclude Include="Node.h">

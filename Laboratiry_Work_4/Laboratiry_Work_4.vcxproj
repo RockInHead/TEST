@@ -128,15 +128,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="HashTable.cpp" />
-    <ClCompile Include="HashTableConsole.cpp" />
+    <ClCompile Include="Dictionary.cpp" />
+    <ClCompile Include="DictionaryConsole.cpp" />
     <ClCompile Include="Laboratiry_Work_4.cpp" />
     <ClCompile Include="Validator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Colors.h" />
-    <ClInclude Include="HashTableConsole.h" />
-    <ClInclude Include="HashTable.h" />
+    <ClInclude Include="DictionaryConsole.h" />
+    <ClInclude Include="Dictionary.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Validator.h" />
   </ItemGroup>

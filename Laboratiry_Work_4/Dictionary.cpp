@@ -1,10 +1,10 @@
-#include"HashTable.h"
+#include"Dictionary.h"
 #include <iostream>
 
 using namespace std;
 
 //Изменяет вместимость хеш-таблицы, создавая новую хеш-таблицу.
-void  HashTable::ResizeHashTable()
+void  Dictionary::ResizeHashTable()
 {
     if (_size == _capacity)
     {
@@ -16,7 +16,7 @@ void  HashTable::ResizeHashTable()
     }
 }
 //Создает новую хеш-таблицу с новой вместимостью. Переуказывает указатель на новую хеш-таблицу.
-void HashTable::CreateNewHashTable(int capacity)
+void Dictionary::CreateNewHashTable(int capacity)
 {
     Node** newTable = new Node * [capacity];
     for (int i = 0; i < capacity; ++i) {
@@ -63,23 +63,23 @@ void HashTable::CreateNewHashTable(int capacity)
     _capacity = capacity; // Обновляем вместимость
 }
 //Получить текущую хеш-таблицу.
-Node** HashTable::GetHashTable() {
+Node** Dictionary::GetHashTable() {
     Node** temp = _hashTable;
     return temp;
 }
 
 //Получить текущий размер хеш-таблицы.
-int HashTable::GetSize() {
+int Dictionary::GetSize() {
     return _size;
 }
 
 //Получить вместимость текущий хеш-таблицы.
-int  HashTable::GetCapacity() {
+int  Dictionary::GetCapacity() {
     return _capacity;
 }
 
 //Конструктор по умолчанию.
-HashTable::HashTable() :_capacity(5), _size(0) {
+Dictionary::Dictionary() :_capacity(5), _size(0) {
     _hashTable = new Node*[_capacity]();
     for (int i = 0; i < _capacity; i++)
     {
@@ -88,7 +88,7 @@ HashTable::HashTable() :_capacity(5), _size(0) {
 }
 
 //Проверяет, если у элементов одинаковые ключи, то приравнивает value перевого элемента value второго элемента.
-bool HashTable::CompareKeys(Node* nodeFirst, Node* nodeSecond) {
+bool Dictionary::CompareKeys(Node* nodeFirst, Node* nodeSecond) {
     if (nodeFirst->Key == nodeSecond->Key) {
         nodeFirst->Value = nodeSecond->Value;
         return true;
@@ -97,7 +97,7 @@ bool HashTable::CompareKeys(Node* nodeFirst, Node* nodeSecond) {
 }
 
 //Добавить элемент в хэш-таблицу.
-void HashTable::Put(string key, int data) {
+void Dictionary::Put(string key, int data) {
     int index = PearsonHash(key,_capacity);
     Node* newNode = new Node(key, data);
 
@@ -126,7 +126,7 @@ void HashTable::Put(string key, int data) {
 }
 
 //Удаляем элемент по ключу.
-void HashTable::DeleteElement(string key) {
+void Dictionary::DeleteElement(string key) {
     if (_size!=0)
     {
         int index = PearsonHash(key,_capacity);
@@ -168,7 +168,7 @@ void HashTable::DeleteElement(string key) {
 }
 
 //Простая хеш-функция.
-int HashTable::Hash(string key)
+int Dictionary::Hash(string key)
 {
     int hashValue = 0;
     for (char c : key)
@@ -179,7 +179,7 @@ int HashTable::Hash(string key)
 }
 
 //Хеш-функция Пирсона. Возвращает хеш, учитывая вместимость хеш-таблицы.
-unsigned int HashTable::PearsonHash(string key, int capacity)
+unsigned int Dictionary::PearsonHash(string key, int capacity)
 {
      static const unsigned char table[256] =
      { 98,  6, 85,150, 36, 23,112,164,135,207,169,  5, 26, 64,165,219,
@@ -209,7 +209,7 @@ unsigned int HashTable::PearsonHash(string key, int capacity)
  }
 
 //Ищет значение по ключу. Возврщает значение элемента.
-int HashTable::SearchingValue(string key)
+int Dictionary::SearchingValue(string key)
 {
     int index = PearsonHash(key,_capacity);
     Node* current = _hashTable[index];

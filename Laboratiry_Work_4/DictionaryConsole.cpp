@@ -1,12 +1,12 @@
 #include <iostream>
-#include "HashTableConsole.h"
+#include "DictionaryConsole.h"
 #include"Validator.h"
-#include"HashTable.h"
+#include"Dictionary.h"
 #include"Colors.h"
 using namespace std;
 
 //Показать текущую хэш-таблицу в столбик.
-void ShowHashTable(HashTable& hash) {
+void ShowDictionary(Dictionary& hash) {
     Node** array = hash.GetHashTable();
     cout << " ";
     for (int i = 0; i < hash.GetCapacity(); i++)
@@ -21,23 +21,18 @@ void ShowHashTable(HashTable& hash) {
             }
         }
         cout << "]" << endl;
-
         cout << " ";
-
-       /* array[i] = nullptr;
-        delete array[i];*/
-
     }
     cout << " " << endl;
-    /*delete array;*/
+
     array = nullptr;
     delete[] array;
 }
 //Показать меню для стэка.
-void MenuHashTable(HashTable& hash)
+void MenuDictionary(Dictionary& hash)
 {
     cout << LIGHT_BLUE << "Hash Table:" << RESET << endl;
-    ShowHashTable(hash);
+    ShowDictionary(hash);
     cout << "Size:" << LIGHT_YELLOW << hash.GetSize() << RESET << endl;
     cout << "Capacity:" << RED << hash.GetCapacity() << RESET << endl << endl;
     cout << "[1]" << " - Put" << endl;
@@ -47,15 +42,15 @@ void MenuHashTable(HashTable& hash)
 }
 
 //Вызвать консольное меню для стэка.
-void HashTableConsole(HashTable& hash) {
+void DictionaryConsole(Dictionary& hash) {
     bool stackState = true;
     int commandNumber;
     int newElement;
     string key;
-    int popedElement;
+    int chosenElement;
     while (stackState)
     {
-        MenuHashTable(hash);
+        MenuDictionary(hash);
         int commandNumber;
         commandNumber = ValidInputMenu(0, 3);
         switch (commandNumber)
@@ -65,10 +60,7 @@ void HashTableConsole(HashTable& hash) {
             cin >> key;
             cout << "Enter a value:";
             newElement = ValidCin();
-
             hash.Put(key, newElement);
-            /*cout<< hash.PearsonHash(key)<<endl<< endl ;
-            system("pause");*/
 
             system("cls");
             break;
@@ -82,7 +74,13 @@ void HashTableConsole(HashTable& hash) {
             cout << "Enter a key:";
             cin >> key;
             system("cls");
-            cout << "Element with key " << key << " is " << hash.SearchingValue(key) << endl<< endl;
+            chosenElement = hash.SearchingValue(key);
+            if (chosenElement != -1) {
+                cout << "Element with key " << key << " is " << chosenElement << endl << endl;
+            }
+            else {
+                cout<<"No such element in Dictionary" << endl << endl;
+            }
             break;
         case 0:
             system("cls");

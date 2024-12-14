@@ -6,7 +6,7 @@
 
 using namespace std;
 
-class HashTable {
+class Dictionary {
 private:
 	//Минимальная вместимость хеш-таблицы.
 	const int MinCapacity = 5;
@@ -35,7 +35,7 @@ private:
 public:
 
 	//Конструктор по умолчанию.
-	HashTable();
+	Dictionary();
 
 	//Получить текущую хеш-таблицу.
 	Node** GetHashTable();
