@@ -70,20 +70,54 @@ void BinaryTree::AddElement(int data) {
 	}
 	Insert(_root,data);
 	_size++;
-	//if (_size == 0) {
-	//	InitRoot(data);
-	//	return;
-	//}
-	//Node* newNode =new Node(data);
 
-	//if (_root->Data > newNode->Data)
-	//{
-	//	Insert(_root->Rigth, newNode->Data);
-	//	/*return AddElement(data);*/
-	//}
-	//else
-	//{
-	//	Insert(_root->Left, newNode->Data);
-	//	/*return AddElement(data);*/
-	//}
+}
+void BinaryTree::DeleteNode(Node*& node, int data) {
+	// Если дерево пусто
+	if (node == nullptr) {
+		return;
+	}
+
+	// Ищем узел, который нужно удалить
+	if (data < node->Data) {
+		DeleteNode(node->Left, data);
+	}
+	else if (data > node->Data) {
+		DeleteNode(node->Right, data);
+	}
+	else {
+		// Узел с единственным значением найден
+		// Узел с одним дочерним элементом или без дочерних узлов
+		if (node->Left == nullptr) {
+			Node* temp = node->Right;
+			delete node;
+			node = temp; // Обновляем указатель на корень
+			_size--;
+		}
+		else if (node->Right == nullptr) {
+			Node* temp = node->Left;
+			delete node;
+			node = temp; // Обновляем указатель на корень
+			_size--;
+		}
+		else {
+			// Узел с двумя дочерними узлами: получить порядок преемственности
+			Node* temp = node->Right;
+			while (temp && temp->Left != nullptr) {
+				temp = temp->Left;
+			}
+
+			// Поменять значение с правым дочерним элементом
+			node->Data = temp->Data;
+
+			// Удалить правый дочерний элемент
+			DeleteNode(node->Right, temp->Data);
+		}
+	}
+}
+void BinaryTree::DeleteElement(int data) {
+	if (_size != 0) {
+		DeleteNode(_root, data);
+		
+	}
 }

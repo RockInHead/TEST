@@ -17,6 +17,9 @@ private:
 	void Insert(Node*& node, int data);
 
 	int CalculateHeight(Node* node);
+
+	void DeleteNode(Node*& node, int data);
+
 public:
 
 	int GetSize();
@@ -34,6 +37,7 @@ public:
 	void AddElement(int data);
 
 	//Удаление элемента по значению.
-	void DeleteElement();
+	void DeleteElement(int data);
+
 };
 #endif

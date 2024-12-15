@@ -7,24 +7,28 @@
 
 using namespace std;
 // Функция для обхода дерева на заданном уровне
-void dump4(Node const* node, bool high, std::vector<std::string> const& lpref , std::vector<std::string> const& cpref , std::vector<std::string> const& rpref , bool root , bool left , std::shared_ptr<std::vector<std::vector<std::string>>> lines ) {
+void dump4(Node const* node, bool high, vector< string> const& lpref, vector< string> const& cpref, vector< string> const& rpref, bool root, bool left, shared_ptr< vector< vector< string>>> lines) {
     if (!node) return;
-    typedef std::vector<std::string> VS;
+    typedef  vector< string> VS;
     auto VSCat = [](VS const& a, VS const& b) { auto r = a; r.insert(r.end(), b.begin(), b.end()); return r; };
-    if (root) lines = std::make_shared<std::vector<VS>>();
+    if (root) lines = make_shared< vector<VS>>();
     if (node->Left)
         dump4(node->Left, high, VSCat(lpref, high ? VS({ " ", " " }) : VS({ " " })), VSCat(lpref, high ? VS({ ch_ddia, ch_ver }) : VS({ ch_ddia })), VSCat(lpref, high ? VS({ ch_hor, " " }) : VS({ ch_hor })), false, true, lines);
-    auto sval = std::to_string(node->Data);
+
+    auto sval = "[" + to_string(node->Data) + "]";
+    string coloredSval = LIGHT_GREEN + sval + RESET;
     size_t sm = left || sval.empty() ? sval.size() / 2 : ((sval.size() + 1) / 2 - 1);
-    for (size_t i = 0; i < sval.size(); ++i)
-        lines->push_back(VSCat(i < sm ? lpref : i == sm ? cpref : rpref, { std::string(1, sval[i]) }));
+    for (size_t i = 0; i < sval.size(); ++i){
+        string colored = LIGHT_GREEN + string(1, sval[i]) + RESET;
+        lines->push_back(VSCat(i < sm ? lpref : i == sm ? cpref : rpref, { colored }));
+     }
     if (node->Right)
         dump4(node->Right, high, VSCat(rpref, high ? VS({ ch_hor, " " }) : VS({ ch_hor })), VSCat(rpref, high ? VS({ ch_rddia, ch_ver }) : VS({ ch_rddia })), VSCat(rpref, high ? VS({ " ", " " }) : VS({ " " })), false, false, lines);
     if (root) {
         VS out;
         for (size_t l = 0;; ++l) {
             bool last = true;
-            std::string line;
+             string line;
             for (size_t i = 0; i < lines->size(); ++i)
                 if (l < (*lines).at(i).size()) {
                     line += lines->at(i)[l];
@@ -35,7 +39,7 @@ void dump4(Node const* node, bool high, std::vector<std::string> const& lpref , 
             out.push_back(line);
         }
         for (size_t i = 0; i < out.size(); ++i)
-            std::cout << out[i] << std::endl;
+             cout << out[i] <<  endl;
     }
 }
 
@@ -64,7 +68,7 @@ void PrintLevel(Node* root, int level,BinaryTree& tree) {
         /*for (int i = 0; i < tree.GetSize(); i++) {
             cout << " ";
         }*/
-        std::cout << root->Data << " "; // Выводим данные узла
+         cout << root->Data << " "; // Выводим данные узла
     }
     else {
         PrintLevel(root->Left, level - 1, tree); // Рекурсивно обходим левое поддерево
@@ -104,7 +108,8 @@ void BinaryTreeConsole(BinaryTree& tree) {
     bool stackState = true;
     int commandNumber;
     int newElement;
-    string key;
+    int deletedElement;
+    /*string key;*/
     int chosenElement;
     while (stackState)
     {
@@ -122,9 +127,9 @@ void BinaryTreeConsole(BinaryTree& tree) {
             system("cls");
             break;
         case 2:
-            /*cout << "Enter a key:";
-            cin >> key;
-            hash.DeleteElement(key);*/
+            cout << "Enter a value:";
+            cin >> deletedElement;
+            tree.DeleteElement(deletedElement);
             system("cls");
             break;
         case 3:
