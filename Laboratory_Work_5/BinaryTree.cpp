@@ -121,3 +121,30 @@ void BinaryTree::DeleteElement(int data) {
 		
 	}
 }
+
+int BinaryTree::FindMin() {
+	if (_root == nullptr)
+	{
+		return 0;
+	}
+	Node* temp = _root;
+	while (temp->Left != nullptr)
+	{
+		temp = temp->Left;
+	}
+	return temp->Data;
+}
+
+int BinaryTree::FindMax() {
+	if (_root == nullptr)
+	{
+		return 0;
+	}
+	Node* temp = _root;
+	while (temp->Right != nullptr)
+	{
+		temp = temp->Right;
+	}
+	return temp->Data;
+
+}

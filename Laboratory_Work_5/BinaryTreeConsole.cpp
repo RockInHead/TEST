@@ -16,10 +16,10 @@ void dump4(Node const* node, bool high, vector< string> const& lpref, vector< st
         dump4(node->Left, high, VSCat(lpref, high ? VS({ " ", " " }) : VS({ " " })), VSCat(lpref, high ? VS({ ch_ddia, ch_ver }) : VS({ ch_ddia })), VSCat(lpref, high ? VS({ ch_hor, " " }) : VS({ ch_hor })), false, true, lines);
 
     auto sval = "[" + to_string(node->Data) + "]";
-    string coloredSval = LIGHT_GREEN + sval + RESET;
+    string coloredSval = CYAN + sval + RESET;
     size_t sm = left || sval.empty() ? sval.size() / 2 : ((sval.size() + 1) / 2 - 1);
     for (size_t i = 0; i < sval.size(); ++i){
-        string colored = LIGHT_GREEN + string(1, sval[i]) + RESET;
+        string colored = CYAN + string(1, sval[i]) + RESET;
         lines->push_back(VSCat(i < sm ? lpref : i == sm ? cpref : rpref, { colored }));
      }
     if (node->Right)
@@ -95,8 +95,14 @@ void MenuBinaryTree(BinaryTree& tree)
     /*ShowBinaryTree(tree);*/
     /*dump3(tree.GetBinaryTree());*/
     dump4(tree.GetBinaryTree(), true);
+    cout << endl;
+    
+
     cout << "Size:" << LIGHT_YELLOW << tree.GetSize() << RESET << endl;
-    cout << "Height:" << RED << tree.GetHeight() << RESET << endl << endl;
+    cout << "Height:" << RED << tree.GetHeight() << RESET << endl ;
+    cout << "Min Element:" << GREEN << tree.FindMin() << RESET;
+    cout << "  Max Element:" << RED << tree.FindMax() << RESET << endl << endl;
+
     cout << "[1]" << " - Add new elemnt" << endl;
     cout << "[2]" << " - Remove element by value" << endl;
     cout << "[3]" << " - Searching Element by Key" << endl;
