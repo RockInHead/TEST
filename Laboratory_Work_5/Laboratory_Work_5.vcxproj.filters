@@ -51,6 +51,9 @@
     <ClCompile Include="CartesianTreeConsole.cpp">
       <Filter>Файлы ресурсов\Console\Cartesian Tree</Filter>
     </ClCompile>
+    <ClCompile Include="CartesianTree.cpp">
+      <Filter>Файлы ресурсов\Logic\Cartesian Tree</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Colors.h">
@@ -72,6 +75,9 @@
       <Filter>Файлы ресурсов\Console\Cartesian Tree</Filter>
     </ClInclude>
     <ClInclude Include="CartesianNode.h">
+      <Filter>Файлы ресурсов\Logic\Cartesian Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="CartesianTree.h">
       <Filter>Файлы ресурсов\Logic\Cartesian Tree</Filter>
     </ClInclude>
   </ItemGroup>

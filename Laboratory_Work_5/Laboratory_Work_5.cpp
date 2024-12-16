@@ -3,6 +3,8 @@
 #include"Colors.h"
 #include"BinaryTree.h"
 #include "BinaryTreeConsole.h"
+#include"CartesianTreeConsole.h"
+#include"CartesianTree.h"
 //#include"Dictionary.h"
 using namespace std;
 
@@ -18,7 +20,8 @@ int main()
 {
 
     BinaryTree binaryTree = BinaryTree();
-    /*Dictionary hash = Dictionary();*/
+    CartesianTree cartesianTree = CartesianTree();
+
     bool programState = true;
     int arrayType;
     while (programState) {
@@ -32,7 +35,7 @@ int main()
             break;
         case 2:
             system("cls");
-
+            CartesianTreeConsole(cartesianTree);
             break;
         case 0:
             programState = false;
