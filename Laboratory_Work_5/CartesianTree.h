@@ -43,10 +43,18 @@ public:
 	CartesianTree();
 
 	//Добавление элемента в дерево.
-	void AddElement(int data);
+	void AddElementNotOptimazed(int key);
 
 	//Удаление элемента по значению.
-	void DeleteElement(int data);
+	void DeleteElementNotOptimazed(int key);
+
+	
+	//Добавление элемента в дерево.
+	void AddElementOptimazed(int key);
+
+	//Удаление элемента по значению.
+	void DeleteElementOptimazed(int key);
+
 
 	//Возврщает минимальный элемент дерева.
 	int FindMin();

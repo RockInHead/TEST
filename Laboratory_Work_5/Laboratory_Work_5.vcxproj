@@ -142,6 +142,7 @@
     <ClInclude Include="CartesianTreeConsole.h" />
     <ClInclude Include="Colors.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="Symbols.h" />
     <ClInclude Include="Validator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

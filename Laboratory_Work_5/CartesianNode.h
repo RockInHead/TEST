@@ -4,6 +4,10 @@
 #include <iostream>
 struct CartesianNode
 {
+    int start = 0;
+    int end = 20;
+    int x = rand() % (end - start + 1) + start;
+
     //Ключ элемента.
     int Key;
 
@@ -17,7 +21,7 @@ struct CartesianNode
     CartesianNode* Right;
 
     //Конструкторы
-    CartesianNode() : Key(-1),Priority(-1), Left(nullptr), Right(nullptr) {}
-    CartesianNode(int key,int priority) : Key(key), Priority(priority), Left(nullptr), Right(nullptr) {}
+    CartesianNode() : Key(-1),Priority(x), Left(nullptr), Right(nullptr) {}
+    CartesianNode(int key) : Key(key), Priority(x), Left(nullptr), Right(nullptr) {}
 };
 #endif

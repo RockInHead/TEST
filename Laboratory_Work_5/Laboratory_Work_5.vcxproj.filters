@@ -80,5 +80,8 @@
     <ClInclude Include="CartesianTree.h">
       <Filter>Файлы ресурсов\Logic\Cartesian Tree</Filter>
     </ClInclude>
+    <ClInclude Include="Symbols.h">
+      <Filter>Файлы ресурсов\Console\Helpers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
