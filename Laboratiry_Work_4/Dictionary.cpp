@@ -3,7 +3,7 @@
 
 using namespace std;
 
-//Изменяет вместимость хеш-таблицы, создавая новую хеш-таблицу.
+//Изменяет вместимость словаря, создавая новую словарь.
 void  Dictionary::ResizeHashTable()
 {
     if (_size == _capacity)
@@ -15,7 +15,7 @@ void  Dictionary::ResizeHashTable()
         CreateNewHashTable(static_cast<int>(_capacity/_growthFactor));
     }
 }
-//Создает новую хеш-таблицу с новой вместимостью. Переуказывает указатель на новую хеш-таблицу.
+//Создает новый словарь с новой вместимостью. Переуказывает указатель на новый словарь.
 void Dictionary::CreateNewHashTable(int capacity)
 {
     Node** newTable = new Node * [capacity];
@@ -23,9 +23,9 @@ void Dictionary::CreateNewHashTable(int capacity)
         newTable[i] = nullptr;
     }
 
-    // Перемещение элементов из старой таблицы в новую
+    // Перемещение элементов из старого словаря в новый
     for (int i = 0; i < _capacity; ++i) {
-        Node* current = _hashTable[i];
+        Node* current = _dictionary[i];
         while (current != nullptr) {
             int newIndex = PearsonHash(current->Key , capacity) ;
             Node* newNode = new Node(current->Key, current->Value);
@@ -48,9 +48,9 @@ void Dictionary::CreateNewHashTable(int capacity)
         }
     }
 
-    // Удалить старую таблицу
+    // Удалить старый словарь
     for (int i = 0; i < _capacity; ++i) {
-        Node* current = _hashTable[i];
+        Node* current = _dictionary[i];
         while (current != nullptr) {
             Node* temp = current;
             current = current->Next;
@@ -58,32 +58,32 @@ void Dictionary::CreateNewHashTable(int capacity)
         }
     }
 
-    delete[] _hashTable; // Освобождаем память старой таблицы
-    _hashTable = newTable; // Переключаем на новую таблицу
+    delete[] _dictionary; // Освобождаем память старой словарь
+    _dictionary = newTable; // Переключаем на новый словарь
     _capacity = capacity; // Обновляем вместимость
 }
-//Получить текущую хеш-таблицу.
+//Получить текущий словарь.
 Node** Dictionary::GetHashTable() {
-    Node** temp = _hashTable;
+    Node** temp = _dictionary;
     return temp;
 }
 
-//Получить текущий размер хеш-таблицы.
+//Получить текущий размер словарь.
 int Dictionary::GetSize() {
     return _size;
 }
 
-//Получить вместимость текущий хеш-таблицы.
+//Получить вместимость текущуго словаря.
 int  Dictionary::GetCapacity() {
     return _capacity;
 }
 
 //Конструктор по умолчанию.
 Dictionary::Dictionary() :_capacity(5), _size(0) {
-    _hashTable = new Node*[_capacity]();
+    _dictionary = new Node*[_capacity]();
     for (int i = 0; i < _capacity; i++)
     {
-        _hashTable[i] = nullptr;
+        _dictionary[i] = nullptr;
     }
 }
 
@@ -96,18 +96,18 @@ bool Dictionary::CompareKeys(Node* nodeFirst, Node* nodeSecond) {
     return false;
 }
 
-//Добавить элемент в хэш-таблицу.
+//Добавить элемент в словарь.
 void Dictionary::Put(string key, int data) {
     int index = PearsonHash(key,_capacity);
     Node* newNode = new Node(key, data);
 
-    if (_hashTable[index] == nullptr)
+    if (_dictionary[index] == nullptr)
     {
-        _hashTable[index] = newNode;
+        _dictionary[index] = newNode;
     }
     else
     {
-        Node* current = _hashTable[index];
+        Node* current = _dictionary[index];
 
         if (CompareKeys(current, newNode)) return;
        
@@ -130,9 +130,9 @@ void Dictionary::DeleteElement(string key) {
     if (_size!=0)
     {
         int index = PearsonHash(key,_capacity);
-        Node* temp = _hashTable[index];
+        Node* temp = _dictionary[index];
         if (temp != nullptr) {
-            Node* head = _hashTable[index];
+            Node* head = _dictionary[index];
             while (temp->Key != key) {
                 if (temp->Next != nullptr) {
                     temp = temp->Next;
@@ -140,7 +140,6 @@ void Dictionary::DeleteElement(string key) {
                 else {
                     return;
                 }
-
             }
             if (temp->Prev == nullptr && temp->Next == nullptr) {
                 head = nullptr;
@@ -160,7 +159,7 @@ void Dictionary::DeleteElement(string key) {
             }
             temp = nullptr;
 
-            _hashTable[index] = head;
+            _dictionary[index] = head;
             _size--;
             ResizeHashTable();
         }
@@ -178,7 +177,7 @@ int Dictionary::Hash(string key)
     return hashValue % 5;
 }
 
-//Хеш-функция Пирсона. Возвращает хеш, учитывая вместимость хеш-таблицы.
+//Хеш-функция Пирсона. Возвращает хеш, учитывая вместимость словаря.
 unsigned int Dictionary::PearsonHash(string key, int capacity)
 {
      static const unsigned char table[256] =
@@ -198,7 +197,7 @@ unsigned int Dictionary::PearsonHash(string key, int capacity)
         3, 14,204, 72, 21, 41, 56, 66, 28,193, 40,217, 25, 54,179,117,
       238, 87,240,155,180,170,242,212,191,163, 78,218,137,194,175,110,
        43,119,224, 71,122,142, 42,160,104, 48,247,103, 15, 11,138,239
-         };
+      };
 
      unsigned int hash = 0;
      for (char c : key)
@@ -212,7 +211,7 @@ unsigned int Dictionary::PearsonHash(string key, int capacity)
 int Dictionary::SearchingValue(string key)
 {
     int index = PearsonHash(key,_capacity);
-    Node* current = _hashTable[index];
+    Node* current = _dictionary[index];
 
     while (current != nullptr)
     {
@@ -222,6 +221,5 @@ int Dictionary::SearchingValue(string key)
         }
         current = current->Next;
     }
-
     return -1; // Возвращаем -1, если значение не найдено
 }

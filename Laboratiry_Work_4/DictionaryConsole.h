@@ -6,13 +6,13 @@
 #include"Dictionary.h"
 using namespace std;
 
-//Показать текущую хэш таблицу в строку.
+//Показать текущий словарь в строку.
 void ShowDictionary(Dictionary& hash);
 
-//Показать меню для хэш таблицы.
+//Показать меню для словаря.
 void MenuDictionary(Dictionary& hash);
 
-//Вызвать консольное меню для хэш таблицы.
+//Вызвать консольное меню для слловаря.
 void DictionaryConsole(Dictionary& hash);
 
 

@@ -5,7 +5,7 @@
 #include"Colors.h"
 using namespace std;
 
-//Показать текущую хэш-таблицу в столбик.
+//Показать текущий словарь в столбик.
 void ShowDictionary(Dictionary& hash) {
     Node** array = hash.GetHashTable();
     cout << " ";
@@ -28,7 +28,7 @@ void ShowDictionary(Dictionary& hash) {
     array = nullptr;
     delete[] array;
 }
-//Показать меню для стэка.
+//Показать меню для словаря.
 void MenuDictionary(Dictionary& hash)
 {
     cout << LIGHT_BLUE << "Hash Table:" << RESET << endl;
@@ -41,7 +41,7 @@ void MenuDictionary(Dictionary& hash)
     cout << RED << "[0]" << RESET << " - Exit the Stack" << endl;
 }
 
-//Вызвать консольное меню для стэка.
+//Вызвать консольное меню для словаря.
 void DictionaryConsole(Dictionary& hash) {
     bool stackState = true;
     int commandNumber;
@@ -61,7 +61,6 @@ void DictionaryConsole(Dictionary& hash) {
             cout << "Enter a value:";
             newElement = ValidCin();
             hash.Put(key, newElement);
-
             system("cls");
             break;
         case 2:
