@@ -1,12 +1,12 @@
 #include"BinaryTree.h"
 #include <iostream>
-//#include <chrono>
 
 using namespace std;
 
 //Констурктор по умолчанию.
 BinaryTree::BinaryTree() :_size(0),_root(nullptr){}
 
+//Вычисляет текущую высоту дерева.
 int BinaryTree::CalculateHeight(Node* node) {
 	if (node == nullptr) {
 		return 0;
@@ -15,39 +15,33 @@ int BinaryTree::CalculateHeight(Node* node) {
 	int rightHeight = CalculateHeight(node->Right);
 	return std::max(leftHeight, rightHeight) + 1;
 }
+
+//Возвращает высоту дерева.
 int BinaryTree::GetHeight() {
 	return CalculateHeight(_root);
-	/*int leftHeight = GetHeight(_root->Left);
-	int rightHeight = GetHeight(_root->Right);
-	return std::max(leftHeight, rightHeight) + 1;*/
 }
+
+//Возврщает количество элементов в дереве.
 int BinaryTree::GetSize() {
 	return _size;
 }
 
-Node* BinaryTree::GetBinaryTree() {
+//Возвращает текущий корень дерева.
+Node* BinaryTree::GetRoot() {
 	return _root;
-	/*Node** tree = new Node*[_size];
-	if (_size != 0) {
-		Node* parent = _root;
-		for (int i = 0; i < _size; i++) {
-			tree[i] = parent;
-			tree[i+1]= parent
-		}
-	}*/
 }
 
-
+//Инициализиурет корень дерева.
 void BinaryTree::InitRoot(int data) {
 	_root = new Node(data);
 	_size++;
 }
 
+//Функция вставки элемента дерева.
 void BinaryTree::Insert(Node*& node, int data) {
 	if (node == nullptr)
 	{
 		node = new Node(data);
-		/*node->Data = value;*/
 		return;
 	}
 
@@ -60,9 +54,9 @@ void BinaryTree::Insert(Node*& node, int data) {
 		Insert(node->Right, data);
 		return;
 	}
-
 }
 
+//Добавление элемента в дерево.
 void BinaryTree::AddElement(int data) {
 	if (_size == 0) {
 		InitRoot(data);
@@ -70,8 +64,9 @@ void BinaryTree::AddElement(int data) {
 	}
 	Insert(_root,data);
 	_size++;
-
 }
+
+//Удаляет элемент дерева.
 void BinaryTree::DeleteNode(Node*& node, int data) {
 	// Если дерево пусто
 	if (node == nullptr) {
@@ -91,30 +86,28 @@ void BinaryTree::DeleteNode(Node*& node, int data) {
 		if (node->Left == nullptr) {
 			Node* temp = node->Right;
 			delete node;
-			node = temp; // Обновляем указатель на корень
+			node = temp; 
 			_size--;
 		}
 		else if (node->Right == nullptr) {
 			Node* temp = node->Left;
 			delete node;
-			node = temp; // Обновляем указатель на корень
+			node = temp; 
 			_size--;
 		}
 		else {
-			// Узел с двумя дочерними узлами: получить порядок преемственности
+			// Узел с двумя дочерними узлами
 			Node* temp = node->Right;
 			while (temp && temp->Left != nullptr) {
 				temp = temp->Left;
 			}
-
-			// Поменять значение с правым дочерним элементом
 			node->Data = temp->Data;
-
-			// Удалить правый дочерний элемент
 			DeleteNode(node->Right, temp->Data);
 		}
 	}
 }
+
+//Удаление элемента по значению.
 void BinaryTree::DeleteElement(int data) {
 	if (_size != 0) {
 		DeleteNode(_root, data);
@@ -122,6 +115,7 @@ void BinaryTree::DeleteElement(int data) {
 	}
 }
 
+//Возврщает минимальный элемент дерева.
 int BinaryTree::FindMin() {
 	if (_root == nullptr)
 	{
@@ -135,6 +129,7 @@ int BinaryTree::FindMin() {
 	return temp->Data;
 }
 
+//Возвращает максимальный элемент дерева.
 int BinaryTree::FindMax() {
 	if (_root == nullptr)
 	{
@@ -146,5 +141,4 @@ int BinaryTree::FindMax() {
 		temp = temp->Right;
 	}
 	return temp->Data;
-
 }

@@ -6,14 +6,15 @@
 #include"Node.h"
 
 using namespace std;
-// Функция для обхода дерева на заданном уровне
-void dump4(Node const* node, bool high, vector< string> const& lpref, vector< string> const& cpref, vector< string> const& rpref, bool root, bool left, shared_ptr< vector< vector< string>>> lines) {
+
+//Выводит дерево в консоль.
+void Show1(Node const* node, bool high, vector< string> const& lpref, vector< string> const& cpref, vector< string> const& rpref, bool root, bool left, shared_ptr< vector< vector< string>>> lines) {
     if (!node) return;
     typedef  vector< string> VS;
     auto VSCat = [](VS const& a, VS const& b) { auto r = a; r.insert(r.end(), b.begin(), b.end()); return r; };
     if (root) lines = make_shared< vector<VS>>();
     if (node->Left)
-        dump4(node->Left, high, VSCat(lpref, high ? VS({ " ", " " }) : VS({ " " })), VSCat(lpref, high ? VS({ ch_ddia, ch_ver }) : VS({ ch_ddia })), VSCat(lpref, high ? VS({ ch_hor, " " }) : VS({ ch_hor })), false, true, lines);
+        Show1(node->Left, high, VSCat(lpref, high ? VS({ " ", " " }) : VS({ " " })), VSCat(lpref, high ? VS({ ch_ddia, ch_ver }) : VS({ ch_ddia })), VSCat(lpref, high ? VS({ ch_hor, " " }) : VS({ ch_hor })), false, true, lines);
 
     auto sval = "[" + to_string(node->Data) + "]";
     string coloredSval = CYAN + sval + RESET;
@@ -23,7 +24,7 @@ void dump4(Node const* node, bool high, vector< string> const& lpref, vector< st
         lines->push_back(VSCat(i < sm ? lpref : i == sm ? cpref : rpref, { colored }));
      }
     if (node->Right)
-        dump4(node->Right, high, VSCat(rpref, high ? VS({ ch_hor, " " }) : VS({ ch_hor })), VSCat(rpref, high ? VS({ ch_rddia, ch_ver }) : VS({ ch_rddia })), VSCat(rpref, high ? VS({ " ", " " }) : VS({ " " })), false, false, lines);
+        Show1(node->Right, high, VSCat(rpref, high ? VS({ ch_hor, " " }) : VS({ ch_hor })), VSCat(rpref, high ? VS({ ch_rddia, ch_ver }) : VS({ ch_rddia })), VSCat(rpref, high ? VS({ " ", " " }) : VS({ " " })), false, false, lines);
     if (root) {
         VS out;
         for (size_t l = 0;; ++l) {
@@ -43,61 +44,31 @@ void dump4(Node const* node, bool high, vector< string> const& lpref, vector< st
     }
 }
 
-
-
-void dump3(Node* root, int space = 0) {
+//Выводит дерево в консоль.
+void Show2(Node* root, int space = 0) {
     if (!root)
         return;
     enum { COUNT = 2 };
     space += COUNT;
-    dump3(root->Right, space);
+    Show2(root->Right, space);
     for (int i = COUNT; i < space; ++i)
         cout << "  ";
     cout << root->Data << endl;
-    dump3(root->Left, space);
+    Show2(root->Left, space);
 }
 
 
-
-void PrintLevel(Node* root, int level,BinaryTree& tree) {
-    if (root == nullptr) {
-        return;
-    }
-    if (level == 1) {
-        
-        /*for (int i = 0; i < tree.GetSize(); i++) {
-            cout << " ";
-        }*/
-         cout << root->Data << " "; // Выводим данные узла
-    }
-    else {
-        PrintLevel(root->Left, level - 1, tree); // Рекурсивно обходим левое поддерево
-        PrintLevel(root->Right, level - 1,tree); // Рекурсивно обходим правое поддерево
-    }
-}
-
-
-//Показать текущую хэш-таблицу в столбик.
+//Показать текущее дерево.
 void ShowBinaryTree(BinaryTree& tree) {
-    Node* root = tree.GetBinaryTree();
-    int h = tree.GetHeight();
-    for (int i = 1; i <= h; i++) {
-
-        PrintLevel(root, i,tree); // Обрабатываем каждый уровень
-        cout << " " << endl;
-    }
+    Show1(tree.GetRoot(), true);
 }
-//Показать меню для стэка.
+//Показать меню для дерева.
 void MenuBinaryTree(BinaryTree& tree)
 {
-
     cout << LIGHT_BLUE << "Binary Tree:" << RESET << endl;
-    /*ShowBinaryTree(tree);*/
-    /*dump3(tree.GetBinaryTree());*/
-    dump4(tree.GetBinaryTree(), true);
+    ShowBinaryTree(tree);
     cout << endl;
     
-
     cout << "Size:" << LIGHT_YELLOW << tree.GetSize() << RESET << endl;
     cout << "Height:" << RED << tree.GetHeight() << RESET << endl ;
     cout << "Min Element:" << GREEN << tree.FindMin() << RESET;
@@ -105,17 +76,15 @@ void MenuBinaryTree(BinaryTree& tree)
 
     cout << "[1]" << " - Add new elemnt" << endl;
     cout << "[2]" << " - Remove element by value" << endl;
-    cout << "[3]" << " - Searching Element by Key" << endl;
     cout << RED << "[0]" << RESET << " - Exit the Stack" << endl;
 }
 
-//Вызвать консольное меню для стэка.
+//Вызвать консольное меню для дерева.
 void BinaryTreeConsole(BinaryTree& tree) {
     bool stackState = true;
     int commandNumber;
     int newElement;
     int deletedElement;
-    /*string key;*/
     int chosenElement;
     while (stackState)
     {
@@ -125,11 +94,9 @@ void BinaryTreeConsole(BinaryTree& tree) {
         switch (commandNumber)
         {
         case 1:
-
             cout << "Enter a value:";
             newElement = ValidCin();
             tree.AddElement(newElement);
-            
             system("cls");
             break;
         case 2:
@@ -137,18 +104,6 @@ void BinaryTreeConsole(BinaryTree& tree) {
             cin >> deletedElement;
             tree.DeleteElement(deletedElement);
             system("cls");
-            break;
-        case 3:
-            /*cout << "Enter a key:";
-            cin >> key;
-            system("cls");
-            chosenElement = hash.SearchingValue(key);
-            if (chosenElement != -1) {
-                cout << "Element with key " << key << " is " << chosenElement << endl << endl;
-            }
-            else {
-                cout << "No such element in Dictionary" << endl << endl;
-            }*/
             break;
         case 0:
             system("cls");
