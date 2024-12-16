@@ -28,6 +28,12 @@
     <Filter Include="Файлы ресурсов\Console\Binary Tree">
       <UniqueIdentifier>{56eec38a-faf2-42a2-827b-97559087d558}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы ресурсов\Console\Cartesian Tree">
+      <UniqueIdentifier>{7b323653-41c2-4cea-bc00-3eef2ff7c305}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Logic\Cartesian Tree">
+      <UniqueIdentifier>{a27bfb80-4e02-40e7-a969-604a0d451345}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Laboratory_Work_5.cpp">
@@ -41,6 +47,9 @@
     </ClCompile>
     <ClCompile Include="BinaryTreeConsole.cpp">
       <Filter>Файлы ресурсов\Console\Binary Tree</Filter>
+    </ClCompile>
+    <ClCompile Include="CartesianTreeConsole.cpp">
+      <Filter>Файлы ресурсов\Console\Cartesian Tree</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -58,6 +67,12 @@
     </ClInclude>
     <ClInclude Include="BinaryTreeConsole.h">
       <Filter>Файлы ресурсов\Console\Binary Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="CartesianTreeConsole.h">
+      <Filter>Файлы ресурсов\Console\Cartesian Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="CartesianNode.h">
+      <Filter>Файлы ресурсов\Logic\Cartesian Tree</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

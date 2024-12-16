@@ -129,12 +129,15 @@
   <ItemGroup>
     <ClCompile Include="BinaryTree.cpp" />
     <ClCompile Include="BinaryTreeConsole.cpp" />
+    <ClCompile Include="CartesianTreeConsole.cpp" />
     <ClCompile Include="Laboratory_Work_5.cpp" />
     <ClCompile Include="Validator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryTree.h" />
     <ClInclude Include="BinaryTreeConsole.h" />
+    <ClInclude Include="CartesianNode.h" />
+    <ClInclude Include="CartesianTreeConsole.h" />
     <ClInclude Include="Colors.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Validator.h" />
