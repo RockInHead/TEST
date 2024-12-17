@@ -5,7 +5,6 @@
 #include "BinaryTreeConsole.h"
 #include"CartesianTreeConsole.h"
 #include"CartesianTree.h"
-//#include"Dictionary.h"
 using namespace std;
 
 //Вывод основного меню в консоль.
@@ -18,7 +17,6 @@ void Menu()
 
 int main()
 {
-
     BinaryTree binaryTree = BinaryTree();
     CartesianTree cartesianTree = CartesianTree();
 

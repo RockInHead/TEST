@@ -69,19 +69,12 @@ void MenuCartesianTree(CartesianTree& tree)
     ShowCartesianTree(tree);
     cout << endl;
 
-    cout << "Size:" << LIGHT_YELLOW << tree.GetSize() << RESET << endl;
-    /*cout << "Height:" << RED << tree.GetHeight() << RESET << endl;
-    cout << "Min Element:" << GREEN << tree.FindMin() << RESET;
-    cout << "  Max Element:" << RED << tree.FindMax() << RESET << endl << endl;*/
-
+    cout << "Size:" << LIGHT_YELLOW << tree.GetSize() << RESET << endl << endl;
     cout << "[1]" << " - Add new element not optimazed" << endl;
     cout << "[2]" << " - Remove element by value not optimazed" << endl;
     cout << "[3]" << " - Add new element optimazed" << endl;
     cout << "[4]" << " - Remove element by value optimazed" << endl;
     cout << "[5]" << " - Clear Tree" << endl;
-
-
-
     cout << RED << "[0]" << RESET << " - Exit the Stack" << endl;
 }
 

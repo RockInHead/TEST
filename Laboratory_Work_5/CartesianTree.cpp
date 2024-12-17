@@ -11,15 +11,11 @@ int CartesianTree::GetSize() {
 CartesianNode* CartesianTree::GetRoot() {
 	return _root;
 }
+
+//Сливает 2 деерва в 1.
 CartesianNode* CartesianTree::Merge(CartesianNode* a, CartesianNode* b) {
 
 	if (!a || !b) {
-		/*if (a != nullptr) {
-			return a;
-		}
-		else {
-			return b;
-		}*/
 		return a ? a : b;
 	}
 	if (a->Priority > b->Priority) {
@@ -31,23 +27,9 @@ CartesianNode* CartesianTree::Merge(CartesianNode* a, CartesianNode* b) {
 		return b;
 	}
 
-	/*if (a== nullptr || b == nullptr)
-	{
-		return a == nullptr ? b : a;
-	}
-	if (a->Priority > b->Priority)
-	{
-		a->Right = Merge(a->Right, b);
-		return a;
-	}
-	b->Left = Merge(a, b->Left);
-	return b;*/
-
 }
 
-
-	
-
+//Деление дерева по ключу.
 void CartesianTree::Split(CartesianNode* node, int key, CartesianNode*& a, CartesianNode*& b) {
 	if (!node)
 	{
@@ -66,11 +48,14 @@ void CartesianTree::Split(CartesianNode* node, int key, CartesianNode*& a, Carte
 	}
 
 }
+
+//Инициализиурет корень дерева.
 void CartesianTree::InitRoot(int key) {
 	_root = new CartesianNode(key);
 	_size++;
 }
 
+//Добавление элемента в дерево.
 void CartesianTree::AddElementNotOptimazed(int key) {
 	if (_size != 0) {
 		CartesianNode* less;
@@ -85,13 +70,13 @@ void CartesianTree::AddElementNotOptimazed(int key) {
 	}	
 }
 
+//Функция вставки элемента дерева.
 void CartesianTree::Insert(CartesianNode*& node, int key, int priority) {
 	if (node == nullptr)
 	{
 		node = new CartesianNode;
 		node->Key = key;
 		node->Priority = priority;
-		/*_root->Priority = priority;*/
 		return;
 	}
 
@@ -109,48 +94,18 @@ void CartesianTree::Insert(CartesianNode*& node, int key, int priority) {
 	}
 
 	CartesianNode* newCartesianNode = new CartesianNode(key);
-
 	newCartesianNode->Priority = priority;
-	//newCartesianNode->Key = key;
-	//newCartesianNode->Priority = priority;
 	Split(node, key, newCartesianNode->Left, newCartesianNode->Right);
 	node = newCartesianNode;
 }
 
+//Добавление элемента в дерево.
 void CartesianTree::AddElementOptimazed(int key) {
-
-	//if (_root == nullptr)
-	//{
-	//	_root = new CartesianNode;
-	//	_root->Key = key;
-	//	/*_root->Priority = priority;*/
-	//	return;
-	//}
-
-	//if (_root->Priority > newCartesianNode->Priority)
-	//{
-	//	if (key < _root->Key)
-	//	{
-	//		AddElementOptimazed(_root->Left, key, priority);
-	//	}
-	//	else
-	//	{
-	//		AddElementOptimazed(_root->Right, key, priority);
-	//	}
-	//	return;
-	//}
 	if (_size != 0) {
 		int start = 0;
 		int end = 20;
-		int x = rand() % (end - start + 1) + start;
-		
-		Insert(_root, key,x);
-		//CartesianNode* newCartesianNode = new CartesianNode;
-		//Insert(_root, key, newCartesianNode->Priority);
-		////newCartesianNode->Key = key;
-		////newCartesianNode->Priority = priority;
-		//Split(_root, key, newCartesianNode->Left, newCartesianNode->Right);
-		//_root = newCartesianNode;
+
+		Insert(_root, key, rand() % (end - start + 1) + start);
 		_size++;
 	}
 	else {
@@ -158,6 +113,7 @@ void CartesianTree::AddElementOptimazed(int key) {
 	}
 }
 
+//Удаление элемента по значению.
 void CartesianTree::DeleteElementNotOptimazed(int key) {
 	if (_size != 0) {
 		CartesianNode* less;
@@ -174,6 +130,7 @@ void CartesianTree::DeleteElementNotOptimazed(int key) {
 	}
 	 
 }
+//Удаляет элемент по ключу.
 void CartesianTree::Remove(CartesianNode*& node, int key) {
 	if (node == nullptr)
 	{
@@ -197,26 +154,27 @@ void CartesianTree::Remove(CartesianNode*& node, int key) {
 	}
 }
 
-
+//Удаление элемента по значению.
 void CartesianTree::DeleteElementOptimazed(int key) {
 	if (_size != 0) {
 		Remove(_root,key);
 	}
 }
 
+//Удаляет все ветви у node.
 void CartesianTree::FreeTree(CartesianNode*& node)
 {
 	if (node == nullptr)
 	{
 		return;
 	}
-
 	FreeTree(node->Left);
 	FreeTree(node->Right);
 	delete node;
 	node = nullptr;
 }
 
+//Удаляет все элементы дерева.
 void CartesianTree::ClearTree() {
 	if (_size != 0) {
 		FreeTree(_root);
