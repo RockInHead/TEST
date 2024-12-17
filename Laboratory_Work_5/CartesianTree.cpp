@@ -11,15 +11,19 @@ int CartesianTree::GetSize() {
 CartesianNode* CartesianTree::GetRoot() {
 	return _root;
 }
-
-
-CartesianNode* CartesianTree::Merge(CartesianNode* a, CartesianNode* b) {
+ CartesianNode* CartesianTree::Merge(CartesianNode* a, CartesianNode* b) {
 
 	if (!a || !b) {
+		/*if (a != nullptr) {
+			return a;
+		}
+		else {
+			return b;
+		}*/
 		return a ? a : b;
 	}
 	if (a->Priority > b->Priority) {
-		a->Right == Merge(a->Right,b);
+		a->Right = Merge(a->Right, b);
 		return a;
 	}
 	else {
@@ -38,9 +42,13 @@ CartesianNode* CartesianTree::Merge(CartesianNode* a, CartesianNode* b) {
 	}
 	b->Left = Merge(a, b->Left);
 	return b;*/
+
 }
 
-void  CartesianTree::Split(CartesianNode* node, int key, CartesianNode*& a, CartesianNode*& b) {
+
+	
+
+void CartesianTree::Split(CartesianNode* node, int key, CartesianNode*& a, CartesianNode*& b) {
 	if (!node)
 	{
 		a = b = nullptr;
@@ -115,6 +123,7 @@ void CartesianTree::DeleteElementNotOptimazed(int key) {
 		Split(greater, key + 1, equal, greater);
 		_root = Merge(less, greater);
 		_size--;
+
 	}
 	 
 }

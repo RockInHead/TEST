@@ -24,12 +24,14 @@ private:
 	void DeleteNode(CartesianNode*& node, int data);
 
 	//Функция слияния 2ух деревьев.
-	CartesianNode* Merge(CartesianNode* a, CartesianNode* b);
+	static CartesianNode* Merge(CartesianNode* a, CartesianNode* b);
 
 	//Деление дерева по ключу.
-	void Split(CartesianNode* node, int key, CartesianNode*& a, CartesianNode*& b);
+	static void Split(CartesianNode* node, int key, CartesianNode*& a, CartesianNode*& b);
 
 public:
+
+
 	//Возврщает количество элементов в дереве.
 	int GetSize();
 
