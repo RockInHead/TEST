@@ -121,9 +121,12 @@ void CartesianTree::DeleteElementNotOptimazed(int key) {
 		CartesianNode* greater;
 		Split(_root, key, less, greater);
 		Split(greater, key + 1, equal, greater);
-		_root = Merge(less, greater);
-		_size--;
-
+		if (equal != nullptr) {
+			equal = Merge(equal->Left, equal->Right);
+			_root = Merge(less, greater);
+			_root = Merge(_root, equal);
+			_size--;
+		}
 	}
 	 
 }
