@@ -17,7 +17,7 @@ void Show1(CartesianNode const* node, bool high, vector< string> const& lpref, v
         Show1(node->Left, high, VSCat(lpref, high ? VS({ " ", " " }) : VS({ " " })), VSCat(lpref, high ? VS({ ch_ddia, ch_ver }) : VS({ ch_ddia })), VSCat(lpref, high ? VS({ ch_hor, " " }) : VS({ ch_hor })), false, true, lines);
 
     auto sval = "[" + to_string(node->Key) +";"+ to_string(node->Priority) + "]";
-    string coloredSval = CYAN + sval + RESET;
+    string coloredSval =  sval ;
     size_t sm = left || sval.empty() ? sval.size() / 2 : ((sval.size() + 1) / 2 - 1);
     for (size_t i = 0; i < sval.size(); ++i) {
         string colored = CYAN + string(1, sval[i]) + RESET;
@@ -74,8 +74,12 @@ void MenuCartesianTree(CartesianTree& tree)
     cout << "Min Element:" << GREEN << tree.FindMin() << RESET;
     cout << "  Max Element:" << RED << tree.FindMax() << RESET << endl << endl;*/
 
-    cout << "[1]" << " - Add new elemnt" << endl;
-    cout << "[2]" << " - Remove element by value" << endl;
+    cout << "[1]" << " - Add new element not optimazed" << endl;
+    cout << "[2]" << " - Remove element by value not optimazed" << endl;
+    cout << "[3]" << " - Add new element optimazed" << endl;
+    cout << "[4]" << " - Remove element by value optimazed" << endl;
+
+
     cout << RED << "[0]" << RESET << " - Exit the Stack" << endl;
 }
 
@@ -90,7 +94,7 @@ void CartesianTreeConsole(CartesianTree& tree) {
     {
         MenuCartesianTree(tree);
         int commandNumber;
-        commandNumber = ValidInputMenu(0, 3);
+        commandNumber = ValidInputMenu(0, 4);
         switch (commandNumber)
         {
         case 1:
@@ -105,6 +109,13 @@ void CartesianTreeConsole(CartesianTree& tree) {
             tree.DeleteElementNotOptimazed(deletedElement);
             system("cls");
             break;
+        case 3:
+            cout << "Enter a value:";
+            newElement = ValidCin();
+            tree.AddElementOptimazed(newElement);
+            system("cls");
+            break;
+       
         case 0:
             system("cls");
             stackState = false;

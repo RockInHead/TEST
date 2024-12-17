@@ -15,7 +15,7 @@ private:
 	void InitRoot(int data);
 
 	//Функция вставки элемента дерева.
-	void Insert(CartesianNode*& node, int data);
+	void Insert(CartesianNode*& node, int key,int priority);
 
 	//Вычисляет текущую высоту дерева.
 	int CalculateHeight(CartesianNode* node);

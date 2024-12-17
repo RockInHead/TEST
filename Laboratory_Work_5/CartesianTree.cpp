@@ -85,33 +85,77 @@ void CartesianTree::AddElementNotOptimazed(int key) {
 	}	
 }
 
+void CartesianTree::Insert(CartesianNode*& node, int key, int priority) {
+	if (node == nullptr)
+	{
+		node = new CartesianNode;
+		node->Key = key;
+		node->Priority = priority;
+		/*_root->Priority = priority;*/
+		return;
+	}
+
+	if (node->Priority > priority)
+	{
+		if (key < node->Key)
+		{
+			Insert(node->Left, key, priority);
+		}
+		else
+		{
+			Insert(node->Right, key, priority);
+		}
+		return;
+	}
+
+	CartesianNode* newCartesianNode = new CartesianNode(key);
+
+	newCartesianNode->Priority = priority;
+	//newCartesianNode->Key = key;
+	//newCartesianNode->Priority = priority;
+	Split(node, key, newCartesianNode->Left, newCartesianNode->Right);
+	node = newCartesianNode;
+}
+
 void CartesianTree::AddElementOptimazed(int key) {
+
 	//if (_root == nullptr)
 	//{
 	//	_root = new CartesianNode;
 	//	_root->Key = key;
-	//	_root->Priority = priority;
+	//	/*_root->Priority = priority;*/
 	//	return;
 	//}
 
-	//if (_root->Priority > priority)
+	//if (_root->Priority > newCartesianNode->Priority)
 	//{
 	//	if (key < _root->Key)
 	//	{
-	//		Insert(_root->Left, key, priority);
+	//		AddElementOptimazed(_root->Left, key, priority);
 	//	}
 	//	else
 	//	{
-	//		Insert(_root->Right, key, priority);
+	//		AddElementOptimazed(_root->Right, key, priority);
 	//	}
 	//	return;
 	//}
-
-	//CartesianNode* newCartesianNode = new CartesianNode;
-	//newCartesianNode->Key = key;
-	//newCartesianNode->Priority = priority;
-	//Split(_root, key, newCartesianNode->Left, newCartesianNode->Right);
-	//_root = newCartesianNode;
+	if (_size != 0) {
+		int start = 0;
+		int end = 20;
+		int x = rand() % (end - start + 1) + start;
+		
+		Insert(_root, key,x);
+		//CartesianNode* newCartesianNode = new CartesianNode;
+		//Insert(_root, key, newCartesianNode->Priority);
+		////newCartesianNode->Key = key;
+		////newCartesianNode->Priority = priority;
+		//Split(_root, key, newCartesianNode->Left, newCartesianNode->Right);
+		//_root = newCartesianNode;
+		_size++;
+	}
+	else {
+		InitRoot(key);
+	}
 }
 
 void CartesianTree::DeleteElementNotOptimazed(int key) {
