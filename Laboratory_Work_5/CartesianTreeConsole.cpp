@@ -78,6 +78,8 @@ void MenuCartesianTree(CartesianTree& tree)
     cout << "[2]" << " - Remove element by value not optimazed" << endl;
     cout << "[3]" << " - Add new element optimazed" << endl;
     cout << "[4]" << " - Remove element by value optimazed" << endl;
+    cout << "[5]" << " - Clear Tree" << endl;
+
 
 
     cout << RED << "[0]" << RESET << " - Exit the Stack" << endl;
@@ -94,7 +96,7 @@ void CartesianTreeConsole(CartesianTree& tree) {
     {
         MenuCartesianTree(tree);
         int commandNumber;
-        commandNumber = ValidInputMenu(0, 4);
+        commandNumber = ValidInputMenu(0, 5);
         switch (commandNumber)
         {
         case 1:
@@ -115,7 +117,16 @@ void CartesianTreeConsole(CartesianTree& tree) {
             tree.AddElementOptimazed(newElement);
             system("cls");
             break;
-       
+        case 4:
+            cout << "Enter a value:";
+            cin >> deletedElement;
+            tree.DeleteElementOptimazed(deletedElement);
+            system("cls");
+            break;
+        case 5:
+            tree.ClearTree();
+            system("cls");
+            break;
         case 0:
             system("cls");
             stackState = false;

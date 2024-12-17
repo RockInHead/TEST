@@ -13,10 +13,16 @@ private:
 
 	//Инициализиурет корень дерева.
 	void InitRoot(int data);
+	
+	static CartesianNode* Merge(CartesianNode* a, CartesianNode* b);
+
 
 	//Функция вставки элемента дерева.
 	void Insert(CartesianNode*& node, int key,int priority);
 
+	void Remove(CartesianNode*& node, int key);
+
+	void FreeTree(CartesianNode*& node);
 	//Вычисляет текущую высоту дерева.
 	int CalculateHeight(CartesianNode* node);
 
@@ -24,13 +30,13 @@ private:
 	void DeleteNode(CartesianNode*& node, int data);
 
 	//Функция слияния 2ух деревьев.
-	static CartesianNode* Merge(CartesianNode* a, CartesianNode* b);
 
 	//Деление дерева по ключу.
 	static void Split(CartesianNode* node, int key, CartesianNode*& a, CartesianNode*& b);
 
 public:
-
+	//Удаляет все элементы дерева.
+	void ClearTree();
 
 	//Возврщает количество элементов в дереве.
 	int GetSize();
