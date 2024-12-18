@@ -1,6 +1,8 @@
 ﻿#include <iostream>
 #include"Validator.h"
 #include"Colors.h"
+#include"RBTree.h"
+#include"RedBlackTreeConsole.h"
 //#include"BinaryTree.h"
 //#include "BinaryTreeConsole.h"
 //#include"CartesianTreeConsole.h"
@@ -11,14 +13,14 @@
 void Menu()
 {
     cout << "Choose Tree:" << endl << endl;
-    cout << "[1]" << RED << " - Red and Black Tree" << RESET << endl;
+    cout << "[1]" << RED << " - Red-Black Tree" << RESET << endl;
     cout << "[2]" << MAGENTA << " - AVL Tree" << RESET << endl;
 }
 
 int main()
 {
- /*   BinaryTree binaryTree = BinaryTree();
-    CartesianTree cartesianTree = CartesianTree();*/
+    RBTree rbTree = RBTree();
+    //CartesianTree cartesianTree = CartesianTree();
 
     bool programState = true;
     int arrayType;
@@ -29,7 +31,7 @@ int main()
         {
         case 1:
             system("cls");
-            /*BinaryTreeConsole(binaryTree);*/
+            RedBlackTreeConsole(rbTree);
             break;
         case 2:
             system("cls");

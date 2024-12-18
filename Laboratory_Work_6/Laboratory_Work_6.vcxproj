@@ -128,10 +128,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Laboratory_Work_6.cpp" />
+    <ClCompile Include="RBTree.cpp" />
+    <ClCompile Include="RedBlackTreeConsole.cpp" />
     <ClCompile Include="Validator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Colors.h" />
+    <ClInclude Include="RBNode.h" />
+    <ClInclude Include="RBTree.h" />
+    <ClInclude Include="RedBlackTreeConsole.h" />
     <ClInclude Include="Validator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

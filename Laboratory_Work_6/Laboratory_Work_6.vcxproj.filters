@@ -19,6 +19,15 @@
     <Filter Include="Файлы ресурсов\Console\Helpers">
       <UniqueIdentifier>{a5467ef8-dce0-442d-ab02-63f5b9b9ae5a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы ресурсов\Console\BR Tree">
+      <UniqueIdentifier>{d5eae0f1-cfbf-4b6a-9b31-6b3fab19b650}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Logic">
+      <UniqueIdentifier>{5471e394-3d30-4d14-9cea-9a3461edda20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Logic\RB Tree">
+      <UniqueIdentifier>{0d3b8e01-60d0-40b5-a6a5-8f4ad7cdfc5d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Laboratory_Work_6.cpp">
@@ -27,6 +36,12 @@
     <ClCompile Include="Validator.cpp">
       <Filter>Файлы ресурсов\Console\Helpers</Filter>
     </ClCompile>
+    <ClCompile Include="RedBlackTreeConsole.cpp">
+      <Filter>Файлы ресурсов\Console\BR Tree</Filter>
+    </ClCompile>
+    <ClCompile Include="RBTree.cpp">
+      <Filter>Файлы ресурсов\Logic\RB Tree</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Colors.h">
@@ -34,6 +49,15 @@
     </ClInclude>
     <ClInclude Include="Validator.h">
       <Filter>Файлы ресурсов\Console\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="RedBlackTreeConsole.h">
+      <Filter>Файлы ресурсов\Console\BR Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="RBTree.h">
+      <Filter>Файлы ресурсов\Logic\RB Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="RBNode.h">
+      <Filter>Файлы ресурсов\Logic\RB Tree</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
