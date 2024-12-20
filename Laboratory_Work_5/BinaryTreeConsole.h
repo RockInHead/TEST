@@ -8,7 +8,6 @@
 #include <iostream>
 #include "Symbols.h"
 
-
 using namespace std;
 
 //Выводит дерево в консоль.

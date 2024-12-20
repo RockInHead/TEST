@@ -4,7 +4,7 @@
 #include <iostream>
 struct CartesianNode
 {
-    //Значения приоритетов от какого до какого
+    //Значения приоритетов от какого до какого.
     int start = 0;
     int end = 20;
     int x = rand() % (end - start + 1) + start;

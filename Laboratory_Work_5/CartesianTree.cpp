@@ -130,6 +130,7 @@ void CartesianTree::DeleteElementNotOptimazed(int key) {
 	}
 	 
 }
+
 //Удаляет элемент по ключу.
 void CartesianTree::Remove(CartesianNode*& node, int key) {
 	if (node == nullptr)

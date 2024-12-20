@@ -82,7 +82,6 @@ void BinaryTree::DeleteNode(Node*& node, int data) {
 	}
 	else {
 		// Узел с единственным значением найден
-		// Узел с одним дочерним элементом или без дочерних узлов
 		if (node->Left == nullptr) {
 			Node* temp = node->Right;
 			delete node;

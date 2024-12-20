@@ -90,7 +90,7 @@ void BinaryTreeConsole(BinaryTree& tree) {
     {
         MenuBinaryTree(tree);
         int commandNumber;
-        commandNumber = ValidInputMenu(0, 3);
+        commandNumber = ValidInputMenu(0, 2);
         switch (commandNumber)
         {
         case 1:
