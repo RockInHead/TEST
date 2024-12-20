@@ -11,6 +11,19 @@ private:
 	//Количество элементов в дереве.
 	int _size;
 
+	void InsertValue(RBNode*& root, const int value);
+
+	RBNode* InsertNode(RBNode*& root, RBNode*& node);
+
+	void FixInsertRBTree( RBNode*& node);
+
+	Color GetColor(RBNode* node);
+
+	void SetColor(RBNode*& node, const Color color);
+
+	void RotateLeft(RBNode*& root, RBNode*& node);
+
+	void RotateRight(RBNode*& root, RBNode*& node);
 	////Инициализиурет корень дерева.
 	//void InitRoot(int data);
 

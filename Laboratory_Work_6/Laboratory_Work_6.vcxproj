@@ -137,6 +137,7 @@
     <ClInclude Include="RBNode.h" />
     <ClInclude Include="RBTree.h" />
     <ClInclude Include="RedBlackTreeConsole.h" />
+    <ClInclude Include="Symbols.h" />
     <ClInclude Include="Validator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
