@@ -174,3 +174,259 @@ void RBTree::RotateRight(RBNode*& root, RBNode*& node)
 	leftChild->Right = node;
 	node->Parent = leftChild;
 }
+
+void RBTree::DeleteElement(int data) {
+	DeleteValue(_root, data);
+}
+
+void RBTree::DeleteValue(RBNode*& root, const int data)
+{
+	RBNode* node = DeleteNode(root, data);
+	FixDeleteRBTree(root, node);
+}
+
+RBNode* RBTree::DeleteNode(RBNode*& root, const int data)
+{
+	if (root == nullptr)
+	{
+		return root;
+	}
+
+	if (data < root->Data)
+	{
+		return DeleteNode(root->Left, data);
+	}
+
+	if (data > root->Data)
+	{
+		return DeleteNode(root->Right, data);
+	}
+
+	if (root->Left == nullptr || root->Right == nullptr)
+	{
+		return root;
+	}
+
+	RBNode* temp = MinValueNode(root->Right);
+	root->Data = temp->Data;
+	return DeleteNode(root->Right, temp->Data);
+}
+
+RBNode* RBTree::MinValueNode(RBNode*& node)
+{
+	RBNode* pointer = node;
+
+	while (pointer->Left != nullptr)
+	{
+		pointer = pointer->Left;
+	}
+
+	return pointer;
+}
+
+
+void RBTree::FixDeleteRBTree(RBNode*& root, RBNode*& node)
+{
+	//node == root || node == nullptr.
+	if (DeleteCase1(root, node) == 1)
+	{
+		return;
+	}
+
+	if (GetColor(node) == Color::Red
+		|| GetColor(node->Left) == Color::Red
+		|| GetColor(node->Right) == Color::Red)
+	{
+		DeleteCase2(root, node);
+	}
+	else if (GetColor(node) != Color::Red
+		&& GetColor(node->Left) != Color::Red
+		&& GetColor(node->Right) != Color::Red)
+	{
+		RBNode* sibling = nullptr;
+		RBNode* parent = nullptr;
+		RBNode* pointer = node;
+		SetColor(pointer, Color::DoubleBlack);
+		while (pointer != root && GetColor(pointer) == Color::DoubleBlack)
+		{
+			parent = pointer->Parent;
+			if (pointer == parent->Left)
+			{
+				if (DeleteCase3(root, sibling, parent, pointer) == 1)
+				{
+					break;
+				}
+
+			}
+			else if (pointer != parent->Left)
+			{
+				if (DeleteCase4(root, sibling, parent, pointer) == 1)
+				{
+					break;
+				}
+			}
+		}
+
+		if (node == node->Parent->Left)
+		{
+			node->Parent->Left = nullptr;
+		}
+		else if (node == node->Parent->Right)
+		{
+			node->Parent->Right = nullptr;
+		}
+		delete node;
+		SetColor(root, Color::Black);
+	}
+}
+
+inline int RBTree::DeleteCase1(RBNode*& root, RBNode*& node)
+{
+	if (node == nullptr)
+	{
+		return 1;
+	}
+
+	if (node == root)
+	{
+		if (node->Left == nullptr && node->Right == nullptr)
+		{
+			delete root;
+			root = nullptr;
+			return 1;
+		}
+		RBNode* current = root;
+		root = root->Left != nullptr
+			? root->Left
+			: root->Right;
+		SetColor(root, Color::Black);
+		root->Parent = nullptr;
+		delete current;
+		return 1;
+	}
+
+	return 0;
+}
+
+
+inline void RBTree::DeleteCase2(RBNode*& root, RBNode*& node)
+{
+	RBNode* child = node->Left != nullptr
+		? node->Left
+		: node->Right;
+
+	if (node == node->Parent->Left)
+	{
+		node->Parent->Left = child;
+		if (child != nullptr)
+		{
+			child->Parent = node->Parent;
+		}
+		SetColor(child, Color::Black);
+		delete node;
+	}
+	else if (node == node->Parent->Right)
+	{
+		node->Parent->Right = child;
+		if (child != nullptr)
+		{
+			child->Parent = node->Parent;
+		}
+		SetColor(child, Color::Black);
+		delete node;
+	}
+}
+
+
+inline int RBTree::DeleteCase3(RBNode*& root, RBNode*& sibling, RBNode*& parent, RBNode*& pointer)
+{
+	sibling = parent->Right;
+	if (GetColor(sibling) == Color::Red)
+	{
+		SetColor(sibling, Color::Black);
+		SetColor(parent, Color::Red);
+		RotateLeft(root, parent);
+	}
+	else if (GetColor(sibling) != Color::Red)
+	{
+		if (GetColor(sibling->Left) == Color::Black &&
+			GetColor(sibling->Right) == Color::Black)
+		{
+			SetColor(sibling, Color::Red);
+			if (GetColor(parent) == Color::Red)
+			{
+				SetColor(parent, Color::Black);
+			}
+			else if (GetColor(parent) != Color::Red)
+			{
+				SetColor(parent, Color::DoubleBlack);
+			}
+			pointer = parent;
+		}
+		else if (GetColor(sibling->Left) != Color::Black
+			|| GetColor(sibling->Right) != Color::Black)
+		{
+			if (GetColor(sibling->Right) == Color::Black)
+			{
+				SetColor(sibling->Left, Color::Black);
+				SetColor(sibling, Color::Red);
+				RotateRight(root, sibling);
+				sibling = parent->Right;
+			}
+			SetColor(sibling, parent->Color);
+			SetColor(parent, Color::Black);
+			SetColor(sibling->Right, Color::Black);
+			RotateLeft(root, parent);
+			//break;
+			return 1;
+		}
+	}
+	return 0;
+}
+
+
+inline int RBTree::DeleteCase4(RBNode*& root, RBNode*& sibling, RBNode*& parent, RBNode*& pointer)
+{
+	sibling = parent->Left;
+	if (GetColor(sibling) == Color::Red)
+	{
+		SetColor(sibling, Color::Black);
+		SetColor(parent, Color::Red);
+		RotateRight(root, parent);
+	}
+	else if (GetColor(sibling) == Color::Black)
+	{
+		if (GetColor(sibling->Left) == Color::Black &&
+			GetColor(sibling->Right) == Color::Black)
+		{
+			SetColor(sibling, Color::Red);
+			if (GetColor(parent) == Color::Red)
+			{
+				SetColor(parent, Color::Black);
+			}
+			else if (GetColor(parent) == Color::Black)
+			{
+				SetColor(parent, Color::Black);
+			}
+			pointer = parent;
+		}
+		else if (GetColor(sibling->Left) != Color::Black
+			|| GetColor(sibling->Right) != Color::Black)
+		{
+			if (GetColor(sibling->Left) == Color::Black)
+			{
+				SetColor(sibling->Right, Color::Black);
+				SetColor(sibling, Color::Red);
+				RotateLeft(root, sibling);
+				sibling = parent->Left;
+			}
+			SetColor(sibling, parent->Color);
+			SetColor(parent, Color::Black);
+			SetColor(sibling->Left, Color::Black);
+			RotateRight(root, parent);
+			//break;
+			return 1;
+		}
+	}
+	return 0;
+}

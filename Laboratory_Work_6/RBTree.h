@@ -24,6 +24,23 @@ private:
 	void RotateLeft(RBNode*& root, RBNode*& node);
 
 	void RotateRight(RBNode*& root, RBNode*& node);
+
+
+	RBNode* DeleteNode(RBNode*& root, int data);
+
+	void DeleteValue(RBNode*& root, int data);
+
+	RBNode* MinValueNode(RBNode*& node);
+
+	void FixDeleteRBTree(RBNode*& root, RBNode*& node);
+
+	inline int DeleteCase1(RBNode*& root, RBNode*& node);
+
+	inline void DeleteCase2(RBNode*& root, RBNode*& node);
+
+	inline int DeleteCase3(RBNode*& root, RBNode*& sibling, RBNode*& parent, RBNode*& pointer);
+
+	inline int DeleteCase4(RBNode*& root, RBNode*& sibling, RBNode*& parent, RBNode*& pointer);
 	////Инициализиурет корень дерева.
 	//void InitRoot(int data);
 

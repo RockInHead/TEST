@@ -100,9 +100,9 @@ void RedBlackTreeConsole(RBTree& tree) {
             system("cls");
             break;
         case 2:
-            /*cout << "Enter a value:";
+            cout << "Enter a value:";
             cin >> deletedElement;
-            tree.DeleteElement(deletedElement);*/
+            tree.DeleteElement(deletedElement);
             system("cls");
             break;
         case 0:
