@@ -6,6 +6,23 @@ RBNode* RBTree::GetRoot() {
 
 RBTree::RBTree() :_size(0), _root(nullptr) {}
 
+//Вычисляет текущую высоту дерева.
+int RBTree::CalculateHeight(RBNode* node) {
+	if (node == nullptr) {
+		return 0;
+	}
+	int leftHeight = CalculateHeight(node->Left);
+	int rightHeight = CalculateHeight(node->Right);
+	return std::max(leftHeight, rightHeight) + 1;
+}
+
+//Возвращает высоту дерева.
+int RBTree::GetHeight() {
+	return CalculateHeight(_root);
+}
+
+
+
 Color RBTree::GetColor(RBNode* node)
 {
 	if (node == nullptr)
@@ -23,6 +40,34 @@ void RBTree::SetColor(RBNode*& node, const Color color)
 	}
 	node->Color = color;
 }
+//Возврщает минимальный элемент дерева.
+int RBTree::FindMin() {
+	if (_root == nullptr)
+	{
+		return 0;
+	}
+	RBNode* temp = _root;
+	while (temp->Left != nullptr)
+	{
+		temp = temp->Left;
+	}
+	return temp->Data;
+}
+
+//Возвращает максимальный элемент дерева.
+int RBTree::FindMax() {
+	if (_root == nullptr)
+	{
+		return 0;
+	}
+	RBNode* temp = _root;
+	while (temp->Right != nullptr)
+	{
+		temp = temp->Right;
+	}
+	return temp->Data;
+}
+
 int RBTree::GetSize() {
 	return _size;
 }
@@ -296,7 +341,9 @@ inline int RBTree::DeleteCase1(RBNode*& root, RBNode*& node)
 		{
 			delete root;
 			root = nullptr;
+			_size--;
 			return 1;
+			
 		}
 		RBNode* current = root;
 		root = root->Left != nullptr
@@ -305,9 +352,11 @@ inline int RBTree::DeleteCase1(RBNode*& root, RBNode*& node)
 		SetColor(root, Color::Black);
 		root->Parent = nullptr;
 		delete current;
+		_size--;
 		return 1;
+		
 	}
-
+	/*_size--;*/
 	return 0;
 }
 
@@ -338,6 +387,8 @@ inline void RBTree::DeleteCase2(RBNode*& root, RBNode*& node)
 		SetColor(child, Color::Black);
 		delete node;
 	}
+	_size--;
+
 }
 
 
@@ -384,7 +435,9 @@ inline int RBTree::DeleteCase3(RBNode*& root, RBNode*& sibling, RBNode*& parent,
 			return 1;
 		}
 	}
+	_size--;
 	return 0;
+
 }
 
 
@@ -431,7 +484,9 @@ inline int RBTree::DeleteCase4(RBNode*& root, RBNode*& sibling, RBNode*& parent,
 			return 1;
 		}
 	}
+	_size--;
 	return 0;
+
 }
 
 int RBTree::FindValue(int data) {

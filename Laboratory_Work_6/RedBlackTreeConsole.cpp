@@ -176,10 +176,10 @@ void MenuRedBlackTree(RBTree& tree, int foundedElement)
     ShowRedBlackTree(tree, foundedElement);
     cout << endl;
 
-    cout << "Size:" << LIGHT_YELLOW << tree.GetSize() << RESET << endl;
-    /*cout << "Height:" << RED << tree.GetHeight() << RESET << endl;
+   /* cout << "Size:" << LIGHT_YELLOW << tree.GetSize() << RESET << endl;*/
+    cout << "Height:" << LIGHT_YELLOW << tree.GetHeight() << RESET << endl;
     cout << "Min Element:" << GREEN << tree.FindMin() << RESET;
-    cout << "  Max Element:" << RED << tree.FindMax() << RESET << endl << endl;*/
+    cout << "  Max Element:" << RED << tree.FindMax() << RESET << endl << endl;
 
     cout << "[1]" << " - Add new elemnt" << endl;
     cout << "[2]" << " - Remove element by value" << endl;

@@ -49,8 +49,8 @@ private:
 	////Функция вставки элемента дерева.
 	//void Insert(Node*& node, int data);
 
-	////Вычисляет текущую высоту дерева.
-	//int CalculateHeight(Node* node);
+	//Вычисляет текущую высоту дерева.
+	int CalculateHeight(RBNode* node);
 
 	////Удаляет элемент дерева.
 	//void DeleteNode(Node*& node, int data);
