@@ -1,5 +1,6 @@
 ﻿#include"AVLTree.h"
 
+//Конструктор по умолчанию.
 AVLTree::AVLTree() :_size(0), _root(nullptr) {}
 
 //Вычисляет текущую высоту дерева.
@@ -13,22 +14,17 @@ int AVLTree::CalculateHeight(AVLNode* node) {
 }
 
 //Возвращает высоту дерева.
-int AVLTree::GetHeight() {
+int AVLTree::GetTreeHeight() {
 	return CalculateHeight(_root);
 }
 
-//Возврщает минимальный элемент дерева.
+//Возвращает минимальный элемент дерева.
 int AVLTree::FindMin() {
 	if (_root == nullptr)
 	{
 		return 0;
 	}
-	AVLNode* temp = _root;
-	while (temp->Left != nullptr)
-	{
-		temp = temp->Left;
-	}
-	return temp->Data;
+	return FindMinimal(_root)->Data;
 }
 
 //Возвращает максимальный элемент дерева.
@@ -45,16 +41,18 @@ int AVLTree::FindMax() {
 	return temp->Data;
 }
 
-
+//Возврщает корень дерева.
 AVLNode* AVLTree::GetRoot() {
 	return _root;
 }
 
+//Добавляет новый элемент в дерево.
 void AVLTree::AddElement(int data) {
 	_root = Insert(_root, data);
 	_size++;
 }
 
+//Вставка нового ключа в дерево. Если дерево становится несбалансированным после вставки, выполняется балансировка.
 AVLNode* AVLTree::Insert(AVLNode* treeNode, const int data)
 {
 	if (!treeNode)
@@ -76,6 +74,7 @@ AVLNode* AVLTree::Insert(AVLNode* treeNode, const int data)
 	return Balance(treeNode);
 }
 
+// Проверяет фактор баланса узла и выполняет вращения при необходимости.
 AVLNode* AVLTree::Balance(AVLNode* treeNode)
 {
 	FixHeight(treeNode);
@@ -100,23 +99,27 @@ AVLNode* AVLTree::Balance(AVLNode* treeNode)
 	return treeNode;
 }
 
+//Обновляет высоту узла. Высота - максимальная высота его поддеревьев + 1.
 void AVLTree::FixHeight(AVLNode* treeNode)
 {
-	size_t heightLeft = GetHeight(treeNode->Left);
-	size_t heightRight = GetHeight(treeNode->Right);
+	int heightLeft = GetHeight(treeNode->Left);
+	int heightRight = GetHeight(treeNode->Right);
 	treeNode->Height = (heightLeft > heightRight ? heightLeft : heightRight) + 1;
 }
 
+//Возвращает высоту для элемента.
 int AVLTree::GetHeight(AVLNode* treeNode)
 {
 	return treeNode ? treeNode->Height : 0;
 }
 
+// Вычисляет фактор баланса, то есть разницц между высотой левого и правого поддеревьев.
 int AVLTree::GetBalanceFactor(AVLNode* treeNode)
 {
-	return static_cast<int>(GetHeight(treeNode->Right) - GetHeight(treeNode->Left));
+	return (GetHeight(treeNode->Right) - GetHeight(treeNode->Left));
 }
 
+//Левый поворот для узла.
 AVLNode* AVLTree::RotateLeft(AVLNode* treeNode)
 {
 	AVLNode* current = treeNode->Right;
@@ -124,15 +127,13 @@ AVLNode* AVLTree::RotateLeft(AVLNode* treeNode)
 	treeNode->Right = current->Left;
 	current->Left = treeNode;
 
-	//Îáíîâëÿåì âåñà.
 	FixHeight(treeNode);
 	FixHeight(current);
 
-	//Âîçâðàùàåì íîâûé êîðåíü.
 	return current;
 }
 
-
+//Правый поворот для узла.
 AVLNode* AVLTree::RotateRight(AVLNode* treeNode)
 {
 	AVLNode* current = treeNode->Left;
@@ -146,10 +147,12 @@ AVLNode* AVLTree::RotateRight(AVLNode* treeNode)
 	return current;
 }
 
+//Удаление элемента по значению.
 void AVLTree::DeleteElement(int data) {
 	_root = Remove(_root, data);
 }
 
+//Удаляет узел с вводимым ключом и выполняет балансировку при необходимости.
 AVLNode* AVLTree::Remove(AVLNode* treeNode, const int key)
 {
 	if (!treeNode)
@@ -165,7 +168,7 @@ AVLNode* AVLTree::Remove(AVLNode* treeNode, const int key)
 	{
 		treeNode->Right = Remove(treeNode->Right, key);
 	}
-	else //  k == p->key 
+	else 
 	{
 		AVLNode* leftPoint = treeNode->Left;
 		AVLNode* rightPoint = treeNode->Right;
@@ -185,12 +188,13 @@ AVLNode* AVLTree::Remove(AVLNode* treeNode, const int key)
 	return Balance(treeNode);
 }
 
+//Находит мимнимальный узел в поддереве.
 AVLNode* AVLTree::FindMinimal(AVLNode* treeNode)
 {
 	return treeNode->Left ? FindMinimal(treeNode->Left) : treeNode;
 }
 
-
+//Удаляет минимальный узел в поддереве и делает балансировку.
 AVLNode* AVLTree::RemoveMinimal(AVLNode* treeNode)
 {
 	if (treeNode->Left == nullptr)
@@ -203,6 +207,7 @@ AVLNode* AVLTree::RemoveMinimal(AVLNode* treeNode)
 	return Balance(treeNode);
 }
 
+//Возвращает значение искомого элемента.
 int AVLTree::FindValue(int data) {
 	if (_size != 0) {
 		AVLNode* foundNode = FindNode(_root, data);
@@ -213,7 +218,7 @@ int AVLTree::FindValue(int data) {
 	}
 }
 
-
+// Возвращает указатель на найденный узел или nullptr, если узел не найден.
 AVLNode* AVLTree::FindNode(AVLNode* node, const int key){
 	if (node == nullptr)
 	{

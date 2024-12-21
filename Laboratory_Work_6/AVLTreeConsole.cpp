@@ -1,56 +1,18 @@
 #include <iostream>
 #include "AVLTreeConsole.h"
 #include"Validator.h"
-//#include"BinaryTree.h"
 #include"Colors.h"
-//#include"Node.h"
-
 using namespace std;
 
-////Выводит дерево в консоль.
-void Show1(AVLNode const* node, bool high, vector< string> const& lpref, vector< string> const& cpref, vector< string> const& rpref, bool root, bool left, shared_ptr< vector< vector< string>>> lines) {
-    if (!node) return;
-    typedef  vector< string> VS;
-    auto VSCat = [](VS const& a, VS const& b) { auto r = a; r.insert(r.end(), b.begin(), b.end()); return r; };
-    if (root) lines = make_shared< vector<VS>>();
-    if (node->Left)
-        Show1(node->Left, high, VSCat(lpref, high ? VS({ " ", " " }) : VS({ " " })), VSCat(lpref, high ? VS({ ch_ddia, ch_ver }) : VS({ ch_ddia })), VSCat(lpref, high ? VS({ ch_hor, " " }) : VS({ ch_hor })), false, true, lines);
-
-    auto sval = "[" + to_string(node->Data) + "]";
-    string coloredSval = CYAN + sval + RESET;
-    size_t sm = left || sval.empty() ? sval.size() / 2 : ((sval.size() + 1) / 2 - 1);
-    for (size_t i = 0; i < sval.size(); ++i) {
-        string colored = CYAN + string(1, sval[i]) + RESET;
-        lines->push_back(VSCat(i < sm ? lpref : i == sm ? cpref : rpref, { colored }));
-    }
-    if (node->Right)
-        Show1(node->Right, high, VSCat(rpref, high ? VS({ ch_hor, " " }) : VS({ ch_hor })), VSCat(rpref, high ? VS({ ch_rddia, ch_ver }) : VS({ ch_rddia })), VSCat(rpref, high ? VS({ " ", " " }) : VS({ " " })), false, false, lines);
-    if (root) {
-        VS out;
-        for (size_t l = 0;; ++l) {
-            bool last = true;
-            string line;
-            for (size_t i = 0; i < lines->size(); ++i)
-                if (l < (*lines).at(i).size()) {
-                    line += lines->at(i)[l];
-                    last = false;
-                }
-                else line += " ";
-            if (last) break;
-            out.push_back(line);
-        }
-        for (size_t i = 0; i < out.size(); ++i)
-            cout << out[i] << endl;
-    }
-}
-void Show2(AVLNode const* node, bool high, int foundedElement, vector<string> const& lpref, vector<string> const& cpref, vector<string> const& rpref, bool root, bool left, shared_ptr<vector<vector<string>>> lines) {
+//Вывод дерева в консоль.
+void ShowTree(AVLNode const* node, bool high, int foundedElement, vector<string> const& lpref, vector<string> const& cpref, vector<string> const& rpref, bool root, bool left, shared_ptr<vector<vector<string>>> lines) {
     if (!node) return;
     typedef vector<string> VS;
     auto VSCat = [](VS const& a, VS const& b) { auto r = a; r.insert(r.end(), b.begin(), b.end()); return r; };
     if (root) lines = make_shared<vector<VS>>();
 
     if (node->Left)
-        Show2(node->Left, high,foundedElement, VSCat(lpref, high ? VS({ " ", " " }) : VS({ " " })),
+        ShowTree(node->Left, high,foundedElement, VSCat(lpref, high ? VS({ " ", " " }) : VS({ " " })),
             VSCat(lpref, high ? VS({ ch_ddia, ch_ver }) : VS({ ch_ddia })),
             VSCat(lpref, high ? VS({ ch_hor, " " }) : VS({ ch_hor })),
             false, true, lines);
@@ -63,23 +25,24 @@ void Show2(AVLNode const* node, bool high, int foundedElement, vector<string> co
         coloredSval = DARK_GREEN + "[" + to_string(node->Data) + "]" + RESET;
     }
 
-
     size_t sm = left || sval.empty() ? sval.size() / 2 : ((sval.size() + 1) / 2 - 1);
 
     for (size_t i = 0; i < sval.size(); ++i) {
         string colored;
         // Если элемент равен foundedElement, окрашиваем скобки независимо от их позиции
         if (node->Data == foundedElement && (i == 0 || i == sval.size() - 1)) {
-            colored = DARK_GREEN + string(1, sval[i]) + RESET; // Окрашиваем символы скобок
+            // Окрашиваем символы скобок
+            colored = DARK_GREEN + string(1, sval[i]) + RESET; 
         }
         else {
-            colored = LIGHT_YELLOW + string(1, sval[i]) + RESET; // Окрашиваем остальные символы
+            // Окрашиваем остальные символы
+            colored = LIGHT_YELLOW + string(1, sval[i]) + RESET; 
         }
         lines->push_back(VSCat(i < sm ? lpref : i == sm ? cpref : rpref, { colored }));
     }
 
     if (node->Right)
-        Show2(node->Right, high,foundedElement, VSCat(rpref, high ? VS({ ch_hor, " " }) : VS({ ch_hor })),
+        ShowTree(node->Right, high,foundedElement, VSCat(rpref, high ? VS({ ch_hor, " " }) : VS({ ch_hor })),
             VSCat(rpref, high ? VS({ ch_rddia, ch_ver }) : VS({ ch_rddia })),
             VSCat(rpref, high ? VS({ " ", " " }) : VS({ " " })),
             false, false, lines);
@@ -103,132 +66,11 @@ void Show2(AVLNode const* node, bool high, int foundedElement, vector<string> co
     }
 }
 
-//Выводит дерево в консоль.
-//void Show2(RBNode* root, int space) {
-//    if (!root)
-//        return;
-//    enum { COUNT = 2 };
-//    space += COUNT;
-//    Show2(root->Right, space);
-//    for (int i = COUNT; i < space; ++i)
-//        cout << "  ";
-//    cout << root->Data << endl;
-//    Show2(root->Left, space);
-//}
-
-//void Show1(AVLNode const* node, bool high, vector<string> const& lpref, vector<string> const& cpref, vector<string> const& rpref, bool root, bool left, shared_ptr<vector<vector<string>>> lines) {
-//    if (!node) return;
-//    typedef vector<string> VS;
-//    auto VSCat = [](VS const& a, VS const& b) { auto r = a; r.insert(r.end(), b.begin(), b.end()); return r; };
-//    if (root) lines = make_shared<vector<VS>>();
-//
-//    // Информация о цвете
-//    string color;
-//    if (node->Color == Color::Red) {
-//        color = RED;
-//    }
-//    else {
-//        color = DARK_BLUE;
-//    }
-//    //string color = node->Color ? RED : BLACK; // Определяем цвет
-//
-//    if (node->Left)
-//        Show1(node->Left, high, VSCat(lpref, high ? VS({ " ", " " }) : VS({ " " })),
-//            VSCat(lpref, high ? VS({ ch_ddia, ch_ver }) : VS({ ch_ddia })),
-//            VSCat(lpref, high ? VS({ ch_hor, " " }) : VS({ ch_hor })),
-//            false, true, lines);
-//
-//    auto sval = "[" + to_string(node->Data) + "]";
-//    string coloredSval = color + sval + RESET; // Окрашиваем значение
-//    size_t sm = left || sval.empty() ? sval.size() / 2 : ((sval.size() + 1) / 2 - 1);
-//    for (size_t i = 0; i < sval.size(); ++i) {
-//        string colored = color + string(1, sval[i]) + RESET; // Окрашиваем каждый символ
-//        lines->push_back(VSCat(i < sm ? lpref : i == sm ? cpref : rpref, { colored }));
-//    }
-//    if (node->Right)
-//        Show1(node->Right, high, VSCat(rpref, high ? VS({ ch_hor, " " }) : VS({ ch_hor })),
-//            VSCat(rpref, high ? VS({ ch_rddia, ch_ver }) : VS({ ch_rddia })),
-//            VSCat(rpref, high ? VS({ " ", " " }) : VS({ " " })),
-//            false, false, lines);
-//
-//    if (root) {
-//        VS out;
-//        for (size_t l = 0;; ++l) {
-//            bool last = true;
-//            string line;
-//            for (size_t i = 0; i < lines->size(); ++i)
-//                if (l < (*lines).at(i).size()) {
-//                    line += lines->at(i)[l];
-//                    last = false;
-//                }
-//                else line += " ";
-//            if (last) break;
-//            out.push_back(line);
-//        }
-//        for (size_t i = 0; i < out.size(); ++i)
-//            cout << out[i] << endl;
-//    }
-//}
-//
-//void Show3(AVLNode const* node, bool high, int foundedElement, vector<string> const& lpref, vector<string> const& cpref, vector<string> const& rpref, bool root, bool left, shared_ptr<vector<vector<string>>> lines) {
-//    if (!node) return;
-//    typedef vector<string> VS;
-//    auto VSCat = [](VS const& a, VS const& b) { auto r = a; r.insert(r.end(), b.begin(), b.end()); return r; };
-//    if (root) lines = make_shared<vector<VS>>();
-//
-//    // Информация о цвете
-//    string color;
-//    if (node->Color == Color::Red) {
-//        color = RED;
-//    }
-//    else {
-//        color = DARK_BLUE;
-//    }
-//
-//    if (node->Left)
-//        Show3(node->Left, high, foundedElement, VSCat(lpref, high ? VS({ " ", " " }) : VS({ " " })),
-//            VSCat(lpref, high ? VS({ ch_ddia, ch_ver }) : VS({ ch_ddia })),
-//            VSCat(lpref, high ? VS({ ch_hor, " " }) : VS({ ch_hor })),
-//            false, true, lines);
-//
-//    auto sval = "[" + to_string(node->Data) + "]";
-//    string coloredSval = (node->Data == foundedElement ? GREEN : color) + to_string(node->Data) + RESET; // Окрашиваем значение
-//    size_t sm = left || sval.empty() ? sval.size() / 2 : ((sval.size() + 1) / 2 - 1);
-//    for (size_t i = 0; i < sval.size(); ++i) {
-//        string colored = (node->Data == foundedElement && (i == 0 || i == sval.size() - 1)) ? GREEN + string(1, sval[i]) + RESET : color + string(1, sval[i]) + RESET; // Окрашиваем скобки и сам элемент
-//        lines->push_back(VSCat(i < sm ? lpref : i == sm ? cpref : rpref, { colored }));
-//    }
-//    if (node->Right)
-//        Show3(node->Right, high, foundedElement, VSCat(rpref, high ? VS({ ch_hor, " " }) : VS({ ch_hor })),
-//            VSCat(rpref, high ? VS({ ch_rddia, ch_ver }) : VS({ ch_rddia })),
-//            VSCat(rpref, high ? VS({ " ", " " }) : VS({ " " })),
-//            false, false, lines);
-//
-//    if (root) {
-//        VS out;
-//        for (size_t l = 0;; ++l) {
-//            bool last = true;
-//            string line;
-//            for (size_t i = 0; i < lines->size(); ++i)
-//                if (l < (*lines).at(i).size()) {
-//                    line += lines->at(i)[l];
-//                    last = false;
-//                }
-//                else line += " ";
-//            if (last) break;
-//            out.push_back(line);
-//        }
-//        for (size_t i = 0; i < out.size(); ++i)
-//            cout << out[i] << endl;
-//    }
-//}
-
-
 //Показать текущее дерево.
 void ShowAVLTree(AVLTree& tree, int foundedElement) {
-    //Show3(tree.GetRoot(), true, foundedElement);
-    Show2(tree.GetRoot(), true, foundedElement);
+    ShowTree(tree.GetRoot(), true, foundedElement);
 }
+
 //Показать меню для дерева.
 void MenuAVLTree(AVLTree& tree, int foundedElement)
 {
@@ -236,8 +78,7 @@ void MenuAVLTree(AVLTree& tree, int foundedElement)
     ShowAVLTree(tree, foundedElement);
     cout << endl;
 
-    /* cout << "Size:" << LIGHT_YELLOW << tree.GetSize() << RESET << endl;*/
-    cout << "Height:" << LIGHT_YELLOW << tree.GetHeight() << RESET << endl;
+    cout << "Height:" << LIGHT_YELLOW << tree.GetTreeHeight() << RESET << endl;
     cout << "Min Element:" << GREEN << tree.FindMin() << RESET;
     cout << "  Max Element:" << RED << tree.FindMax() << RESET << endl << endl;
 
@@ -245,7 +86,6 @@ void MenuAVLTree(AVLTree& tree, int foundedElement)
     cout << "[2]" << " - Remove element by value" << endl;
     cout << "[3]" << " - Find element by value" << endl;
     cout << "[4]" << " - CLear AVL Tree" << endl;
-
     cout << RED << "[0]" << RESET << " - Exit the Tree" << endl;
 }
 

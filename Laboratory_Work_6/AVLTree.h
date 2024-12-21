@@ -1,8 +1,8 @@
 #ifndef AVLTREE_H
 #define AVLTREE_H
-
 #include <iostream>
 #include "AVLNode.h"
+
 class AVLTree {
 private:
 	//Указатель на корень дерева.
@@ -11,40 +11,49 @@ private:
 	//Количество элементов в дереве.
 	int _size;
 
-	void InitializeTree(AVLTree*& tree);
-
-	int GetHeight(AVLNode* treeNode);
-
-	int GetBalanceFactor(AVLNode* treeNode);
-
-	void FixHeight(AVLNode* treeNode);
-
-	AVLNode* RotateLeft(AVLNode* treeNode);
-
-	AVLNode* RotateRight(AVLNode* treeNode);
-
-	AVLNode* Balance(AVLNode* treeNode);
-
-	AVLNode* Insert(AVLNode* treeNode, int key);
-
-	AVLNode* FindMinimal(AVLNode* treeNode);
-
-	AVLNode* RemoveMinimal(AVLNode* treeNode);
-
-	AVLNode* Remove(AVLNode* treeNode, int key);
-
-	AVLNode* FindNode(AVLNode* node, int key);
-
+	//Вычисляет текущую высоту дерева.
 	int CalculateHeight(AVLNode* node);
 
+	//Вставка нового ключа в дерево. Если дерево становится несбалансированным после вставки, выполняется балансировка.
+	AVLNode* Insert(AVLNode* treeNode, int key);
+
+	// Проверяет фактор баланса узла и выполняет вращения при необходимости.
+	AVLNode* Balance(AVLNode* treeNode);
+
+	//Обновляет высоту узла. Высота - максимальная высота его поддеревьев + 1.
+	void FixHeight(AVLNode* treeNode);
+
+	//Возвращает высоту для элемента.
+	int GetHeight(AVLNode* treeNode);
+
+	// Вычисляет фактор баланса, то есть разницц между высотой левого и правого поддеревьев.
+	int GetBalanceFactor(AVLNode* treeNode);
+
+	//Правый поворот для узла.
+	AVLNode* RotateRight(AVLNode* treeNode);
+
+	//Левый поворот для узла.
+	AVLNode* RotateLeft(AVLNode* treeNode);
+
+	//Удаляет узел с вводимым ключом и выполняет балансировку при необходимости.
+	AVLNode* Remove(AVLNode* treeNode, int key);
+
+	//Находит мимнимальный узел в поддереве.
+	AVLNode* FindMinimal(AVLNode* treeNode);
+
+	//Удаляет минимальный узел в поддереве и делает балансировку.
+	AVLNode* RemoveMinimal(AVLNode* treeNode);
+
+	// Возвращает указатель на найденный узел или nullptr, если узел не найден.
+	AVLNode* FindNode(AVLNode* node, int key);
+
+	//Удаляет все ветви у node.
 	void FreeTree(AVLNode*& node);
 
 public:
-	//Возврщает количество элементов в дереве.
-	int GetSize();
 
 	//Возвращает высоту дерева.
-	int GetHeight();
+	int GetTreeHeight();
 
 	//Возвращает текущий корень дерева.
 	AVLNode* GetRoot();
@@ -64,8 +73,10 @@ public:
 	//Возвращает максимальный элемент дерева.
 	int FindMax();
 
+	//Возвращает значение искомого элемента.
 	int FindValue(int data);
 
+	//Очищает всё дерево.
 	void ClearTree();
 };
 #endif
