@@ -127,12 +127,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AVLTree.cpp" />
+    <ClCompile Include="AVLTreeConsole.cpp" />
     <ClCompile Include="Laboratory_Work_6.cpp" />
     <ClCompile Include="RBTree.cpp" />
     <ClCompile Include="RedBlackTreeConsole.cpp" />
     <ClCompile Include="Validator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AVLNode.h" />
+    <ClInclude Include="AVLTree.h" />
+    <ClInclude Include="AVLTreeConsole.h" />
     <ClInclude Include="Colors.h" />
     <ClInclude Include="RBNode.h" />
     <ClInclude Include="RBTree.h" />

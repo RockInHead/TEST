@@ -3,6 +3,7 @@
 #include"Colors.h"
 #include"RBTree.h"
 #include"RedBlackTreeConsole.h"
+#include"AVLTreeConsole.h"
 //#include"BinaryTree.h"
 //#include "BinaryTreeConsole.h"
 //#include"CartesianTreeConsole.h"
@@ -20,6 +21,7 @@ void Menu()
 int main()
 {
     RBTree rbTree = RBTree();
+    AVLTree avlTree = AVLTree();
     //CartesianTree cartesianTree = CartesianTree();
 
     bool programState = true;
@@ -35,7 +37,7 @@ int main()
             break;
         case 2:
             system("cls");
-          /*  CartesianTreeConsole(cartesianTree);*/
+            AVLTreeConsole(avlTree);
             break;
         case 0:
             programState = false;

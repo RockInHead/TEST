@@ -43,6 +43,18 @@
     <Filter Include="Файлы заголовков\Logic\RB Tree">
       <UniqueIdentifier>{6818ddc1-cc36-4be4-ba02-9510a6cfcb74}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\Console\AVL Tree">
+      <UniqueIdentifier>{00d6d46f-4cb9-4116-b739-aa6ada6617cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Console\AVL Tree">
+      <UniqueIdentifier>{4eafed4f-96b9-4ebe-a3db-c2fa2831a8c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Logic\AVL Tree">
+      <UniqueIdentifier>{a1890c93-c27d-43d3-92c6-6c21787555a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Logic\AVL Tree">
+      <UniqueIdentifier>{a11ca3b8-cf50-4517-b3b6-f7779d8f99f8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Laboratory_Work_6.cpp">
@@ -56,6 +68,12 @@
     </ClCompile>
     <ClCompile Include="RBTree.cpp">
       <Filter>Файлы ресурсов\Logic\RB Tree</Filter>
+    </ClCompile>
+    <ClCompile Include="AVLTreeConsole.cpp">
+      <Filter>Файлы ресурсов\Console\AVL Tree</Filter>
+    </ClCompile>
+    <ClCompile Include="AVLTree.cpp">
+      <Filter>Файлы ресурсов\Logic\AVL Tree</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +94,15 @@
     </ClInclude>
     <ClInclude Include="RBTree.h">
       <Filter>Файлы заголовков\Logic\RB Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="AVLTreeConsole.h">
+      <Filter>Файлы заголовков\Console\AVL Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="AVLTree.h">
+      <Filter>Файлы заголовков\Logic\AVL Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="AVLNode.h">
+      <Filter>Файлы заголовков\Logic\AVL Tree</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
