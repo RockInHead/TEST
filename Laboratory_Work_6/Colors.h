@@ -5,6 +5,7 @@ using namespace std;
 const string RESET = "\033[0m";  // Сброс цвета
 const string RED = "\033[31m";   // Красный
 const string GREEN = "\033[32m"; // Зеленый
+const string DARK_GREEN = "\033[32;1m"; // Зеленый
 const string CYAN = "\033[36m";
 const string LIGHT_YELLOW = "\033[33m";
 const string LIGHT_BLUE = "\033[94m";

@@ -33,10 +33,11 @@ private:
 
 	AVLNode* Remove(AVLNode* treeNode, int key);
 
-	AVLNode* Find(AVLNode* treeNode, int key);
+	AVLNode* FindNode(AVLNode* node, int key);
 
 	void FreeTree(AVLNode* treeNode);
 
+	int CalculateHeight(AVLNode* node);
 
 public:
 	//Возврщает количество элементов в дереве.

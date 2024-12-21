@@ -43,6 +43,65 @@ void Show1(AVLNode const* node, bool high, vector< string> const& lpref, vector<
             cout << out[i] << endl;
     }
 }
+void Show2(AVLNode const* node, bool high, int foundedElement, vector<string> const& lpref, vector<string> const& cpref, vector<string> const& rpref, bool root, bool left, shared_ptr<vector<vector<string>>> lines) {
+    if (!node) return;
+    typedef vector<string> VS;
+    auto VSCat = [](VS const& a, VS const& b) { auto r = a; r.insert(r.end(), b.begin(), b.end()); return r; };
+    if (root) lines = make_shared<vector<VS>>();
+
+    if (node->Left)
+        Show2(node->Left, high,foundedElement, VSCat(lpref, high ? VS({ " ", " " }) : VS({ " " })),
+            VSCat(lpref, high ? VS({ ch_ddia, ch_ver }) : VS({ ch_ddia })),
+            VSCat(lpref, high ? VS({ ch_hor, " " }) : VS({ ch_hor })),
+            false, true, lines);
+
+    auto sval = "[" + to_string(node->Data) + "]";
+    string coloredSval;
+
+    // Если элемент равен foundedElement, окрашиваем скобки в зеленый
+    if (node->Data == foundedElement) {
+        coloredSval = DARK_GREEN + "[" + to_string(node->Data) + "]" + RESET;
+    }
+
+
+    size_t sm = left || sval.empty() ? sval.size() / 2 : ((sval.size() + 1) / 2 - 1);
+
+    for (size_t i = 0; i < sval.size(); ++i) {
+        string colored;
+        // Если элемент равен foundedElement, окрашиваем скобки независимо от их позиции
+        if (node->Data == foundedElement && (i == 0 || i == sval.size() - 1)) {
+            colored = DARK_GREEN + string(1, sval[i]) + RESET; // Окрашиваем символы скобок
+        }
+        else {
+            colored = LIGHT_YELLOW + string(1, sval[i]) + RESET; // Окрашиваем остальные символы
+        }
+        lines->push_back(VSCat(i < sm ? lpref : i == sm ? cpref : rpref, { colored }));
+    }
+
+    if (node->Right)
+        Show2(node->Right, high,foundedElement, VSCat(rpref, high ? VS({ ch_hor, " " }) : VS({ ch_hor })),
+            VSCat(rpref, high ? VS({ ch_rddia, ch_ver }) : VS({ ch_rddia })),
+            VSCat(rpref, high ? VS({ " ", " " }) : VS({ " " })),
+            false, false, lines);
+
+    if (root) {
+        VS out;
+        for (size_t l = 0;; ++l) {
+            bool last = true;
+            string line;
+            for (size_t i = 0; i < lines->size(); ++i)
+                if (l < (*lines).at(i).size()) {
+                    line += lines->at(i)[l];
+                    last = false;
+                }
+                else line += " ";
+            if (last) break;
+            out.push_back(line);
+        }
+        for (size_t i = 0; i < out.size(); ++i)
+            cout << out[i] << endl;
+    }
+}
 
 //Выводит дерево в консоль.
 //void Show2(RBNode* root, int space) {
@@ -168,7 +227,7 @@ void Show1(AVLNode const* node, bool high, vector< string> const& lpref, vector<
 //Показать текущее дерево.
 void ShowAVLTree(AVLTree& tree, int foundedElement) {
     //Show3(tree.GetRoot(), true, foundedElement);
-    Show1(tree.GetRoot(), true);
+    Show2(tree.GetRoot(), true, foundedElement);
 }
 //Показать меню для дерева.
 void MenuAVLTree(AVLTree& tree, int foundedElement)
@@ -178,9 +237,9 @@ void MenuAVLTree(AVLTree& tree, int foundedElement)
     cout << endl;
 
     /* cout << "Size:" << LIGHT_YELLOW << tree.GetSize() << RESET << endl;*/
-    /*cout << "Height:" << LIGHT_YELLOW << tree.GetHeight() << RESET << endl;
+    cout << "Height:" << LIGHT_YELLOW << tree.GetHeight() << RESET << endl;
     cout << "Min Element:" << GREEN << tree.FindMin() << RESET;
-    cout << "  Max Element:" << RED << tree.FindMax() << RESET << endl << endl;*/
+    cout << "  Max Element:" << RED << tree.FindMax() << RESET << endl << endl;
 
     cout << "[1]" << " - Add new elemnt" << endl;
     cout << "[2]" << " - Remove element by value" << endl;
@@ -210,16 +269,16 @@ void AVLTreeConsole(AVLTree& tree) {
             system("cls");
             break;
         case 2:
-           /* cout << "Enter a value:";
+            cout << "Enter a value:";
             cin >> deletedElement;
             tree.DeleteElement(deletedElement);
-            system("cls");*/
+            system("cls");
             break;
         case 3:
-            /*cout << "Enter a value:";
+            cout << "Enter a value:";
             cin >> seacrhingElement;
             foundedElement = tree.FindValue(seacrhingElement);
-            system("cls");*/
+            system("cls");
 
             /*if (foundedElement != -1) {
                 cout << "Element is " << foundedElement << endl << endl;
