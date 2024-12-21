@@ -167,7 +167,8 @@ void Show1(AVLNode const* node, bool high, vector< string> const& lpref, vector<
 
 //Показать текущее дерево.
 void ShowAVLTree(AVLTree& tree, int foundedElement) {
-    /*Show3(tree.GetRoot(), true, foundedElement);*/
+    //Show3(tree.GetRoot(), true, foundedElement);
+    Show1(tree.GetRoot(), true);
 }
 //Показать меню для дерева.
 void MenuAVLTree(AVLTree& tree, int foundedElement)
@@ -203,11 +204,11 @@ void AVLTreeConsole(AVLTree& tree) {
         switch (commandNumber)
         {
         case 1:
-            /*cout << "Enter a value:";
+            cout << "Enter a value:";
             newElement = ValidCin();
             tree.AddElement(newElement);
             system("cls");
-            break;*/
+            break;
         case 2:
            /* cout << "Enter a value:";
             cin >> deletedElement;
