@@ -28,6 +28,21 @@
     <Filter Include="Файлы ресурсов\Logic\RB Tree">
       <UniqueIdentifier>{0d3b8e01-60d0-40b5-a6a5-8f4ad7cdfc5d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\Console">
+      <UniqueIdentifier>{88fa81e6-9772-4060-8656-bc18c79329b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Console\RB Tree">
+      <UniqueIdentifier>{202fe051-1750-48af-83f1-e993ae6ed01b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Console\Helpers">
+      <UniqueIdentifier>{0e01420e-ccf6-4ab7-9213-9f4afdcc8fcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Logic">
+      <UniqueIdentifier>{e4701fad-f48e-4f45-87f1-10b280155f02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Logic\RB Tree">
+      <UniqueIdentifier>{6818ddc1-cc36-4be4-ba02-9510a6cfcb74}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Laboratory_Work_6.cpp">
@@ -44,23 +59,23 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Colors.h">
-      <Filter>Файлы ресурсов\Console\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Validator.h">
-      <Filter>Файлы ресурсов\Console\Helpers</Filter>
-    </ClInclude>
     <ClInclude Include="RedBlackTreeConsole.h">
-      <Filter>Файлы ресурсов\Console\BR Tree</Filter>
-    </ClInclude>
-    <ClInclude Include="RBTree.h">
-      <Filter>Файлы ресурсов\Logic\RB Tree</Filter>
-    </ClInclude>
-    <ClInclude Include="RBNode.h">
-      <Filter>Файлы ресурсов\Logic\RB Tree</Filter>
+      <Filter>Файлы заголовков\Console\RB Tree</Filter>
     </ClInclude>
     <ClInclude Include="Symbols.h">
-      <Filter>Файлы ресурсов\Console\Helpers</Filter>
+      <Filter>Файлы заголовков\Console\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Colors.h">
+      <Filter>Файлы заголовков\Console\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Validator.h">
+      <Filter>Файлы заголовков\Console\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="RBNode.h">
+      <Filter>Файлы заголовков\Logic\RB Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="RBTree.h">
+      <Filter>Файлы заголовков\Logic\RB Tree</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

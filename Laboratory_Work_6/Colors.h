@@ -13,5 +13,8 @@ const string MAGENTA = "\033[35m"; // Пурпурный
 const string LIGHT_GREEN = "\033[92m";      // Светло-зеленый
 const string LIGHT_CYAN = "\033[96m";       // Светло-голубой
 const string LIGHT_MAGENTA = "\033[95m";    // Светло-пурпурный
+const string DARK_BLUE = "\033[34m"; // ANSI-код для темно-синего
+const string GRAY = "\033[37m";    // ANSI-код для серого
+const string BROWN = "\033[33m";   // ANSI-код для коричневого
 #endif
 
