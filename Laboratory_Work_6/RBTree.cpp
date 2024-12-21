@@ -518,3 +518,25 @@ RBNode* RBTree::FindNode(RBNode* node, const int data)
 
 	return FindNode(node->Right, data);
 }
+
+
+//Удаляет все ветви у node.
+void RBTree::FreeTree(RBNode*& node)
+{
+	if (node == nullptr)
+	{
+		return;
+	}
+	FreeTree(node->Left);
+	FreeTree(node->Right);
+	delete node;
+	node = nullptr;
+}
+
+//Удаляет все элементы дерева.
+void RBTree::ClearTree() {
+	if (_size != 0) {
+		FreeTree(_root);
+		_size = 0;
+	}
+}

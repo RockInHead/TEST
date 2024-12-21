@@ -55,6 +55,8 @@ private:
 	////Удаляет элемент дерева.
 	//void DeleteNode(Node*& node, int data);
 
+	void FreeTree(RBNode*& node);
+
 public:
 	//Возврщает количество элементов в дереве.
 	int GetSize();
@@ -81,5 +83,7 @@ public:
 	int FindMax();
 
 	int FindValue(int data);
+
+	void ClearTree();
 };
 #endif

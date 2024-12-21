@@ -7,7 +7,7 @@ struct AVLNode
 	int Data;
 
 	//Высота элемента.
-	size_t Height = 1;
+	int Height;
 
 	//Указатель на левый элемент.
 	AVLNode* Left;
@@ -16,7 +16,7 @@ struct AVLNode
 	AVLNode* Right;
 
 	//Конуструкторы.
-	AVLNode() : Data(-1),Left(nullptr), Right(nullptr) {}
-	AVLNode(int data) : Data(data), Left(nullptr), Right(nullptr) {}
+	AVLNode() : Data(-1),Height(1),Left(nullptr), Right(nullptr) {}
+	AVLNode(int data) : Data(data), Height(1), Left(nullptr), Right(nullptr) {}
 };
 #endif

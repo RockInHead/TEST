@@ -107,7 +107,7 @@ void AVLTree::FixHeight(AVLNode* treeNode)
 	treeNode->Height = (heightLeft > heightRight ? heightLeft : heightRight) + 1;
 }
 
-size_t AVLTree::GetHeight(AVLNode* treeNode)
+int AVLTree::GetHeight(AVLNode* treeNode)
 {
 	return treeNode ? treeNode->Height : 0;
 }
@@ -231,4 +231,25 @@ AVLNode* AVLTree::FindNode(AVLNode* node, const int key){
 	}
 
 	return FindNode(node->Right, key);
+}
+
+//Удаляет все ветви у node.
+void AVLTree::FreeTree(AVLNode*& node)
+{
+	if (node == nullptr)
+	{
+		return;
+	}
+	FreeTree(node->Left);
+	FreeTree(node->Right);
+	delete node;
+	node = nullptr;
+}
+
+//Удаляет все элементы дерева.
+void AVLTree::ClearTree() {
+	if (_size != 0) {
+		FreeTree(_root);
+		_size = 0;
+	}
 }

@@ -244,6 +244,8 @@ void MenuAVLTree(AVLTree& tree, int foundedElement)
     cout << "[1]" << " - Add new elemnt" << endl;
     cout << "[2]" << " - Remove element by value" << endl;
     cout << "[3]" << " - Find element by value" << endl;
+    cout << "[4]" << " - CLear AVL Tree" << endl;
+
     cout << RED << "[0]" << RESET << " - Exit the Tree" << endl;
 }
 
@@ -259,7 +261,7 @@ void AVLTreeConsole(AVLTree& tree) {
     {
         MenuAVLTree(tree, foundedElement);
         int commandNumber;
-        commandNumber = ValidInputMenu(0, 3);
+        commandNumber = ValidInputMenu(0, 4);
         switch (commandNumber)
         {
         case 1:
@@ -279,14 +281,10 @@ void AVLTreeConsole(AVLTree& tree) {
             cin >> seacrhingElement;
             foundedElement = tree.FindValue(seacrhingElement);
             system("cls");
-
-            /*if (foundedElement != -1) {
-                cout << "Element is " << foundedElement << endl << endl;
-            }
-            else {
-                cout << "Element wasn't found :(" << endl << endl;
-            }*/
-
+            break;
+        case 4:
+            tree.ClearTree();
+            system("cls");
             break;
         case 0:
             system("cls");

@@ -13,7 +13,7 @@ private:
 
 	void InitializeTree(AVLTree*& tree);
 
-	size_t GetHeight(AVLNode* treeNode);
+	int GetHeight(AVLNode* treeNode);
 
 	int GetBalanceFactor(AVLNode* treeNode);
 
@@ -35,9 +35,9 @@ private:
 
 	AVLNode* FindNode(AVLNode* node, int key);
 
-	void FreeTree(AVLNode* treeNode);
-
 	int CalculateHeight(AVLNode* node);
+
+	void FreeTree(AVLNode*& node);
 
 public:
 	//Возврщает количество элементов в дереве.
@@ -65,5 +65,7 @@ public:
 	int FindMax();
 
 	int FindValue(int data);
+
+	void ClearTree();
 };
 #endif
