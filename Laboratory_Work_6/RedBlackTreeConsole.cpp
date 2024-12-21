@@ -111,26 +111,79 @@ void Show1(RBNode const* node, bool high, vector<string> const& lpref, vector<st
     }
 }
 
+void Show3(RBNode const* node, bool high,  int foundedElement  ,vector<string> const& lpref, vector<string> const& cpref, vector<string> const& rpref, bool root, bool left, shared_ptr<vector<vector<string>>> lines) {
+    if (!node) return;
+    typedef vector<string> VS;
+    auto VSCat = [](VS const& a, VS const& b) { auto r = a; r.insert(r.end(), b.begin(), b.end()); return r; };
+    if (root) lines = make_shared<vector<VS>>();
+
+    // Информация о цвете
+    string color;
+    if (node->Color == Color::Red) {
+        color = RED;
+    }
+    else {
+        color = DARK_BLUE;
+    }
+
+    if (node->Left)
+        Show3(node->Left, high, foundedElement, VSCat(lpref, high ? VS({ " ", " " }) : VS({ " " })),
+            VSCat(lpref, high ? VS({ ch_ddia, ch_ver }) : VS({ ch_ddia })),
+            VSCat(lpref, high ? VS({ ch_hor, " " }) : VS({ ch_hor })),
+            false, true, lines);
+
+    auto sval = "[" + to_string(node->Data) + "]";
+    string coloredSval = (node->Data == foundedElement ? GREEN : color) + to_string(node->Data) + RESET; // Окрашиваем значение
+    size_t sm = left || sval.empty() ? sval.size() / 2 : ((sval.size() + 1) / 2 - 1);
+    for (size_t i = 0; i < sval.size(); ++i) {
+        string colored = (node->Data == foundedElement && (i == 0 || i == sval.size() - 1)) ? GREEN + string(1, sval[i]) + RESET : color + string(1, sval[i]) + RESET; // Окрашиваем скобки и сам элемент
+        lines->push_back(VSCat(i < sm ? lpref : i == sm ? cpref : rpref, { colored }));
+    }
+    if (node->Right)
+        Show3(node->Right, high,foundedElement, VSCat(rpref, high ? VS({ ch_hor, " " }) : VS({ ch_hor })),
+            VSCat(rpref, high ? VS({ ch_rddia, ch_ver }) : VS({ ch_rddia })),
+            VSCat(rpref, high ? VS({ " ", " " }) : VS({ " " })),
+            false, false, lines);
+
+    if (root) {
+        VS out;
+        for (size_t l = 0;; ++l) {
+            bool last = true;
+            string line;
+            for (size_t i = 0; i < lines->size(); ++i)
+                if (l < (*lines).at(i).size()) {
+                    line += lines->at(i)[l];
+                    last = false;
+                }
+                else line += " ";
+            if (last) break;
+            out.push_back(line);
+        }
+        for (size_t i = 0; i < out.size(); ++i)
+            cout << out[i] << endl;
+    }
+}
 
 
 //Показать текущее дерево.
-void ShowRedBlackTree(RBTree& tree) {
-    Show1(tree.GetRoot(), true);
+void ShowRedBlackTree(RBTree& tree, int foundedElement) {
+    Show3(tree.GetRoot(), true, foundedElement);
 }
 //Показать меню для дерева.
-void MenuRedBlackTree(RBTree& tree)
+void MenuRedBlackTree(RBTree& tree, int foundedElement)
 {
     cout << RED << "Red-Black Tree:" << RESET << endl;
-    ShowRedBlackTree(tree);
+    ShowRedBlackTree(tree, foundedElement);
     cout << endl;
 
-    /*cout << "Size:" << LIGHT_YELLOW << tree.GetSize() << RESET << endl;
-    cout << "Height:" << RED << tree.GetHeight() << RESET << endl;
+    cout << "Size:" << LIGHT_YELLOW << tree.GetSize() << RESET << endl;
+    /*cout << "Height:" << RED << tree.GetHeight() << RESET << endl;
     cout << "Min Element:" << GREEN << tree.FindMin() << RESET;
     cout << "  Max Element:" << RED << tree.FindMax() << RESET << endl << endl;*/
 
     cout << "[1]" << " - Add new elemnt" << endl;
     cout << "[2]" << " - Remove element by value" << endl;
+    cout << "[3]" << " - Find element by value" << endl;
     cout << RED << "[0]" << RESET << " - Exit the Tree" << endl;
 }
 
@@ -140,10 +193,11 @@ void RedBlackTreeConsole(RBTree& tree) {
     int commandNumber;
     int newElement;
     int deletedElement;
-    int chosenElement;
+    int seacrhingElement;
+    int foundedElement=-1;
     while (stackState)
     {
-        MenuRedBlackTree(tree);
+        MenuRedBlackTree(tree, foundedElement);
         int commandNumber;
         commandNumber = ValidInputMenu(0, 3);
         switch (commandNumber)
@@ -159,6 +213,19 @@ void RedBlackTreeConsole(RBTree& tree) {
             cin >> deletedElement;
             tree.DeleteElement(deletedElement);
             system("cls");
+            break;
+        case 3:
+            cout << "Enter a value:";
+            cin >> seacrhingElement;
+            foundedElement=tree.FindValue(seacrhingElement);
+            system("cls");
+            /*if (foundedElement != -1) {
+                cout << "Element is " << foundedElement << endl << endl;
+            }
+            else {
+                cout << "Element wasn't found :(" << endl << endl;
+            }*/
+
             break;
         case 0:
             system("cls");

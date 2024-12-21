@@ -23,7 +23,9 @@ void RBTree::SetColor(RBNode*& node, const Color color)
 	}
 	node->Color = color;
 }
-
+int RBTree::GetSize() {
+	return _size;
+}
 void RBTree::AddElement(int data) {
 	InsertValue(_root, data);
 }
@@ -32,6 +34,7 @@ void RBTree::InsertValue(RBNode*& root, const int value) {
 	/*node->Data = value;*/
 	root = InsertNode(root, node);
 	FixInsertRBTree(node);
+	_size++;
 }
 
 RBNode* RBTree::InsertNode(RBNode*& root, RBNode*& node)
@@ -429,4 +432,34 @@ inline int RBTree::DeleteCase4(RBNode*& root, RBNode*& sibling, RBNode*& parent,
 		}
 	}
 	return 0;
+}
+
+int RBTree::FindValue(int data) {
+	if (_size != 0) {
+		RBNode* foundNode = FindNode(_root, data);
+		if (foundNode != nullptr) {
+			return foundNode->Data;
+		}
+		return -1;
+	}
+}
+
+RBNode* RBTree::FindNode(RBNode* node, const int data)
+{
+	if (node == nullptr)
+	{
+		return nullptr;
+	}
+
+	if (node->Data == data)
+	{
+		return node;
+	}
+
+	if (node->Data > data)
+	{
+		return FindNode(node->Left, data);
+	}
+
+	return FindNode(node->Right, data);
 }

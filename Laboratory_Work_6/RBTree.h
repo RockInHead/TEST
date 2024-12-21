@@ -41,6 +41,8 @@ private:
 	inline int DeleteCase3(RBNode*& root, RBNode*& sibling, RBNode*& parent, RBNode*& pointer);
 
 	inline int DeleteCase4(RBNode*& root, RBNode*& sibling, RBNode*& parent, RBNode*& pointer);
+
+	RBNode* FindNode(RBNode* node, const int data);
 	////Инициализиурет корень дерева.
 	//void InitRoot(int data);
 
@@ -78,5 +80,6 @@ public:
 	//Возвращает максимальный элемент дерева.
 	int FindMax();
 
+	int FindValue(int data);
 };
 #endif
