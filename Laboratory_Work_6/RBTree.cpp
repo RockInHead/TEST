@@ -1,9 +1,11 @@
 #include"RBTree.h"
 
+//Возвращает текущий корень дерева.
 RBNode* RBTree::GetRoot() {
 	return _root;
 }
 
+//Конструктор по умолчанию.
 RBTree::RBTree() :_size(0), _root(nullptr) {}
 
 //Вычисляет текущую высоту дерева.
@@ -22,7 +24,7 @@ int RBTree::GetHeight() {
 }
 
 
-
+// Возвращает цвет узла. Если узел равен nullptr, возвращает черный цвет.
 Color RBTree::GetColor(RBNode* node)
 {
 	if (node == nullptr)
@@ -32,6 +34,7 @@ Color RBTree::GetColor(RBNode* node)
 	return node->Color;
 }
 
+// Устанавливает цвет узла дереве. Если узел равен nullptr, операция игнорируется.
 void RBTree::SetColor(RBNode*& node, const Color color)
 {
 	if (node == nullptr)
@@ -46,12 +49,7 @@ int RBTree::FindMin() {
 	{
 		return 0;
 	}
-	RBNode* temp = _root;
-	while (temp->Left != nullptr)
-	{
-		temp = temp->Left;
-	}
-	return temp->Data;
+	return MinValueNode(_root)->Data;
 }
 
 //Возвращает максимальный элемент дерева.
@@ -68,20 +66,17 @@ int RBTree::FindMax() {
 	return temp->Data;
 }
 
-int RBTree::GetSize() {
-	return _size;
-}
+//Добавление элемента в дерево.
 void RBTree::AddElement(int data) {
-	InsertValue(_root, data);
-}
-void RBTree::InsertValue(RBNode*& root, const int value) {
-	RBNode* node = new RBNode(value);
-	/*node->Data = value;*/
-	root = InsertNode(root, node);
+	RBNode* node = new RBNode(data);
+	_root = InsertNode(_root, node);
 	FixInsertRBTree(node);
 	_size++;
+
 }
 
+
+// Вставляет новый узел по корню root. Возвращает новый корень.
 RBNode* RBTree::InsertNode(RBNode*& root, RBNode*& node)
 {
 	if (root == nullptr)
@@ -103,6 +98,7 @@ RBNode* RBTree::InsertNode(RBNode*& root, RBNode*& node)
 	return root;
 }
 
+//Поправялет свойства дерева после вставки элемента. Выполняет повороты и перекраску узлов для восстановления правильной структуры дерева.
 void RBTree::FixInsertRBTree( RBNode*& node)
 {
 	RBNode* parent = nullptr;
@@ -111,9 +107,11 @@ void RBTree::FixInsertRBTree( RBNode*& node)
 	{
 		parent = node->Parent;
 		grandParent = parent->Parent;
+		// Если родитель — левый ребёнок дедушки
 		if (parent == grandParent->Left)
 		{
 			RBNode* uncle = grandParent->Right;
+			// Случай 1: Дядя красный — просто перекрашиваем.
 			if (GetColor(uncle) == Color::Red)
 			{
 				SetColor(uncle, Color::Black);
@@ -123,12 +121,14 @@ void RBTree::FixInsertRBTree( RBNode*& node)
 			}
 			else
 			{
+				// Случай 2: Узел является правым ребёнком — поворот налево.
 				if (node == parent->Right)
 				{
 					RotateLeft(_root, parent);
 					node = parent;
 					parent = node->Parent;
 				}
+				// Случай 3: Узел является левым ребёнком — поворот направо.
 				RotateRight(_root, grandParent);
 				const Color color = grandParent->Color;
 				grandParent->Color = parent->Color;
@@ -136,6 +136,7 @@ void RBTree::FixInsertRBTree( RBNode*& node)
 				node = parent;
 			}
 		}
+		// То же, что и выше, но для случая, когда родитель — правый ребёнок.
 		else
 		{
 			RBNode* uncle = grandParent->Left;
@@ -162,9 +163,11 @@ void RBTree::FixInsertRBTree( RBNode*& node)
 			}
 		}
 	}
+	// Устанавливаем корень в черный цвет.
 	SetColor(_root, Color::Black);
 }
 
+// Поворачивает поддерево налево вокруг заданного узла. Если заданный узел имеет ненулевого правого ребенка.
 void RBTree::RotateLeft(RBNode*& root, RBNode*& node)
 {
 	RBNode* rightChild = node->Right;
@@ -177,6 +180,7 @@ void RBTree::RotateLeft(RBNode*& root, RBNode*& node)
 
 	rightChild->Parent = node->Parent;
 
+	//Обновяем корень поддерева, если нет родителя для node.
 	if (node->Parent == nullptr)
 	{
 		root = rightChild;
@@ -194,6 +198,7 @@ void RBTree::RotateLeft(RBNode*& root, RBNode*& node)
 	node->Parent = rightChild;
 }
 
+// Поворачивает поддерево направо вокруг заданного узла. Если заданный узел имеет ненулевого левого ребенка.
 void RBTree::RotateRight(RBNode*& root, RBNode*& node)
 {
 	RBNode* leftChild = node->Left;
@@ -206,6 +211,7 @@ void RBTree::RotateRight(RBNode*& root, RBNode*& node)
 
 	leftChild->Parent = node->Parent;
 
+	//Обновяем корень поддерева, если нет родителя для node.
 	if (node->Parent == nullptr)
 	{
 		root = leftChild;
@@ -223,18 +229,23 @@ void RBTree::RotateRight(RBNode*& root, RBNode*& node)
 	node->Parent = leftChild;
 }
 
+//Удаление элемента по значению.
 void RBTree::DeleteElement(int data) {
-	DeleteValue(_root, data);
+	/*DeleteValue(_root, data);*/
+	RBNode* node = DeleteNode(_root, data);
+	FixDeleteRBTree(_root, node);
 }
 
-void RBTree::DeleteValue(RBNode*& root, const int data)
-{
-	RBNode* node = DeleteNode(root, data);
-	FixDeleteRBTree(root, node);
-}
+//void RBTree::DeleteValue(RBNode*& root, const int data)
+//{
+//	RBNode* node = DeleteNode(root, data);
+//	FixDeleteRBTree(root, node);
+//}
 
+// Ищет узел по значению и удаляет его из дерева. Возвращает указатель на удаляемый узел.
 RBNode* RBTree::DeleteNode(RBNode*& root, const int data)
 {
+	// Узел не найден.
 	if (root == nullptr)
 	{
 		return root;
@@ -249,17 +260,21 @@ RBNode* RBTree::DeleteNode(RBNode*& root, const int data)
 	{
 		return DeleteNode(root->Right, data);
 	}
-
+	// Если узел имеет одного или ни одного ребенка.
 	if (root->Left == nullptr || root->Right == nullptr)
 	{
 		return root;
 	}
 
+	// Если у узла два ребенка, находим Узел с минимальным значением в правом поддереве.
 	RBNode* temp = MinValueNode(root->Right);
 	root->Data = temp->Data;
+
+	// Удаляем узел с минимальным значением.
 	return DeleteNode(root->Right, temp->Data);
 }
 
+// Находит узел с минимальным значением в поддереве. Возвращает указатель на этот узел.
 RBNode* RBTree::MinValueNode(RBNode*& node)
 {
 	RBNode* pointer = node;
@@ -272,21 +287,24 @@ RBNode* RBTree::MinValueNode(RBNode*& node)
 	return pointer;
 }
 
-
+// Исправляет свойства дерева после удаления узла, вызывая соответсвующие случаи. node - узел, который был удален.
 void RBTree::FixDeleteRBTree(RBNode*& root, RBNode*& node)
 {
-	//node == root || node == nullptr.
+	// Проверка, является ли узел корнем или нулевым.
 	if (DeleteCase1(root, node) == 1)
 	{
 		return;
 	}
 
+	// Если удалённый узел или его ребёнки красные, восстанавливаем дерево для этого случая.
 	if (GetColor(node) == Color::Red
 		|| GetColor(node->Left) == Color::Red
 		|| GetColor(node->Right) == Color::Red)
 	{
+		// Обрабатываем случай 2.
 		DeleteCase2(root, node);
 	}
+	// Если удалённый узел и его дети чёрные.
 	else if (GetColor(node) != Color::Red
 		&& GetColor(node->Left) != Color::Red
 		&& GetColor(node->Right) != Color::Red)
@@ -294,20 +312,26 @@ void RBTree::FixDeleteRBTree(RBNode*& root, RBNode*& node)
 		RBNode* sibling = nullptr;
 		RBNode* parent = nullptr;
 		RBNode* pointer = node;
+
+		// Помечаем удалённый узел как "двойной черный".
 		SetColor(pointer, Color::DoubleBlack);
+
 		while (pointer != root && GetColor(pointer) == Color::DoubleBlack)
 		{
 			parent = pointer->Parent;
 			if (pointer == parent->Left)
 			{
+				// Если наш узел — левый ребёнок, обрабатываем случай 3.
 				if (DeleteCase3(root, sibling, parent, pointer) == 1)
 				{
 					break;
 				}
 
 			}
+			// Если узел — правый ребёнок.
 			else if (pointer != parent->Left)
 			{
+				// Обрабатываем случай 4.
 				if (DeleteCase4(root, sibling, parent, pointer) == 1)
 				{
 					break;
@@ -315,6 +339,7 @@ void RBTree::FixDeleteRBTree(RBNode*& root, RBNode*& node)
 			}
 		}
 
+		// Удаляем узел и освобождаем память.
 		if (node == node->Parent->Left)
 		{
 			node->Parent->Left = nullptr;
@@ -324,10 +349,14 @@ void RBTree::FixDeleteRBTree(RBNode*& root, RBNode*& node)
 			node->Parent->Right = nullptr;
 		}
 		delete node;
+
+		// Устанавливаем корень дерева в черный цвет.
 		SetColor(root, Color::Black);
 	}
 }
 
+// Обрабатывает случай 1 удаления узла в дереве.
+// Удаляет корень дерева, если он существует, или возвращает 1, если узел нулевой.
 inline int RBTree::DeleteCase1(RBNode*& root, RBNode*& node)
 {
 	if (node == nullptr)
@@ -335,8 +364,10 @@ inline int RBTree::DeleteCase1(RBNode*& root, RBNode*& node)
 		return 1;
 	}
 
+	// Если удаляемый узел — корень
 	if (node == root)
 	{
+		// Проверяем, есть ли у корня потомки
 		if (node->Left == nullptr && node->Right == nullptr)
 		{
 			delete root;
@@ -345,28 +376,32 @@ inline int RBTree::DeleteCase1(RBNode*& root, RBNode*& node)
 			return 1;
 			
 		}
+
+		// Если у корня есть потомки, обновляем корень
 		RBNode* current = root;
-		root = root->Left != nullptr
-			? root->Left
-			: root->Right;
+		root = root->Left != nullptr ? root->Left : root->Right;
+
+		// Устанавливаем новый корень как черный
 		SetColor(root, Color::Black);
 		root->Parent = nullptr;
+
+		// Освобождаем память от старого корня.
 		delete current;
 		_size--;
 		return 1;
 		
 	}
-	/*_size--;*/
+	// Удаление не произошло.
 	return 0;
 }
 
-
+// Обрабатывает случай 2 удаления узла в дереве.
+// Удаляет узел, который имеет одного или ни одного потомка, связывая оставшегося ребенка с родителем удаляемого узла.
 inline void RBTree::DeleteCase2(RBNode*& root, RBNode*& node)
 {
-	RBNode* child = node->Left != nullptr
-		? node->Left
-		: node->Right;
+	RBNode* child = node->Left != nullptr ? node->Left : node->Right;
 
+	// Если удаляемый узел — левый ребенок родителя
 	if (node == node->Parent->Left)
 	{
 		node->Parent->Left = child;
@@ -377,6 +412,7 @@ inline void RBTree::DeleteCase2(RBNode*& root, RBNode*& node)
 		SetColor(child, Color::Black);
 		delete node;
 	}
+	// Если удаляемый узел — правый ребенок родителя.
 	else if (node == node->Parent->Right)
 	{
 		node->Parent->Right = child;
@@ -391,16 +427,21 @@ inline void RBTree::DeleteCase2(RBNode*& root, RBNode*& node)
 
 }
 
-
+// Обрабатывает случай 3 удаления узла в черно-красном дереве.
+// Когда брат узла является красным. Возвращает 1, если узел был удалён, иначе 0.
 inline int RBTree::DeleteCase3(RBNode*& root, RBNode*& sibling, RBNode*& parent, RBNode*& pointer)
 {
+	// Получаем брата.
 	sibling = parent->Right;
+
+	// Если брат красный
 	if (GetColor(sibling) == Color::Red)
 	{
 		SetColor(sibling, Color::Black);
 		SetColor(parent, Color::Red);
 		RotateLeft(root, parent);
 	}
+	// Если брат черный.
 	else if (GetColor(sibling) != Color::Red)
 	{
 		if (GetColor(sibling->Left) == Color::Black &&
@@ -431,25 +472,32 @@ inline int RBTree::DeleteCase3(RBNode*& root, RBNode*& sibling, RBNode*& parent,
 			SetColor(parent, Color::Black);
 			SetColor(sibling->Right, Color::Black);
 			RotateLeft(root, parent);
-			//break;
+
+			_size--;
+			// Исправлено.
 			return 1;
 		}
 	}
-	_size--;
+	// Не удалось исправить.
 	return 0;
 
 }
 
-
+// Обрабатывает случай 4 удаления узла в дереве.
+// Когда брат узла является черным, но у него есть хотя бы один красный ребенок.
 inline int RBTree::DeleteCase4(RBNode*& root, RBNode*& sibling, RBNode*& parent, RBNode*& pointer)
 {
+	// Получаем брата.
 	sibling = parent->Left;
+
+	// Если брат красный.
 	if (GetColor(sibling) == Color::Red)
 	{
 		SetColor(sibling, Color::Black);
 		SetColor(parent, Color::Red);
 		RotateRight(root, parent);
 	}
+	// Если брат черный.
 	else if (GetColor(sibling) == Color::Black)
 	{
 		if (GetColor(sibling->Left) == Color::Black &&
@@ -466,6 +514,7 @@ inline int RBTree::DeleteCase4(RBNode*& root, RBNode*& sibling, RBNode*& parent,
 			}
 			pointer = parent;
 		}
+		// Если хотя бы один ребенок брата красный.
 		else if (GetColor(sibling->Left) != Color::Black
 			|| GetColor(sibling->Right) != Color::Black)
 		{
@@ -480,15 +529,19 @@ inline int RBTree::DeleteCase4(RBNode*& root, RBNode*& sibling, RBNode*& parent,
 			SetColor(parent, Color::Black);
 			SetColor(sibling->Left, Color::Black);
 			RotateRight(root, parent);
-			//break;
+
+			_size--;
+			// Исправлено.
 			return 1;
 		}
 	}
-	_size--;
+	
+	// Не удалось исправить.
 	return 0;
 
 }
 
+//Возвращает значение искомого элемента.
 int RBTree::FindValue(int data) {
 	if (_size != 0) {
 		RBNode* foundNode = FindNode(_root, data);
@@ -499,6 +552,7 @@ int RBTree::FindValue(int data) {
 	}
 }
 
+//Возвращает указатель на найденный узел или nullptr, если узел не найден.
 RBNode* RBTree::FindNode(RBNode* node, const int data)
 {
 	if (node == nullptr)
