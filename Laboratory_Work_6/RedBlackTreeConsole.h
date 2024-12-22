@@ -1,5 +1,5 @@
-#ifndef BINARYTREECONSOLE_H
-#define BINARYTREECONSOLE_H
+#ifndef RBTREECONSOLE_H
+#define RBTREECONSOLE_H
 #include <iostream>
 #include"Colors.h"
 #include <vector>

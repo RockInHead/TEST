@@ -1,8 +1,8 @@
 #ifndef RBTREE_H
 #define RBTREE_H
-
 #include <iostream>
 #include "RBNode.h"
+
 class RBTree {
 private:
 	//”казатель на корень дерева.
