@@ -40,19 +40,19 @@ private:
 
 	// ќбрабатывает случай 1 удалени€ узла в дереве.
 	// ”дал€ет корень дерева, если он существует, или возвращает 1, если узел нулевой.
-	inline int DeleteCase1(RBNode*& root, RBNode*& node);
+	inline int RemoveWhenNodeExist(RBNode*& root, RBNode*& node);
 
 	// ќбрабатывает случай 2 удалени€ узла в дереве.
 	// ”дал€ет узел, который имеет одного или ни одного потомка, св€зыва€ оставшегос€ ребенка с родителем удал€емого узла.
-	inline void DeleteCase2(RBNode*& root, RBNode*& node);
+	inline void RemoveWhenNodeHaveOneChild(RBNode*& root, RBNode*& node);
 
 	// ќбрабатывает случай 3 удалени€ узла в черно-красном дереве.
 	//  огда брат узла €вл€етс€ красным. ¬озвращает 1, если узел был удалЄн, иначе 0.
-	inline int DeleteCase3(RBNode*& root, RBNode*& sibling, RBNode*& parent, RBNode*& pointer);
+	inline int RemoveWhenSiblingRed(RBNode*& root, RBNode*& sibling, RBNode*& parent, RBNode*& pointer);
 
 	// ќбрабатывает случай 4 удалени€ узла в дереве.
 	//  огда брат узла €вл€етс€ черным, но у него есть хот€ бы один красный ребенок.
-	inline int DeleteCase4(RBNode*& root, RBNode*& sibling, RBNode*& parent, RBNode*& pointer);
+	inline int RemoveWhenSiblingBlackAndHaveRedChild(RBNode*& root, RBNode*& sibling, RBNode*& parent, RBNode*& pointer);
 
 	//¬озвращает указатель на найденный узел или nullptr, если узел не найден.
 	RBNode* FindNode(RBNode* node, const int data);
