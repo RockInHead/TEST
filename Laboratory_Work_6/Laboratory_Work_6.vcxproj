@@ -138,6 +138,7 @@
     <ClInclude Include="AVLNode.h" />
     <ClInclude Include="AVLTree.h" />
     <ClInclude Include="AVLTreeConsole.h" />
+    <ClInclude Include="Colors.h" />
     <ClInclude Include="ConsoleColors.h" />
     <ClInclude Include="RBNode.h" />
     <ClInclude Include="RBTree.h" />

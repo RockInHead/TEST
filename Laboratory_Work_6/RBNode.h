@@ -1,13 +1,6 @@
 #ifndef RBNODE_H
 #define RBNODE_H
-
-//Вспомогательное перечисление для цветов элемента.
-enum class Color
-{
-	Red,
-	Black,
-	DoubleBlack
-};
+#include"Colors.h"
 
 struct RBNode
 {

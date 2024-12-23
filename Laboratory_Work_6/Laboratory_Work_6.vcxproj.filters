@@ -104,5 +104,8 @@
     <ClInclude Include="AVLNode.h">
       <Filter>Файлы заголовков\Logic\AVL Tree</Filter>
     </ClInclude>
+    <ClInclude Include="Colors.h">
+      <Filter>Файлы заголовков\Logic\RB Tree</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
