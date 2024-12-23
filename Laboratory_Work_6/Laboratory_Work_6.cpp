@@ -24,7 +24,7 @@ int main()
     int arrayType;
     while (programState) {
         Menu();
-        arrayType = ValidInputMenu(0, 2);
+        arrayType = ValidateCommandInput(0, 2);
         switch (arrayType)
         {
         case 1:

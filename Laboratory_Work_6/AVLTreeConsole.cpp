@@ -5,7 +5,9 @@
 using namespace std;
 
 //Вывод дерева в консоль.
-void ShowTree(AVLNode const* node, bool high, int foundedElement, vector<string> const& lpref, vector<string> const& cpref, vector<string> const& rpref, bool root, bool left, shared_ptr<vector<vector<string>>> lines) {
+void ShowTree(
+    AVLNode const* node,
+    bool high, int foundedElement, vector<string> const& lpref, vector<string> const& cpref, vector<string> const& rpref, bool root, bool left, shared_ptr<vector<vector<string>>> lines) {
     if (!node) return;
     typedef vector<string> VS;
     auto VSCat = [](VS const& a, VS const& b) { auto r = a; r.insert(r.end(), b.begin(), b.end()); return r; };
@@ -101,12 +103,12 @@ void AVLTreeConsole(AVLTree& tree) {
     {
         MenuAVLTree(tree, foundedElement);
         int commandNumber;
-        commandNumber = ValidInputMenu(0, 4);
+        commandNumber = ValidateCommandInput(0, 4);
         switch (commandNumber)
         {
         case 1:
             cout << "Enter a value:";
-            newElement = ValidCin();
+            newElement = ReadIntegerInput();
             tree.AddElement(newElement);
             system("cls");
             break;

@@ -94,12 +94,12 @@ void RedBlackTreeConsole(RBTree& tree) {
     {
         MenuRedBlackTree(tree, foundedElement);
         int commandNumber;
-        commandNumber = ValidInputMenu(0, 4);
+        commandNumber = ValidateCommandInput(0, 4);
         switch (commandNumber)
         {
         case 1:
             cout << "Enter a value:";
-            newElement = ValidCin();
+            newElement = ReadIntegerInput();
             tree.AddElement(newElement);
             system("cls");
             break;
