@@ -13,7 +13,7 @@ void ShowTree(RBNode const* node, bool high,  int foundedElement  ,vector<string
     if (root) lines = make_shared<vector<VS>>();
 
     string color;
-    if (node->Color == Color::Red) {
+    if (node->Colors == Colors::Red) {
         color = RED;
     }
     else {

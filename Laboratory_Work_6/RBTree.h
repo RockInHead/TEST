@@ -2,7 +2,7 @@
 #define RBTREE_H
 #include <iostream>
 #include "RBNode.h"
-
+#include "Colors.h"
 class RBTree {
 private:
 	//Указатель на корень дерева.
@@ -18,10 +18,10 @@ private:
 	void FixInsertRBTree( RBNode*& node);
 
 	// Возвращает цвет узла. Если узел равен nullptr, возвращает черный цвет.
-	Color GetColor(RBNode* node);
+	Colors GetColor(RBNode* node);
 
 	// Устанавливает цвет узла дереве. Если узел равен nullptr, операция игнорируется.
-	void SetColor(RBNode*& node, const Color color);
+	void SetColor(RBNode*& node, const Colors color);
 
 	// Поворачивает поддерево налево вокруг заданного узла. Если заданный узел имеет ненулевого правого ребенка.
 	void RotateLeft(RBNode*& root, RBNode*& node);

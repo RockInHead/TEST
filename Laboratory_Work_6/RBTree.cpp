@@ -25,23 +25,23 @@ int RBTree::GetHeight() {
 
 
 // Возвращает цвет узла. Если узел равен nullptr, возвращает черный цвет.
-Color RBTree::GetColor(RBNode* node)
+Colors RBTree::GetColor(RBNode* node)
 {
 	if (node == nullptr)
 	{
-		return Color::Black;
+		return Colors::Black;
 	}
-	return node->Color;
+	return node->Colors;
 }
 
 // Устанавливает цвет узла дереве. Если узел равен nullptr, операция игнорируется.
-void RBTree::SetColor(RBNode*& node, const Color color)
+void RBTree::SetColor(RBNode*& node, const Colors color)
 {
 	if (node == nullptr)
 	{
 		return;
 	}
-	node->Color = color;
+	node->Colors = color;
 }
 //Возврщает минимальный элемент дерева.
 int RBTree::FindMin() {
@@ -103,7 +103,7 @@ void RBTree::FixInsertRBTree(RBNode*& node)
 {
 	RBNode* parent = nullptr;
 	RBNode* grandParent = nullptr;
-	while (node != _root && GetColor(node) == Color::Red && GetColor(node->Parent) == Color::Red)
+	while (node != _root && GetColor(node) == Colors::Red && GetColor(node->Parent) == Colors::Red)
 	{
 		parent = node->Parent;
 		grandParent = parent->Parent;
@@ -112,11 +112,11 @@ void RBTree::FixInsertRBTree(RBNode*& node)
 		{
 			RBNode* uncle = grandParent->Right;
 			// Случай 1: Дядя красный — просто перекрашиваем.
-			if (GetColor(uncle) == Color::Red)
+			if (GetColor(uncle) == Colors::Red)
 			{
-				SetColor(uncle, Color::Black);
-				SetColor(parent, Color::Black);
-				SetColor(grandParent, Color::Red);
+				SetColor(uncle, Colors::Black);
+				SetColor(parent, Colors::Black);
+				SetColor(grandParent, Colors::Red);
 				node = grandParent;
 			}
 			else
@@ -130,9 +130,9 @@ void RBTree::FixInsertRBTree(RBNode*& node)
 				}
 				// Случай 3: Узел является левым ребёнком — поворот направо.
 				RotateRight(_root, grandParent);
-				const Color color = grandParent->Color;
-				grandParent->Color = parent->Color;
-				parent->Color = color;
+				const Colors color = grandParent->Colors;
+				grandParent->Colors = parent->Colors;
+				parent->Colors = color;
 				node = parent;
 			}
 		}
@@ -140,11 +140,11 @@ void RBTree::FixInsertRBTree(RBNode*& node)
 		else
 		{
 			RBNode* uncle = grandParent->Left;
-			if (GetColor(uncle) == Color::Red)
+			if (GetColor(uncle) == Colors::Red)
 			{
-				SetColor(uncle, Color::Black);
-				SetColor(parent, Color::Black);
-				SetColor(grandParent, Color::Red);
+				SetColor(uncle, Colors::Black);
+				SetColor(parent, Colors::Black);
+				SetColor(grandParent, Colors::Red);
 				node = grandParent;
 			}
 			else
@@ -156,15 +156,15 @@ void RBTree::FixInsertRBTree(RBNode*& node)
 					parent = node->Parent;
 				}
 				RotateLeft(_root, grandParent);
-				const Color color = grandParent->Color;
-				grandParent->Color = parent->Color;
-				parent->Color = color;
+				const Colors color = grandParent->Colors;
+				grandParent->Colors = parent->Colors;
+				parent->Colors = color;
 				node = parent;
 			}
 		}
 	}
 	// Устанавливаем корень в черный цвет.
-	SetColor(_root, Color::Black);
+	SetColor(_root, Colors::Black);
 }
 
 // Поворачивает поддерево налево вокруг заданного узла. Если заданный узел имеет ненулевого правого ребенка.
@@ -290,26 +290,26 @@ void RBTree::FixDeleteRBTree(RBNode*& root, RBNode*& node)
 	}
 
 	// Если удалённый узел или его ребёнки красные, восстанавливаем дерево для этого случая.
-	if (GetColor(node) == Color::Red
-		|| GetColor(node->Left) == Color::Red
-		|| GetColor(node->Right) == Color::Red)
+	if (GetColor(node) == Colors::Red
+		|| GetColor(node->Left) == Colors::Red
+		|| GetColor(node->Right) == Colors::Red)
 	{
 		// Обрабатываем случай 2.
 		DeleteCase2(root, node);
 	}
 	// Если удалённый узел и его дети чёрные.
-	else if (GetColor(node) != Color::Red
-		&& GetColor(node->Left) != Color::Red
-		&& GetColor(node->Right) != Color::Red)
+	else if (GetColor(node) != Colors::Red
+		&& GetColor(node->Left) != Colors::Red
+		&& GetColor(node->Right) != Colors::Red)
 	{
 		RBNode* sibling = nullptr;
 		RBNode* parent = nullptr;
 		RBNode* pointer = node;
 
 		// Помечаем удалённый узел как "двойной черный".
-		SetColor(pointer, Color::DoubleBlack);
+		SetColor(pointer, Colors::DoubleBlack);
 
-		while (pointer != root && GetColor(pointer) == Color::DoubleBlack)
+		while (pointer != root && GetColor(pointer) == Colors::DoubleBlack)
 		{
 			parent = pointer->Parent;
 			if (pointer == parent->Left)
@@ -344,7 +344,7 @@ void RBTree::FixDeleteRBTree(RBNode*& root, RBNode*& node)
 		delete node;
 
 		// Устанавливаем корень дерева в черный цвет.
-		SetColor(root, Color::Black);
+		SetColor(root, Colors::Black);
 	}
 }
 
@@ -375,7 +375,7 @@ inline int RBTree::DeleteCase1(RBNode*& root, RBNode*& node)
 		root = root->Left != nullptr ? root->Left : root->Right;
 
 		// Устанавливаем новый корень как черный
-		SetColor(root, Color::Black);
+		SetColor(root, Colors::Black);
 		root->Parent = nullptr;
 
 		// Освобождаем память от старого корня.
@@ -402,7 +402,7 @@ inline void RBTree::DeleteCase2(RBNode*& root, RBNode*& node)
 		{
 			child->Parent = node->Parent;
 		}
-		SetColor(child, Color::Black);
+		SetColor(child, Colors::Black);
 		delete node;
 	}
 	// Если удаляемый узел — правый ребенок родителя.
@@ -413,7 +413,7 @@ inline void RBTree::DeleteCase2(RBNode*& root, RBNode*& node)
 		{
 			child->Parent = node->Parent;
 		}
-		SetColor(child, Color::Black);
+		SetColor(child, Colors::Black);
 		delete node;
 	}
 	_size--;
@@ -428,42 +428,42 @@ inline int RBTree::DeleteCase3(RBNode*& root, RBNode*& sibling, RBNode*& parent,
 	sibling = parent->Right;
 
 	// Если брат красный
-	if (GetColor(sibling) == Color::Red)
+	if (GetColor(sibling) == Colors::Red)
 	{
-		SetColor(sibling, Color::Black);
-		SetColor(parent, Color::Red);
+		SetColor(sibling, Colors::Black);
+		SetColor(parent, Colors::Red);
 		RotateLeft(root, parent);
 	}
 	// Если брат черный.
-	else if (GetColor(sibling) != Color::Red)
+	else if (GetColor(sibling) != Colors::Red)
 	{
-		if (GetColor(sibling->Left) == Color::Black &&
-			GetColor(sibling->Right) == Color::Black)
+		if (GetColor(sibling->Left) == Colors::Black &&
+			GetColor(sibling->Right) == Colors::Black)
 		{
-			SetColor(sibling, Color::Red);
-			if (GetColor(parent) == Color::Red)
+			SetColor(sibling, Colors::Red);
+			if (GetColor(parent) == Colors::Red)
 			{
-				SetColor(parent, Color::Black);
+				SetColor(parent, Colors::Black);
 			}
-			else if (GetColor(parent) != Color::Red)
+			else if (GetColor(parent) != Colors::Red)
 			{
-				SetColor(parent, Color::DoubleBlack);
+				SetColor(parent, Colors::DoubleBlack);
 			}
 			pointer = parent;
 		}
-		else if (GetColor(sibling->Left) != Color::Black
-			|| GetColor(sibling->Right) != Color::Black)
+		else if (GetColor(sibling->Left) != Colors::Black
+			|| GetColor(sibling->Right) != Colors::Black)
 		{
-			if (GetColor(sibling->Right) == Color::Black)
+			if (GetColor(sibling->Right) == Colors::Black)
 			{
-				SetColor(sibling->Left, Color::Black);
-				SetColor(sibling, Color::Red);
+				SetColor(sibling->Left, Colors::Black);
+				SetColor(sibling, Colors::Red);
 				RotateRight(root, sibling);
 				sibling = parent->Right;
 			}
-			SetColor(sibling, parent->Color);
-			SetColor(parent, Color::Black);
-			SetColor(sibling->Right, Color::Black);
+			SetColor(sibling, parent->Colors);
+			SetColor(parent, Colors::Black);
+			SetColor(sibling->Right, Colors::Black);
 			RotateLeft(root, parent);
 
 			_size--;
@@ -484,43 +484,43 @@ inline int RBTree::DeleteCase4(RBNode*& root, RBNode*& sibling, RBNode*& parent,
 	sibling = parent->Left;
 
 	// Если брат красный.
-	if (GetColor(sibling) == Color::Red)
+	if (GetColor(sibling) == Colors::Red)
 	{
-		SetColor(sibling, Color::Black);
-		SetColor(parent, Color::Red);
+		SetColor(sibling, Colors::Black);
+		SetColor(parent, Colors::Red);
 		RotateRight(root, parent);
 	}
 	// Если брат черный.
-	else if (GetColor(sibling) == Color::Black)
+	else if (GetColor(sibling) == Colors::Black)
 	{
-		if (GetColor(sibling->Left) == Color::Black &&
-			GetColor(sibling->Right) == Color::Black)
+		if (GetColor(sibling->Left) == Colors::Black &&
+			GetColor(sibling->Right) == Colors::Black)
 		{
-			SetColor(sibling, Color::Red);
-			if (GetColor(parent) == Color::Red)
+			SetColor(sibling, Colors::Red);
+			if (GetColor(parent) == Colors::Red)
 			{
-				SetColor(parent, Color::Black);
+				SetColor(parent, Colors::Black);
 			}
-			else if (GetColor(parent) == Color::Black)
+			else if (GetColor(parent) == Colors::Black)
 			{
-				SetColor(parent, Color::Black);
+				SetColor(parent, Colors::Black);
 			}
 			pointer = parent;
 		}
 		// Если хотя бы один ребенок брата красный.
-		else if (GetColor(sibling->Left) != Color::Black
-			|| GetColor(sibling->Right) != Color::Black)
+		else if (GetColor(sibling->Left) != Colors::Black
+			|| GetColor(sibling->Right) != Colors::Black)
 		{
-			if (GetColor(sibling->Left) == Color::Black)
+			if (GetColor(sibling->Left) == Colors::Black)
 			{
-				SetColor(sibling->Right, Color::Black);
-				SetColor(sibling, Color::Red);
+				SetColor(sibling->Right, Colors::Black);
+				SetColor(sibling, Colors::Red);
 				RotateLeft(root, sibling);
 				sibling = parent->Left;
 			}
-			SetColor(sibling, parent->Color);
-			SetColor(parent, Color::Black);
-			SetColor(sibling->Left, Color::Black);
+			SetColor(sibling, parent->Colors);
+			SetColor(parent, Colors::Black);
+			SetColor(sibling->Left, Colors::Black);
 			RotateRight(root, parent);
 
 			_size--;

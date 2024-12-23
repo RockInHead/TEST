@@ -2,7 +2,7 @@
 #define COLORS_H
 
 //Вспомогательное перечисление для цветов элемента красно-черного дерева.
-enum class Color
+enum class Colors
 {
 	Red,
 	Black,
