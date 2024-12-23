@@ -1,5 +1,5 @@
-#ifndef COLORS_H
-#define COLORS_H
+#ifndef CONSOLECOLORS_H
+#define CONSOLECOLORS_H
 using namespace std;
 
 //Цвета для окрашивания строк в консоли.

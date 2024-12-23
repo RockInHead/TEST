@@ -83,7 +83,7 @@
     <ClInclude Include="Symbols.h">
       <Filter>Файлы заголовков\Console\Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="Colors.h">
+    <ClInclude Include="ConsoleColors.h">
       <Filter>Файлы заголовков\Console\Helpers</Filter>
     </ClInclude>
     <ClInclude Include="Validator.h">
