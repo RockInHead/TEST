@@ -31,7 +31,7 @@ Colors RBTree::GetColor(RBNode* node)
 	{
 		return Colors::Black;
 	}
-	return node->Colors;
+	return node->Color;
 }
 
 // Устанавливает цвет узла дереве. Если узел равен nullptr, операция игнорируется.
@@ -41,7 +41,7 @@ void RBTree::SetColor(RBNode*& node, const Colors color)
 	{
 		return;
 	}
-	node->Colors = color;
+	node->Color = color;
 }
 //Возврщает минимальный элемент дерева.
 int RBTree::FindMin() {
@@ -130,9 +130,9 @@ void RBTree::FixInsertRBTree(RBNode*& node)
 				}
 				// Случай 3: Узел является левым ребёнком — поворот направо.
 				RotateRight(_root, grandParent);
-				const Colors color = grandParent->Colors;
-				grandParent->Colors = parent->Colors;
-				parent->Colors = color;
+				const Colors color = grandParent->Color;
+				grandParent->Color = parent->Color;
+				parent->Color = color;
 				node = parent;
 			}
 		}
@@ -156,9 +156,9 @@ void RBTree::FixInsertRBTree(RBNode*& node)
 					parent = node->Parent;
 				}
 				RotateLeft(_root, grandParent);
-				const Colors color = grandParent->Colors;
-				grandParent->Colors = parent->Colors;
-				parent->Colors = color;
+				const Colors color = grandParent->Color;
+				grandParent->Color = parent->Color;
+				parent->Color = color;
 				node = parent;
 			}
 		}
@@ -461,7 +461,7 @@ inline int RBTree::DeleteCase3(RBNode*& root, RBNode*& sibling, RBNode*& parent,
 				RotateRight(root, sibling);
 				sibling = parent->Right;
 			}
-			SetColor(sibling, parent->Colors);
+			SetColor(sibling, parent->Color);
 			SetColor(parent, Colors::Black);
 			SetColor(sibling->Right, Colors::Black);
 			RotateLeft(root, parent);
@@ -518,7 +518,7 @@ inline int RBTree::DeleteCase4(RBNode*& root, RBNode*& sibling, RBNode*& parent,
 				RotateLeft(root, sibling);
 				sibling = parent->Left;
 			}
-			SetColor(sibling, parent->Colors);
+			SetColor(sibling, parent->Color);
 			SetColor(parent, Colors::Black);
 			SetColor(sibling->Left, Colors::Black);
 			RotateRight(root, parent);

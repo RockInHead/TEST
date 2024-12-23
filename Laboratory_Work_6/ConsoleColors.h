@@ -17,6 +17,7 @@ const string LIGHT_CYAN = "\033[96m";
 const string LIGHT_MAGENTA = "\033[95m";    
 const string DARK_BLUE = "\033[34m"; 
 const string GRAY = "\033[37m";    
+
 const string BROWN = "\033[33m";   
 #endif
 

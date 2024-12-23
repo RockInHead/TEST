@@ -75,6 +75,9 @@
     <ClCompile Include="AVLTree.cpp">
       <Filter>Файлы ресурсов\Logic\AVL Tree</Filter>
     </ClCompile>
+    <ClCompile Include="PrintTreeConsole.cpp">
+      <Filter>Файлы ресурсов\Console\Helpers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RedBlackTreeConsole.h">
@@ -106,6 +109,9 @@
     </ClInclude>
     <ClInclude Include="Colors.h">
       <Filter>Файлы заголовков\Logic\RB Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="PrintTreeConsole.h">
+      <Filter>Файлы заголовков\Console\Helpers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

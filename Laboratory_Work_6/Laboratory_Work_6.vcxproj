@@ -130,6 +130,7 @@
     <ClCompile Include="AVLTree.cpp" />
     <ClCompile Include="AVLTreeConsole.cpp" />
     <ClCompile Include="Laboratory_Work_6.cpp" />
+    <ClCompile Include="PrintTreeConsole.cpp" />
     <ClCompile Include="RBTree.cpp" />
     <ClCompile Include="RedBlackTreeConsole.cpp" />
     <ClCompile Include="Validator.cpp" />
@@ -140,6 +141,7 @@
     <ClInclude Include="AVLTreeConsole.h" />
     <ClInclude Include="Colors.h" />
     <ClInclude Include="ConsoleColors.h" />
+    <ClInclude Include="PrintTreeConsole.h" />
     <ClInclude Include="RBNode.h" />
     <ClInclude Include="RBTree.h" />
     <ClInclude Include="RedBlackTreeConsole.h" />

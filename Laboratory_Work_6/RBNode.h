@@ -8,7 +8,7 @@ struct RBNode
 	int Data;
 
 	//Цвет элемента.
-	Colors Colors ;
+	Colors Color;
 	
 	//Указатель на левый элемент.
 	RBNode* Left;
@@ -20,7 +20,7 @@ struct RBNode
 	RBNode* Parent;
 
 	//Конуструкторы.
-	RBNode() : Data(-1),Colors(Colors::Red), Left(nullptr), Right(nullptr), Parent(nullptr) {}
-	RBNode(int data) : Data(data),Colors(Colors::Red), Left(nullptr), Right(nullptr), Parent(nullptr) {}
+	RBNode() : Data(-1),Color(Colors::Red), Left(nullptr), Right(nullptr), Parent(nullptr) {}
+	RBNode(int data) : Data(data),Color(Colors::Red), Left(nullptr), Right(nullptr), Parent(nullptr) {}
 };
 #endif
