@@ -57,6 +57,7 @@ AVLNode* AVLTree::Insert(AVLNode* treeNode, const int data)
 {
 	if (!treeNode)
 	{
+		//Тут можно поправить!
 		treeNode = new AVLNode;
 		treeNode->Data = data;
 		return treeNode;
@@ -110,7 +111,7 @@ void AVLTree::FixHeight(AVLNode* treeNode)
 //Возвращает высоту для элемента.
 int AVLTree::GetHeight(AVLNode* treeNode)
 {
-	return treeNode ? treeNode->Height : 0;
+	return treeNode ? treeNode->Height : -1;
 }
 
 // Вычисляет фактор баланса, то есть разницц между высотой левого и правого поддеревьев.
