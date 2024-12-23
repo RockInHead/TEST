@@ -99,7 +99,7 @@ RBNode* RBTree::InsertNode(RBNode*& root, RBNode*& node)
 }
 
 //Поправялет свойства дерева после вставки элемента. Выполняет повороты и перекраску узлов для восстановления правильной структуры дерева.
-void RBTree::FixInsertRBTree( RBNode*& node)
+void RBTree::FixInsertRBTree(RBNode*& node)
 {
 	RBNode* parent = nullptr;
 	RBNode* grandParent = nullptr;
@@ -107,7 +107,7 @@ void RBTree::FixInsertRBTree( RBNode*& node)
 	{
 		parent = node->Parent;
 		grandParent = parent->Parent;
-		// Если родитель — левый ребёнок дедушки
+		// Если родитель — левый ребёнок дедушки.
 		if (parent == grandParent->Left)
 		{
 			RBNode* uncle = grandParent->Right;
@@ -136,7 +136,7 @@ void RBTree::FixInsertRBTree( RBNode*& node)
 				node = parent;
 			}
 		}
-		// То же, что и выше, но для случая, когда родитель — правый ребёнок.
+		// То же, что и выше, но для случая, когда родитель — правый ребёнок дедушки.
 		else
 		{
 			RBNode* uncle = grandParent->Left;
@@ -231,16 +231,9 @@ void RBTree::RotateRight(RBNode*& root, RBNode*& node)
 
 //Удаление элемента по значению.
 void RBTree::DeleteElement(int data) {
-	/*DeleteValue(_root, data);*/
 	RBNode* node = DeleteNode(_root, data);
 	FixDeleteRBTree(_root, node);
 }
-
-//void RBTree::DeleteValue(RBNode*& root, const int data)
-//{
-//	RBNode* node = DeleteNode(root, data);
-//	FixDeleteRBTree(root, node);
-//}
 
 // Ищет узел по значению и удаляет его из дерева. Возвращает указатель на удаляемый узел.
 RBNode* RBTree::DeleteNode(RBNode*& root, const int data)
