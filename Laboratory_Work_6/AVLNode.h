@@ -16,7 +16,7 @@ struct AVLNode
 	AVLNode* Right;
 
 	//Конуструкторы.
-	AVLNode() : Data(-1),Height(-1),Left(nullptr), Right(nullptr) {}
-	AVLNode(int data) : Data(data), Height(1), Left(nullptr), Right(nullptr) {}
+	AVLNode() : Data(-1),Height(0),Left(nullptr), Right(nullptr) {}
+	AVLNode(int data) : Data(data), Height(0), Left(nullptr), Right(nullptr) {}
 };
 #endif

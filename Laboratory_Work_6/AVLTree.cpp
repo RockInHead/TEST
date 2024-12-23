@@ -57,9 +57,7 @@ AVLNode* AVLTree::Insert(AVLNode* treeNode, const int data)
 {
 	if (!treeNode)
 	{
-		//Тут можно поправить!
-		treeNode = new AVLNode;
-		treeNode->Data = data;
+		treeNode = new AVLNode(data);
 		return treeNode;
 	}
 
@@ -79,8 +77,10 @@ AVLNode* AVLTree::Insert(AVLNode* treeNode, const int data)
 AVLNode* AVLTree::Balance(AVLNode* treeNode)
 {
 	FixHeight(treeNode);
+	//Перегруз вправо.
 	if (GetBalanceFactor(treeNode) == 2)
 	{
+		//Дополнительный поворот сначала вправо.
 		if (GetBalanceFactor(treeNode->Right) < 0)
 		{
 			treeNode->Right = RotateRight(treeNode->Right);
@@ -88,8 +88,10 @@ AVLNode* AVLTree::Balance(AVLNode* treeNode)
 		return RotateLeft(treeNode);
 	}
 
+	//Перегруз влево.
 	if (GetBalanceFactor(treeNode) == -2)
 	{
+		//Дополнительный поворот сначала влево.
 		if (GetBalanceFactor(treeNode->Left) > 0)
 		{
 			treeNode->Left = RotateLeft(treeNode->Left);
@@ -108,7 +110,7 @@ void AVLTree::FixHeight(AVLNode* treeNode)
 	treeNode->Height = (heightLeft > heightRight ? heightLeft : heightRight) + 1;
 }
 
-//Возвращает высоту для элемента.
+//Возвращает высоту для элемента. Если элемента не сущесвует, то возвращает -1.
 int AVLTree::GetHeight(AVLNode* treeNode)
 {
 	return treeNode ? treeNode->Height : -1;
@@ -117,7 +119,7 @@ int AVLTree::GetHeight(AVLNode* treeNode)
 // Вычисляет фактор баланса, то есть разницц между высотой левого и правого поддеревьев.
 int AVLTree::GetBalanceFactor(AVLNode* treeNode)
 {
-	return (GetHeight(treeNode->Right) - GetHeight(treeNode->Left));
+	return treeNode==nullptr? 0:(GetHeight(treeNode->Right) - GetHeight(treeNode->Left));
 }
 
 //Левый поворот для узла.
