@@ -129,9 +129,9 @@
   <ItemGroup>
     <ClCompile Include="Laboratory_Work_2.cpp" />
     <ClCompile Include="List.cpp" />
-    <ClCompile Include="Node.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConsoleColors.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="Node.h" />
   </ItemGroup>

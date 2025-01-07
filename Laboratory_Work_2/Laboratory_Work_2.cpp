@@ -2,16 +2,10 @@
 #include"List.h"
 #include <chrono>
 #include <ctime>
-
+#include"ConsoleColors.h"
 using namespace std;
-const string RESET = "\033[0m";  // Сброс цвета
-const string RED = "\033[31m";   // Красный
-const string GREEN = "\033[32m"; // Зеленый
-const string CYAN = "\033[36m";
-const string LIGHT_YELLOW = "\033[33m";
-const string LIGHT_BLUE = "\033[94m";
-const string LIGHT_RED = "\033[91m";
 
+//Выводит текущий список в консоль.
 void ShowArray(List list)
 {
     int* array = list.GetList();
@@ -30,12 +24,14 @@ void ShowArray(List list)
         }
     cout << " " << endl;
     delete[] array;
-};
+}
+
+//Выводит меню для дейтствий над списком.
 void Menu(List list)
 {
     cout << CYAN << "Current array:" << RESET << endl;
     ShowArray(list);
-    cout << "Size:";
+    cout << endl << "Size:";
     cout << LIGHT_YELLOW << list.GetSize()<< RESET << endl;
     cout << "Head:";
     cout << GREEN << list.GetHead()<< RESET <<" "; 
@@ -50,7 +46,9 @@ void Menu(List list)
     cout << LIGHT_BLUE << "[7]" << RESET << " - Sort" << endl;
     cout << LIGHT_RED << "[0]"<<RESET<< " - Exit" << endl;
 }
-int ValidCin()
+
+//Валидация вводимых значений для элементов.
+int ReadIntegerInput()
 {
     int input;
     while (!(cin >> input)) {
@@ -60,19 +58,23 @@ int ValidCin()
     }
     return input;
 }
-int ValidInputMenu(List list)
+
+//Валидация вводимых значений строки.Только цифры от 0 до 8.
+int ValidateCommandInput(List list)
 {
-    int Input;
-    while ((!(cin >> Input)) || Input > 8 || Input < 0) {
+    int input = ReadIntegerInput();
+    while (input > 7 || input < 0) {
         system("cls");
         Menu(list);
-        cout << "Invalid input. Please enter an integer! " << endl;
+        cout << "Invalid input. Please enter an existing command! " << endl;
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        input = ReadIntegerInput();
     }
-    return Input;
+    return input;
 }
 
+//Создает список заданным размером.
 void CreateListOfSize(List&  list, int size)
 {
     for (int i = 0; i < size; i++) {
@@ -80,6 +82,8 @@ void CreateListOfSize(List&  list, int size)
     }
 
 }
+
+//Точка входа в программу.
 int main()
 {
     List list = List();
@@ -93,40 +97,40 @@ int main()
     {
         int commandNumber;
         Menu(list);
-        commandNumber = ValidInputMenu(list);
+        commandNumber = ValidateCommandInput(list);
         switch (commandNumber)
         {
         case 1:
             cout << "Enter a new element:";
-            newElement = ValidCin();
+            newElement = ReadIntegerInput();
             list.AddNodeAtEnd(newElement);
             system("cls");
             break;
         case 2:
             cout << "Enter a new element:";
-            newElement = ValidCin();
+            newElement = ReadIntegerInput();
             list.AddNodeAtStart(newElement);
             system("cls");
             break;
         case 3:
             cout << "Enter a index of element:";
-            indexOfElement = ValidCin();
+            indexOfElement = ReadIntegerInput();
             cout << "Enter a new element:";
-            newElement = ValidCin();
+            newElement = ReadIntegerInput();
             list.InsertBefore(newElement, indexOfElement);
             system("cls");
             break;
         case 4:
             cout << "Enter a index of element:";
-            indexOfElement = ValidCin();
+            indexOfElement = ReadIntegerInput();
             cout << "Enter a new element:";
-            newElement = ValidCin();
+            newElement = ReadIntegerInput();
             list.InsertAfter(newElement, indexOfElement);
             system("cls");
             break;
         case 5:
             cout << "Enter seacrhing element:";
-            seacrhingElement = ValidCin();
+            seacrhingElement = ReadIntegerInput();
             indexOfElement = list.LinearSearch(seacrhingElement);
             system("cls");
             if (indexOfElement != -1) {
@@ -138,7 +142,7 @@ int main()
             break;
         case 6:
             cout << "Enter the index of the item to delete:";
-            indexOfElement = ValidCin();
+            indexOfElement = ReadIntegerInput();
             list.DeleteNodeIndex(indexOfElement);
             system("cls");
             break;
@@ -146,16 +150,10 @@ int main()
             list.SortList();
             system("cls");
             break;
-        case 8:
-            CreateListOfSize(list, 1000);
-            system("cls");
-            break;
         case 0:
             programState = false;
             break;
         }
-        
-
     }
 }
 

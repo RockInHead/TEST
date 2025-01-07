@@ -1,19 +1,18 @@
 #include"List.h"
 #include <iostream>
-//#include <chrono>
-
 using namespace std;
 
 //Инициализиурет корень списка.
 void List::InitRoot(int Data) {
 	Node* root = new Node();
 	_head = root;
-	// выделение памяти под корень списка
+	
 	_head->Data = Data;
-	_head->Next = nullptr; // указатель на следующий узел
-	_head->Prev = nullptr; // указатель на предыдущий узел
+	_head->Next = nullptr; 
+	_head->Prev = nullptr; 
 	_size++;
 }
+
 //Конструктор по умолчанию для списка
 List::List():_size(0),_head(nullptr),_tail(nullptr) {}
 
@@ -26,6 +25,7 @@ int List::GetHead() {
 		return 0;
 	}
 }
+
 //Функция возвращающая, текущий хвост.
 int List::GetTail() {
 	if (_tail != nullptr){
@@ -36,6 +36,7 @@ int List::GetTail() {
 	}
 	
 }
+
 //Возвращает размер текущего списка.
 int List::GetSize() {
 
@@ -53,7 +54,7 @@ int* List::GetList() {
 			array[index] = temp->Data;
 			temp = temp->Next;
 			index++;
-		} while (temp != nullptr); // условие окончания обхода
+		} while (temp != nullptr); 
 	}
 	return array;
 }
@@ -85,6 +86,7 @@ void List::AddNodeAtEnd(int Data)
 		_tail = newNode;
 	}
 }
+
 //Функция доавбление элемента в начало массива.
 void List::AddNodeAtStart(int Data) {
 	Node* newNode = new Node(Data);
@@ -103,6 +105,7 @@ void List::AddNodeAtStart(int Data) {
 		_tail = _head->Next;
 	}
 }
+
 //Добавляем элемент в список перед определенным элементом
 void List::InsertBefore(int Data, int indexOfElement) {
 	Node* newNode = new Node(Data);
@@ -145,6 +148,7 @@ void List::InsertBefore(int Data, int indexOfElement) {
 		_size++;
 	}
 }
+
 //Линейный поиск элемента списка.
 int List::LinearSearch(int seacrhingElement) {
 	Node* temp = _head;
@@ -156,6 +160,7 @@ int List::LinearSearch(int seacrhingElement) {
 	}
 	return -1;
 }
+
 //Добавляем элемент в список после определенного элемента
 void List::InsertAfter(int Data, int indexOfElement)
 {
@@ -172,6 +177,7 @@ void List::DeleteHead() {
 	}
 	
 }
+
 //Переназначаем хвост на предыдущий элемент списка. Текущий хвост удаляем.
 void List::DeleteTail() {
 	_tail = _tail->Prev;
@@ -236,14 +242,19 @@ void List::DeleteNodeIndex(int deletedIndex)
 		}
 	}
 }
+
 //Меняет местами два соседних элемента списка.
 void List::SwapNodes(Node* firstNode,Node* secondNode) 
 {
-	Node *prev1, * prev2, * next1, * next2;
-	prev1 = firstNode->Prev;  // узел предшествующий lst1
-	prev2 = secondNode->Prev;  // узел предшествующий lst2
-	next1 = firstNode->Next; // узел следующий за lst1
-	next2 = secondNode->Next; // узел следующий за lst2
+	Node* prev1;
+	Node* prev2;
+	Node* next1;
+    Node* next2;
+
+	prev1 = firstNode->Prev;  
+	prev2 = secondNode->Prev;  
+	next1 = firstNode->Next; 
+	next2 = secondNode->Next; 
 	secondNode->Next = firstNode;
 	secondNode->Prev = prev1;
 	firstNode->Next = next2;
@@ -263,6 +274,7 @@ void List::SwapNodes(Node* firstNode,Node* secondNode)
 	}
 	
 }
+
 //Сортирует список по возрастанию.
 void List::SortList()
 {
