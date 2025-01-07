@@ -18,7 +18,8 @@ void ShowAVLTree(
     auto VSCat = [](VS const& a, VS const& b) { auto r = a; r.insert(r.end(), b.begin(), b.end()); return r; };
     if (root) lines = make_shared<vector<VS>>();
 
-    if (node->Left) {
+    if (node->Left) 
+    {
         ShowAVLTree(node->Left, high, foundedElement, VSCat(lpref, high ? VS({ " ", " " }) : VS({ " " })),
             VSCat(lpref, high ? VS({ ch_ddia, ch_ver }) : VS({ ch_ddia })),
             VSCat(lpref, high ? VS({ ch_hor, " " }) : VS({ ch_hor })),
@@ -29,7 +30,8 @@ void ShowAVLTree(
     string coloredSval;
 
     // Если элемент равен foundedElement, окрашиваем скобки в зеленый
-    if (node->Data == foundedElement) {
+    if (node->Data == foundedElement) 
+    {
         coloredSval = DARK_GREEN + "[" + to_string(node->Data) + "]" + RESET;
     }
 

@@ -1,6 +1,5 @@
 ﻿#include "DynamicArray.h"
 #include <iostream>
-//#include <windows.h>
 using namespace std;
 
 //Функция вывода массива в строку.
@@ -12,21 +11,23 @@ void ShowArray(DynamicArray array)
                 cout << array.GetArray()[i] << " ";
         }
     cout << " " << endl;
-};
+}
+
 // Функция возвращающая количество элементов в массиве
 void ShowLength(DynamicArray array)
 {
     cout << array.GetLength() << endl;
 }
+
 // Функция вывод меню в консоль
 void Menu(DynamicArray array)
 {
-    cout << "Current array:";
+    cout << "Current array:"<<endl;
     ShowArray(array);
-    cout << "Array length:";
+    cout << endl << "Array length:";
     ShowLength(array);
     cout << "Capacity:";
-    cout << array.GetCapacity() << endl;
+    cout << array.GetCapacity() << endl<<endl;
     cout << "[1] - Add new Elemenet in the end" << endl;
     cout << "[2] - Add new Elemenet in the start" << endl;
     cout << "[3] - Add new Elemenet by index " << endl;
@@ -37,20 +38,9 @@ void Menu(DynamicArray array)
     cout << "[8] - Binary Search" << endl;
     cout << "[0] - Exit" << endl;
 }
-//Валидация вводимых значений строки.Только цифры от 0 до 8.
-int ValidInputMenu(DynamicArray array)
-{
-    int Input;
-    while ((!(cin >> Input)) || Input > 8 || Input < 0) {
-        system("cls");
-        Menu(array);
-        cout << "Invalid input. Please enter an integer! " << endl;
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    }
-    return Input;
-}
-int ValidCin() 
+
+//Валидация вводимых значений для элементов.
+int ReadIntegerInput()
 {
     int input;
     while (!(cin >> input)) {
@@ -60,10 +50,26 @@ int ValidCin()
     }
     return input;
 }
+
+
+//Валидация вводимых значений строки.Только цифры от 0 до 8.
+int ValidateCommandInput(DynamicArray array)
+{
+    int input = ReadIntegerInput();
+    while (input > 8 || input < 0) {
+        system("cls");
+        Menu(array);
+        cout << "Invalid input. Please enter an existing command! " << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        input = ReadIntegerInput();
+    }
+    return input;
+}
+
 //Вход в программу.
 int main()
 {
-    /*DynamicArray array = DynamicArray();*/
     DynamicArray array;
 
     int сommandNumber;
@@ -76,33 +82,33 @@ int main()
     {
         int сommandNumber;
         Menu(array);
-        сommandNumber=ValidInputMenu(array);
+        сommandNumber=ValidateCommandInput(array);
         switch (сommandNumber)
         {
         case 1:
             cout << "Enter a new element:";
-            newElement=ValidCin();
+            newElement=ReadIntegerInput();
             array.AddElement(newElement);
             system("cls");
             break;
         case 2:
             cout << "Enter a new element:";
-            newElement = ValidCin();
+            newElement = ReadIntegerInput();
             array.AddElmentStart(newElement);
             system("cls");
             break;
         case 3:
             int indexOfElement;
             cout << "Enter a index of element:";
-            indexOfElement = ValidCin();
+            indexOfElement = ReadIntegerInput();
             cout << "Enter a new element:";
-            newElement = ValidCin();
+            newElement = ReadIntegerInput();
             array.Insert(newElement,indexOfElement);
             system("cls");
             break;
         case 4:
             cout << "Enter seacrhing element:";
-            seacrhingElement = ValidCin();
+            seacrhingElement = ReadIntegerInput();
             index=array.LinearSearch(seacrhingElement);
             system("cls");
             if (index != -1) {
@@ -114,13 +120,13 @@ int main()
             break;
         case 5:
             cout << "Enter the index of the item to delete:";
-            indexOfElement = ValidCin();
+            indexOfElement = ReadIntegerInput();
             array.DeleteElementIndex(indexOfElement);
             system("cls");
             break;
         case 6:
             cout << "Enter the element to delete:";
-            deletedElement = ValidCin();
+            deletedElement = ReadIntegerInput();
             array.DeleteElementValue(deletedElement);
             system("cls");
             break;
@@ -132,7 +138,7 @@ int main()
             int target;
             int res;
             cout << "Searching element:";
-            target = ValidCin();
+            target = ReadIntegerInput();
             res=array.BinarySearch(target);
             system("cls");
             if (res != -1) {
@@ -142,7 +148,6 @@ int main()
                 cout << "Element wasn't found :(. Try another element." << endl << endl;
             }
             break;
-
         case 0:
             programState = false;
             break;

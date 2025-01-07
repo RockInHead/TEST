@@ -1,5 +1,4 @@
 #include "AVLTreeConsole.h"
-
 using namespace std;
 
 //Показать меню для дерева.

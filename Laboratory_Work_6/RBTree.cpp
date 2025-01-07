@@ -98,7 +98,8 @@ RBNode* RBTree::InsertNode(RBNode*& root, RBNode*& node)
 	return root;
 }
 
-//Поправялет свойства дерева после вставки элемента. Выполняет повороты и перекраску узлов для восстановления правильной структуры дерева.
+//Поправялет свойства дерева после вставки элемента.
+// Выполняет повороты и перекраску узлов для восстановления правильной структуры дерева.
 void RBTree::FixInsertRBTree(RBNode*& node)
 {
 	RBNode* parent = nullptr;
@@ -167,7 +168,8 @@ void RBTree::FixInsertRBTree(RBNode*& node)
 	SetColor(_root, Colors::Black);
 }
 
-// Поворачивает поддерево налево вокруг заданного узла. Если заданный узел имеет ненулевого правого ребенка.
+// Поворачивает поддерево налево вокруг заданного узла.
+//  Если заданный узел имеет ненулевого правого ребенка.
 void RBTree::RotateLeft(RBNode*& root, RBNode*& node)
 {
 	RBNode* rightChild = node->Right;
@@ -198,7 +200,8 @@ void RBTree::RotateLeft(RBNode*& root, RBNode*& node)
 	node->Parent = rightChild;
 }
 
-// Поворачивает поддерево направо вокруг заданного узла. Если заданный узел имеет ненулевого левого ребенка.
+// Поворачивает поддерево направо вокруг заданного узла. 
+// Если заданный узел имеет ненулевого левого ребенка.
 void RBTree::RotateRight(RBNode*& root, RBNode*& node)
 {
 	RBNode* leftChild = node->Left;
@@ -235,7 +238,8 @@ void RBTree::DeleteElement(int data) {
 	FixDeleteRBTree(_root, node);
 }
 
-// Ищет узел по значению и удаляет его из дерева. Возвращает указатель на удаляемый узел.
+// Ищет узел по значению и удаляет его из дерева.
+//  Возвращает указатель на удаляемый узел.
 RBNode* RBTree::DeleteNode(RBNode*& root, const int data)
 {
 	// Узел не найден.
@@ -267,7 +271,8 @@ RBNode* RBTree::DeleteNode(RBNode*& root, const int data)
 	return DeleteNode(root->Right, temp->Data);
 }
 
-// Находит узел с минимальным значением в поддереве. Возвращает указатель на этот узел.
+// Находит узел с минимальным значением в поддереве.
+//  Возвращает указатель на этот узел.
 RBNode* RBTree::MinValueNode(RBNode*& node)
 {
 	RBNode* pointer = node;
@@ -280,7 +285,8 @@ RBNode* RBTree::MinValueNode(RBNode*& node)
 	return pointer;
 }
 
-// Исправляет свойства дерева после удаления узла, вызывая соответсвующие случаи. node - узел, который был удален.
+// Исправляет свойства дерева после удаления узла,
+//  вызывая соответсвующие случаи. node - узел, который был удален.
 void RBTree::FixDeleteRBTree(RBNode*& root, RBNode*& node)
 {
 	// Проверка, является ли узел корнем или нулевым.
@@ -289,7 +295,8 @@ void RBTree::FixDeleteRBTree(RBNode*& root, RBNode*& node)
 		return;
 	}
 
-	// Если удалённый узел или его ребёнки красные, восстанавливаем дерево для этого случая.
+	// Если удалённый узел или его ребёнки красные,
+	//  восстанавливаем дерево для этого случая.
 	if (GetColor(node) == Colors::Red
 		|| GetColor(node->Left) == Colors::Red
 		|| GetColor(node->Right) == Colors::Red)
@@ -389,7 +396,8 @@ inline int RBTree::RemoveWhenNodeExist(RBNode*& root, RBNode*& node)
 }
 
 // Обрабатывает случай 2 удаления узла в дереве.
-// Удаляет узел, который имеет одного или ни одного потомка, связывая оставшегося ребенка с родителем удаляемого узла.
+// Удаляет узел, который имеет одного или ни одного потомка,
+// связывая оставшегося ребенка с родителем удаляемого узла.
 inline void RBTree::RemoveWhenNodeHaveOneChild(RBNode*& root, RBNode*& node)
 {
 	RBNode* child = node->Left != nullptr ? node->Left : node->Right;
@@ -422,7 +430,8 @@ inline void RBTree::RemoveWhenNodeHaveOneChild(RBNode*& root, RBNode*& node)
 
 // Обрабатывает случай 3 удаления узла в черно-красном дереве.
 // Когда брат узла является красным. Возвращает 1, если узел был удалён, иначе 0.
-inline int RBTree::RemoveWhenSiblingRed(RBNode*& root, RBNode*& sibling, RBNode*& parent, RBNode*& pointer)
+inline int RBTree::RemoveWhenSiblingRed(
+	RBNode*& root, RBNode*& sibling, RBNode*& parent, RBNode*& pointer)
 {
 	// Получаем брата.
 	sibling = parent->Right;
@@ -478,7 +487,8 @@ inline int RBTree::RemoveWhenSiblingRed(RBNode*& root, RBNode*& sibling, RBNode*
 
 // Обрабатывает случай 4 удаления узла в дереве.
 // Когда брат узла является черным, но у него есть хотя бы один красный ребенок.
-inline int RBTree::RemoveWhenSiblingBlackAndHaveRedChild(RBNode*& root, RBNode*& sibling, RBNode*& parent, RBNode*& pointer)
+inline int RBTree::RemoveWhenSiblingBlackAndHaveRedChild(
+	RBNode*& root, RBNode*& sibling, RBNode*& parent, RBNode*& pointer)
 {
 	// Получаем брата.
 	sibling = parent->Left;
