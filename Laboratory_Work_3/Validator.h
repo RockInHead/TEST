@@ -6,10 +6,10 @@
 using namespace std;
 
 //Валидация вводимых значений для элементов.
-int ValidCin();
+int ReadIntegerInput();
 
 //Валидация вводмых комманд. Команды начиная от numbOfFirstCommand и до numbOfLastCommnad.
-int ValidInputMenu(int numbOfFirstCommand, int numbOfLastCommnad);
+int ValidateCommandInput(int numbOfFirstCommand, int numbOfLastCommnad);
 
 
 #endif 

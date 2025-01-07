@@ -13,6 +13,4 @@ void MenuQueue(QueueCircularBuffer queue);
 //Вызвать консольное меню для очереди.
 void QueueConsole(QueueCircularBuffer& queue);
 
-
-
 #endif

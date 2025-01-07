@@ -4,6 +4,7 @@
 #include"CircularBuffer.h"
 using namespace std;
 
+//Класс СД Очердь, основанный на кольцевом буфере.
 class QueueCircularBuffer {
 private:
 
@@ -26,6 +27,7 @@ private:
 	int _tail= _circularBuffer.GetTail();
 
 public:
+
 	//Констуктор по умолчанию.
 	QueueCircularBuffer();
 

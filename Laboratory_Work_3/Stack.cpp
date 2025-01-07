@@ -1,6 +1,5 @@
 #include"Stack.h"
 #include <iostream>
-
 using namespace std;
 
 //Конструктор по умолчанию для списка
@@ -37,11 +36,12 @@ int* Stack::GetStack() {
 			stack[index] = temp->Data;
 			temp = temp->Next;
 			index++;
-		} while (temp != nullptr); // условие окончания обхода
+		} while (temp != nullptr);
 	}
 	return stack;
 
 }
+
 //Добавить элемент в конец стэка.
 void Stack::Push(int Data) {
 	if (_size == 0) {
@@ -63,7 +63,7 @@ void Stack::Push(int Data) {
 int Stack::Pop() 
 {
 	if (_size == 0) {
-		return -1; // Стек пуст
+		return -1; 
 	}
 
 	Node* temp = _head;
@@ -76,19 +76,20 @@ int Stack::Pop()
 		_top = nullptr;
 	}
 	else {
-
+		// Идём до предпоследнего узла
 		while (temp->Next->Next != nullptr) {
-			temp = temp->Next; // Идём до предпоследнего узла
+			temp = temp->Next; 
 		}
 		poppedElement = temp->Next->Data;
-		delete temp->Next; // Удаляем последний узел
-		temp->Next = nullptr; // Предпоследний элемент становится последним
-		_top = temp; // Обновляем _top
+		delete temp->Next; 
+		temp->Next = nullptr; 
+		_top = temp; 
 	}
 
-	_size--; // Уменьшаем размер
+	_size--; 
 	return poppedElement;	
 }
+
 //Очистить весь стэк.
 void Stack::ClearStack() {
 	if (_size != 0) {

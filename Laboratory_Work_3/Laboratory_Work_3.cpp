@@ -17,8 +17,10 @@ void Menu()
     cout << "[2]"<< MAGENTA << " - Circular Buffer"<<RESET << endl;
     cout << "[3]"<< LIGHT_GREEN << " - A Queue based on a Circular Buffer"<<RESET << endl;
     cout << "[4]"<< LIGHT_CYAN << " - A Queue based on 2 Stacks"<<RESET << endl;
+    cout << LIGHT_RED << "[0]" << RESET << " - Exit" << endl;
 }
 
+//Точка входа в программу.
 int main()
 {
     Stack stack = Stack();
@@ -30,7 +32,7 @@ int main()
     int arrayType;
     while (programState) {
         Menu();
-        arrayType = ValidInputMenu(1,4);
+        arrayType = ValidateCommandInput(0,4);
         switch (arrayType)
         {
         case 1:

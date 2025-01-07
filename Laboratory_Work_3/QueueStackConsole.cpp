@@ -1,7 +1,6 @@
 #include <iostream>
 #include"Validator.h"
 #include"QueueStackConsole.h"
-
 using namespace std;
 
 //Показать текущий очередь в строку.
@@ -23,6 +22,7 @@ void ShowQueue(QueueStack& queue) {
     cout << " " << endl << endl;
     delete[] array;
 }
+
 //Показать меню для очереди.
 void MenuQueue(QueueStack& queue)
 {
@@ -46,12 +46,12 @@ void QueueStackConsole(QueueStack& queue) {
     {
         MenuQueue(queue);
         int commandNumber;
-        commandNumber = ValidInputMenu(0, 3);
+        commandNumber = ValidateCommandInput(0, 3);
         switch (commandNumber)
         {
         case 1:
             cout << "Enter a new element:";
-            newElement = ValidCin();
+            newElement = ReadIntegerInput();
             queue.Enqueue(newElement);
             system("cls");
             break;

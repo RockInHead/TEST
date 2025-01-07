@@ -1,7 +1,6 @@
 #include"QueueCircularBufferConsole.h"
 #include <iostream>
 #include"Validator.h"
-
 using namespace std;
 
 //Показать текущий очередь в строку.
@@ -23,6 +22,7 @@ void ShowQueue(QueueCircularBuffer queue) {
     cout << " " << endl << endl;
     delete[] array;
 }
+
 //Показать меню для очереди.
 void MenuQueue(QueueCircularBuffer queue)
 {
@@ -36,7 +36,6 @@ void MenuQueue(QueueCircularBuffer queue)
     cout << RED << "[0]" << RESET << " - Exit the Queue" << endl;
 }
 
-
 //Вызвать консольное меню для очереди.
 void QueueConsole(QueueCircularBuffer& queue) {
     bool stackState = true;
@@ -47,12 +46,12 @@ void QueueConsole(QueueCircularBuffer& queue) {
     {
         MenuQueue(queue);
         int commandNumber;
-        commandNumber = ValidInputMenu(0, 3);
+        commandNumber = ValidateCommandInput(0, 3);
         switch (commandNumber)
         {
         case 1:
             cout << "Enter a new element:";
-            newElement = ValidCin();
+            newElement = ReadIntegerInput();
             queue.Enqueue(newElement);
             system("cls");
             break;

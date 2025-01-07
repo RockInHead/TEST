@@ -1,7 +1,6 @@
 #include <iostream>
 #include "StackConsole.h"
 #include"Validator.h"
-
 using namespace std;
 
 //Показать текущий стэк в строку.
@@ -45,12 +44,12 @@ void StackConsole(Stack& stack) {
     {
         MenuStack(stack);
         int commandNumber;
-        commandNumber = ValidInputMenu(0, 3);
+        commandNumber = ValidateCommandInput(0, 3);
         switch (commandNumber)
         {
         case 1:
             cout << "Enter a new element:";
-            newElement = ValidCin();
+            newElement = ReadIntegerInput();
             stack.Push(newElement);
             system("cls");
             break;

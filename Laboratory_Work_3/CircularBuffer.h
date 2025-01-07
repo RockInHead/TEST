@@ -3,6 +3,7 @@
 #include <iostream>
 using namespace std;
 
+//Класс кольцевого буффера, хранящий вместимость, размер и индексы на голову и хвост.
 class CircularBuffer {
 private:
 

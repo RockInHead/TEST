@@ -2,7 +2,6 @@
 #include "StackConsole.h"
 #include"Validator.h"
 #include"CircularBufferConsole.h"
-
 using namespace std;
 
 //Показать текущий стэк в строку.
@@ -17,6 +16,7 @@ void ShowBuffer(CircularBuffer buffer) {
 
 
 }
+
 //Показать меню для стэка.
 void MenuBuffer(CircularBuffer buffer)
 {
@@ -30,7 +30,7 @@ void MenuBuffer(CircularBuffer buffer)
     cout << "[1]" << " - Push" << endl;
     cout << "[2]" << " - Pop" << endl;
     cout << "[3]" << " - Clearing the memory" << endl;
-    cout << RED << "[0]" << RESET << " - Exit the Stack" << endl;
+    cout << RED << "[0]" << RESET << " - Exit the Circular Buffer" << endl;
 }
 
 
@@ -45,12 +45,12 @@ void CircularBufferConsole(CircularBuffer& buffer) {
     {
         MenuBuffer(buffer);
         int commandNumber;
-        commandNumber = ValidInputMenu(0, 3);
+        commandNumber = ValidateCommandInput(0, 3);
         switch (commandNumber)
         {
         case 1:
             cout << "Enter a new element:";
-            newElement = ValidCin();
+            newElement = ReadIntegerInput();
             buffer.Push(newElement);
             system("cls");
             break;

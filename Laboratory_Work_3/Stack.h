@@ -1,9 +1,9 @@
 #ifndef STACK_H
 #define STACK_H
-
 #include"Node.h"
 #include <iostream>
 
+//Класс СД Стэк, реализованный на односвязанном списке.
 class Stack {
 private:
 	//Размер текущего стэка.

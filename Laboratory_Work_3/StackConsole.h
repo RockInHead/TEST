@@ -1,6 +1,5 @@
 #ifndef STACKCONSOLE_H
 #define STACKCONSOLE_H
-
 #include <iostream>
 #include"Stack.h"
 #include"Colors.h"
@@ -15,5 +14,4 @@ void MenuStack(Stack stack);
 //Вызвать консольное меню для стэка.
 void StackConsole(Stack& stack);
 
-
-#endif // STACKCONSOLE_H
+#endif
