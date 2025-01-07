@@ -117,12 +117,11 @@ void DynamicArray::DeleteElementValue( int DeletedElement)
     {
         if (_currentArray[i] == DeletedElement)
         {
-
             indexOfElement = i;
             break;
         }
     }
-    if (indexOfElement !=-1) {
+    if (indexOfElement !=-1 && _length!=0) {
         for (int i = indexOfElement; i <= _length - 1; i++)
         {
             if (_currentArray[i] == _currentArray[_length - 1])

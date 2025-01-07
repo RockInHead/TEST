@@ -3,7 +3,7 @@
 using namespace std;
 
 //Функция вывода массива в строку.
-void ShowArray(DynamicArray array)
+void ShowArray(DynamicArray& array)
 {
     if (array.GetArray())
         for (int i = 0; i < array.GetLength(); i++)
@@ -14,13 +14,13 @@ void ShowArray(DynamicArray array)
 }
 
 // Функция возвращающая количество элементов в массиве
-void ShowLength(DynamicArray array)
+void ShowLength(DynamicArray& array)
 {
     cout << array.GetLength() << endl;
 }
 
 // Функция вывод меню в консоль
-void Menu(DynamicArray array)
+void Menu(DynamicArray& array)
 {
     cout << "Current array:"<<endl;
     ShowArray(array);
@@ -53,7 +53,7 @@ int ReadIntegerInput()
 
 
 //Валидация вводимых значений строки.Только цифры от 0 до 8.
-int ValidateCommandInput(DynamicArray array)
+int ValidateCommandInput(DynamicArray& array)
 {
     int input = ReadIntegerInput();
     while (input > 8 || input < 0) {
