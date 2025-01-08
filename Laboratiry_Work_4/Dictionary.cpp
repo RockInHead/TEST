@@ -1,6 +1,5 @@
 #include"Dictionary.h"
 #include <iostream>
-
 using namespace std;
 
 //Изменяет вместимость словаря, создавая новую словарь.
@@ -8,14 +7,16 @@ void  Dictionary::ResizeHashTable()
 {
     if (_size == _capacity)
     {
-        CreateNewHashTable(static_cast<int>(_capacity * _growthFactor));
+        CreateNewHashTable(_capacity * _growthFactor);
     }
-    else if (static_cast<int>(_size < _capacity / _growthFactor) && (_capacity != MinCapacity))
+    else if ((_size < _capacity / _growthFactor) && (_capacity != MinCapacity))
     {
-        CreateNewHashTable(static_cast<int>(_capacity/_growthFactor));
+        CreateNewHashTable(_capacity/_growthFactor);
     }
 }
-//Создает новый словарь с новой вместимостью. Переуказывает указатель на новый словарь.
+
+//Создает новый словарь с новой вместимостью. 
+//Переуказывает указатель на новый словарь.
 void Dictionary::CreateNewHashTable(int capacity)
 {
     Node** newTable = new Node * [capacity];
@@ -54,14 +55,15 @@ void Dictionary::CreateNewHashTable(int capacity)
         while (current != nullptr) {
             Node* temp = current;
             current = current->Next;
-            delete temp; // Освободить память
+            delete temp; 
         }
     }
-
-    delete[] _dictionary; // Освобождаем память старой словарь
-    _dictionary = newTable; // Переключаем на новый словарь
-    _capacity = capacity; // Обновляем вместимость
+    // Освобождаем память старой словарь
+    delete[] _dictionary; 
+    _dictionary = newTable; 
+    _capacity = capacity; 
 }
+
 //Получить текущий словарь.
 Node** Dictionary::GetHashTable() {
     Node** temp = _dictionary;
@@ -87,7 +89,8 @@ Dictionary::Dictionary() :_capacity(5), _size(0) {
     }
 }
 
-//Проверяет, если у элементов одинаковые ключи, то приравнивает value перевого элемента value второго элемента.
+//Проверяет, если у элементов одинаковые ключи,
+//то приравнивает value перевого элемента value второго элемента.
 bool Dictionary::CompareKeys(Node* nodeFirst, Node* nodeSecond) {
     if (nodeFirst->Key == nodeSecond->Key) {
         nodeFirst->Value = nodeSecond->Value;
@@ -150,6 +153,7 @@ void Dictionary::DeleteElement(string key) {
             else if (temp->Prev == nullptr && temp->Next != nullptr) {
                 temp = head;
                 head = temp->Next;
+                head->Prev = nullptr;
             }
             else if (temp->Next != nullptr) {
                 temp->Next->Prev = temp->Prev;
@@ -221,5 +225,6 @@ int Dictionary::SearchingValue(string key)
         }
         current = current->Next;
     }
-    return -1; // Возвращаем -1, если значение не найдено
+    // Возвращаем -1, если значение не найдено
+    return -1; 
 }

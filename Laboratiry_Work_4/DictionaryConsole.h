@@ -1,6 +1,5 @@
 #ifndef DIACTIONARYCONSOLE_H
 #define DIACTIONARYCONSOLE_H
-
 #include <iostream>
 #include"Colors.h"
 #include"Dictionary.h"

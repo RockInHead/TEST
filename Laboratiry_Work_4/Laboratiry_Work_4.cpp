@@ -8,11 +8,13 @@ using namespace std;
 //Вывод основного меню в консоль.
 void Menu()
 {
-    cout << "Choose array:" << endl << endl;
-    cout << "[1]" << CYAN << " - Hash table" << RESET << endl;
-    cout << "[2]" << MAGENTA << " - Dictionary" << RESET << endl;
+    cout << "Choose data structure:" << endl << endl;
+    cout << "[1]" << MAGENTA << " - Dictionary" << RESET << endl;
+    cout << "[0]" << LIGHT_RED << " - Exit" << RESET << endl;
+
 }
 
+//Точка входа в программу.
 int main()
 {
     Dictionary hash =  Dictionary();
@@ -20,17 +22,12 @@ int main()
     int arrayType;
     while (programState) {
         Menu();
-        /*arrayType = ValidInputMenu(1, 4);*/
-        arrayType = 1;
+        arrayType = ValidateCommandInput(0,1);
         switch (arrayType)
         {
         case 1:
             system("cls");
             DictionaryConsole(hash);
-            break;
-        case 2:
-            system("cls");
-            
             break;
         case 0:
             programState = false;

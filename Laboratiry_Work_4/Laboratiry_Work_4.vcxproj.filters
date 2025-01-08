@@ -22,8 +22,14 @@
     <Filter Include="Файлы ресурсов\Logic">
       <UniqueIdentifier>{46c709d4-f5ea-42d9-b3ea-7b485a672a3f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Файлы ресурсов\Console\Dictionary">
-      <UniqueIdentifier>{9e6dd5a7-bc7d-41d3-8d64-c5b56001eb9d}</UniqueIdentifier>
+    <Filter Include="Файлы заголовков\Console">
+      <UniqueIdentifier>{1159f8d6-7b50-4cb1-aa09-892f04b41b0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Logic">
+      <UniqueIdentifier>{3965063d-d69e-47e8-9d93-b668610056cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Console\Helpers">
+      <UniqueIdentifier>{e3d6c8f0-006c-4c87-bbe0-36e8776ace19}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -33,28 +39,28 @@
     <ClCompile Include="Validator.cpp">
       <Filter>Файлы ресурсов\Console\Helpers</Filter>
     </ClCompile>
-    <ClCompile Include="DictionaryConsole.cpp">
-      <Filter>Файлы ресурсов\Console\Dictionary</Filter>
-    </ClCompile>
     <ClCompile Include="Dictionary.cpp">
       <Filter>Файлы ресурсов\Logic</Filter>
     </ClCompile>
+    <ClCompile Include="DictionaryConsole.cpp">
+      <Filter>Файлы ресурсов\Console</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DictionaryConsole.h">
+      <Filter>Файлы заголовков\Console</Filter>
+    </ClInclude>
     <ClInclude Include="Colors.h">
-      <Filter>Файлы ресурсов\Console\Helpers</Filter>
+      <Filter>Файлы заголовков\Console\Helpers</Filter>
     </ClInclude>
     <ClInclude Include="Validator.h">
-      <Filter>Файлы ресурсов\Console\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="DictionaryConsole.h">
-      <Filter>Файлы ресурсов\Console\Dictionary</Filter>
+      <Filter>Файлы заголовков\Console\Helpers</Filter>
     </ClInclude>
     <ClInclude Include="Dictionary.h">
-      <Filter>Файлы ресурсов\Logic</Filter>
+      <Filter>Файлы заголовков\Logic</Filter>
     </ClInclude>
     <ClInclude Include="Node.h">
-      <Filter>Файлы ресурсов\Logic</Filter>
+      <Filter>Файлы заголовков\Logic</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

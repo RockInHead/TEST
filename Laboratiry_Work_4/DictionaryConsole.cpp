@@ -28,17 +28,18 @@ void ShowDictionary(Dictionary& hash) {
     array = nullptr;
     delete[] array;
 }
+
 //Показать меню для словаря.
 void MenuDictionary(Dictionary& hash)
 {
-    cout << LIGHT_BLUE << "Hash Table:" << RESET << endl;
+    cout << LIGHT_BLUE << "Dictionary:" << RESET << endl;
     ShowDictionary(hash);
     cout << "Size:" << LIGHT_YELLOW << hash.GetSize() << RESET << endl;
     cout << "Capacity:" << RED << hash.GetCapacity() << RESET << endl << endl;
     cout << "[1]" << " - Put" << endl;
     cout << "[2]" << " - Delete element by Key" << endl;
     cout << "[3]" << " - Searching Element by Key" << endl;
-    cout << RED << "[0]" << RESET << " - Exit the Stack" << endl;
+    cout << RED << "[0]" << RESET << " - Exit the Dictionary" << endl;
 }
 
 //Вызвать консольное меню для словаря.
@@ -52,14 +53,14 @@ void DictionaryConsole(Dictionary& hash) {
     {
         MenuDictionary(hash);
         int commandNumber;
-        commandNumber = ValidInputMenu(0, 3);
+        commandNumber = ValidateCommandInput(0, 3);
         switch (commandNumber)
         {
         case 1:
             cout << "Enter a key:";
             cin >> key;
             cout << "Enter a value:";
-            newElement = ValidCin();
+            newElement = ReadIntegerInput();
             hash.Put(key, newElement);
             system("cls");
             break;

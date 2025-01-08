@@ -1,8 +1,10 @@
 #ifndef NODE_H
 #define NODE_H
-
 #include <iostream>
 using namespace std;
+
+//Узел словаря, хранящий ключ, значение и 
+//указатели на следующий и предыдущий элементы.
 struct Node
 {
     //Ключ строка.

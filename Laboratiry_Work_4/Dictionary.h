@@ -1,18 +1,17 @@
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
-
 #include"Node.h"
 #include <iostream>
-
 using namespace std;
 
+//Класс словаря, основанный на хэш-таблице.
 class Dictionary {
 private:
 	//Минимальная вместимость словаря.
 	const int MinCapacity = 5;
 
 	//Фактор рсота для словаря.
-	double _growthFactor = 1.5;
+	int _growthFactor = 2;
 
 	//Вместимость словаря.
 	int _capacity;
