@@ -11,7 +11,6 @@ void Menu()
     cout << "Choose data structure:" << endl << endl;
     cout << "[1]" << MAGENTA << " - Dictionary" << RESET << endl;
     cout << "[0]" << LIGHT_RED << " - Exit" << RESET << endl;
-
 }
 
 //Точка входа в программу.

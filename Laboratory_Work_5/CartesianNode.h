@@ -1,7 +1,9 @@
 #ifndef CARTESIANNODE_H
 #define CARTESIANNODE_H
-
 #include <iostream>
+
+//Узел для декартового дерева, хранящий ключ, приоритет
+//и указатели на левый и правый элемент дерева.
 struct CartesianNode
 {
     //Значения приоритетов от какого до какого.

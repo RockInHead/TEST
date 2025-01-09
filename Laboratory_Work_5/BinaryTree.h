@@ -1,8 +1,9 @@
 #ifndef BINARYTREE_H
 #define BINARYTREE_H
-
 #include <iostream>
 #include "Node.h"
+
+// ласс бинарного дерева поиска.
 class BinaryTree {
 private:
 	//”казатель на корень дерева.

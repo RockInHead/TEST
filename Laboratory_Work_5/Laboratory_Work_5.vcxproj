@@ -132,6 +132,7 @@
     <ClCompile Include="CartesianTree.cpp" />
     <ClCompile Include="CartesianTreeConsole.cpp" />
     <ClCompile Include="Laboratory_Work_5.cpp" />
+    <ClCompile Include="PrintTreeConsole.cpp" />
     <ClCompile Include="Validator.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +143,7 @@
     <ClInclude Include="CartesianTreeConsole.h" />
     <ClInclude Include="Colors.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="PrintTreeConsole.h" />
     <ClInclude Include="Symbols.h" />
     <ClInclude Include="Validator.h" />
   </ItemGroup>

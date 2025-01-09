@@ -34,6 +34,27 @@
     <Filter Include="Файлы ресурсов\Logic\Cartesian Tree">
       <UniqueIdentifier>{a27bfb80-4e02-40e7-a969-604a0d451345}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\Console">
+      <UniqueIdentifier>{41d6d1ab-9094-4c96-91a6-345e2bc3a907}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Logic">
+      <UniqueIdentifier>{e52b930d-d443-42f7-a13b-ba36047d5f76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Console\Binary Tree">
+      <UniqueIdentifier>{a0d95beb-5819-43cd-8429-5cb65cd8d39a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Console\Cartesian Tree">
+      <UniqueIdentifier>{6ddf960a-be3c-490a-92c1-0e31feb06563}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Console\Helpers">
+      <UniqueIdentifier>{21b8ee80-7b8f-4929-9aae-5e5e6ff421bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Logic\Binary Tree">
+      <UniqueIdentifier>{c0d8d5e2-be06-4c94-879c-96e35fad9a3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Logic\Cartesian Tree">
+      <UniqueIdentifier>{95821172-2cf1-4bdb-b03d-8d13429b2392}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Laboratory_Work_5.cpp">
@@ -54,34 +75,40 @@
     <ClCompile Include="CartesianTree.cpp">
       <Filter>Файлы ресурсов\Logic\Cartesian Tree</Filter>
     </ClCompile>
+    <ClCompile Include="PrintTreeConsole.cpp">
+      <Filter>Файлы ресурсов\Console\Helpers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Colors.h">
-      <Filter>Файлы ресурсов\Console\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Validator.h">
-      <Filter>Файлы ресурсов\Console\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Node.h">
-      <Filter>Файлы ресурсов\Logic\Binary Tree</Filter>
-    </ClInclude>
-    <ClInclude Include="BinaryTree.h">
-      <Filter>Файлы ресурсов\Logic\Binary Tree</Filter>
-    </ClInclude>
     <ClInclude Include="BinaryTreeConsole.h">
-      <Filter>Файлы ресурсов\Console\Binary Tree</Filter>
+      <Filter>Файлы заголовков\Console\Binary Tree</Filter>
     </ClInclude>
     <ClInclude Include="CartesianTreeConsole.h">
-      <Filter>Файлы ресурсов\Console\Cartesian Tree</Filter>
+      <Filter>Файлы заголовков\Console\Cartesian Tree</Filter>
     </ClInclude>
-    <ClInclude Include="CartesianNode.h">
-      <Filter>Файлы ресурсов\Logic\Cartesian Tree</Filter>
-    </ClInclude>
-    <ClInclude Include="CartesianTree.h">
-      <Filter>Файлы ресурсов\Logic\Cartesian Tree</Filter>
+    <ClInclude Include="Colors.h">
+      <Filter>Файлы заголовков\Console\Helpers</Filter>
     </ClInclude>
     <ClInclude Include="Symbols.h">
-      <Filter>Файлы ресурсов\Console\Helpers</Filter>
+      <Filter>Файлы заголовков\Console\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Validator.h">
+      <Filter>Файлы заголовков\Console\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryTree.h">
+      <Filter>Файлы заголовков\Logic\Binary Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Файлы заголовков\Logic\Binary Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="CartesianNode.h">
+      <Filter>Файлы заголовков\Logic\Cartesian Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="CartesianTree.h">
+      <Filter>Файлы заголовков\Logic\Cartesian Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="PrintTreeConsole.h">
+      <Filter>Файлы заголовков\Console\Helpers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

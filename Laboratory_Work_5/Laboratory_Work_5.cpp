@@ -13,8 +13,11 @@ void Menu()
     cout << "Choose Tree:" << endl << endl;
     cout << "[1]" << CYAN << " - Binary Tree" << RESET << endl;
     cout << "[2]" << MAGENTA << " - Cartesian Tree" << RESET << endl;
+    cout <<RED<< "[0]" << RESET << " - Exit" << endl;
+
 }
 
+//Точка входа в программу.
 int main()
 {
     BinaryTree binaryTree = BinaryTree();
@@ -24,7 +27,7 @@ int main()
     int arrayType;
     while (programState) {
         Menu();
-        arrayType = ValidInputMenu(1, 2);
+        arrayType = ValidateCommandInput(0, 2);
         switch (arrayType)
         {
         case 1:

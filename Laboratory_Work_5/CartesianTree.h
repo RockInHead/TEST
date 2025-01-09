@@ -1,8 +1,9 @@
 #ifndef CARTESIANTREE_H
 #define CARTESIANTREE_H
-
 #include <iostream>
 #include "CartesianNode.h"
+
+//Класс декартового дерева.
 class CartesianTree {
 private:
 	//Указатель на корень дерева.
@@ -21,15 +22,13 @@ private:
 	static void Split(CartesianNode* node, int key, CartesianNode*& a, CartesianNode*& b);
 
 	//Функция вставки элемента дерева.
-	void Insert(CartesianNode*& node, int key,int priority);
+	void Insert(CartesianNode*& node, int key, int priority);
 
 	//Удаляет элемент по ключу.
 	void Remove(CartesianNode*& node, int key);
 
 	//Удаляет все ветви у node.
 	void FreeTree(CartesianNode*& node);
-
-	
 
 public:
 	//Удаляет все элементы дерева.
