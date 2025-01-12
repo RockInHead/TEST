@@ -101,5 +101,7 @@ public:
 
 	//Очищает всё дерево.
 	void ClearTree();
+
+	int GetRotationCount();
 };
 #endif

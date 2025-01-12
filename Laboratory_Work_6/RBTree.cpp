@@ -1,5 +1,16 @@
 #include"RBTree.h"
 
+int _rotationCount; // Счетчик для поворотов
+
+// Функция для получения текущего количества поворотов
+int RBTree::GetRotationCount()
+{
+	int resultCount = _rotationCount;
+	_rotationCount = 0;
+	return resultCount;
+}
+
+
 //Возвращает текущий корень дерева.
 RBNode* RBTree::GetRoot() 
 {
@@ -205,6 +216,8 @@ void RBTree::RotateLeft(RBNode*& root, RBNode*& node)
 
 	rightChild->Left = node;
 	node->Parent = rightChild;
+
+	_rotationCount++; // Увеличиваем счетчик
 }
 
 // Поворачивает поддерево направо вокруг заданного узла. 
@@ -237,6 +250,8 @@ void RBTree::RotateRight(RBNode*& root, RBNode*& node)
 
 	leftChild->Right = node;
 	node->Parent = leftChild;
+
+	_rotationCount++; // Увеличиваем счетчик
 }
 
 //Удаление элемента по значению.

@@ -16,7 +16,7 @@ void AddMultipleElements(RBTree& tree) {
     srand(static_cast<unsigned int>(time(0)));
 
     for (int i = 0; i < n; ++i) {
-        int newElement = rand() % 100; // Генерация случайного числа от 0 до 99
+        int newElement = rand() % n; // Генерация случайного числа от 0 до 99
         tree.AddElement(newElement); // Добавляем элемент
     }
 
@@ -64,23 +64,90 @@ void RedBlackTreeConsole(RBTree& tree) {
         switch (commandNumber)
         {
         case 1:
-            cout << "Enter a value:";
+            cout << "Enter a value: ";
+            newElement = ReadIntegerInput();
+
+            {
+                auto start = high_resolution_clock::now();
+                tree.AddElement(newElement);
+                auto stop = high_resolution_clock::now();
+                auto durationMicro = duration_cast<microseconds>(stop - start);
+                auto durationNano = duration_cast<nanoseconds>(stop - start);
+
+                system("cls");
+
+                cout << "Time taken to add " << newElement << ": "
+                    << durationMicro.count() << " microseconds ("
+                    << durationNano.count() << " nanoseconds)" << endl;
+                cout << "Rotation count is " << tree.GetRotationCount() << endl<< endl;
+            }
+
+
+            break;
+
+
+
+            /*cout << "Enter a value:";
             newElement = ReadIntegerInput();
             tree.AddElement(newElement);
             system("cls");
-            break;
+            break;*/
         case 2:
-            cout << "Enter a value:";
+            cout << "Enter a value: ";
+            cin >> deletedElement;
+
+            {
+                auto start = high_resolution_clock::now();
+                tree.DeleteElement(deletedElement);
+                auto stop = high_resolution_clock::now();
+                auto durationMicro = duration_cast<microseconds>(stop - start);
+                auto durationNano = duration_cast<nanoseconds>(stop - start);
+
+                system("cls");
+
+                cout << "Time taken to delete " << deletedElement << ": "
+                    << durationMicro.count() << " microseconds ("
+                    << durationNano.count() << " nanoseconds)" << endl;
+
+                cout << "Rotation count is " << tree.GetRotationCount() << endl << endl;
+
+            }
+
+            break;
+
+            /*cout << "Enter a value:";
             cin >> deletedElement;
             tree.DeleteElement(deletedElement);
             system("cls");
-            break;
+            break;*/
         case 3:
-            cout << "Enter a value:";
+            cout << "Enter a value: ";
+            cin >> seacrhingElement;
+
+            {
+                auto start = high_resolution_clock::now();
+                foundedElement = tree.FindValue(seacrhingElement);
+                auto stop = high_resolution_clock::now();
+                auto durationMicro = duration_cast<microseconds>(stop - start);
+                auto durationNano = duration_cast<nanoseconds>(stop - start);
+
+                system("cls");
+
+
+                cout << "Time taken to find " << seacrhingElement << ": "
+                    << durationMicro.count() << " microseconds ("
+                    << durationNano.count() << " nanoseconds)" << endl;
+
+                cout << "Rotation count is " << tree.GetRotationCount() << endl << endl;
+            }
+
+            break;
+
+            /*cout << "Enter a value:";
             cin >> seacrhingElement;
             foundedElement=tree.FindValue(seacrhingElement);
             system("cls");
-            break;
+            break;*/
         case 4:
             tree.ClearTree();
             system("cls");

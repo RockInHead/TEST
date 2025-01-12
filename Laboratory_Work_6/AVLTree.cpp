@@ -1,5 +1,14 @@
 ﻿#include"AVLTree.h"
 
+
+int AVLTree::GetRotationCount() 
+{
+	int resultCount = _rotationCount;
+	_rotationCount = 0;
+	return resultCount;
+}
+
+
 //Конструктор по умолчанию.
 AVLTree::AVLTree() :_size(0), _root(nullptr) {}
 
@@ -133,6 +142,7 @@ AVLNode* AVLTree::RotateLeft(AVLNode* treeNode)
 	FixHeight(treeNode);
 	FixHeight(current);
 
+	_rotationCount++; // Увеличиваем счетчик поворотов
 	return current;
 }
 
@@ -147,6 +157,7 @@ AVLNode* AVLTree::RotateRight(AVLNode* treeNode)
 	FixHeight(treeNode);
 	FixHeight(current);
 
+	_rotationCount++; // Увеличиваем счетчик поворотов
 	return current;
 }
 

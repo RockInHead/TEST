@@ -5,6 +5,9 @@
 
 class AVLTree {
 private:
+	int _rotationCount; // —четчик дл€ поворотов
+
+
 	//”казатель на корень дерева.
 	AVLNode* _root;
 
@@ -78,5 +81,7 @@ public:
 
 	//ќчищает всЄ дерево.
 	void ClearTree();
+
+	int GetRotationCount();
 };
 #endif
