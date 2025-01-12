@@ -1,12 +1,39 @@
 #include "RedBlackTreeConsole.h"
+#include <chrono>
 
 using namespace std;
+using namespace std::chrono;
+
+// Функция для добавления нескольких элементов
+void AddMultipleElements(RBTree& tree) {
+    int n;
+    cout << "Enter number of elements to add: ";
+    cin >> n;
+
+    auto totalStart = high_resolution_clock::now(); // Начало общего замера времени
+
+    // Инициализация генератора случайных чисел
+    srand(static_cast<unsigned int>(time(0)));
+
+    for (int i = 0; i < n; ++i) {
+        int newElement = rand() % 100; // Генерация случайного числа от 0 до 99
+        tree.AddElement(newElement); // Добавляем элемент
+    }
+
+    auto totalStop = high_resolution_clock::now(); // Конец общего замера времени
+    auto totalDuration = duration_cast<microseconds>(totalStop - totalStart); // Считаем общее время
+
+    system("cls");
+
+    cout << "Total time taken to add " << n << " elements: " << totalDuration.count() << " microseconds" << endl;
+}
+
 
 //Показать меню для дерева.
 void MenuRedBlackTree(RBTree& tree, int foundedElement)
 {
     cout << RED << "Red-Black Tree:" << RESET << endl;
-    ShowRBTree(tree.GetRoot(), true, foundedElement);
+    /*ShowRBTree(tree.GetRoot(), true, foundedElement);*/
     cout << endl;
 
     cout << "Height:" << LIGHT_YELLOW << tree.GetHeight() << RESET << endl;
@@ -33,7 +60,7 @@ void RedBlackTreeConsole(RBTree& tree) {
     {
         MenuRedBlackTree(tree, foundedElement);
         int commandNumber;
-        commandNumber = ValidateCommandInput(0, 4);
+        commandNumber = ValidateCommandInput(0, 5);
         switch (commandNumber)
         {
         case 1:
@@ -57,6 +84,10 @@ void RedBlackTreeConsole(RBTree& tree) {
         case 4:
             tree.ClearTree();
             system("cls");
+            break;
+        case 5:
+            AddMultipleElements(tree);
+           /* system("cls");*/
             break;
         case 0:
             system("cls");

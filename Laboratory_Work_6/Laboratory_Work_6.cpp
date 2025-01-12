@@ -11,7 +11,6 @@ void Menu()
     cout << "[1]" << RED << " - Red-Black Tree" << RESET << endl;
     cout << "[2]" << MAGENTA << " - AVL Tree" << RESET << endl;
     cout << RED << "[0]" << RESET << " - Exit the Program" << endl;
-
 }
 
 //Точка входа в программу.
