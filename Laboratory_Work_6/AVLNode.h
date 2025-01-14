@@ -1,6 +1,7 @@
 #ifndef AVLNODE_H
 #define AVLNODE_H
 
+//Узел AVL-дерева.
 struct AVLNode
 {
 	//Значение элемента.

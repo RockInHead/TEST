@@ -59,7 +59,8 @@ void AVLTree::AddElement(int data)
 	_size++;
 }
 
-//Вставка нового ключа в дерево. Если дерево становится несбалансированным после вставки, выполняется балансировка.
+//Вставка нового ключа в дерево.
+//Если дерево становится несбалансированным после вставки, выполняется балансировка.
 AVLNode* AVLTree::Insert(AVLNode* treeNode, const int data)
 {
 	if (!treeNode)
@@ -80,7 +81,8 @@ AVLNode* AVLTree::Insert(AVLNode* treeNode, const int data)
 	return Balance(treeNode);
 }
 
-// Проверяет фактор баланса узла и выполняет вращения при необходимости.
+// Проверяет фактор баланса узла и
+// выполняет вращения при необходимости.
 AVLNode* AVLTree::Balance(AVLNode* treeNode)
 {
 	FixHeight(treeNode);
@@ -109,7 +111,8 @@ AVLNode* AVLTree::Balance(AVLNode* treeNode)
 	return treeNode;
 }
 
-//Обновляет высоту узла. Высота - максимальная высота его поддеревьев + 1.
+//Обновляет высоту узла.
+//Высота - максимальная высота его поддеревьев + 1.
 void AVLTree::FixHeight(AVLNode* treeNode)
 {
 	int heightLeft = GetHeight(treeNode->Left);
@@ -117,16 +120,18 @@ void AVLTree::FixHeight(AVLNode* treeNode)
 	treeNode->Height = (heightLeft > heightRight ? heightLeft : heightRight) + 1;
 }
 
-//Возвращает высоту для элемента. Если элемента не сущесвует, то возвращает -1.
+//Возвращает высоту для элемента.
+//Если элемента не сущесвует, то возвращает -1.
 int AVLTree::GetHeight(AVLNode* treeNode)
 {
 	return treeNode ? treeNode->Height : -1;
 }
 
-// Вычисляет фактор баланса, то есть разницц между высотой левого и правого поддеревьев.
+// Вычисляет фактор баланса,
+// то есть разницц между высотой левого и правого поддеревьев.
 int AVLTree::GetBalanceFactor(AVLNode* treeNode)
 {
-	return treeNode==nullptr? 0:(GetHeight(treeNode->Right) - GetHeight(treeNode->Left));
+	return treeNode == nullptr? 0:(GetHeight(treeNode->Right) - GetHeight(treeNode->Left));
 }
 
 //Левый поворот для узла.
@@ -163,7 +168,8 @@ void AVLTree::DeleteElement(int data)
 	_root = Remove(_root, data);
 }
 
-//Удаляет узел с вводимым ключом и выполняет балансировку при необходимости.
+//Удаляет узел с вводимым ключом и
+//выполняет балансировку при необходимости.
 AVLNode* AVLTree::Remove(AVLNode* treeNode, const int key)
 {
 	if (!treeNode)
@@ -231,7 +237,8 @@ int AVLTree::FindValue(int data)
 	}
 }
 
-// Возвращает указатель на найденный узел или nullptr, если узел не найден.
+// Возвращает указатель на найденный узел или nullptr,
+// если узел не найден.
 AVLNode* AVLTree::FindNode(AVLNode* node, const int key)
 {
 	if (node == nullptr)

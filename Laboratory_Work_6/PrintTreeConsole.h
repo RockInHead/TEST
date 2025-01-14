@@ -33,7 +33,5 @@ void ShowRBTree(
 	bool root = true,
 	bool left = true,
 	shared_ptr<vector<vector<string>>> lines = nullptr);
-
-
 #endif 
 
