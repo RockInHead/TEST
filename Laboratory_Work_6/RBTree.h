@@ -3,7 +3,10 @@
 #include <iostream>
 #include "RBNode.h"
 #include "Colors.h"
-class RBTree {
+
+// ласс  расно-черного дерева.
+class RBTree 
+{
 private:
 	//”казатель на корень дерева.
 	RBNode* _root;
@@ -16,7 +19,8 @@ private:
 	RBNode* InsertNode(RBNode*& root, RBNode*& node);
 
 	//ѕоправ€лет свойства дерева после вставки элемента. 
-	// ¬ыполн€ет повороты и перекраску узлов дл€ восстановлени€ правильной структуры дерева.
+	// ¬ыполн€ет повороты и перекраску узлов
+	// дл€ восстановлени€ правильной структуры дерева.
 	void FixInsertRBTree( RBNode*& node);
 
 	// ¬озвращает цвет узла. 
@@ -49,21 +53,21 @@ private:
 
 	// ќбрабатывает случай 1 удалени€ узла в дереве.
 	// ”дал€ет корень дерева, если он существует, или возвращает 1, если узел нулевой.
-	inline int RemoveWhenNodeExist(RBNode*& root, RBNode*& node);
+	inline int DeleteNodeCase1(RBNode*& root, RBNode*& node);
 
 	// ќбрабатывает случай 2 удалени€ узла в дереве.
 	// ”дал€ет узел, который имеет одного или ни одного потомка,
 	//  св€зыва€ оставшегос€ ребенка с родителем удал€емого узла.
-	inline void RemoveWhenNodeHaveOneChild(RBNode*& root, RBNode*& node);
+	inline void DeleteNodeCase2(RBNode*& root, RBNode*& node);
 
 	// ќбрабатывает случай 3 удалени€ узла в черно-красном дереве.
 	//  огда брат узла €вл€етс€ красным. 
 	// ¬озвращает 1, если узел был удалЄн, иначе 0.
-	inline int RemoveWhenSiblingRed(RBNode*& root, RBNode*& sibling, RBNode*& parent, RBNode*& pointer);
+	inline int DeleteNodeCase3(RBNode*& root, RBNode*& sibling, RBNode*& parent, RBNode*& pointer);
 
 	// ќбрабатывает случай 4 удалени€ узла в дереве.
 	//  огда брат узла €вл€етс€ черным, но у него есть хот€ бы один красный ребенок.
-	inline int RemoveWhenSiblingBlackAndHaveRedChild(RBNode*& root, RBNode*& sibling, RBNode*& parent, RBNode*& pointer);
+	inline int DeleteNodeCase4(RBNode*& root, RBNode*& sibling, RBNode*& parent, RBNode*& pointer);
 
 	//¬озвращает указатель на найденный узел или nullptr, если узел не найден.
 	RBNode* FindNode(RBNode* node, const int data);

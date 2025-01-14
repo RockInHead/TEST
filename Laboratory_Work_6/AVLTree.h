@@ -4,7 +4,8 @@
 #include "AVLNode.h"
 
 // ласс AVL-дерева.
-class AVLTree {
+class AVLTree 
+{
 private:
 	//”казатель на корень дерева.
 	AVLNode* _root;

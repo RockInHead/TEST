@@ -12,7 +12,8 @@ RBTree::RBTree() :_size(0), _root(nullptr) {}
 //Вычисляет текущую высоту дерева.
 int RBTree::CalculateHeight(RBNode* node) 
 {
-	if (node == nullptr) {
+	if (node == nullptr) 
+	{
 		return 0;
 	}
 	int leftHeight = CalculateHeight(node->Left);
@@ -48,7 +49,8 @@ void RBTree::SetColor(RBNode*& node, const Colors color)
 }
 
 //Возврщает минимальный элемент дерева.
-int RBTree::FindMin() {
+int RBTree::FindMin() 
+{
 	if (_root == nullptr)
 	{
 		return 0;
@@ -57,7 +59,8 @@ int RBTree::FindMin() {
 }
 
 //Возвращает максимальный элемент дерева.
-int RBTree::FindMax() {
+int RBTree::FindMax() 
+{
 	if (_root == nullptr)
 	{
 		return 0;
@@ -299,7 +302,7 @@ RBNode* RBTree::MinValueNode(RBNode*& node)
 void RBTree::FixDeleteRBTree(RBNode*& root, RBNode*& node)
 {
 	// Проверка, является ли узел корнем или нулевым.
-	if (RemoveWhenNodeExist(root, node) == 1)
+	if (DeleteNodeCase1(root, node) == 1)
 	{
 		return;
 	}
@@ -311,7 +314,7 @@ void RBTree::FixDeleteRBTree(RBNode*& root, RBNode*& node)
 		|| GetColor(node->Right) == Colors::Red)
 	{
 		// Обрабатываем случай 2.
-		RemoveWhenNodeHaveOneChild(root, node);
+		DeleteNodeCase2(root, node);
 	}
 	// Если удалённый узел и его дети чёрные.
 	else if (GetColor(node) != Colors::Red
@@ -331,7 +334,7 @@ void RBTree::FixDeleteRBTree(RBNode*& root, RBNode*& node)
 			if (pointer == parent->Left)
 			{
 				// Если наш узел — левый ребёнок, обрабатываем случай 3.
-				if (RemoveWhenSiblingRed(root, sibling, parent, pointer) == 1)
+				if (DeleteNodeCase3(root, sibling, parent, pointer) == 1)
 				{
 					break;
 				}
@@ -341,7 +344,7 @@ void RBTree::FixDeleteRBTree(RBNode*& root, RBNode*& node)
 			else if (pointer != parent->Left)
 			{
 				// Обрабатываем случай 4.
-				if (RemoveWhenSiblingBlackAndHaveRedChild(root, sibling, parent, pointer) == 1)
+				if (DeleteNodeCase4(root, sibling, parent, pointer) == 1)
 				{
 					break;
 				}
@@ -366,7 +369,7 @@ void RBTree::FixDeleteRBTree(RBNode*& root, RBNode*& node)
 
 // Обрабатывает случай 1 удаления узла в дереве.
 // Удаляет корень дерева, если он существует, или возвращает 1, если узел нулевой.
-inline int RBTree::RemoveWhenNodeExist(RBNode*& root, RBNode*& node)
+inline int RBTree::DeleteNodeCase1(RBNode*& root, RBNode*& node)
 {
 	if (node == nullptr)
 	{
@@ -404,7 +407,7 @@ inline int RBTree::RemoveWhenNodeExist(RBNode*& root, RBNode*& node)
 // Обрабатывает случай 2 удаления узла в дереве.
 // Удаляет узел, который имеет одного или ни одного потомка,
 // связывая оставшегося ребенка с родителем удаляемого узла.
-inline void RBTree::RemoveWhenNodeHaveOneChild(RBNode*& root, RBNode*& node)
+inline void RBTree::DeleteNodeCase2(RBNode*& root, RBNode*& node)
 {
 	RBNode* child = node->Left != nullptr ? node->Left : node->Right;
 
@@ -435,11 +438,7 @@ inline void RBTree::RemoveWhenNodeHaveOneChild(RBNode*& root, RBNode*& node)
 
 // Обрабатывает случай 3 удаления узла в черно-красном дереве.
 // Когда брат узла является красным. Возвращает 1, если узел был удалён, иначе 0.
-inline int RBTree::RemoveWhenSiblingRed(
-	RBNode*& root, 
-	RBNode*& sibling, 
-	RBNode*& parent, 
-	RBNode*& pointer)
+inline int RBTree::DeleteNodeCase3(RBNode*& root, RBNode*& sibling, RBNode*& parent, RBNode*& pointer)
 {
 	// Получаем брата.
 	sibling = parent->Right;
@@ -494,12 +493,9 @@ inline int RBTree::RemoveWhenSiblingRed(
 }
 
 // Обрабатывает случай 4 удаления узла в дереве.
-// Когда брат узла является черным, но у него есть хотя бы один красный ребенок.
-inline int RBTree::RemoveWhenSiblingBlackAndHaveRedChild(
-	RBNode*& root, 
-	RBNode*& sibling, 
-	RBNode*& parent, 
-	RBNode*& pointer)
+// Когда брат узла является черным,
+// но у него есть хотя бы один красный ребенок.
+inline int RBTree::DeleteNodeCase4(RBNode*& root, RBNode*& sibling, RBNode*& parent, RBNode*& pointer)
 {
 	// Получаем брата.
 	sibling = parent->Left;
@@ -554,7 +550,8 @@ inline int RBTree::RemoveWhenSiblingBlackAndHaveRedChild(
 }
 
 //Возвращает значение искомого элемента.
-int RBTree::FindValue(int data) {
+int RBTree::FindValue(int data) 
+{
 	if (_size != 0) 
 	{
 		RBNode* foundNode = FindNode(_root, data);
