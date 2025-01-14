@@ -4,8 +4,10 @@
 AVLTree::AVLTree() :_size(0), _root(nullptr) {}
 
 //Вычисляет текущую высоту дерева.
-int AVLTree::CalculateHeight(AVLNode* node) {
-	if (node == nullptr) {
+int AVLTree::CalculateHeight(AVLNode* node) 
+{
+	if (node == nullptr) 
+	{
 		return 0;
 	}
 	int leftHeight = CalculateHeight(node->Left);
@@ -14,12 +16,14 @@ int AVLTree::CalculateHeight(AVLNode* node) {
 }
 
 //Возвращает высоту дерева.
-int AVLTree::GetTreeHeight() {
+int AVLTree::GetTreeHeight() 
+{
 	return CalculateHeight(_root);
 }
 
 //Возвращает минимальный элемент дерева.
-int AVLTree::FindMin() {
+int AVLTree::FindMin() 
+{
 	if (_root == nullptr)
 	{
 		return 0;
@@ -28,7 +32,8 @@ int AVLTree::FindMin() {
 }
 
 //Возвращает максимальный элемент дерева.
-int AVLTree::FindMax() {
+int AVLTree::FindMax() 
+{
 	if (_root == nullptr)
 	{
 		return 0;
@@ -42,12 +47,14 @@ int AVLTree::FindMax() {
 }
 
 //Возврщает корень дерева.
-AVLNode* AVLTree::GetRoot() {
+AVLNode* AVLTree::GetRoot() 
+{
 	return _root;
 }
 
 //Добавляет новый элемент в дерево.
-void AVLTree::AddElement(int data) {
+void AVLTree::AddElement(int data) 
+{
 	_root = Insert(_root, data);
 	_size++;
 }
@@ -151,7 +158,8 @@ AVLNode* AVLTree::RotateRight(AVLNode* treeNode)
 }
 
 //Удаление элемента по значению.
-void AVLTree::DeleteElement(int data) {
+void AVLTree::DeleteElement(int data) 
+{
 	_root = Remove(_root, data);
 }
 
@@ -211,8 +219,10 @@ AVLNode* AVLTree::RemoveMinimal(AVLNode* treeNode)
 }
 
 //Возвращает значение искомого элемента.
-int AVLTree::FindValue(int data) {
-	if (_size != 0) {
+int AVLTree::FindValue(int data) 
+{
+	if (_size != 0) 
+	{
 		AVLNode* foundNode = FindNode(_root, data);
 		if (foundNode != nullptr) {
 			return foundNode->Data;
@@ -222,7 +232,8 @@ int AVLTree::FindValue(int data) {
 }
 
 // Возвращает указатель на найденный узел или nullptr, если узел не найден.
-AVLNode* AVLTree::FindNode(AVLNode* node, const int key){
+AVLNode* AVLTree::FindNode(AVLNode* node, const int key)
+{
 	if (node == nullptr)
 	{
 		return nullptr;
@@ -255,7 +266,8 @@ void AVLTree::FreeTree(AVLNode*& node)
 }
 
 //Удаляет все элементы дерева.
-void AVLTree::ClearTree() {
+void AVLTree::ClearTree() 
+{
 	if (_size != 0) {
 		FreeTree(_root);
 		_size = 0;

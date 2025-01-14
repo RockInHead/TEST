@@ -71,12 +71,12 @@ int RBTree::FindMax() {
 }
 
 //Добавление элемента в дерево.
-void RBTree::AddElement(int data) {
+void RBTree::AddElement(int data) 
+{
 	RBNode* node = new RBNode(data);
 	_root = InsertNode(_root, node);
 	FixInsertRBTree(node);
 	_size++;
-
 }
 
 //Вставляет новый узел по корню root.
@@ -176,7 +176,7 @@ void RBTree::FixInsertRBTree(RBNode*& node)
 }
 
 // Поворачивает поддерево налево вокруг заданного узла.
-//  Если заданный узел имеет ненулевого правого ребенка.
+// Если заданный узел имеет ненулевого правого ребенка.
 void RBTree::RotateLeft(RBNode*& root, RBNode*& node)
 {
 	RBNode* rightChild = node->Right;
@@ -240,7 +240,8 @@ void RBTree::RotateRight(RBNode*& root, RBNode*& node)
 }
 
 //Удаление элемента по значению.
-void RBTree::DeleteElement(int data) {
+void RBTree::DeleteElement(int data) 
+{
 	RBNode* node = DeleteNode(_root, data);
 	FixDeleteRBTree(_root, node);
 }
@@ -603,7 +604,8 @@ void RBTree::FreeTree(RBNode*& node)
 //Удаляет все элементы дерева.
 void RBTree::ClearTree() 
 {
-	if (_size != 0) {
+	if (_size != 0) 
+	{
 		FreeTree(_root);
 		_size = 0;
 	}
